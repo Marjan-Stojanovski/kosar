@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+
 
 Route::middleware(['web','auth'])->prefix('dashboard')->group(function() {
 
@@ -102,4 +101,14 @@ Route::middleware(['web','auth'])->prefix('dashboard')->group(function() {
     Route::delete('sliders/{slider}', [\App\Http\Controllers\SliderController::class, 'destroy'])->name('sliders.destroy');
 
     Route::get('mail', [\App\Http\Controllers\UserController::class, 'mail'])->name('send.mail');
+
+    //Brands-web-route
+
+    Route::get('brands', [App\Http\Controllers\BrandController::class, 'index'])->name('brands.index');
+    Route::get('brands/create', [App\Http\Controllers\BrandController::class, 'create'])->name('brands.create');
+    Route::post('brands', [App\Http\Controllers\BrandController::class, 'store'])->name('brands.store');
+    Route::get('brands/{brand}', [\App\Http\Controllers\BrandController::class, 'show'])->name('brands.show');
+    Route::get('brands/{brands}/edit', [\App\Http\Controllers\BrandController::class, 'edit'])->name('brands.edit');
+    Route::put('brands/{brands}', [\App\Http\Controllers\BrandController::class, 'update'])->name('brands.update');
+    Route::delete('brands/{brand}', [\App\Http\Controllers\BrandController::class, 'destroy'])->name('brands.destroy');
 });

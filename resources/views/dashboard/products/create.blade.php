@@ -102,6 +102,44 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label for="brand_id" class="form-label">Бренд</label>
+                                            <!--select-->
+                                            <select name="brand_id" id="brand_id"
+                                                    class="form-control @error('brand_id') is-invalid @enderror">
+                                                @foreach($brands as $brand)
+                                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                @endforeach
+                                                @error('brand_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label for="volume_id" class="form-label">Волумен</label>
+                                            <!--select-->
+                                            <select name="volume_id" id="volume_id"
+                                                    class="form-control @error('volume_id') is-invalid @enderror">
+                                                @foreach($volumes as $volume)
+                                                    <option value="{{ $volume->id }}">{{ $volume->volume }}</option>
+                                                @endforeach
+                                                @error('volume_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="text-end">
                                     <button type="submit" id="profile_save" class="btn btn-primary" data-tippy-content="Сочувај">
                                         <span class="material-symbols-rounded align-middle me-2">

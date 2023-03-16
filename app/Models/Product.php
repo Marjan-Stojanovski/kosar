@@ -17,7 +17,9 @@ class Product extends Model
         'image',
         'category_id',
         'description',
-        'user_id'
+        'user_id',
+        'brand_id',
+        'volume_id'
     ];
 
     public function user()
@@ -28,5 +30,15 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
+
+    public function volume()
+    {
+        return $this->belongsTo(Volume::class, 'volume_id', 'id');
     }
 }

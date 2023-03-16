@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaravelCMS</title>
+    <title>KosarCMS</title>
 
     <!--Bootstrap icons-->
     <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -72,11 +72,11 @@
                         <div class="d-flex align-items-center flex-no-wrap text-truncate">
                             <!--Sidebar-icon-->
                             <span
-                                class="sidebar-icon size-40 d-flex align-items-center justify-content-center fs-4 lh-1 text-white rounded-3 bg-gradient-primary fw-bolder"> PD </span>
+                                class="sidebar-icon size-40 d-flex align-items-center justify-content-center fs-4 lh-1 text-white rounded-3 bg-gradient-primary fw-bolder"> K </span>
                             <span class="sidebar-text">
                     <!--Sidebar-text-->
                     <span class="sidebar-text text-truncate fs-3 fw-bold">
-                      LaravelCMS
+                      KosarCMS
                     </span>
                   </span>
                         </div>
@@ -142,6 +142,15 @@
                                 <i class="fs-2 text-primary d-block mb-2 bi bi-patch-plus-fill"></i>
                               </span>
                                     <span class="sidebar-text">Продукти</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('brands.index')}}"
+                                   class="nav-link d-flex align-items-center text-truncate ">
+                              <span class="sidebar-icon">
+                                <i class="fs-2 text-primary d-block mb-2 bi bi-bookmark-star-fill"></i>
+                              </span>
+                                    <span class="sidebar-text">Брендови</span>
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -99,7 +99,7 @@
                                         <select name="user_id" id="user_id"
                                                 class="form-control @error('user_id') is-invalid @enderror">
                                             @foreach($users as $user)
-                                                <option value="{{ $product->user->id }}">{{ $product->user->name }}</option>
+                                                <option value="{{ $product->user->id }}">{{ $user->name }}</option>
                                             @endforeach
                                             @error('user_id')
                                             <span class="invalid-feedback" role="alert">
@@ -120,6 +120,78 @@
                                             class="form-control quill-editor @error('description') is-invalid @enderror"
                                             id="description" name="description">{{$product->description}}</textarea>
                                         @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <!-- Label -->
+                                        <label for="brand_id" class="form-label">Бренд</label>
+                                        <!--select-->
+                                        <select name="brand_id" id="brand_id"
+                                                class="form-control @error('brand_id') is-invalid @enderror">
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $product->brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach
+                                            @error('brand_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <!-- Label -->
+                                        <label for="volume_id" class="form-label">Волумен</label>
+                                        <!--select-->
+                                        <select name="volume_id" id="volume_id"
+                                                class="form-control @error('volume_id') is-invalid @enderror">
+                                            @foreach($volumes as $volume)
+                                                <option value="{{ $product->volume->id }}">{{ $volume->volume }}</option>
+                                            @endforeach
+                                            @error('volume_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                    <!-- First name -->
+                                    <div class="form-group">
+                                        <!-- Label -->
+                                        <label class="form-label" for="alcohol">Алкохол %</label>
+                                        <!-- Input -->
+                                        <input type="text" placeholder="Процент на алкохол"
+                                               class="form-control @error('alcohol') is-invalid @enderror"
+                                               id="alcohol" name="alcohol" value="{{$product->alcohol}}">
+                                        @error('alcohol')
+                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                    <!-- First name -->
+                                    <div class="form-group">
+                                        <!-- Label -->
+                                        <label class="form-label" for="price">Цена</label>
+                                        <!-- Input -->
+                                        <input type="text" placeholder="Цена"
+                                               class="form-control @error('price') is-invalid @enderror"
+                                               id="price" name="price" value="{{$product->price}}">
+                                        @error('price')
                                         <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>

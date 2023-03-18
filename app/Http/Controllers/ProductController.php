@@ -44,6 +44,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'image' => 'required',
@@ -52,6 +53,8 @@ class ProductController extends Controller
             'user_id' => 'required',
             'brand_id' => 'required',
             'volume_id' => 'required',
+            'alcohol' => 'required',
+            'price' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -68,20 +71,23 @@ class ProductController extends Controller
         $user_id = $request->get('user_id');
         $brand_id = $request->get('brand_id');
         $volume_id = $request->get('volume_id');
-
+        $alcohol = $request->get('alcohol');
+        $price = $request->get('price');
 
         $imageObj = new ImageStore($request, 'products');
         $image = $imageObj->imageStore();
 
         Product::create([
-        'title' => $title,
-        'slug' => $slug,
-        'image' => $image,
-        'category_id' => $category_id,
-        'description' => $description,
-        'user_id' => $user_id,
-        'brand_id' => $brand_id,
-        'volume_id' => $volume_id,
+            'title' => $title,
+            'slug' => $slug,
+            'image' => $image,
+            'category_id' => $category_id,
+            'description' => $description,
+            'user_id' => $user_id,
+            'brand_id' => $brand_id,
+            'volume_id' => $volume_id,
+            'alcohol' => $alcohol,
+            'price' => $price
         ]);
 
         $products = Product::all();
@@ -99,7 +105,9 @@ class ProductController extends Controller
         $product = Product::FindorFail($id);
         $categories = Category::getList();
         $users = User::all();
-        $data = ['product' => $product, 'users' => $users, 'categories' => $categories];
+        $brands = Brand::all();
+        $volumes = Volume::all();
+        $data = ['product' => $product, 'users' => $users, 'categories' => $categories, 'brands' => $brands, 'volumes' => $volumes];
         return view('dashboard.products.edit')->with($data);
     }
 
@@ -111,7 +119,11 @@ class ProductController extends Controller
             'image' => 'required',
             'category_id' => 'required',
             'description' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'brand_id' => 'required',
+            'volume_id' => 'required',
+            'alcohol' => 'required',
+            'price' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -129,7 +141,6 @@ class ProductController extends Controller
         $input['image'] = $image;
 
         $product->fill($input)->save();
-
 
         return redirect()->route('products.index');
     }

@@ -140,6 +140,40 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                        <!-- First name -->
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label class="form-label" for="alcohol">Алкохол %</label>
+                                            <!-- Input -->
+                                            <input type="text" placeholder="Процент на алкохол"
+                                                   class="form-control @error('alcohol') is-invalid @enderror"
+                                                   id="alcohol" name="alcohol">
+                                            @error('alcohol')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                        <!-- First name -->
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label class="form-label" for="price">Цена</label>
+                                            <!-- Input -->
+                                            <input type="text" placeholder="Цена"
+                                                   class="form-control @error('price') is-invalid @enderror"
+                                                   id="price" name="price">
+                                            @error('price')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="text-end">
                                     <button type="submit" id="profile_save" class="btn btn-primary" data-tippy-content="Сочувај">
                                         <span class="material-symbols-rounded align-middle me-2">

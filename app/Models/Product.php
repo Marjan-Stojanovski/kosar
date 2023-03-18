@@ -19,7 +19,9 @@ class Product extends Model
         'description',
         'user_id',
         'brand_id',
-        'volume_id'
+        'volume_id',
+        'alcohol',
+        'price'
     ];
 
     public function user()

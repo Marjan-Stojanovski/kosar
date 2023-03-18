@@ -1,7 +1,6 @@
 @extends('welcome')
 @section('content')
 
-
     <!-- SLIDER -->
 
     <!-- banner start -->
@@ -20,7 +19,8 @@
                         <!-- slide 1 start -->
                         <!-- ================ -->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="500"
-                            data-saveperformance="on" data-title="Get 50% Sales" style="background-image: url('/assets/img/dogotki/dogodek1.jpg'); background-position: center; background-size: contain; background-repeat: no-repeat">
+                            data-saveperformance="on" data-title="Get 50% Sales"
+                            style="background-image: url('/assets/img/dogotki/dogodek1.jpg'); background-position: center; background-size: contain; background-repeat: no-repeat">
 
                             <!-- main image -->
 
@@ -159,7 +159,7 @@
 
     <!-- section start -->
     <!-- ================ -->
-    <section class="section light-gray-bg clearfix">
+    <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -167,39 +167,50 @@
                     <!-- ================ -->
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills" role="tablist">
-                        <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i class="icon-star"></i> Latest Arrivals</a></li>
-                        <li><a href="#pill-2" role="tab" data-toggle="tab" title="Featured"><i class="icon-heart"></i> Featured</a></li>
-                        <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i class=" icon-up-1"></i> Top Sellers</a></li>
+                        <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i
+                                    class="icon-star"></i> Latest Arrivals</a></li>
+                        <li><a href="#pill-2" role="tab" data-toggle="tab" title="Featured"><i class="icon-heart"></i>
+                                Featured</a></li>
+                        <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i
+                                    class=" icon-up-1"></i> Top Sellers</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">
-                                <div class="col-md-3 col-sm-6 masonry-grid-item">
-                                    @foreach($products as $product)
-                                    <div class="listing-item white-bg bordered mb-20">
-                                        <div class="overlay-container">
-                                            <img src="/assets/img/products/medium/{{$product->image}}" alt="">
-                                            <a class="overlay-link popup-img-single" href="/assets/frontend/images/product-1.jpg"><i class="fa fa-search-plus"></i></a>
-                                            <span class="badge">30% OFF</span>
-                                            <div class="overlay-to-top links">
+                                @foreach($products as $product)
+                                    <div class="col-md-3 col-sm-6 masonry-grid-item">
+                                        <div class="listing-item white-bg bordered mb-20">
+                                            <div class="overlay-container">
+                                                <img src="/assets/img/products/medium/{{$product->image}}" alt="">
+                                                <!--
+                                                <a class="overlay-link popup-img-single" href="/assets/frontend/images/product-1.jpg"><i class="fa fa-search-plus"></i></a>
+
+                                                <span class="badge">30% OFF</span>
+                                                -->
+                                                <div class="overlay-to-top links">
 														<span class="small">
-															<a href="#" class="btn-sm-link"><i class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
-															<a href="#" class="btn-sm-link"><i class="icon-link pr-5"></i>View Details</a>
+															<a href="#" class="btn-sm-link"><i
+                                                                    class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
+															<a href="#" class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
 														</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="body">
-                                            <h3><a href="shop-product.html">Suscipit consequatur velit</a></h3>
-                                            <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas inventore modi.</p>
-                                            <div class="elements-list clearfix">
-                                                <span class="price"><del>$100.00</del> $70.00</span>
-                                                <a href="#" class="pull-right margin-clear btn btn-sm btn-default-transparent btn-animated">Add To Cart<i class="fa fa-shopping-cart"></i></a>
+                                            <div class="body">
+                                                <h3><a href="shop-product.html">{{$product->title}}</a></h3>
+                                                <p class="small"> {{strip_tags($product->description)}}</p>
+                                                <div class="elements-list clearfix">
+                                                    <!--<span class="price"><del>$100.00</del> $70.00</span>-->
+                                                    <span class="price">{{$product->price}} &nbsp;€</span>
+                                                    <a href="#"
+                                                       class="pull-right margin-clear btn btn-sm btn-default-transparent btn-animated">Add
+                                                        To Cart<i class="fa fa-shopping-cart"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -224,25 +235,31 @@
                 <div class="col-md-12">
                     <h3 class="logo-font">Brands</h3>
                     <div class="separator-2"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio quia, et natus nulla cumque consequuntur, <br> sed, quam aliquam excepturi ea necessitatibus facilis, vero illum dignissimos eligendi quasi consectetur possimus.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio quia, et natus nulla
+                        cumque consequuntur, <br> sed, quam aliquam excepturi ea necessitatibus facilis, vero illum
+                        dignissimos eligendi quasi consectetur possimus.</p>
                     <div class="clients-container">
                         <div class="clients">
-                            @foreach($brands as $brand)
-                                <div class="listing-item pl-10 pr-10 mb-20">
-                                    <div class="overlay-container bordered overlay-visible">
-                                        <img src="/assets/img/brands/originals/{{$brand->image}}" alt="">{{$brand->name}}>
-                                        <a class="overlay-link" href="{{$brand->weblink}}"><i class="fa fa-plus"></i></a>
-                                        <div class="overlay-bottom">
-                                            <div class="text">
-                                                <h3 class="title">{{$brand->name}}</h3>
-                                                <div class="separator light"></div>
-                                                <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <div class="row">
+                                @foreach($brands as $brand)
+                                    <div class="col-md-4">
+                                        <div class="listing-item pl-10 pr-10 mb-20">
+                                            <div class="overlay-container bordered overlay-visible">
+                                                <img src="/assets/img/brands/thumbnails/{{$brand->image}}"
+                                                     alt="">{{$brand->name}}>
+                                                <a class="overlay-link" href="{{$brand->weblink}}"><i
+                                                        class="fa fa-plus"></i></a>
+                                                <div class="overlay-bottom">
+                                                    <div class="text">
+                                                        <h3 class="title">{{$brand->name}}</h3>
+                                                        <div class="separator light"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -259,13 +276,14 @@
 
     <!-- section start -->
     <!-- ================ -->
-    <section class="section light-gray-bg clearfix">
+    <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="text-center">Featured <strong>Categories</strong></h2>
                     <div class="separator"></div>
-                    <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa unde sequi consectetur atque blanditiis rem sed porro ducimus, quidem inventore eum quis.</p>
+                    <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa unde
+                        sequi consectetur atque blanditiis rem sed porro ducimus, quidem inventore eum quis.</p>
                 </div>
             </div>
         </div>
@@ -278,7 +296,8 @@
                         <div class="text">
                             <h3 class="title">Category Title</h3>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
+                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
@@ -291,7 +310,8 @@
                         <div class="text">
                             <h3 class="title">Category Title</h3>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
+                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
@@ -304,7 +324,8 @@
                         <div class="text">
                             <h3 class="title">Category Title</h3>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
+                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
@@ -317,7 +338,8 @@
                         <div class="text">
                             <h3 class="title">Category Title</h3>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
+                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
@@ -330,7 +352,8 @@
                         <div class="text">
                             <h3 class="title">Category Title</h3>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
+                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
@@ -343,7 +366,8 @@
                         <div class="text">
                             <h3 class="title">Category Title</h3>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab, eligendi totam.</em></p>
+                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
+                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
@@ -358,44 +382,53 @@
 
     <!-- section start -->
     <!-- ================ -->
-    <section class="section dark-translucent-bg pv-40" style="background-image:url('images/shop-banner.jpg');background-position: 50% 32%;">
+    <section class="section dark-translucent-bg pv-40"
+             style="background-image:url('images/shop-banner.jpg');background-position: 50% 32%;">
         <div class="container">
             <div class="row grid-space-10">
                 <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
+                         data-animation-effect="fadeInDownSmall" data-effect-delay="100">
                         <span class="icon default-bg"><i class="fa fa-diamond"></i></span>
                         <h3>Premium &amp; Guaranteed Quality</h3>
                         <div class="separator clearfix"></div>
                         <p>Voluptatem ad provident non repudiandae beatae cupiditate.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
+                        <a href="page-services.html" class="link-dark">Read More<i
+                                class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="150">
+                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
+                         data-animation-effect="fadeInDownSmall" data-effect-delay="150">
                         <span class="icon default-bg"><i class="icon-lock"></i></span>
                         <h3>Secure &amp; Safe Payment</h3>
                         <div class="separator clearfix"></div>
                         <p>Iure sequi unde hic. Sapiente quaerat sequi inventore.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
+                        <a href="page-services.html" class="link-dark">Read More<i
+                                class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
                 <div class="clearfix visible-sm"></div>
                 <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="200">
+                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
+                         data-animation-effect="fadeInDownSmall" data-effect-delay="200">
                         <span class="icon default-bg"><i class="icon-globe"></i></span>
                         <h3 class="pl-10 pr-10">Free &amp; Fast Shipping</h3>
                         <div class="separator clearfix"></div>
                         <p>Inventore dolores aut laboriosam cum consequuntur.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
+                        <a href="page-services.html" class="link-dark">Read More<i
+                                class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="250">
+                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
+                         data-animation-effect="fadeInDownSmall" data-effect-delay="250">
                         <span class="icon default-bg"><i class="icon-thumbs-up"></i></span>
                         <h3>24/7 Customer Support</h3>
                         <div class="separator clearfix"></div>
                         <p>Inventore dolores aut laboriosam cum consequuntur.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
+                        <a href="page-services.html" class="link-dark">Read More<i
+                                class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -405,15 +438,19 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <h2 class="title"><strong>Subscribe</strong> To Our Newsletter</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus error pariatur deserunt laudantium nam, mollitia quas nihil inventore, quibusdam?</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus error pariatur
+                                    deserunt laudantium nam, mollitia quas nihil inventore, quibusdam?</p>
                                 <div class="separator"></div>
                                 <form class="form-inline margin-clear">
                                     <div class="form-group has-feedback">
                                         <label class="sr-only" for="subscribe3">Email address</label>
-                                        <input type="email" class="form-control form-control-lg" id="subscribe3" placeholder="Enter email" name="subscribe3" required="">
+                                        <input type="email" class="form-control form-control-lg" id="subscribe3"
+                                               placeholder="Enter email" name="subscribe3" required="">
                                         <i class="fa fa-envelope form-control-feedback"></i>
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-gray-transparent btn-animated margin-clear">Submit <i class="fa fa-send"></i></button>
+                                    <button type="submit"
+                                            class="btn btn-lg btn-gray-transparent btn-animated margin-clear">Submit <i
+                                            class="fa fa-send"></i></button>
                                 </form>
                             </div>
                         </div>

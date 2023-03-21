@@ -246,7 +246,7 @@
                                         <div class="listing-item pl-10 pr-10 mb-20">
                                             <div class="overlay-container bordered overlay-visible">
                                                 <img src="/assets/img/brands/thumbnails/{{$brand->image}}"
-                                                     alt="">{{$brand->name}}>
+                                                     alt="">
                                                 <a class="overlay-link" href="{{$brand->weblink}}"><i
                                                         class="fa fa-plus"></i></a>
                                                 <div class="overlay-bottom">

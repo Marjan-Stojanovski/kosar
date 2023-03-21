@@ -23,7 +23,8 @@ class BrandController extends Controller
     {
         $brands = Brand::all();
         $countries = Country::all();
-        $data = ['brands' => $brands, 'countries' => $countries];
+        $user = User::all();
+        $data = ['brands' => $brands, 'countries' => $countries, 'users' => $users];
 
         return view('dashboard.brands.index')->with($data);
     }

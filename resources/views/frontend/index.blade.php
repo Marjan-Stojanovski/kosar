@@ -190,7 +190,7 @@
                                                 -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="#" class="btn-sm-link"><i
+															<a href="{{$product->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
 															<a href="#" class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>

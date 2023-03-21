@@ -23,7 +23,7 @@ class BrandController extends Controller
     {
         $brands = Brand::all();
         $countries = Country::all();
-        $user = User::all();
+        $users = User::all();
         $data = ['brands' => $brands, 'countries' => $countries, 'users' => $users];
 
         return view('dashboard.brands.index')->with($data);
@@ -52,7 +52,7 @@ class BrandController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
+       
         $name = $request->get('name');
         $description = $request->get('description');
         $country_id = $request->get('country_id');

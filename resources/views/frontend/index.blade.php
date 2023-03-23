@@ -190,19 +190,19 @@
                                                 -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{$product->weblink}}" class="btn-sm-link"><i
+															<a href="{{$product->brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
-															<a href="#" class="btn-sm-link"><i
+															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
                                                 </div>
                                             </div>
                                             <div class="body">
-                                                <h3><a href="shop-product.html">{{$product->title}}</a></h3>
-                                                <p class="small"> {{strip_tags($product->description)}}</p>
+                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
+                                                <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
                                                     <!--<span class="price"><del>$100.00</del> $70.00</span>-->
-                                                    <span class="price">{{$product->price}} &nbsp;€</span>
+                                                    <span class="price"> &nbsp;€{{$product->price}}</span>
                                                     <a href="#"
                                                        class="pull-right margin-clear btn btn-sm btn-default-transparent btn-animated">Add
                                                         To Cart<i class="fa fa-shopping-cart"></i></a>

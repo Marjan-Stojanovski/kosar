@@ -4,9 +4,14 @@
     "\\app",
     "\\app\\Http",
     "\\app\\Http\\Controllers",
+    "\\app\\Models",
     "\\resources",
-    "\\resources\\views"
+    "\\resources\\views",
+    "\\resources\\views\\dashboard",
+    "\\resources\\views\\dashboard\\products",
+    "\\resources\\views\\frontend",
+    "\\routes"
   ],
-  "SelectedNode": "\\app\\Http\\Controllers\\UserController.php",
+  "SelectedNode": "\\resources\\views\\frontend\\productview.blade.php",
   "PreviewInSolutionExplorer": false
 }

@@ -16,4 +16,12 @@ class FrontendController extends Controller
 
         return view('frontend.index')->with($data);
     }
+
+    public function productview($id)
+    {
+        $products = Product::FindorFail($id);
+        $data = ['products' => $products];
+
+        return view('frontend.productview')->with($data);
+    }
 }

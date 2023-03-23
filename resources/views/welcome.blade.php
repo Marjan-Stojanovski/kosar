@@ -142,6 +142,7 @@
 
                                     <!-- mega-menu start -->
                                     <li class="dropdown  mega-menu">
+                                        <a href="{{route('frontend.index')}}">Domov</a>
                                         <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                                         <ul class="dropdown-menu">
                                             <li>

@@ -143,7 +143,6 @@
                                     <!-- mega-menu start -->
                                     <li class="dropdown  mega-menu">
                                         <a href="{{route('frontend.index')}}">Domov</a>
-                                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <div class="row">
@@ -153,28 +152,9 @@
                                                             <div class="col-sm-6 col-md-3">
                                                                 <div class="divider"></div>
                                                                 <ul class="menu">
-                                                                    <li><a href="../index.html"><i
-                                                                                class="icon-home pr-10"></i>Home Default</a>
+                                                                    <li>
+                                                                        {!! $categories !!}
                                                                     </li>
-                                                                    <li><a href="index-corporate-1.html"><i
-                                                                                class="icon-suitcase pr-10"></i>Corporate
-                                                                            1</a></li>
-                                                                    <li><a href="index-corporate-2.html"><i
-                                                                                class="icon-suitcase pr-10"></i>Corporate
-                                                                            2</a></li>
-                                                                    <li><a href="index-corporate-3.html"><i
-                                                                                class="icon-suitcase pr-10"></i>Corporate
-                                                                            3</a></li>
-                                                                    <li><a href="index-corporate-4.html"><i
-                                                                                class="icon-suitcase pr-10"></i>Corporate
-                                                                            4 <span class="badge">v1.2</span></a></li>
-                                                                    <li><a href="index-corporate-5.html"><i
-                                                                                class="icon-suitcase pr-10"></i>Corporate
-                                                                            5 (Law Firm) <span class="badge">New</span></a>
-                                                                    </li>
-                                                                    <li class="active"><a href="index-shop.html"><i
-                                                                                class="icon-basket-1 pr-10"></i>Commerce
-                                                                            1</a></li>
                                                                 </ul>
                                                             </div>
                                                             <div class="col-sm-6 col-md-3">

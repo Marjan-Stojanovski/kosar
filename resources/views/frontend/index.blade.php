@@ -233,7 +233,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="logo-font">Brands</h3>
+                    <h3 class="logo-font">Partnerji</h3>
                     <div class="separator-2"></div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio quia, et natus nulla
                         cumque consequuntur, <br> sed, quam aliquam excepturi ea necessitatibus facilis, vero illum

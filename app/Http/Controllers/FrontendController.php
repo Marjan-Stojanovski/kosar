@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class FrontendController extends Controller
     {
         $brands = Brand::all();
         $products = Product::all();
-        $data = ['brands' => $brands, 'products' => $products];
+        $categories = Category::getTreeHP();
+        $data = ['brands' => $brands, 'products' => $products, 'categories' => $categories];
 
         return view('frontend.index')->with($data);
     }

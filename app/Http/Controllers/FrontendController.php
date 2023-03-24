@@ -20,18 +20,20 @@ class FrontendController extends Controller
         return view('frontend.index')->with($data);
     }
 
-    public function productview($id)
+    public function productview($slug)
     {
-        $products = Product::FindorFail($id);
+
+        $products = Product::where('slug', $slug)->firstorFail();
         $categoriesList = Category::getTreeHP();
         $data = ['products' => $products, 'categoriesList' => $categoriesList];
 
         return view('frontend.productview')->with($data);
     }
-    public function categoryview($category_id)
+    public function categoryview($slug)
     {
 
-        $products = Product::FindorFail($category_id);
+        $products = Product::where('slug', $slug)->get();
+        dd($products);
         $categoriesList = Category::getTreeHP();
         $data = ['products' => $products, 'categoriesList' => $categoriesList];
 

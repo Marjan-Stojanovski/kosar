@@ -192,13 +192,13 @@
 														<span class="small">
 															<a href="{{$product->brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
-															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
+															<a href="{{route('frontend.productview', $product->slug)}}" class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
                                                 </div>
                                             </div>
                                             <div class="body">
-                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
+                                                <h3><a href="{{route('frontend.productview', $product->slug)}}">{{$product->title}}</a></h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
                                                     <!--<span class="price"><del>$100.00</del> $70.00</span>-->
@@ -292,7 +292,7 @@
                 <div class="overlay-container bordered overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
                     <div class="overlay-bottom" style="background-color: #44ae74;">
                         <div class="text">
-                            <a href="{{route('frontend.categoryview', $category->id)}}" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
+                            <a href="{{route('frontend.categoryview', $category->slug)}}" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                             <div class="separator light"></div>
                         </div>
                     </div>

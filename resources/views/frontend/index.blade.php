@@ -292,7 +292,7 @@
                 <div class="overlay-container bordered overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
                     <div class="overlay-bottom" style="background-color: #44ae74;">
                         <div class="text">
-                            <a href="" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
+                            <a href="{{route('frontend.categoryview', $category->id)}}" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                             <div class="separator light"></div>
                         </div>
                     </div>

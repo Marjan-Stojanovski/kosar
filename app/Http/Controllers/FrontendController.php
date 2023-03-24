@@ -23,8 +23,18 @@ class FrontendController extends Controller
     public function productview($id)
     {
         $products = Product::FindorFail($id);
-        $data = ['products' => $products];
+        $categoriesList = Category::getTreeHP();
+        $data = ['products' => $products, 'categoriesList' => $categoriesList];
 
         return view('frontend.productview')->with($data);
+    }
+    public function categoryview($category_id)
+    {
+
+        $products = Product::FindorFail($category_id);
+        $categoriesList = Category::getTreeHP();
+        $data = ['products' => $products, 'categoriesList' => $categoriesList];
+
+        return view('frontend.categoryview')->with($data);
     }
 }

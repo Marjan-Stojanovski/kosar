@@ -13,8 +13,9 @@ class FrontendController extends Controller
     {
         $brands = Brand::all();
         $products = Product::all();
-        $categories = Category::getTreeHP();
-        $data = ['brands' => $brands, 'products' => $products, 'categories' => $categories];
+        $categoriesList = Category::getTreeHP();
+        $categories = Category::all();
+        $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories];
 
         return view('frontend.index')->with($data);
     }

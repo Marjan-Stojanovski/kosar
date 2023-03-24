@@ -244,12 +244,12 @@
                                 @foreach($brands as $brand)
                                     <div class="col-md-4">
                                         <div class="listing-item pl-10 pr-10 mb-20">
-                                            <div class="overlay-container bordered overlay-visible">
+                                            <div class="overlay-container bordered overlay-visible" >
                                                 <img src="/assets/img/brands/thumbnails/{{$brand->image}}"
                                                      alt="">
                                                 <a class="overlay-link" href="{{$brand->weblink}}"><i
                                                         class="fa fa-plus"></i></a>
-                                                <div class="overlay-bottom">
+                                                <div class="overlay-bottom" style="background-color: #0c9ec7">
                                                     <div class="text">
                                                         <h3 class="title">{{$brand->name}}</h3>
                                                         <div class="separator light"></div>
@@ -280,99 +280,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="text-center">Featured <strong>Categories</strong></h2>
+                    <h2 class="text-center"><strong>Pijac</strong></h2>
                     <div class="separator"></div>
-                    <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa unde
-                        sequi consectetur atque blanditiis rem sed porro ducimus, quidem inventore eum quis.</p>
                 </div>
             </div>
         </div>
+
         <div class="owl-carousel carousel-autoplay pl-10 pr-10">
-            <div class="listing-item pl-10 pr-10 mb-20">
-                <div class="overlay-container bordered overlay-visible">
-                    <img src="/assets/frontend/images/category-1.jpg" alt="">
-                    <a class="overlay-link" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="overlay-bottom">
+            @foreach($categories as $category)
+            <div class="listing-item pl-8 pr-10 mb-20">
+                <div class="overlay-container bordered overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
+                    <div class="overlay-bottom" style="background-color: #44ae74;">
                         <div class="text">
-                            <h3 class="title">Category Title</h3>
+                            <a href="" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                             <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
-                                    eligendi totam.</em></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="listing-item pl-10 pr-10 mb-20">
-                <div class="overlay-container bordered overlay-visible">
-                    <img src="/assets/frontend/images/category-2.jpg" alt="">
-                    <a class="overlay-link" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="overlay-bottom">
-                        <div class="text">
-                            <h3 class="title">Category Title</h3>
-                            <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
-                                    eligendi totam.</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="listing-item pl-10 pr-10 mb-20">
-                <div class="overlay-container bordered overlay-visible">
-                    <img src="/assets/frontend/images/category-3.jpg" alt="">
-                    <a class="overlay-link" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="overlay-bottom">
-                        <div class="text">
-                            <h3 class="title">Category Title</h3>
-                            <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
-                                    eligendi totam.</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="listing-item pl-10 pr-10 mb-20 mb-20">
-                <div class="overlay-container bordered overlay-visible">
-                    <img src="/assets/frontend/images/category-4.jpg" alt="">
-                    <a class="overlay-link" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="overlay-bottom">
-                        <div class="text">
-                            <h3 class="title">Category Title</h3>
-                            <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
-                                    eligendi totam.</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="listing-item pl-10 pr-10 mb-20 mb-20">
-                <div class="overlay-container bordered overlay-visible">
-                    <img src="/assets/frontend/images/category-5.jpg" alt="">
-                    <a class="overlay-link" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="overlay-bottom">
-                        <div class="text">
-                            <h3 class="title">Category Title</h3>
-                            <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
-                                    eligendi totam.</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="listing-item pl-10 pr-10 mb-20 mb-20">
-                <div class="overlay-container bordered overlay-visible">
-                    <img src="/assets/frontend/images/category-6.jpg" alt="">
-                    <a class="overlay-link" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="overlay-bottom">
-                        <div class="text">
-                            <h3 class="title">Category Title</h3>
-                            <div class="separator light"></div>
-                            <p class="small margin-clear"><em>Quia nostrum temporibus et, <br> velit debitis ab,
-                                    eligendi totam.</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+
     </section>
     <!-- section end -->
 
@@ -390,10 +318,9 @@
                     <div class="pv-30 ph-20 feature-box text-center object-non-visible"
                          data-animation-effect="fadeInDownSmall" data-effect-delay="100">
                         <span class="icon default-bg"><i class="fa fa-diamond"></i></span>
-                        <h3>Premium &amp; Guaranteed Quality</h3>
+                        <h3>Hitra &amp; Bresplacna dostava</h3>
                         <div class="separator clearfix"></div>
-                        <p>Voluptatem ad provident non repudiandae beatae cupiditate.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i
+                        <a href="page-services.html" class="link-dark">Preberite vec<i
                                 class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
@@ -401,10 +328,12 @@
                     <div class="pv-30 ph-20 feature-box text-center object-non-visible"
                          data-animation-effect="fadeInDownSmall" data-effect-delay="150">
                         <span class="icon default-bg"><i class="icon-lock"></i></span>
-                        <h3>Secure &amp; Safe Payment</h3>
+                        <h3>Nekaj novega</h3>
                         <div class="separator clearfix"></div>
+                        <!--
                         <p>Iure sequi unde hic. Sapiente quaerat sequi inventore.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i
+                        -->
+                        <a href="page-services.html" class="link-dark">Preberite vec<i
                                 class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
@@ -413,10 +342,9 @@
                     <div class="pv-30 ph-20 feature-box text-center object-non-visible"
                          data-animation-effect="fadeInDownSmall" data-effect-delay="200">
                         <span class="icon default-bg"><i class="icon-globe"></i></span>
-                        <h3 class="pl-10 pr-10">Free &amp; Fast Shipping</h3>
+                        <h3 class="pl-10 pr-10">za vas</h3>
                         <div class="separator clearfix"></div>
-                        <p>Inventore dolores aut laboriosam cum consequuntur.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i
+                        <a href="page-services.html" class="link-dark">Preberite vec<i
                                 class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
@@ -426,12 +354,12 @@
                         <span class="icon default-bg"><i class="icon-thumbs-up"></i></span>
                         <h3>24/7 Customer Support</h3>
                         <div class="separator clearfix"></div>
-                        <p>Inventore dolores aut laboriosam cum consequuntur.</p>
-                        <a href="page-services.html" class="link-dark">Read More<i
+                        <a href="page-services.html" class="link-dark">Preberite vec<i
                                 class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
+            <!--
             <div class="row">
                 <div class="col-md-12">
                     <div class="call-to-action text-center">
@@ -457,6 +385,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </section>
     <!-- section end -->

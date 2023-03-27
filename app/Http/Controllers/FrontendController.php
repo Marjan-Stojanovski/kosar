@@ -33,7 +33,6 @@ class FrontendController extends Controller
     {
 
         $products = Product::where('slug', $slug)->get();
-        dd($products);
         $categoriesList = Category::getTreeHP();
         $data = ['products' => $products, 'categoriesList' => $categoriesList];
 

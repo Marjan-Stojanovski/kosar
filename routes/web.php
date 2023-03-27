@@ -12,20 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
-Route::get('{product}', [\App\Http\Controllers\FrontendController::class, 'productview'])->name('frontend.productview');
-
-
 Auth::routes();
-
-Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-
 
 Route::middleware(['web','auth'])->prefix('dashboard')->group(function() {
 
     //Users-web-route
-    Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
     Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::get('users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
@@ -115,3 +106,9 @@ Route::middleware(['web','auth'])->prefix('dashboard')->group(function() {
     Route::put('brands/{brands}', [\App\Http\Controllers\BrandController::class, 'update'])->name('brands.update');
     Route::delete('brands/{brand}', [\App\Http\Controllers\BrandController::class, 'destroy'])->name('brands.destroy');
 });
+    //Admin-panel
+Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    //Frontend-routes
+Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
+Route::get('{product}', [\App\Http\Controllers\FrontendController::class, 'productview'])->name('frontend.productview');
+Route::get('categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryview'])->name('frontend.categoryview');

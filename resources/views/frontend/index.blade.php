@@ -7,15 +7,21 @@
     <!-- ================ -->
     <div class="banner clearfix">
 
+
+
+
         <!-- slideshow start -->
         <!-- ================ -->
         <div class="slideshow">
 
             <!-- slider revolution start -->
             <!-- ================ -->
+
             <div class="slider-banner-container">
                 <div class="slider-banner-fullwidth-big-height">
+
                     <ul class="slides">
+
                         <!-- slide 1 start -->
                         <!-- ================ -->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="500"
@@ -133,6 +139,8 @@
                         </li>
                         <!-- slide 2 end -->
                     </ul>
+
+
                     <div class="tp-bannertimer"></div>
                 </div>
             </div>

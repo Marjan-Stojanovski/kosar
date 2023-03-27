@@ -1,14 +1,12 @@
 @extends('welcome')
 @section('content')
 
+
     <!-- SLIDER -->
 
     <!-- banner start -->
     <!-- ================ -->
     <div class="banner clearfix">
-
-
-
 
         <!-- slideshow start -->
         <!-- ================ -->
@@ -16,21 +14,14 @@
 
             <!-- slider revolution start -->
             <!-- ================ -->
-
             <div class="slider-banner-container">
                 <div class="slider-banner-fullwidth-big-height">
-
                     <ul class="slides">
-
                         <!-- slide 1 start -->
                         <!-- ================ -->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="500"
-                            data-saveperformance="on" data-title="Get 50% Sales"
-                            style="background-image: url('/assets/img/dogotki/dogodek1.jpg'); background-position: center; background-size: contain; background-repeat: no-repeat">
-
+                            data-saveperformance="on" data-title="Get 50% Sales">
                             <!-- main image -->
-
-
                             <!-- Transparent Background -->
                             <div class="tp-caption dark-translucent-bg"
                                  data-x="center"
@@ -38,15 +29,13 @@
                                  data-speed="600"
                                  data-start="0">
                             </div>
-
                             <!-- LAYER NR. 1 -->
                             <div class="tp-caption sfb fadeout large_white"
                                  data-x="left"
                                  data-y="180"
                                  data-speed="500"
                                  data-start="1000"
-                                 data-easing="easeOutQuad">Dogotki<br> Next
-                                Generation Template
+                                 data-easing="easeOutQuad">Dogotki<br>
                             </div>
 
                             <!-- LAYER NR. 2 -->
@@ -66,9 +55,7 @@
                                  data-speed="500"
                                  data-start="1300"
                                  data-easing="easeOutQuad"
-                                 data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
-                                Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur
-                                fugiat dolorum sapiente eligendi...
+                                 data-endspeed="600">
                             </div>
 
                             <!-- LAYER NR. 4 -->
@@ -147,8 +134,6 @@
                         </li>
                         <!-- slide 2 end -->
                     </ul>
-
-
                     <div class="tp-bannertimer"></div>
                 </div>
             </div>
@@ -158,6 +143,8 @@
         <!-- slideshow end -->
 
     </div>
+
+
     <!-- banner end -->
 
     <!-- SLIDER END -->

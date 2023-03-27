@@ -14,7 +14,7 @@
 
 							<!-- page-title start -->
 							<!-- ================ -->
-							<h1 class="page-title">Shop Product</h1>
+
 							<div class="separator-2"></div>
 							<!-- page-title end -->
 

@@ -1,9 +1,78 @@
 @extends('welcome')
 @section('content')
 
-
     <!-- SLIDER -->
 
+<<<<<<< HEAD
+=======
+    <!-- banner start -->
+    <!-- ================ -->
+    <div class="banner clearfix">
+
+
+
+
+        <!-- slideshow start -->
+        <!-- ================ -->
+        <div class="slideshow">
+
+            <!-- slider revolution start -->
+            <!-- ================ -->
+
+            <div class="slider-banner-container">
+                <div class="slider-banner-fullwidth-big-height">
+
+                    <ul class="slides">
+
+                        <!-- slide 1 start -->
+                        <!-- ================ -->
+                        <li data-transition="random" data-slotamount="7" data-masterspeed="500"
+                            data-saveperformance="on" data-title="Get 50% Sales"
+                            style="background-image: url('/assets/img/dogotki/dogodek1.jpg'); background-position: center; background-size: contain; background-repeat: no-repeat">
+
+                            <!-- main image -->
+
+
+                            <!-- Transparent Background -->
+                            <div class="tp-caption dark-translucent-bg"
+                                 data-x="center"
+                                 data-y="bottom"
+                                 data-speed="600"
+                                 data-start="0">
+                            </div>
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption sfb fadeout large_white"
+                                 data-x="left"
+                                 data-y="180"
+                                 data-speed="500"
+                                 data-start="1000"
+                                 data-easing="easeOutQuad">Dogotki<br> Next
+                                Generation Template
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption sfb fadeout large_white tp-resizeme hidden-xs"
+                                 data-x="left"
+                                 data-y="300"
+                                 data-speed="500"
+                                 data-start="1300"
+                                 data-easing="easeOutQuad">
+                                <div class="separator-2 light"></div>
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption sfb fadeout medium_white hidden-xs"
+                                 data-x="left"
+                                 data-y="320"
+                                 data-speed="500"
+                                 data-start="1300"
+                                 data-easing="easeOutQuad"
+                                 data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+                                Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur
+                                fugiat dolorum sapiente eligendi...
+                            </div>
+>>>>>>> parent of 62a56f3... Routes OK, Slider OK
 
 
 
@@ -26,14 +95,29 @@
                             <div class="col-sm-4 text-right">
                                 <a href="#" class="btn btn-lg btn-default btn-animated">Learn More<i class="fa fa-arrow-right pl-20"></i></a>
                             </div>
+<<<<<<< HEAD
                         </div>
                     </div>
+=======
+                        </li>
+                        <!-- slide 2 end -->
+                    </ul>
+
+
+                    <div class="tp-bannertimer"></div>
+>>>>>>> parent of 62a56f3... Routes OK, Slider OK
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </section>
 
 
+=======
+        <!-- slideshow end -->
+
+    </div>
+>>>>>>> parent of 62a56f3... Routes OK, Slider OK
     <!-- banner end -->
 
     <!-- SLIDER END -->

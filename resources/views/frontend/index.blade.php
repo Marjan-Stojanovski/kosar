@@ -22,6 +22,7 @@
                         <li data-transition="random" data-slotamount="7" data-masterspeed="500"
                             data-saveperformance="on" data-title="Get 50% Sales">
                             <!-- main image -->
+
                             <!-- Transparent Background -->
                             <div class="tp-caption dark-translucent-bg"
                                  data-x="center"
@@ -68,6 +69,7 @@
                                  data-endspeed="600"><a href="#" class="btn btn-default btn-animated">Learn More <i
                                         class="fa fa-arrow-right"></i></a>
                             </div>
+
 
                         </li>
                         <!-- slide 1 end -->
@@ -224,18 +226,31 @@
 
 
     <!-- BRANDS-->
-
+    <section class="section dark-bg" style="background-position: 50% 52%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h1 class="title">PARTNERJI</h1>
+                            </div>
+                            <div class="col-sm-4">
+                                <p><a href="#" class="btn btn-lg btn-default btn-animated">Vec<i
+                                            class="fa fa-arrow-right pl-20"></i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- section start -->
     <!-- ================ -->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="logo-font">Partnerji</h3>
-                    <div class="separator-2"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio quia, et natus nulla
-                        cumque consequuntur, <br> sed, quam aliquam excepturi ea necessitatibus facilis, vero illum
-                        dignissimos eligendi quasi consectetur possimus.</p>
                     <div class="clients-container">
                         <div class="clients">
                             <div class="row">
@@ -269,125 +284,5 @@
     <!-- BRANDS END-->
 
 
-
-    <!-- CATEGORIES -->
-
-    <!-- section start -->
-    <!-- ================ -->
-    <section class="section clearfix">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h2 class="text-center"><strong>Pijac</strong></h2>
-                    <div class="separator"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="owl-carousel carousel-autoplay pl-10 pr-10">
-            @foreach($categories as $category)
-            <div class="listing-item pl-8 pr-10 mb-20">
-                <div class="overlay-container bordered overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
-                    <div class="overlay-bottom" style="background-color: #44ae74;">
-                        <div class="text">
-                            <!--
-                            <a href="{route('frontend.categoryview', $category->slug)}}" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
-                            -->
-                            <div class="separator light"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-    </section>
-    <!-- section end -->
-
-    <!-- CATEGORIES END -->
-
-
-
-    <!-- section start -->
-    <!-- ================ -->
-    <section class="section dark-translucent-bg pv-40"
-             style="background-image:url('images/shop-banner.jpg');background-position: 50% 32%;">
-        <div class="container">
-            <div class="row grid-space-10">
-                <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
-                         data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-                        <span class="icon default-bg"><i class="fa fa-diamond"></i></span>
-                        <h3>Hitra &amp; Bresplacna dostava</h3>
-                        <div class="separator clearfix"></div>
-                        <a href="page-services.html" class="link-dark">Preberite vec<i
-                                class="pl-5 fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
-                         data-animation-effect="fadeInDownSmall" data-effect-delay="150">
-                        <span class="icon default-bg"><i class="icon-lock"></i></span>
-                        <h3>Nekaj novega</h3>
-                        <div class="separator clearfix"></div>
-                        <!--
-                        <p>Iure sequi unde hic. Sapiente quaerat sequi inventore.</p>
-                        -->
-                        <a href="page-services.html" class="link-dark">Preberite vec<i
-                                class="pl-5 fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-                <div class="clearfix visible-sm"></div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
-                         data-animation-effect="fadeInDownSmall" data-effect-delay="200">
-                        <span class="icon default-bg"><i class="icon-globe"></i></span>
-                        <h3 class="pl-10 pr-10">za vas</h3>
-                        <div class="separator clearfix"></div>
-                        <a href="page-services.html" class="link-dark">Preberite vec<i
-                                class="pl-5 fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="pv-30 ph-20 feature-box text-center object-non-visible"
-                         data-animation-effect="fadeInDownSmall" data-effect-delay="250">
-                        <span class="icon default-bg"><i class="icon-thumbs-up"></i></span>
-                        <h3>24/7 Customer Support</h3>
-                        <div class="separator clearfix"></div>
-                        <a href="page-services.html" class="link-dark">Preberite vec<i
-                                class="pl-5 fa fa-angle-double-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <!--
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="call-to-action text-center">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <h2 class="title"><strong>Subscribe</strong> To Our Newsletter</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus error pariatur
-                                    deserunt laudantium nam, mollitia quas nihil inventore, quibusdam?</p>
-                                <div class="separator"></div>
-                                <form class="form-inline margin-clear">
-                                    <div class="form-group has-feedback">
-                                        <label class="sr-only" for="subscribe3">Email address</label>
-                                        <input type="email" class="form-control form-control-lg" id="subscribe3"
-                                               placeholder="Enter email" name="subscribe3" required="">
-                                        <i class="fa fa-envelope form-control-feedback"></i>
-                                    </div>
-                                    <button type="submit"
-                                            class="btn btn-lg btn-gray-transparent btn-animated margin-clear">Submit <i
-                                            class="fa fa-send"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
-        </div>
-    </section>
-    <!-- section end -->
 
 @endsection

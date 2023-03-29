@@ -4,154 +4,48 @@
 
     <!-- SLIDER -->
 
-    <!-- banner start -->
+
+
+
+    <!-- banner end -->
+
+
+
+
+    <!-- section start -->
     <!-- ================ -->
-    <div class="banner clearfix">
-
-        <!-- slideshow start -->
-        <!-- ================ -->
-        <div class="slideshow">
-
-            <!-- slider revolution start -->
-            <!-- ================ -->
-            <div class="slider-banner-container">
-                <div class="slider-banner-fullwidth-big-height">
-                    <ul class="slides">
-                        <!-- slide 1 start -->
-                        <!-- ================ -->
-                        <li data-transition="random" data-slotamount="7" data-masterspeed="500"
-                            data-saveperformance="on" data-title="Get 50% Sales">
-                            <!-- main image -->
-
-                            <!-- Transparent Background -->
-                            <div class="tp-caption dark-translucent-bg"
-                                 data-x="center"
-                                 data-y="bottom"
-                                 data-speed="600"
-                                 data-start="0">
+    <section class="section pv-40 dark-bg clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h3 class="mt-10 text-muted">We offer more possibilities to meet your every need</h3>
                             </div>
-                            <!-- LAYER NR. 1 -->
-                            <div class="tp-caption sfb fadeout large_white"
-                                 data-x="left"
-                                 data-y="180"
-                                 data-speed="500"
-                                 data-start="1000"
-                                 data-easing="easeOutQuad">Dogotki<br>
+                            <div class="col-sm-4 text-right">
+                                <a href="#" class="btn btn-lg btn-default btn-animated">Learn More<i class="fa fa-arrow-right pl-20"></i></a>
                             </div>
-
-                            <!-- LAYER NR. 2 -->
-                            <div class="tp-caption sfb fadeout large_white tp-resizeme hidden-xs"
-                                 data-x="left"
-                                 data-y="300"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad">
-                                <div class="separator-2 light"></div>
-                            </div>
-
-                            <!-- LAYER NR. 3 -->
-                            <div class="tp-caption sfb fadeout medium_white hidden-xs"
-                                 data-x="left"
-                                 data-y="320"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                            </div>
-
-                            <!-- LAYER NR. 4 -->
-                            <div class="tp-caption sfb fadeout small_white text-center"
-                                 data-x="left"
-                                 data-y="430"
-                                 data-speed="500"
-                                 data-start="1600"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600"><a href="#" class="btn btn-default btn-animated">Learn More <i
-                                        class="fa fa-arrow-right"></i></a>
-                            </div>
-
-
-                        </li>
-                        <!-- slide 1 end -->
-
-                        <!-- slide 2 start -->
-                        <!-- ================ -->
-                        <li data-transition="random" data-slotamount="7" data-masterspeed="500"
-                            data-saveperformance="on" data-title="New Arrivals">
-
-                            <!-- main image -->
-                            <img src="/assets/frontend/images/shop-slide-2.jpg" alt="slidebg1"
-                                 data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-
-                            <!-- Transparent Background -->
-                            <div class="tp-caption dark-translucent-bg"
-                                 data-x="center"
-                                 data-y="bottom"
-                                 data-speed="600"
-                                 data-start="0">
-                            </div>
-
-                            <!-- LAYER NR. 1 -->
-                            <div class="tp-caption sfb fadeout text-right large_white"
-                                 data-x="right"
-                                 data-y="180"
-                                 data-speed="500"
-                                 data-start="1000"
-                                 data-easing="easeOutQuad"><span class="text-default">New</span> Arrivals<br> Unlimited
-                                Variations and Layouts
-                            </div>
-
-                            <!-- LAYER NR. 2 -->
-                            <div class="tp-caption sfb fadeout large_white tp-resizeme hidden-xs"
-                                 data-x="right"
-                                 data-y="300"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad">
-                                <div class="separator-3 light"></div>
-                            </div>
-
-                            <!-- LAYER NR. 3 -->
-                            <div class="tp-caption sfb fadeout medium_white text-right hidden-xs"
-                                 data-x="right"
-                                 data-y="320"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
-                                Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur
-                                fugiat dolorum sapiente eligendi...
-                            </div>
-
-                            <!-- LAYER NR. 4 -->
-                            <div class="tp-caption sfb fadeout small_white text-right text-center"
-                                 data-x="right"
-                                 data-y="430"
-                                 data-speed="500"
-                                 data-start="1600"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600"><a href="#" class="btn btn-default btn-animated">Check Now <i
-                                        class="fa fa-arrow-right"></i></a>
-                            </div>
-                        </li>
-                        <!-- slide 2 end -->
-                    </ul>
-                    <div class="tp-bannertimer"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- slider revolution end -->
-
         </div>
-        <!-- slideshow end -->
-
-    </div>
+    </section>
 
 
     <!-- banner end -->
 
     <!-- SLIDER END -->
 
-
+    <div class="breadcrumb-container">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}">Domov</a></li>
+                <!--<li class="active">Blog Right Sidebar</li>-->
+            </ol>
+        </div>
+    </div>
     <!-- PRODUCTS -->
 
     <!-- section start -->
@@ -162,7 +56,7 @@
                 <div class="col-md-12">
                     <!-- pills start -->
                     <!-- ================ -->
-                    <!-- Nav tabs -->
+                    <!--
                     <ul class="nav nav-pills" role="tablist">
                         <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i
                                     class="icon-star"></i> Latest Arrivals</a></li>
@@ -171,6 +65,7 @@
                         <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i
                                     class=" icon-up-1"></i> Top Sellers</a></li>
                     </ul>
+                     -->
                     <!-- Tab panes -->
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">

@@ -52,7 +52,7 @@
 <!-- "transparent-header": makes the header transparent and pulls the banner to top -->
 <!-- "gradient-background-header": applies gradient background to header -->
 <!-- "page-loader-1 ... page-loader-6": add a page loader to the page (more info @components-page-loaders.html) -->
-<body class="no-trans front-page   ">
+<body class="no-trans front-page">
 <!-- scrollToTop -->
 <!-- ================ -->
 <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
@@ -60,8 +60,6 @@
 <!-- ================ -->
 <div class="page-wrapper">
     <!-- header-container start -->
-    <div class="page-wrapper">
-
         <!-- header-container start -->
         <div class="header-container">
 
@@ -71,7 +69,7 @@
             <!-- "dark": dark version of header top e.g. class="header-top dark" -->
             <!-- "colored": colored version of header top e.g. class="header-top colored" -->
             <!-- ================ -->
-            <div class="header-top dark ">
+            <div class="header-top dark">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-3 col-sm-6 col-md-9">
@@ -79,20 +77,24 @@
                             <!-- ================ -->
                             <div class="header-top-first clearfix">
                                 <ul class="social-links circle small clearfix hidden-xs">
-                                    <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i
-                                                class="fa fa-twitter"></i></a></li>
-                                    <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i
+                                    <li class="facebook"><a target="_blank"
+                                                            href="https://www.facebook.com/KOSAR.beverages"><i
                                                 class="fa fa-facebook"></i></a></li>
+                                    <li class="instagram"><a target="_blank"
+                                                             href="https://www.instagram.com/kosar.spirits/"><i
+                                                class="fa fa-instagram"></i></a></li>
                                 </ul>
                                 <div class="social-links hidden-lg hidden-md hidden-sm circle small">
                                     <div class="btn-group dropdown">
                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i
                                                 class="fa fa-share-alt"></i></button>
                                         <ul class="dropdown-menu dropdown-animation">
-                                            <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i
-                                                        class="fa fa-twitter"></i></a></li>
-                                            <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i
+                                            <li class="facebook"><a target="_blank"
+                                                                    href="https://www.facebook.com/KOSAR.beverages"><i
                                                         class="fa fa-facebook"></i></a></li>
+                                            <li class="instagram"><a target="_blank"
+                                                                     href="https://www.instagram.com/kosar.spirits/"><i
+                                                        class="fa fa-instagram"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -249,13 +251,8 @@
 
                                 <!-- logo -->
                                 <div id="logo" class="logo">
-                                    <a href="../index.html"><img id="logo_img" src="images/logo_light_blue.png"
+                                    <a href="{{route('frontend.index')}}"><img id="logo_img" style="width: 50px" src="/assets/img/logo.jpg"
                                                                  alt="The Project"></a>
-                                </div>
-
-                                <!-- name-and-slogan -->
-                                <div class="site-slogan">
-                                    Multipurpose HTML5 Template
                                 </div>
 
                             </div>
@@ -300,13 +297,13 @@
 
                                                     <!-- mega-menu start -->
                                                     <li class="mega-menu">
-                                                        <a href="{{route('frontend.index')}}">Domov</a>
+                                                        <a href="{{route('frontend.index')}}">DOMOV</a>
                                                     </li>
                                                     <!-- mega-menu end -->
                                                     <!-- mega-menu start -->
                                                     <li class="mega-menu">
                                                         <a href="#" class="dropdown-toggle"
-                                                           data-toggle="dropdown">Zgane</a>
+                                                           data-toggle="dropdown">ZGANE</a>
                                                         <ul class="dropdown-menu">
                                                             <li>
 
@@ -316,7 +313,7 @@
                                                     <!-- mega-menu end -->
                                                     <!-- mega-menu start -->
                                                     <li class="dropdown mega-menu">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sadje</a>
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">SADJE</a>
                                                         <ul class="dropdown-menu">
                                                             <li>
 
@@ -329,18 +326,18 @@
 
                                                     </li>
                                                     <li class="mega-menu">
-                                                        <a href="">E-Trgovina</a>
+                                                        <a href="">E-TRGOVINA</a>
                                                     </li>
                                                     <li class="dropdown mega-menu">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">O Nam</a>
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">O NAM</a>
                                                         <ul class="dropdown-menu">
                                                             <li >
                                                                 <div class="row">
                                                                 <div class="col-sm-12">
                                                                         <div class="divider"></div>
                                                                         <ul class="menu">
-                                                                            <li ><a href="">Social Icons</a></li>
-                                                                            <li ><a href="">Buttons</a></li>
+                                                                            <li ><a href="">O Podjetju</a></li>
+                                                                            <li ><a href="">Kontakt</a></li>
 
                                                                         </ul>
                                                                 </div>
@@ -460,7 +457,7 @@
 
         <!-- section start -->
         <!-- ================ -->
-        <section class="section dark-translucent-bg background-img-2" style="background-position: 50% 52%;">
+        <section class="section dark-bg" style="background-position: 50% 52%;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">

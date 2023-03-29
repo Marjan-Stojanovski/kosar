@@ -148,6 +148,14 @@
 
     <!-- SLIDER END -->
 
+    <div class="breadcrumb-container">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}">Domov</a></li>
+                <!--<li class="active">Blog Right Sidebar</li>-->
+            </ol>
+        </div>
+    </div>
 
     <!-- PRODUCTS -->
 
@@ -160,6 +168,7 @@
                     <!-- pills start -->
                     <!-- ================ -->
                     <!-- Nav tabs -->
+                    <!--
                     <ul class="nav nav-pills" role="tablist">
                         <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i
                                     class="icon-star"></i> Latest Arrivals</a></li>
@@ -168,6 +177,7 @@
                         <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i
                                     class=" icon-up-1"></i> Top Sellers</a></li>
                     </ul>
+                    -->
                     <!-- Tab panes -->
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
@@ -281,9 +291,9 @@
 
         <div class="owl-carousel carousel-autoplay pl-10 pr-10">
             @foreach($categories as $category)
-                <div class="listing-item pl-8 pr-10 mb-20">
-                    <div class="overlay-container bordered overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
-                        <div class="overlay-bottom" style="background-color: #44ae74;">
+                <div class="listing-item rounded pl-8 pr-10 mb-20">
+                    <div class="overlay-container bordered rounded-1 overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
+                        <div class="overlay-bottom">
                             <div class="text">
                                 <a href="{{route('frontend.categoryview', $category->slug)}}" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                                 <div class="separator light"></div>
@@ -304,7 +314,7 @@
     <!-- section start -->
     <!-- ================ -->
     <section class="section dark-translucent-bg pv-40"
-             style="background-image:url('images/shop-banner.jpg');background-position: 50% 32%;">
+             style="background-image:url('/assets/img/logo.jpg');background-position: 50% 40%; background-size: cover">
         <div class="container">
             <div class="row grid-space-10">
                 <div class="col-md-3 col-sm-6">

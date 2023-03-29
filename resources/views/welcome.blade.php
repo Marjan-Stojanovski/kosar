@@ -144,12 +144,9 @@
                                                         <li class="facebook"><a target="_blank"
                                                                                 href="http://www.facebook.com"><i
                                                                     class="fa fa-facebook"></i></a></li>
-                                                        <li class="twitter"><a target="_blank"
-                                                                               href="http://www.twitter.com"><i
-                                                                    class="fa fa-twitter"></i></a></li>
-                                                        <li class="googleplus"><a target="_blank"
-                                                                                  href="http://plus.google.com"><i
-                                                                    class="fa fa-google-plus"></i></a></li>
+                                                        <li class="google"><a target="_blank"
+                                                                                  href="http://google.com"><i
+                                                                    class="fa fa-google"></i></a></li>
                                                     </ul>
                                                 </form>
                                             </li>
@@ -309,7 +306,7 @@
                                                     <!-- mega-menu start -->
                                                     <li class="mega-menu">
                                                         <a href="#" class="dropdown-toggle"
-                                                           data-toggle="dropdown">Vina</a>
+                                                           data-toggle="dropdown">Zgane</a>
                                                         <ul class="dropdown-menu">
                                                             <li>
 
@@ -317,14 +314,6 @@
                                                         </ul>
                                                     </li>
                                                     <!-- mega-menu end -->
-                                                    <li class="dropdown mega-menu">
-                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Zgane Pijace</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li>
-
-                                                            </li>
-                                                        </ul>
-                                                    </li>
                                                     <!-- mega-menu start -->
                                                     <li class="dropdown mega-menu">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sadje</a>
@@ -340,12 +329,26 @@
 
                                                     </li>
                                                     <li class="mega-menu">
-                                                        <a href="">O Nam</a>
+                                                        <a href="">E-Trgovina</a>
                                                     </li>
-                                                    <li class="mega-menu">
-                                                        <a href="">Kontakt</a>
-                                                    </li>
+                                                    <li class="dropdown mega-menu">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">O Nam</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li >
+                                                                <div class="row">
+                                                                <div class="col-sm-12">
+                                                                        <div class="divider"></div>
+                                                                        <ul class="menu">
+                                                                            <li ><a href="">Social Icons</a></li>
+                                                                            <li ><a href="">Buttons</a></li>
 
+                                                                        </ul>
+                                                                </div>
+                                                                </div>
+
+                                                            </li>
+                                                        </ul>
+                                                    </li>
                                                 </ul>
                                                 <!-- main-menu end -->
 
@@ -625,5 +628,6 @@
     <!-- Custom Scripts -->
     <script type="text/javascript" src="/assets/frontend/js/custom.js"></script>
 
+</div>
 </body>
 </html>

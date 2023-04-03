@@ -46,4 +46,21 @@ class FrontendController extends Controller
 
         return view('frontend.brandview')->with($data);
     }
+    public function feedback()
+    {
+        $products = Product::all();
+        $data = ['products' => $products];
+        return view('frontend.feedback');
+    }
+    public function about_us()
+    {
+        return view('frontend.about');
+    }
+    public function products()
+    {
+        $products = Product::all();
+        $data = ['products' => $products];
+
+        return view('frontend.products')->with($data);
+    }
 }

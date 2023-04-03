@@ -19,8 +19,10 @@
                         <!-- slide 1 start -->
                         <!-- ================ -->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="500"
-                            data-saveperformance="on" data-title="Get 50% Sales">
+                            data-saveperformance="on" data-title="Dogotki">
                             <!-- main image -->
+                            <img src="/assets/img/dogotki.jpg" alt="slidebg1"
+                                 data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
                             <!-- Transparent Background -->
                             <div class="tp-caption dark-translucent-bg"
                                  data-x="center"
@@ -74,10 +76,10 @@
                         <!-- slide 2 start -->
                         <!-- ================ -->
                         <li data-transition="random" data-slotamount="7" data-masterspeed="500"
-                            data-saveperformance="on" data-title="New Arrivals">
+                            data-saveperformance="on" data-title="Zgane Pijace">
 
                             <!-- main image -->
-                            <img src="/assets/frontend/images/shop-slide-2.jpg" alt="slidebg1"
+                            <img src="/assets/img/zgane.jpg" alt="slidebg1"
                                  data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 
                             <!-- Transparent Background -->
@@ -94,8 +96,7 @@
                                  data-y="180"
                                  data-speed="500"
                                  data-start="1000"
-                                 data-easing="easeOutQuad"><span class="text-default">New</span> Arrivals<br> Unlimited
-                                Variations and Layouts
+                                 data-easing="easeOutQuad"><span class="text-default">Zgane</span><br> Pijace
                             </div>
 
                             <!-- LAYER NR. 2 -->
@@ -115,9 +116,7 @@
                                  data-speed="500"
                                  data-start="1300"
                                  data-easing="easeOutQuad"
-                                 data-endspeed="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
-                                Nesciunt, maiores, aliquid. Repellat eum numquam aliquid culpa offici, <br> tenetur
-                                fugiat dolorum sapiente eligendi...
+                                 data-endspeed="600">
                             </div>
 
                             <!-- LAYER NR. 4 -->
@@ -127,11 +126,51 @@
                                  data-speed="500"
                                  data-start="1600"
                                  data-easing="easeOutQuad"
-                                 data-endspeed="600"><a href="#" class="btn btn-default btn-animated">Check Now <i
+                                 data-endspeed="600"><a href="{{route('frontend.products')}}" class="btn btn-default btn-animated">Pogledajte<i
                                         class="fa fa-arrow-right"></i></a>
                             </div>
                         </li>
                         <!-- slide 2 end -->
+
+                        <!-- slide 3 start -->
+                        <!-- ================ -->
+                        <li data-transition="random" data-slotamount="7" data-masterspeed="500"
+                            data-saveperformance="on" data-title="PUBLIKA PUB">
+
+                            <!-- main image -->
+                            <img src="/assets/img/publikapub.jpg" alt="slidebg1"
+                                 data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+
+                            <!-- Transparent Background -->
+                            <div class="tp-caption"
+                                 data-x="center"
+                                 data-y="bottom"
+                                 data-speed="600"
+                                 data-start="0">
+                            </div>
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption sfb fadeout text-right large_white"
+                                 data-x="right"
+                                 data-y="180"
+                                 data-speed="500"
+                                 data-start="1000"
+                                 data-easing="easeOutQuad"><span style="color: black">PUBLIKA PUB</span>
+                                <div class="separator-3 dark"></div>
+                            </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption sfb fadeout large_white tp-resizeme hidden-xs"
+                                 data-x="right"
+                                 data-y="300"
+                                 data-speed="500"
+                                 data-start="1300"
+                                 data-easing="easeOutQuad"
+                                 data-endspeed="600"><a href="{{route('frontend.products')}}" class="btn btn-dark btn-animated">Pogledajte<i
+                                        class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </li>
+                        <!-- slide 3 end -->
                     </ul>
                     <div class="tp-bannertimer"></div>
                 </div>
@@ -357,7 +396,7 @@
                         <span class="icon default-bg"><i class="fa fa-diamond"></i></span>
                         <h3>Hitra &amp; Bresplacna dostava</h3>
                         <div class="separator clearfix"></div>
-                        <a href="page-services.html" class="link-dark">Preberite vec<i
+                        <a href="{{route('frontend.feedback')}}" class="link-dark">Preberite vec<i
                                 class="pl-5 fa fa-angle-double-right"></i></a>
                     </div>
                 </div>

@@ -302,13 +302,7 @@
                                                     <!-- mega-menu end -->
                                                     <!-- mega-menu start -->
                                                     <li class="mega-menu">
-                                                        <a href="#" class="dropdown-toggle"
-                                                           data-toggle="dropdown">ZGANE</a>
-                                                        <ul class="dropdown-menu">
-                                                            <li>
-
-                                                            </li>
-                                                        </ul>
+                                                        <a href="{{route('frontend.products')}}">ZGANE</a>
                                                     </li>
                                                     <!-- mega-menu end -->
                                                     <!-- mega-menu start -->
@@ -336,8 +330,8 @@
                                                                 <div class="col-sm-12">
                                                                         <div class="divider"></div>
                                                                         <ul class="menu">
-                                                                            <li ><a href="">O Podjetju</a></li>
-                                                                            <li ><a href="">Kontakt</a></li>
+                                                                            <li ><a href="{{route('frontend.about')}}">O Podjetju</a></li>
+                                                                            <li ><a href="{{route('frontend.feedback')}}">Kontakt</a></li>
 
                                                                         </ul>
                                                                 </div>
@@ -464,7 +458,7 @@
                         <div class="call-to-action text-center">
                             <div class="row">
                                 <div class="col-sm-8">
-                                    <h1 class="title">Pogledajte naso akcisko ponudbo</h1>
+                                    <h2 style="padding-top: 10px" class="title">Pogledajte naso akcisko ponudbo</h2>
                                 </div>
                                 <div class="col-sm-4">
                                     <p><a href="#" class="btn btn-lg btn-default btn-animated">Vec<i

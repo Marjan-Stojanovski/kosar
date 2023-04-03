@@ -193,8 +193,6 @@
                                                 -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{$product->brand->weblink}}" class="btn-sm-link"><i
-                                                                    class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
 															<a href="{{route('frontend.productview', $product->slug)}}" class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
@@ -231,15 +229,30 @@
     <!-- BRANDS-->
 
     <!-- section start -->
+
+    <section class="section dark-bg" style="background-position: 50% 52%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="title">Partnerji</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ================ -->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="logo-font">Partnerji</h3>
                     <div class="separator-2"></div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio quia, et natus nulla
-                        cumque consequuntur, <br> sed, quam aliquam excepturi ea necessitatibus facilis, vero illum
+                        cumque consequuntur, sed, quam aliquam excepturi ea necessitatibus facilis, vero illum
                         dignissimos eligendi quasi consectetur possimus.</p>
                     <div class="clients-container">
                         <div class="clients">
@@ -284,12 +297,27 @@
     <!-- CATEGORIES -->
 
     <!-- section start -->
+
+    <section class="section dark-bg" style="background-position: 50% 52%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="title">Vrsta Pijac</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ================ -->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="text-center"><strong>Pijac</strong></h2>
                     <div class="separator"></div>
                 </div>
             </div>

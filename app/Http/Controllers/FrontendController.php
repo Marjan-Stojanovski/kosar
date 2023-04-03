@@ -38,4 +38,12 @@ class FrontendController extends Controller
 
         return view('frontend.categoryview')->with($data);
     }
+    public function brandview($brand_id)
+    {
+        $products = Product::where('brand_id', $brand_id)->get();
+        $brand = Brand::FindorFail($brand_id);
+        $data = ['products' => $products, 'brand' => $brand];
+
+        return view('frontend.brandview')->with($data);
+    }
 }

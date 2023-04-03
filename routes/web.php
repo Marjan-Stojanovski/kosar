@@ -112,3 +112,4 @@ Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->nam
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 Route::get('{product}', [\App\Http\Controllers\FrontendController::class, 'productview'])->name('frontend.productview');
 Route::get('categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryview'])->name('frontend.categoryview');
+Route::get('brands/{brand}', [\App\Http\Controllers\FrontendController::class, 'brandview'])->name('frontend.brandview');

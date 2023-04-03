@@ -250,8 +250,14 @@
                                             <div class="overlay-container bordered overlay-visible" >
                                                 <img src="/assets/img/brands/thumbnails/{{$brand->image}}"
                                                      alt="">
-                                                <a class="overlay-link" href="{{$brand->weblink}}"><i
-                                                        class="fa fa-plus"></i></a>
+                                                <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{$brand->weblink}}" class="btn-sm-link"><i
+                                                                    class="fa fa-external-link pr-10"></i>{{$brand->name}}</a>
+															<a href="{{route('frontend.brandview', $brand->id)}}" class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Products</a>
+														</span>
+                                                </div>
                                                 <div class="overlay-bottom" style="background-color: #0c9ec7">
                                                     <div class="text">
                                                         <h3 class="title">{{$brand->name}}</h3>

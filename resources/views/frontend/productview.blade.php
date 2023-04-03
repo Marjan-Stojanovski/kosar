@@ -7,14 +7,19 @@
 
 				<div class="container">
 					<div class="row">
-
+                        <div class="container">
+                            <div class="container">
+                                <ol class="breadcrumb">
+                                    <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a></li>
+                                    <li class="active">{{$products->title}}</li>
+                                </ol>
+                            </div>
+                        </div>
 						<!-- main start -->
 						<!-- ================ -->
 						<div class="main col-md-12">
-
 							<!-- page-title start -->
 							<!-- ================ -->
-							<h1 class="page-title">Shop Product</h1>
 							<div class="separator-2"></div>
 							<!-- page-title end -->
 

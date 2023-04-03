@@ -29,12 +29,12 @@ class FrontendController extends Controller
 
         return view('frontend.productview')->with($data);
     }
-    public function categoryview($slug)
+    public function categoryview($category_id)
     {
 
-        $products = Product::where('slug', $slug)->get();
-        $categoriesList = Category::getTreeHP();
-        $data = ['products' => $products, 'categoriesList' => $categoriesList];
+        $products = Product::where('category_id', $category_id)->get();
+        $category = Category::FindorFail($category_id);
+        $data = ['products' => $products, 'category' => $category];
 
         return view('frontend.categoryview')->with($data);
     }

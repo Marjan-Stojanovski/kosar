@@ -247,4 +247,72 @@
     </section>
     <!-- section end -->
 
+    <section class="section dark-bg" style="background-position: 50% 52%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="title">Slicni Proizvodi</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ -->
+    <section class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="separator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="owl-carousel carousel-autoplay pl-10 pr-10">
+                    @foreach($categoryProducts as $categoryProduct)
+                        <div class="tab-content clear-style">
+                            <div class="tab-pane active" id="pill-1">
+                                <div class="row masonry-grid-fitrows grid-space-10">
+                                    <div class="overlay-container" style="margin: 10px">
+                                        <img src="/assets/img/products/medium/{{$categoryProduct->image}}" alt="">
+                                        <!--
+                                        <a class="overlay-link popup-img-single" href="/assets/frontend/images/product-1.jpg"><i class="fa fa-search-plus"></i></a>
+                                        <span class="badge">30% OFF</span>
+                                        -->
+                                        <!--
+                                        <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productview', $categoryProduct->id)}}"
+                                                               class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                                        </div>
+                                        -->
+                                    </div>
+                                    <div class="body" style="margin: 30px">
+                                        <h3>
+                                            <a href="{{route('frontend.productview', $categoryProduct->id)}}">{{$categoryProduct->title}}</a>
+                                        </h3>
+                                        <p class="small"> {{strip_tags($categoryProduct->brand->name)}}</p>
+                                        <div class="elements-list clearfix">
+                                            <!--<span class="price"><del>$100.00</del> $70.00</span>-->
+                                            <span class="price"> &nbsp;€{{$categoryProduct->price}}</span>
+                                            <a href="{{route('frontend.productview', $categoryProduct->id)}}"
+                                               class="pull-right text-right btn btn-info">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection

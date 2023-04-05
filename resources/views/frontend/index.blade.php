@@ -232,13 +232,13 @@
                                                 -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{route('frontend.productview', $product->slug)}}" class="btn-sm-link"><i
+															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
                                                 </div>
                                             </div>
                                             <div class="body">
-                                                <h3><a href="{{route('frontend.productview', $product->slug)}}">{{$product->title}}</a></h3>
+                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
                                                     <!--<span class="price"><del>$100.00</del> $70.00</span>-->

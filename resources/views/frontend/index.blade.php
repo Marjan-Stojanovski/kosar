@@ -197,27 +197,27 @@
     </div>
 
     <!-- PRODUCTS -->
-
+    <section class="section dark-bg" style="background-position: 50% 52%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="title">Izdelki</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- section start -->
     <!-- ================ -->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- pills start -->
-                    <!-- ================ -->
-                    <!-- Nav tabs -->
-                    <!--
-                    <ul class="nav nav-pills" role="tablist">
-                        <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i
-                                    class="icon-star"></i> Latest Arrivals</a></li>
-                        <li><a href="#pill-2" role="tab" data-toggle="tab" title="Featured"><i class="icon-heart"></i>
-                                Featured</a></li>
-                        <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i
-                                    class=" icon-up-1"></i> Top Sellers</a></li>
-                    </ul>
-                    -->
-                    <!-- Tab panes -->
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">

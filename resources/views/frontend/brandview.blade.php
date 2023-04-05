@@ -12,21 +12,46 @@
                         </ol>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <!-- pills start -->
+            </div>
+        </div>
+    </section>
+    <section class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="main col-md-12">
+                    <!-- page-title start -->
                     <!-- ================ -->
-                    <!-- Nav tabs -->
-                    <!--
-                    <ul class="nav nav-pills" role="tablist">
-                        <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i
-                                    class="icon-star"></i> Latest Arrivals</a></li>
-                        <li><a href="#pill-2" role="tab" data-toggle="tab" title="Featured"><i class="icon-heart"></i>
-                                Featured</a></li>
-                        <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i
-                                    class=" icon-up-1"></i> Top Sellers</a></li>
-                    </ul>
-                    -->
-                    <!-- Tab panes -->
+                    <div class="separator"></div>
+                    <h1 class="page-title text-center">{{$brand->name}}</h1>
+                    <div class="separator"></div>
+                    <br>
+                    <div class="process">
+                        <div class="tab-content clear-style">
+                            <div class="tab-pane active" id="pill-pr-1">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="title">Opis {{$brand->name}} company</h4>
+                                        <p>Ipsum dolor sit amet, consectetur adipisicing elit. Sit, labore iste! Pariatur tempore, dicta voluptatibus quis blanditiis voluptates in. Molestiae asperiores sed, pariatur nesciunt saepe. Culpa ipsam ut enim reiciendis!</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea sit enim sint deleniti saepe esse nisi nesciunt fuga eaque dicta tenetur, cupiditate illo, consequuntur unde dolores quis dolore rem ex asperiores error. Labore saepe beatae harum quod fuga ipsam! Iusto earum iste similique, quam esse rerum, quae atque inventore consequuntur voluptatum amet deserunt mollitia? Tempore fugit, cumque dolor eaque doloremque iusto nostrum excepturi unde! Similique ipsum fugit eius laboriosam nihil quos, quia et! Earum iure, sapiente. Molestiae unde earum fugiat voluptate incidunt.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repellendus autem corporis obcaecati, laboriosam ipsam ea, alias saepe libero ab consequuntur.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" src="//player.vimeo.com/video/29198414?byline=0&amp;portrait=0"></iframe>
+                                            <p><a href="http://vimeo.com/29198414">Introducing Vimeo Music Store</a> from <a href="http://vimeo.com/staff">Vimeo Staff</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <br>
+
+                <h2 class="page-title text-center">Izdelki</h2>
+                <div class="separator"></div>
+                <div class="col-md-12">
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">
@@ -65,7 +90,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- pills end -->
                 </div>
             </div>
         </div>

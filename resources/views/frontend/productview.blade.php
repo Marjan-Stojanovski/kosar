@@ -118,7 +118,7 @@
     <section class="pv-30 light-gray-bg">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs style-4" role="tablist">
                         <li class="active"><a href="#h2tab2" role="tab" data-toggle="tab"><i
@@ -207,41 +207,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- sidebar start -->
-                <!-- ================ -->
-                <aside class="col-md-4 col-lg-3 col-lg-offset-1">
-                    <div class="sidebar">
-                        <div class="block clearfix">
-                            <h3 class="title">Related Products</h3>
-                            <div class="separator-2"></div>
-                            <div class="media margin-clear">
-                                <div class="media-left">
-                                    <div class="overlay-container">
-                                        <img class="media-object" src="images/product-5.jpg" alt="blog-thumb">
-                                        <a href="shop-product.html" class="overlay-link small"><i
-                                                class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                                <div class="media-body">
-                                    <h6 class="media-heading"><a href="shop-product.html">Lorem ipsum dolor sit amet</a>
-                                    </h6>
-                                    <p class="margin-clear">
-                                        <i class="fa fa-star text-default"></i>
-                                        <i class="fa fa-star text-default"></i>
-                                        <i class="fa fa-star text-default"></i>
-                                        <i class="fa fa-star text-default"></i>
-                                        <i class="fa fa-star text-default"></i>
-                                    </p>
-                                    <p class="price">$99.00</p>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-                <!-- sidebar end -->
-
             </div>
         </div>
     </section>

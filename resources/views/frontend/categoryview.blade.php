@@ -12,6 +12,12 @@
                         </ol>
                     </div>
                 </div>
+            </div>
+        <div class="row">
+            <div class="separator"></div>
+            <h1 class="page-title text-center">{{$category->name}}</h1>
+            <div class="separator"></div>
+            <br>
                 <div class="col-md-12">
                     <!-- pills start -->
                     <!-- ================ -->
@@ -43,13 +49,13 @@
 														<span class="small">
 															<a href="{{$product->brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
-															<a href="{{route('frontend.productview', $product->slug)}}" class="btn-sm-link"><i
+															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
                                                 </div>
                                             </div>
                                             <div class="body">
-                                                <h3><a href="{{route('frontend.productview', $product->slug)}}">{{$product->title}}</a></h3>
+                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
                                                     <!--<span class="price"><del>$100.00</del> $70.00</span>-->

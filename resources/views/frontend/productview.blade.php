@@ -138,6 +138,7 @@
                         </div>
                         <div class="tab-pane fade" id="h2tab3">
                             <!-- comments start -->
+                            <div class="col-md-7">
                             <div class="comments margin-clear space-top">
                                 <!-- comment start -->
                                 <div class="comment clearfix">
@@ -167,7 +168,8 @@
                                 <!-- comment end -->
                             </div>
                             <!-- comments end -->
-
+                            </div>
+                            <div class="col-md-5">
                             <!-- comments form start -->
                             <div class="comments-form">
                                 <h2 class="title">Add your Review</h2>
@@ -202,6 +204,7 @@
                                     </div>
                                     <input type="submit" value="Submit" class="btn btn-default">
                                 </form>
+                            </div>
                             </div>
                             <!-- comments form end -->
                         </div>

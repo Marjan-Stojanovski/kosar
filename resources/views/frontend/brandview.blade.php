@@ -7,7 +7,8 @@
                 <div class="container">
                     <div class="container">
                         <ol class="breadcrumb">
-                            <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a></li>
+                            <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}"
+                                                                   style="color: black">Domov</a></li>
                             <li class="active">{{$brand->name}}</li>
                         </ol>
                     </div>
@@ -31,14 +32,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h4 class="title">Opis {{$brand->name}} company</h4>
-                                        <p>Ipsum dolor sit amet, consectetur adipisicing elit. Sit, labore iste! Pariatur tempore, dicta voluptatibus quis blanditiis voluptates in. Molestiae asperiores sed, pariatur nesciunt saepe. Culpa ipsam ut enim reiciendis!</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea sit enim sint deleniti saepe esse nisi nesciunt fuga eaque dicta tenetur, cupiditate illo, consequuntur unde dolores quis dolore rem ex asperiores error. Labore saepe beatae harum quod fuga ipsam! Iusto earum iste similique, quam esse rerum, quae atque inventore consequuntur voluptatum amet deserunt mollitia? Tempore fugit, cumque dolor eaque doloremque iusto nostrum excepturi unde! Similique ipsum fugit eius laboriosam nihil quos, quia et! Earum iure, sapiente. Molestiae unde earum fugiat voluptate incidunt.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores repellendus autem corporis obcaecati, laboriosam ipsam ea, alias saepe libero ab consequuntur.</p>
+                                        <p>{{strip_tags($brand->description)}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item" src="//player.vimeo.com/video/29198414?byline=0&amp;portrait=0"></iframe>
-                                            <p><a href="http://vimeo.com/29198414">Introducing Vimeo Music Store</a> from <a href="http://vimeo.com/staff">Vimeo Staff</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                                        <div class="overlay-container">
+                                            <img style="width: auto; height: 100%; margin: 0 auto; background-size: contain;"
+                                                 src="/assets/img/brands/medium/{{$brand->image}}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -66,15 +65,19 @@
                                                 -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{$product->brand->weblink}}" class="btn-sm-link"><i
+															<a href="{{$product->brand->weblink}}"
+                                                               class="btn-sm-link"><i
                                                                     class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
-															<a href="{{route('frontend.productview', $product->slug)}}" class="btn-sm-link"><i
+															<a href="{{route('frontend.productview', $product->slug)}}"
+                                                               class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
                                                 </div>
                                             </div>
                                             <div class="body">
-                                                <h3><a href="{{route('frontend.productview', $product->slug)}}">{{$product->title}}</a></h3>
+                                                <h3>
+                                                    <a href="{{route('frontend.productview', $product->slug)}}">{{$product->title}}</a>
+                                                </h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
                                                     <!--<span class="price"><del>$100.00</del> $70.00</span>-->

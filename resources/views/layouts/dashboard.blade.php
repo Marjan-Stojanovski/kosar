@@ -162,6 +162,15 @@
                                     <span class="sidebar-text">Статички страни</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('comments.index')}}"
+                                   class="nav-link d-flex align-items-center text-truncate ">
+                              <span class="sidebar-icon">
+                                <i class="fs-2 text-primary d-block mb-2 bi bi-chat-right-text"></i>
+                              </span>
+                                    <span class="sidebar-text">Коментари</span>
+                                </a>
+                            </li>
                             <li class="nav-item sidebar-title text-truncate opacity-50 small">
                                 <i class="bi bi-three-dots"></i>
                                 <span>Општи уредувања</span>

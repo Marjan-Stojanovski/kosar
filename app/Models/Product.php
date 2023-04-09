@@ -43,4 +43,9 @@ class Product extends Model
     {
         return $this->belongsTo(Volume::class, 'volume_id', 'id');
     }
+
+    public function comment()
+    {
+        return $this->belongsTo(Comment::class, 'product_id', 'id');
+    }
 }

@@ -95,26 +95,25 @@ class Category extends Model
     }
 
     public static function getTreeHP() {
-        $categories = self::get()->toTree();
-        $lists = '<div class="dropdown">';
+        $categories = self::all();
+        $lists = '<li class="dropdown mega-menu">';
         foreach($categories as $category)
             $lists .= self::renderNodeHP($category);
-        $lists .= "</div>";
+        $lists .= "</li>";
         return $lists;
     }
 
 
     public static function renderNodeHP($node) {
-        $list = '<div class="dropdown" aria-labelledby="'.$node->id.'"><a class="dropdown-item" id="'.$node->id.'" role="button"
-                                   aria-expanded="false" href="/categories/'.$node->slug.'">'.$node->name.'</a>';
+        $list = '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/categories/'.$node->id.'">'.$node->name.'</a>';
         if ( $node->children()->count() > 0 ) {
-            $list .= '<div class="dropdown-menu" style="margin-left: 100px; min-width: 300px;" >';
+            $list .= '<ul class="dropdown-menu">';
             foreach($node->children as $child)
                 $list .= self::renderNodeHP($child);
-            $list .= "</div>";
+            $list .= "</ul>";
         }
 
-        $list .= "</div>";
+        $list .= "</li>";
         return $list;
     }
 

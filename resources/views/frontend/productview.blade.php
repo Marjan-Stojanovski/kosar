@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-7 pv-30">
                     <h2>{{$products->title}}</h2>
-                    <p>{{strip_tags($products->description)}}</p>
+                    <p>{!! $products->description !!}</p>
                     <hr class="mb-10">
                     <div class="clearfix mb-20">
 										<span>
@@ -132,7 +132,7 @@
                             <h4 class="space-top">Specifications</h4>
                             <hr>
                             <dl class="dl-horizontal">
-                                {{strip_tags($products->description)}}
+                                {!! $products->description !!}
                             </dl>
                             <hr>
                         </div>
@@ -141,30 +141,31 @@
                             <div class="col-md-7">
                             <div class="comments margin-clear space-top">
                                 <!-- comment start -->
+                                @foreach($comments as $comment)
                                 <div class="comment clearfix">
                                     <div class="comment-avatar">
                                         <img class="img-circle" src="images/avatar.jpg" alt="avatar">
                                     </div>
                                     <header>
-                                        <h3>Amazing!</h3>
-                                        <div class="comment-meta"><i class="fa fa-star text-default"></i> <i
-                                                class="fa fa-star text-default"></i> <i
-                                                class="fa fa-star text-default"></i> <i
-                                                class="fa fa-star text-default"></i> <i class="fa fa-star"></i> | Today,
-                                            12:31
+                                        <h3>{{$comment->subject}}!</h3>
+                                        <div class="comment-meta">
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            <i class="fa fa-star text-default"></i>
+                                            | Today, 12:31
                                         </div>
                                     </header>
                                     <div class="comment-content">
                                         <div class="comment-body clearfix">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                commodo </p>
+                                            <p>{{$comment->message}}</p>
                                             <a href="blog-post.html" class="btn-sm-link link-dark pull-right"><i
                                                     class="fa fa-reply"></i> Reply</a>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                                 <!-- comment end -->
                             </div>
                             <!-- comments end -->
@@ -173,35 +174,49 @@
                             <!-- comments form start -->
                             <div class="comments-form">
                                 <h2 class="title">Add your Review</h2>
-                                <form role="form" id="comment-form">
+                                <form method="post"  role="form" id="comment-form" action="{{route('comment.save')}}">
+                                    @csrf
                                     <div class="form-group has-feedback">
-                                        <label for="name4">Name</label>
-                                        <input type="text" class="form-control" id="name4" placeholder="" name="name4"
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Ime" name="name"
                                                required>
                                         <i class="fa fa-user form-control-feedback"></i>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label for="subject4">Subject</label>
-                                        <input type="text" class="form-control" id="subject4" placeholder=""
-                                               name="subject4" required>
+                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control" id="subject" placeholder=""
+                                               name="subject" required>
                                         <i class="fa fa-pencil form-control-feedback"></i>
                                     </div>
+                                    <div class="form-group" hidden>
+                                        <!-- Label -->
+                                        <label for="product_id" class="form-label"></label>
+                                        <!--select-->
+                                        <select name="product_id" id="product_id"
+                                                class="form-control">
+                                                <option value="{{ $products->id }}"></option>
+
+                                        </select>
+                                    </div>
                                     <div class="form-group">
-                                        <label>Rating</label>
-                                        <select class="form-control" id="review">
-                                            <option value="five">5</option>
-                                            <option value="four">4</option>
-                                            <option value="three">3</option>
-                                            <option value="two">2</option>
-                                            <option value="one">1</option>
+                                        <label for="rating">Rating</label>
+                                        <select class="form-control" id="review" name="rating">
+                                            <option value="5">5</option>
+                                            <option value="4">4</option>
+                                            <option value="3">3</option>
+                                            <option value="2">2</option>
+                                            <option value="1">1</option>
                                         </select>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label for="message4">Message</label>
-                                        <textarea class="form-control" rows="8" id="message4" placeholder=""
-                                                  name="message4" required></textarea>
+                                        <label for="message">Message</label>
+                                        <textarea class="form-control" rows="8" id="message" placeholder=""
+                                                  name="message" required></textarea>
                                         <i class="fa fa-envelope-o form-control-feedback"></i>
                                     </div>
+                                    @if(Session::has('flash_message'))
+                                        <p class="alert alert-info">{{ Session::get('flash_message') }}</p>
+                                    @endif
                                     <input type="submit" value="Submit" class="btn btn-default">
                                 </form>
                             </div>

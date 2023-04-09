@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <h4 class="title">Opis {{$brand->name}} company</h4>
-                                        <p>{{strip_tags($brand->description)}}</p>
+                                        <p>{!! $brand->description !!}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="overlay-container">

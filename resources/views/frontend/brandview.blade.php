@@ -16,15 +16,25 @@
             </div>
         </div>
     </section>
+    <section class="section dark-bg" style="background-position: 50% 52%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="title">{{$brand->name}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="main col-md-12">
-                    <!-- page-title start -->
-                    <!-- ================ -->
-                    <div class="separator"></div>
-                    <h1 class="page-title text-center">{{$brand->name}}</h1>
-                    <div class="separator"></div>
                     <br>
                     <div class="process">
                         <div class="tab-content clear-style">

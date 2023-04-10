@@ -163,7 +163,7 @@
                                             <!-- Label -->
                                             <label class="form-label" for="price">Цена</label>
                                             <!-- Input -->
-                                            <input type="text" placeholder="Цена"
+                                            <input type="text" placeholder="0.00"
                                                    class="form-control @error('price') is-invalid @enderror"
                                                    id="price" name="price">
                                             @error('price')
@@ -174,8 +174,43 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                        <!-- First name -->
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label class="form-label" for="action">Акциска Цена/Цена со попуст</label>
+                                            <!-- Input -->
+                                            <input type="text" placeholder="0.00"
+                                                   class="form-control @error('action') is-invalid @enderror"
+                                                   id="action" name="action">
+                                            @error('action')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                        <!-- First name -->
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label class="form-label" for="discount">Попуст во %</label>
+                                            <!-- Input -->
+                                            <input type="text" placeholder="0.00"
+                                                   class="form-control @error('discount') is-invalid @enderror"
+                                                   id="discount" name="discount">
+                                            @error('discount')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="text-end">
-                                    <button type="submit" id="profile_save" class="btn btn-primary" data-tippy-content="Сочувај">
+                                    <button type="submit" id="profile_save" class="btn btn-primary"
+                                            data-tippy-content="Сочувај">
                                         <span class="material-symbols-rounded align-middle me-2">
                                                     save
                                                     </span>Сочувај

@@ -199,6 +199,40 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                    <!-- First name -->
+                                    <div class="form-group">
+                                        <!-- Label -->
+                                        <label class="form-label" for="action">Акциска Цена/Цена со попуст</label>
+                                        <!-- Input -->
+                                        <input type="text" placeholder="0.00"
+                                               class="form-control @error('action') is-invalid @enderror"
+                                               id="action" name="action" value="{{$product->action}}">
+                                        @error('action')
+                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3 d-inline-block">
+                                    <!-- First name -->
+                                    <div class="form-group">
+                                        <!-- Label -->
+                                        <label class="form-label" for="discount">Попуст во %</label>
+                                        <!-- Input -->
+                                        <input type="text" placeholder="0.00"
+                                               class="form-control @error('discount') is-invalid @enderror"
+                                               id="discount" name="discount" value="{{$product->discount}}">
+                                        @error('discount')
+                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="text-end">
                                 <div class="col-12 col-md-12 mb-4">
                                     <button class="btn btn-primary mb-2 me-2" data-tippy-content="Сочувај">

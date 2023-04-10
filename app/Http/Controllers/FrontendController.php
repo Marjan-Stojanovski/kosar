@@ -13,7 +13,7 @@ class FrontendController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        $products = Product::all();
+        $products = Product::paginate(5);
         $categoriesList = Category::getTreeHP();
         $categories = Category::all();
         $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories];
@@ -72,5 +72,13 @@ class FrontendController extends Controller
         $data = ['products' => $products, 'categoriesList' => $categoriesList];
 
         return view('frontend.products')->with($data);
+    }
+
+    public function shop()
+    {
+        $products = Product::paginate(12);
+        $data = ['products' => $products];
+
+        return view('frontend.shopview')->with($data);
     }
 }

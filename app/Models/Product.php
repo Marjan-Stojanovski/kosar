@@ -21,7 +21,9 @@ class Product extends Model
         'brand_id',
         'volume_id',
         'alcohol',
-        'price'
+        'price',
+        'action',
+        'discount'
     ];
 
     public function user()

@@ -55,7 +55,7 @@ class SettingsControler extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('products.create')
+            return redirect()->route('settings.create')
                 ->withErrors($validator)
                 ->withInput();
         }

@@ -24,12 +24,6 @@
                             <img src="/assets/img/dogotki.jpg" alt="slidebg1"
                                  data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
                             <!-- Transparent Background -->
-                            <div class="tp-caption dark-translucent-bg"
-                                 data-x="center"
-                                 data-y="bottom"
-                                 data-speed="600"
-                                 data-start="0">
-                            </div>
                             <!-- LAYER NR. 1 -->
                             <div class="tp-caption sfb fadeout large_white"
                                  data-x="left"
@@ -42,27 +36,16 @@
                             <!-- LAYER NR. 2 -->
                             <div class="tp-caption sfb fadeout large_white tp-resizeme hidden-xs"
                                  data-x="left"
-                                 data-y="300"
+                                 data-y="250"
                                  data-speed="500"
                                  data-start="1300"
                                  data-easing="easeOutQuad">
                                 <div class="separator-2 light"></div>
                             </div>
-
-                            <!-- LAYER NR. 3 -->
-                            <div class="tp-caption sfb fadeout medium_white hidden-xs"
-                                 data-x="left"
-                                 data-y="320"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                            </div>
-
                             <!-- LAYER NR. 4 -->
                             <div class="tp-caption sfb fadeout small_white text-center"
                                  data-x="left"
-                                 data-y="430"
+                                 data-y="350"
                                  data-speed="500"
                                  data-start="1600"
                                  data-easing="easeOutQuad"
@@ -98,17 +81,6 @@
                                  data-start="1000"
                                  data-easing="easeOutQuad"><span class="text-default">Zgane</span><br> Pijace
                             </div>
-
-                            <!-- LAYER NR. 2 -->
-                            <div class="tp-caption sfb fadeout large_white tp-resizeme hidden-xs"
-                                 data-x="right"
-                                 data-y="300"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad">
-                                <div class="separator-3 light"></div>
-                            </div>
-
                             <!-- LAYER NR. 3 -->
                             <div class="tp-caption sfb fadeout medium_white text-right hidden-xs"
                                  data-x="right"
@@ -122,7 +94,7 @@
                             <!-- LAYER NR. 4 -->
                             <div class="tp-caption sfb fadeout small_white text-right text-center"
                                  data-x="right"
-                                 data-y="430"
+                                 data-y="400"
                                  data-speed="500"
                                  data-start="1600"
                                  data-easing="easeOutQuad"
@@ -222,14 +194,38 @@
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">
                                 @foreach($products as $product)
+                                    <?php
+                                        if (isset($product->action)) { ?>
+                                            <div class="col-md-3 col-sm-6 masonry-grid-item">
+                                        <div class="listing-item white-bg bordered mb-20">
+                                            <div class="overlay-container">
+                                                <img src="/assets/img/products/medium/{{$product->image}}" alt="">
+                                                <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
+                                                <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                                                </div>
+                                            </div>
+                                            <div class="body">
+                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
+                                <p class="small"> {{strip_tags($product->brand->name)}}</p>
+                                <div class="elements-list clearfix">
+                                    <span class="price"><del>{{$product->price}}</del></span>
+                                    <span class="price"> &nbsp;€{{$product->action}}</span>
+                                    <a href="#"
+                                       class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
+                                        To Cart<i class="fa fa-shopping-cart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            <?php } else { ?>
                                     <div class="col-md-3 col-sm-6 masonry-grid-item">
                                         <div class="listing-item white-bg bordered mb-20">
                                             <div class="overlay-container">
                                                 <img src="/assets/img/products/medium/{{$product->image}}" alt="">
-                                                <!--
-                                                <a class="overlay-link popup-img-single" href="/assets/frontend/images/product-1.jpg"><i class="fa fa-search-plus"></i></a>
-                                                <span class="badge">30% OFF</span>
-                                                -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
 															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
@@ -241,7 +237,6 @@
                                                 <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
-                                                    <!--<span class="price"><del>$100.00</del> $70.00</span>-->
                                                     <span class="price"> &nbsp;€{{$product->price}}</span>
                                                     <a href="#"
                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
@@ -250,11 +245,16 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <?php } ?>
                                 @endforeach
                             </div>
                         </div>
                     </div>
                     <!-- pills end -->
+                </div>
+                <div class="col-md-12 text-center">
+                {{ $products->links() }}
                 </div>
             </div>
         </div>

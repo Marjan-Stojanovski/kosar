@@ -304,13 +304,8 @@
                                                 </li>
                                                 <!-- mega-menu end -->
                                                 <!-- mega-menu start -->
-                                                <li class="menu">
-                                                    <a href="{{route('frontend.products')}}">ZGANE</a>
-                                                </li>
-                                                <!-- mega-menu end -->
-                                                <!-- mega-menu start -->
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SADJE</a>
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ZGANE</a>
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             {!! $categoriesList !!}
@@ -318,12 +313,17 @@
                                                     </ul>
                                                 </li>
                                                 <!-- mega-menu end -->
+                                                <!-- mega-menu start -->
+                                                <li class="menu">
+                                                    <a href="{{route('frontend.products')}}">SADJE</a>
+                                                </li>
+                                                <!-- mega-menu end -->
                                                 <li class="menu">
                                                     <a href="">PUBLIKA BAR</a>
 
                                                 </li>
                                                 <li class="menu">
-                                                    <a href="">E-TRGOVINA</a>
+                                                    <a href="{{route('frontend.shop')}}">E-TRGOVINA</a>
                                                 </li>
                                                 <li class="dropdown">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">O NAM</a>

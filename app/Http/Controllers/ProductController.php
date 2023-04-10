@@ -73,6 +73,8 @@ class ProductController extends Controller
         $volume_id = $request->get('volume_id');
         $alcohol = $request->get('alcohol');
         $price = $request->get('price');
+        $action = $request->get('action');
+        $discount = $request->get('discount');
 
         $imageObj = new ImageStore($request, 'products');
         $image = $imageObj->imageStore();
@@ -87,7 +89,9 @@ class ProductController extends Controller
             'brand_id' => $brand_id,
             'volume_id' => $volume_id,
             'alcohol' => $alcohol,
-            'price' => $price
+            'price' => $price,
+            'action' => $action,
+            'discount' => $discount
         ]);
 
         $products = Product::all();

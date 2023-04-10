@@ -40,7 +40,8 @@
                         <th class="text-center">Опис</th>
                         <th class="text-center">Категорија</th>
                         <th class="text-center">Цена</th>
-                        <th class="text-center">Фајл</th>
+                        <th class="text-center">Цена со попуст</th>
+                        <th class="text-center">Попуст %</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,23 +72,10 @@
                                 <h6>{{$product->price}}</h6>
                             </td>
                             <td class="text-center">
-                                <div class="align-middle">
-                                    <label for="inputImage"
-                                           data-tippy-content="Изберете слика" class="btn btn-sm btn-outline-dark">
-                                                <span class="material-symbols-rounded align-middle" style="width: 20px">
-                                                    add
-                                                    </span>
-                                        <span style="font-size: x-small">Изберете слика</span>
-                                    </label>
-                                    <input type="file"
-                                           class="form-control d-none w-0 h-0 @error('image') is-invalid @enderror"
-                                           id="inputImage" name="image">
-                                    @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                <h6>{{$product->action}}</h6>
+                            </td>
+                            <td class="text-center">
+                                <h6>{{$product->discount}} %</h6>
                             </td>
                         </tr>
                     @endforeach

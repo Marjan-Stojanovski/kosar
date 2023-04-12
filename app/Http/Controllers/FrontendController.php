@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Volume;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -76,9 +77,13 @@ class FrontendController extends Controller
 
     public function shop()
     {
+        $brands = Brand::all();
+        $volumes = Volume::all();
+        $categories = Category::all();
         $products = Product::paginate(12);
-        $data = ['products' => $products];
+        $categoriesList = Category::getTreeHP();
+        $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes];
 
-        return view('frontend.shopview')->with($data);
+        return view('frontend.shop')->with($data);
     }
 }

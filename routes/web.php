@@ -119,12 +119,13 @@ Route::middleware(['web','auth'])->prefix('dashboard')->group(function() {
     //Admin-panel
 Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     //Frontend-routes
+Route::post('/save_comment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
+Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/contact_us', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
 Route::get('/about_us', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
 Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
 Route::get('/{product}', [\App\Http\Controllers\FrontendController::class, 'productview'])->name('frontend.productview');
 Route::get('/categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryview'])->name('frontend.categoryview');
 Route::get('/brands/{brand}', [\App\Http\Controllers\FrontendController::class, 'brandview'])->name('frontend.brandview');
-Route::get('/shop', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
-Route::post('/save_comment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
+

@@ -23,6 +23,7 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
     <!-- Bootstrap core CSS -->
     <link href="/assets/frontend/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="/assets/frontend/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- Fontello CSS -->

@@ -1,21 +1,15 @@
 @extends('welcome')
 @section('content')
 
-    <section class="section clearfix">
+    <div class="breadcrumb-container">
         <div class="container">
-            <div class="row">
-                <div class="container">
-                    <div class="container">
-                        <ol class="breadcrumb">
-                            <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}"
-                                                                   style="color: black">Domov</a></li>
-                            <li class="active">{{$brand->name}}</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}"
+                                                       style="color: black">Domov</a></li>
+                <li class="active" style="color: black">{{$brand->name}}</li>
+            </ol>
         </div>
-    </section>
+    </div>
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -46,8 +40,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="overlay-container">
-                                            <img style="width: auto; height: 100%; margin: 0 auto; background-size: contain;"
-                                                 src="/assets/img/brands/medium/{{$brand->image}}" alt="">
+                                            <img
+                                                style="width: auto; height: 100%; margin: 0 auto; background-size: contain;"
+                                                src="/assets/img/brands/medium/{{$brand->image}}" alt="">
                                         </div>
                                     </div>
                                 </div>

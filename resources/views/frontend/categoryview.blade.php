@@ -1,21 +1,15 @@
 @extends('welcome')
 @section('content')
 
-    <section class="section clearfix">
+    <div class="breadcrumb-container">
         <div class="container">
-            <div class="row">
-                <div class="container">
-                    <div class="container">
-                        <ol class="breadcrumb">
-                            <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}"
-                                                                   style="color: black">Domov</a></li>
-                            <li class="active">{{$category->name}}</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}"
+                                                       style="color: black">Domov</a></li>
+                <li class="active" style="color: black">{{$category->name}}</li>
+            </ol>
         </div>
-    </section>
+    </div>
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">

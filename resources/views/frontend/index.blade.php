@@ -1,18 +1,12 @@
 @extends('welcome')
 @section('content')
 
+
     <!-- SLIDER -->
-
     <!-- banner start -->
-    <!-- ================ -->
     <div class="banner clearfix">
-
-        <!-- slideshow start -->
-        <!-- ================ -->
         <div class="slideshow">
-
             <!-- slider revolution start -->
-            <!-- ================ -->
             <div class="slider-banner-container">
                 <div class="slider-banner-fullwidth-big-height">
                     <ul class="slides">
@@ -98,7 +92,8 @@
                                  data-speed="500"
                                  data-start="1600"
                                  data-easing="easeOutQuad"
-                                 data-endspeed="600"><a href="{{route('frontend.products')}}" class="btn btn-default btn-animated">Pogledajte<i
+                                 data-endspeed="600"><a href="{{route('frontend.products')}}"
+                                                        class="btn btn-default btn-animated">Pogledajte<i
                                         class="fa fa-arrow-right"></i></a>
                             </div>
                         </li>
@@ -138,7 +133,8 @@
                                  data-speed="500"
                                  data-start="1300"
                                  data-easing="easeOutQuad"
-                                 data-endspeed="600"><a href="{{route('frontend.products')}}" class="btn btn-dark btn-animated">Pogledajte<i
+                                 data-endspeed="600"><a href="{{route('frontend.products')}}"
+                                                        class="btn btn-dark btn-animated">Pogledajte<i
                                         class="fa fa-arrow-right"></i></a>
                             </div>
                         </li>
@@ -148,27 +144,23 @@
                 </div>
             </div>
             <!-- slider revolution end -->
-
         </div>
-        <!-- slideshow end -->
-
     </div>
-
-
     <!-- banner end -->
 
-    <!-- SLIDER END -->
 
+    <!-- SLIDER END -->
     <div class="breadcrumb-container">
         <div class="container">
             <ol class="breadcrumb">
-                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}">Domov</a></li>
+                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a>
+                </li>
                 <!--<li class="active">Blog Right Sidebar</li>-->
             </ol>
         </div>
     </div>
 
-    <!-- PRODUCTS -->
+    <!-- PRODUCTS Naslov-->
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -176,7 +168,7 @@
                     <div class="call-to-action text-center">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h1 class="title">Izdelki</h1>
+                                <h1 class="title">Akciski Izdelki</h1>
                             </div>
                         </div>
                     </div>
@@ -184,8 +176,8 @@
             </div>
         </div>
     </section>
-    <!-- section start -->
-    <!-- ================ -->
+    <!-- PRODUCTS Naslov End -->
+    <!-- PRODUCTS AKCIJA -->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
@@ -194,50 +186,29 @@
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">
                                 @foreach($products as $product)
-                                    <?php
-                                        if (isset($product->action)) { ?>
-                                            <div class="col-md-3 col-sm-6 masonry-grid-item">
+                                        <?php
+                                    if (isset($product->action)) { ?>
+                                    <div class="col-md-3 col-sm-6 masonry-grid-item">
                                         <div class="listing-item white-bg bordered mb-20">
                                             <div class="overlay-container">
                                                 <img src="/assets/img/products/medium/{{$product->image}}" alt="">
                                                 <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
+															<a href="{{route('frontend.productview', $product->id)}}"
+                                                               class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
                                                 </div>
                                             </div>
                                             <div class="body">
-                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
-                                <p class="small"> {{strip_tags($product->brand->name)}}</p>
-                                <div class="elements-list clearfix">
-                                    <span class="price"><del>{{$product->price}}</del></span>
-                                    <span class="price"> &nbsp;€{{$product->action}}</span>
-                                    <a href="#"
-                                       class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
-                                        To Cart<i class="fa fa-shopping-cart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                            <?php } else { ?>
-                                    <div class="col-md-3 col-sm-6 masonry-grid-item">
-                                        <div class="listing-item white-bg bordered mb-20">
-                                            <div class="overlay-container">
-                                                <img src="/assets/img/products/medium/{{$product->image}}" alt="">
-                                                <div class="overlay-to-top links">
-														<span class="small">
-															<a href="{{route('frontend.productview', $product->id)}}" class="btn-sm-link"><i
-                                                                    class="icon-link pr-5"></i>View Details</a>
-														</span>
-                                                </div>
-                                            </div>
-                                            <div class="body">
-                                                <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
+                                                <h3>
+                                                    <a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a>
+                                                </h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
-                                                    <span class="price"> &nbsp;€{{$product->price}}</span>
+                                                    <span class="price"><del>{{$product->price}}</del></span>
+                                                    <span class="price"> &nbsp;€{{$product->action}}</span>
                                                     <a href="#"
                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
                                                         To Cart<i class="fa fa-shopping-cart"></i></a>
@@ -245,7 +216,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <?php } ?>
                                 @endforeach
                             </div>
@@ -254,21 +224,15 @@
                     <!-- pills end -->
                 </div>
                 <div class="col-md-12 text-center">
-                {{ $products->links() }}
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>
     </section>
-    <!-- section end -->
-
-    <!-- PRODUCTS END -->
+    <!-- PRODUCTS AKCIJA  END -->
 
 
-
-    <!-- BRANDS-->
-
-    <!-- section start -->
-
+    <!-- BRANDS Naslov-->
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -284,7 +248,8 @@
             </div>
         </div>
     </section>
-    <!-- ================ -->
+    <!-- BRANDS Naslov End-->
+    <!-- BRANDS-->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
@@ -299,14 +264,15 @@
                                 @foreach($brands as $brand)
                                     <div class="col-md-4">
                                         <div class="listing-item pl-10 pr-10 mb-20">
-                                            <div class="overlay-container bordered overlay-visible" >
+                                            <div class="overlay-container bordered overlay-visible">
                                                 <img src="/assets/img/brands/thumbnails/{{$brand->image}}"
                                                      alt="">
                                                 <div class="overlay-to-top links">
 														<span class="small">
 															<a href="{{$brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-external-link pr-10"></i>{{$brand->name}}</a>
-															<a href="{{route('frontend.brandview', $brand->id)}}" class="btn-sm-link"><i
+															<a href="{{route('frontend.brandview', $brand->id)}}"
+                                                               class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Products</a>
 														</span>
                                                 </div>
@@ -327,16 +293,9 @@
             </div>
         </div>
     </section>
-    <!-- section end -->
+   <!-- BRANDS END-->
 
-    <!-- BRANDS END-->
-
-
-
-    <!-- CATEGORIES -->
-
-    <!-- section start -->
-
+    <!-- CATEGORIES Title -->
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -352,7 +311,8 @@
             </div>
         </div>
     </section>
-    <!-- ================ -->
+    <!-- CATEGORIES Title End -->
+    <!-- CATEGORIES -->
     <section class="section clearfix">
         <div class="container">
             <div class="row">
@@ -361,14 +321,15 @@
                 </div>
             </div>
         </div>
-
         <div class="owl-carousel carousel-autoplay pl-10 pr-10">
             @foreach($categories as $category)
                 <div class="listing-item rounded pl-8 pr-10 mb-20">
-                    <div class="overlay-container bordered rounded-1 overlay-visible" style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
+                    <div class="overlay-container bordered rounded-1 overlay-visible"
+                         style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
                         <div class="overlay-bottom">
                             <div class="text">
-                                <a href="{{route('frontend.categoryview', $category->id)}}" class="panel-title" style="font-size: 25px"><strong>{{$category->name}}</strong></a>
+                                <a href="{{route('frontend.categoryview', $category->id)}}" class="panel-title"
+                                   style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                                 <div class="separator light"></div>
                             </div>
                         </div>
@@ -376,15 +337,11 @@
                 </div>
             @endforeach
         </div>
-
     </section>
-    <!-- section end -->
-
-    <!-- CATEGORIES END -->
+    <!-- CATEGORIES End-->
 
 
-
-    <!-- section start -->
+    <!-- USLUGI start -->
     <!-- ================ -->
     <section class="section dark-translucent-bg pv-40"
              style="background-image:url('/assets/img/logo.jpg');background-position: 50% 40%; background-size: cover">
@@ -435,35 +392,8 @@
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="call-to-action text-center">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <h2 class="title"><strong>Subscribe</strong> To Our Newsletter</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus error pariatur
-                                    deserunt laudantium nam, mollitia quas nihil inventore, quibusdam?</p>
-                                <div class="separator"></div>
-                                <form class="form-inline margin-clear">
-                                    <div class="form-group has-feedback">
-                                        <label class="sr-only" for="subscribe3">Email address</label>
-                                        <input type="email" class="form-control form-control-lg" id="subscribe3"
-                                               placeholder="Enter email" name="subscribe3" required="">
-                                        <i class="fa fa-envelope form-control-feedback"></i>
-                                    </div>
-                                    <button type="submit"
-                                            class="btn btn-lg btn-gray-transparent btn-animated margin-clear">Submit <i
-                                            class="fa fa-send"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
     </section>
-    <!-- section end -->
+    <!--  USLUGI end -->
 
 @endsection

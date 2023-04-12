@@ -5,11 +5,11 @@
 
     <!-- breadcrumb start -->
     <!-- ================ -->
-    <div class="container">
+    <div class="breadcrumb-container">
         <div class="container">
             <ol class="breadcrumb">
                 <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a></li>
-                <li class="active">O Nas</li>
+                <li class="active" style="color: black">O Nas</li>
             </ol>
         </div>
     </div>

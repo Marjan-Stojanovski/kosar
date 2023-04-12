@@ -6,10 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KosarCMS</title>
-
     <!--Bootstrap icons-->
     <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
     <!--Google web fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,23 +16,20 @@
         rel="stylesheet">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"/>
-
     <!--Simplebar css-->
     <link rel="stylesheet" href="/assets/vendor/css/simplebar.min.css">
-
     <!--Choices css-->
     <link rel="stylesheet" href="/assets/vendor/css/choices.min.css">
-
     <link href="/assets/vendor/css/quill.snow.css" rel="stylesheet">
     <!--Main style-->
     <link rel="stylesheet" href="/assets/css/style.min.css">
 </head>
 
+
 <body>
 <!--////////////////// PreLoader Start//////////////////////-->
 <div class="loader bg-gradient-primary text-white">
-    <div
-        class="content flex-column p-4 pb-0 d-flex justify-content-center align-items-center flex-column-fluid position-relative">
+    <div class="content flex-column p-4 pb-0 d-flex justify-content-center align-items-center flex-column-fluid position-relative">
         <div class="w-100 h-100 position-relative d-flex align-items-center justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -58,23 +53,16 @@
 
 <!--App Start-->
 <div class="d-flex flex-column flex-root">
-    <!--Page-->
     <div class="page d-flex flex-row flex-column-fluid">
-
         <!--///////////Page sidebar begin///////////////-->
         <aside class="page-sidebar">
             <div class="h-100 flex-column d-flex justify-content-start">
-
                 <!--Aside-logo-->
-                <div
-                    class="aside-logo d-flex align-items-center flex-shrink-0 justify-content-start px-5 position-relative">
+                <div class="aside-logo d-flex align-items-center flex-shrink-0 justify-content-start px-5 position-relative">
                     <a href="index.html" class="d-block">
                         <div class="d-flex align-items-center flex-no-wrap text-truncate">
-                            <!--Sidebar-icon-->
-                            <span
-                                class="sidebar-icon size-40 d-flex align-items-center justify-content-center fs-4 lh-1 text-white rounded-3 bg-gradient-primary fw-bolder"> K </span>
+                            <span class="sidebar-icon size-40 d-flex align-items-center justify-content-center fs-4 lh-1 text-white rounded-3 bg-gradient-primary fw-bolder"> K </span>
                             <span class="sidebar-text">
-                    <!--Sidebar-text-->
                     <span class="sidebar-text text-truncate fs-3 fw-bold">
                       KosarCMS
                     </span>
@@ -125,7 +113,6 @@
                                     <span class="sidebar-text">Слајдер</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
                                 <a href="{{route('categories.index')}}"
                                    class="nav-link d-flex align-items-center text-truncate ">
@@ -208,24 +195,15 @@
             </div>
         </aside>
         <!--///////////Page Sidebar End///////////////-->
-
-        <!--///Sidebar close button for 991px or below devices///-->
         <div
             class="sidebar-close d-lg-none">
             <a href="#"></a>
         </div>
-        <!--///.Sidebar close end///-->
-
-
         <!--///////////Page content wrapper///////////////-->
         <main class="page-content d-flex flex-column flex-row-fluid">
-
-            <!--//page-header//-->
-            <header
-                class="navbar mb-3 px-3 px-lg-6 px-3 px-lg-6 align-items-center page-header navbar-expand navbar-light">
+            <header class="navbar mb-3 px-3 px-lg-6 px-3 px-lg-6 align-items-center page-header navbar-expand navbar-light">
                 <a href="index.html" class="navbar-brand d-block d-lg-none">
                     <div class="d-flex align-items-center flex-no-wrap text-truncate">
-                        <!--Sidebar-icon-->
                         <span class="sidebar-icon bg-gradient-primary rounded-3 size-40 fw-bolder text-white">
                   A
                 </span>
@@ -244,33 +222,25 @@
                 </ul>
                 <ul class="navbar-nav ms-auto d-flex align-items-center h-100">
                     <li class="nav-item d-flex align-items-center justify-content-center flex-column h-100 me-2">
-
                         <label
                             class="dark-mode-checkbox size-40 d-flex align-items-center justify-content-center nav-link p-0"
                             for="ChangeTheme">
                             <input type="checkbox" id="ChangeTheme"/> <span class="slide"></span>
                         </label>
                     </li>
-
                     <li class="nav-item dropdown d-flex align-items-center justify-content-center flex-column h-100">
                         <a href="#"
                            class="nav-link dropdown-toggle height-40 px-2 d-flex align-items-center justify-content-center"
                            aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                             <div class="d-flex align-items-center">
-
-                                <!--Avatar with status-->
                                 <div class="avatar-status status-online me-sm-2 avatar xs">
                                     <img src="assets/media/avatars/01.jpg" class="rounded-circle img-fluid" alt="">
                                 </div>
                                 <span class="d-none d-md-inline-block">{{Auth::user()->name}}</span>
                             </div>
                         </a>
-
                         <div class="dropdown-menu mt-0 p-0 dropdown-menu-end overflow-hidden">
-                            <!--User meta-->
-                            <div
-                                class="position-relative overflow-hidden px-3 pt-4 pb-7 bg-gradient-primary text-white">
-                                <!--Divider-->
+                            <div class="position-relative overflow-hidden px-3 pt-4 pb-7 bg-gradient-primary text-white">
                                 <svg style="transform: rotate(-180deg)" preserveAspectRatio="none"
                                      class="position-absolute start-0 bottom-0 w-100 dropdown-wave" fill="currentColor"
                                      height="24" viewBox="0 0 1200 120"
@@ -324,7 +294,6 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-
                                 </a>
                             </div>
                         </div>
@@ -339,18 +308,12 @@
                 </ul>
             </header>
             <!--Main Header End-->
-
-
             <!--Main Search Modal-->
-            <!-- Modal -->
             <div class="modal" id="modal_search" tabindex="-1" aria-labelledby="modal_searchLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <!--Search inner-->
                             <div class="">
-
-                                <!--Search form-->
                                 <form>
                                     <div class="position-relative mb-4">
                                         <div class="text-muted">
@@ -363,8 +326,6 @@
                                                placeholder="Search App...">
                                     </div>
                                 </form>
-
-                                <!--Recently searched-->
                                 <div class="d-flex mb-2 align-items-center">
                                     <h6 class="d-block mb-0 me-3 flex-grow-1">
                 <span class="material-symbols-rounded align-middle me-1 fs-5 opacity-50">
@@ -375,7 +336,6 @@
                                     <a href="#!" class="small flex-shrink-0 d-block">Clear All</a>
                                 </div>
                                 <div class="list-group">
-                                    <!--Recently searched item-->
                                     <a href="#"
                                        class="list-group-item px-3 d-flex overflow-hidden align-items-center list-group-item-action">
                                         <div class="flex-grow-1 overflow-hidden">
@@ -393,18 +353,11 @@
                     </div>
                 </div>
             </div>
-
-            <!--//Page Toolbar//-->
-
-            <!--//Page Toolbar End//-->
-
             <div class="content pt-3 px-3 px-lg-6 d-flex flex-column-fluid">
                 <div class="container-fluid px-0">
                     @yield('content')
                 </div>
             </div>
-
-            <!--//Page-footer//-->
             <footer class="pb-3 pb-lg-5 px-3 px-lg-6">
                 <div class="container-fluid px-0">
                 <span class="d-block lh-sm small text-muted text-end">&copy;
@@ -414,24 +367,16 @@
                 </span>
                 </div>
             </footer>
-            <!--/.Page Footer End-->
         </main>
-        <!--///////////Page content wrapper End///////////////-->
     </div>
 </div>
-
 <!--////////////Theme Core scripts Start/////////////////-->
 <script src="/assets/js/theme.bundle.js"></script>
-
 <!--////////////Theme Core scripts End/////////////////-->
-
-
 <!--Datatables-->
 <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-
 <script src="/assets/vendor/quill.min.js"></script>
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Datatables Responsive
@@ -440,7 +385,6 @@
             "length": false
         });
     });
-
     var toolbarOptions = [
         ["bold", "underline"],
         ["link", "blockquote", "code", "image"],
@@ -451,7 +395,6 @@
         var div = $('<div/>').attr('id', id).css('height', editor_height + 'px').html(val);
         el.addClass('d-none');
         el.parent().append(div);
-
         var quill = new Quill('#' + id, {
             modules: {toolbar: toolbarOptions},
             theme: 'snow'
@@ -463,7 +406,5 @@
         });
     });
 </script>
-
 </body>
-
 </html>

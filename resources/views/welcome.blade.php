@@ -363,18 +363,15 @@
     </div>
     <!-- header-container end -->
 
-
-    <!-- banner end -->
-
     <div id="page-start"></div>
 
-    <!-- banner end -->
 
+    <!-- MAIN CONTENT -->
     @yield('content')
+    <!-- MAIN CONTENT END -->
 
 
     <!-- section start -->
-    <!-- ================ -->
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -396,37 +393,8 @@
     </section>
     <!-- section end -->
 
-    <!-- footer top start -->
-    <!--
-    <div class="dark-bg  default-hovered footer-top animated-text">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="call-to-action text-center">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <h2>Powerful Bootstrap Template</h2>
-                                <h2>Waste no more time</h2>
-                            </div>
-                            <div class="col-sm-4">
-                                <p class="mt-10"><a href="#" class="btn btn-animated btn-lg btn-gray-transparent ">Purchase<i
-                                            class="fa fa-cart-arrow-down pl-20"></i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-    <!-- footer top end -->
-
     <!-- footer start (Add "dark" class to #footer in order to enable dark footer) -->
-    <!-- ================ -->
     <footer id="footer" class="clearfix">
-
-        <!-- .footer start -->
-        <!-- ================ -->
         <div class="container">
             <div class="footer-inner">
                 <div class="row">
@@ -468,7 +436,6 @@
                                             class="fa fa-twitter"></i></a></li>
                                 <li class="instagram"><a target="_blank" href="http://plus.google.com"><i
                                             class="fa fa-instagram"></i></a></li>
-
                             </ul>
                         </div>
                     </div>
@@ -483,13 +450,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- .footer end -->
-
-        <!-- .subfooter start -->
-        <!-- ================ -->
-
         <div class="container">
             <div class="subfooter-inner">
                 <div class="row">
@@ -499,9 +459,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- .subfooter end -->
-
     </footer>
     <!-- footer end -->
 
@@ -509,7 +466,6 @@
 <!-- page-wrapper end -->
 
 <!-- JavaScript files placed at the end of the document so the pages load faster -->
-<!-- ================================================== -->
 <!-- Jquery and Bootstap core js files -->
 <script type="text/javascript" src="/assets/frontend/plugins/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/frontend/bootstrap/js/bootstrap.min.js"></script>
@@ -542,7 +498,5 @@
 <script type="text/javascript" src="/assets/frontend/js/template.js"></script>
 <!-- Custom Scripts -->
 <script type="text/javascript" src="/assets/frontend/js/custom.js"></script>
-
-</div>
 </body>
 </html>

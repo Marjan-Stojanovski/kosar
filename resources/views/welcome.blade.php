@@ -63,19 +63,10 @@
     <!-- header-container start -->
     <!-- header-container start -->
     <div class="header-container">
-
-
-        <!-- header-top start -->
-        <!-- classes:  -->
-        <!-- "dark": dark version of header top e.g. class="header-top dark" -->
-        <!-- "colored": colored version of header top e.g. class="header-top colored" -->
-        <!-- ================ -->
         <div class="header-top dark">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-3 col-sm-6 col-md-9">
-                        <!-- header-top-first start -->
-                        <!-- ================ -->
                         <div class="header-top-first clearfix">
                             <ul class="social-links circle small clearfix hidden-xs">
                                 <li class="facebook"><a target="_blank"
@@ -109,16 +100,9 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- header-top-first end -->
                     </div>
                     <div class="col-xs-9 col-sm-6 col-md-3">
-
-                        <!-- header-top-second start -->
-                        <!-- ================ -->
                         <div id="header-top-second" class="clearfix">
-
-                            <!-- header top dropdowns start -->
-                            <!-- ================ -->
                             <div class="header-top-dropdown text-right">
                                 <div class="btn-group dropdown">
                                     <button type="button" class="btn dropdown-toggle btn-default btn-sm"
@@ -158,32 +142,16 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!--  header top dropdowns end -->
                         </div>
-                        <!-- header-top-second end -->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- header-top end -->
-
-        <!-- header start -->
-        <!-- classes:  -->
-        <!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
-        <!-- "dark": dark version of header e.g. class="header dark clearfix" -->
-        <!-- "full-width": mandatory class for the full-width menu layout -->
-        <!-- "centered": mandatory class for the centered logo layout -->
-        <!-- ================ -->
         <header class="header  fixed    clearfix">
-
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 ">
-                        <!-- header-left start -->
-                        <!-- ================ -->
                         <div class="header-left clearfix">
-
-                            <!-- header dropdown buttons -->
                             <div class="header-dropdown-buttons visible-xs">
                                 <div class="btn-group dropdown">
                                     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i
@@ -251,38 +219,19 @@
                                 </div>
                             </div>
                             <!-- header dropdown buttons end-->
-
                             <!-- logo -->
                             <div id="logo" class="logo">
                                 <a href="{{route('frontend.index')}}"><img id="logo_img" style="width: 50px"
                                                                            src="/assets/img/logo.jpg"
                                                                            alt="The Project"></a>
                             </div>
-
                         </div>
-                        <!-- header-left end -->
-
                     </div>
                     <div class="col-md-9">
-
-                        <!-- header-right start -->
-                        <!-- ================ -->
                         <div class="header-right clearfix">
-
-                            <!-- main-navigation start -->
-                            <!-- classes: -->
-                            <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
-                            <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
-                            <!-- "with-dropdown-buttons": Mandatory class that adds extra space, to the main navigation, for the search and cart dropdowns -->
-                            <!-- ================ -->
                             <div class="main-navigation  animated with-dropdown-buttons">
-
-                                <!-- navbar start -->
-                                <!-- ================ -->
                                 <nav class="navbar navbar-default" role="navigation">
                                     <div class="container-fluid">
-
-                                        <!-- Toggle get grouped for better mobile display -->
                                         <div class="navbar-header">
                                             <button type="button" class="navbar-toggle" data-toggle="collapse"
                                                     data-target="#navbar-collapse-1">
@@ -291,20 +240,12 @@
                                                 <span class="icon-bar"></span>
                                                 <span class="icon-bar"></span>
                                             </button>
-
                                         </div>
-
-                                        <!-- Collect the nav links, forms, and other content for toggling -->
                                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                                            <!-- main-menu -->
                                             <ul class="nav navbar-nav ">
-
-                                                <!-- mega-menu start -->
                                                 <li class="menu">
                                                     <a href="{{route('frontend.index')}}">DOMOV</a>
                                                 </li>
-                                                <!-- mega-menu end -->
-                                                <!-- mega-menu start -->
                                                 <li class="dropdown">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">ZGANE</a>
                                                     <ul class="dropdown-menu">
@@ -313,15 +254,11 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <!-- mega-menu end -->
-                                                <!-- mega-menu start -->
                                                 <li class="menu">
                                                     <a href="{{route('frontend.products')}}">SADJE</a>
                                                 </li>
-                                                <!-- mega-menu end -->
                                                 <li class="menu">
                                                     <a href="">PUBLIKA BAR</a>
-
                                                 </li>
                                                 <li class="menu">
                                                     <a href="{{route('frontend.shop')}}">E-TRGOVINA</a>
@@ -329,17 +266,16 @@
                                                 <li class="dropdown">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">O NAM</a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="{{route('frontend.about')}}" class="dropdown-toggle" data-toggle="dropdown">O Podjetju</a></li>
-                                                        <li><a href="{{route('frontend.feedback')}}"class="dropdown-toggle" data-toggle="dropdown">Kontakt</a></li>
+                                                        <li><a href="{{route('frontend.about')}}"
+                                                               class="dropdown-toggle" data-toggle="dropdown">O
+                                                                Podjetju</a></li>
+                                                        <li><a href="{{route('frontend.feedback')}}"
+                                                               class="dropdown-toggle"
+                                                               data-toggle="dropdown">Kontakt</a></li>
                                                     </ul>
-
-
                                                 </li>
                                             </ul>
-                                            </li>
-                                            </ul>
                                             <!-- main-menu end -->
-
                                             <!-- header dropdown buttons -->
                                             <div class="header-dropdown-buttons hidden-xs ">
                                                 <div class="btn-group dropdown">
@@ -415,25 +351,15 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <!-- header dropdown buttons end-->
-
                                         </div>
-
                                     </div>
                                 </nav>
-                                <!-- navbar end -->
-
                             </div>
-                            <!-- main-navigation end -->
                         </div>
-                        <!-- header-right end -->
-
                     </div>
                 </div>
             </div>
-
         </header>
-        <!-- header end -->
     </div>
     <!-- header-container end -->
 

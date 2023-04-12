@@ -18,20 +18,6 @@
                     <h1 class="page-title text-center">Zgane Pijace</h1>
                     <div class="separator"></div>
                     <br>
-                    <!-- pills start -->
-                    <!-- ================ -->
-                    <!-- Nav tabs -->
-                    <!--
-                    <ul class="nav nav-pills" role="tablist">
-                        <li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i
-                                    class="icon-star"></i> Latest Arrivals</a></li>
-                        <li><a href="#pill-2" role="tab" data-toggle="tab" title="Featured"><i class="icon-heart"></i>
-                                Featured</a></li>
-                        <li><a href="#pill-3" role="tab" data-toggle="tab" title="Top Sellers"><i
-                                    class=" icon-up-1"></i> Top Sellers</a></li>
-                    </ul>
-                    -->
-                    <!-- Tab panes -->
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">
@@ -55,7 +41,6 @@
                                                 <h3><a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a></h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
-                                                    <!--<span class="price"><del>$100.00</del> $70.00</span>-->
                                                     <span class="price"> &nbsp;€{{$product->price}}</span>
                                                     <a href="#"
                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
@@ -68,7 +53,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- pills end -->
                 </div>
             </div>
         </div>

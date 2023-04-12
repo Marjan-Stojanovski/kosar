@@ -52,7 +52,6 @@
                     <br>
                 </div>
                 <br>
-
                 <h2 class="page-title text-center">Izdelki</h2>
                 <div class="separator"></div>
                 <div class="col-md-12">
@@ -64,10 +63,6 @@
                                         <div class="listing-item white-bg bordered mb-20">
                                             <div class="overlay-container">
                                                 <img src="/assets/img/products/medium/{{$product->image}}" alt="">
-                                                <!--
-                                                <a class="overlay-link popup-img-single" href="/assets/frontend/images/product-1.jpg"><i class="fa fa-search-plus"></i></a>
-                                                <span class="badge">30% OFF</span>
-                                                -->
                                                 <div class="overlay-to-top links">
 														<span class="small">
 															<a href="{{$product->brand->weblink}}"
@@ -85,7 +80,6 @@
                                                 </h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
-                                                    <!--<span class="price"><del>$100.00</del> $70.00</span>-->
                                                     <span class="price"> &nbsp;€{{$product->price}}</span>
                                                     <a href="#"
                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add

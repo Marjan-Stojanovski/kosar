@@ -1,10 +1,7 @@
 @extends('welcome')
 @section('content')
 
-
-
     <!-- breadcrumb start -->
-    <!-- ================ -->
     <div class="breadcrumb-container">
         <div class="container">
             <ol class="breadcrumb">
@@ -14,16 +11,10 @@
         </div>
     </div>
     <!-- breadcrumb end -->
-
     <!-- main-container start -->
-    <!-- ================ -->
     <section class="main-container padding-bottom-clear">
-
         <div class="container">
             <div class="row">
-
-                <!-- main start -->
-                <!-- ================ -->
                 <div class="main col-md-12">
                     <h1 class="title">O Nas</h1>
                     <div class="separator-2"></div>
@@ -51,13 +42,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- main end -->
-
             </div>
         </div>
-
-        <!-- section start -->
-        <!-- ================ -->
         <div class="light-gray-bg pv-40 section mt-20">
             <div class="container">
                 <h4 class="title mb-20">Tim <strong>Stojanovski</strong></h4>
@@ -125,8 +111,5 @@
                 </div>
             </div>
         </div>
-        <!-- section end -->
-
     </section>
-
 @endsection

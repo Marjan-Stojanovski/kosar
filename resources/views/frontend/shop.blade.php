@@ -1,5 +1,7 @@
 @extends('welcome')
 @section('content')
+
+
     <div class="breadcrumb-container">
         <div class="container">
             <ol class="breadcrumb">
@@ -9,8 +11,6 @@
             </ol>
         </div>
     </div>
-
-    <!-- PRODUCTS -->
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -26,20 +26,13 @@
             </div>
         </div>
     </section>
-    <!-- section start -->
     <section class="main-container">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- main start -->
-                    <!-- ================ -->
                     <div class="main col-md-8 col-lg-offset-1 col-md-push-4 col-lg-push-3">
-                        <!-- page-title start -->
-                        <!-- ================ -->
                         <h1 class="page-title text-center">Blog Left Sidebar</h1>
                         <div class="separator-2"></div>
-                        <!-- page-title end -->
                         <div class="col-md-12">
                             <div class="tab-content clear-style">
                                 <div class="tab-pane active" id="pill-1">
@@ -104,22 +97,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <?php } ?>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <!-- pills end -->
                         </div>
                         <div class="col-md-12 text-center">
                             {{ $products->links() }}
                         </div>
                     </div>
                     <!-- main end -->
-
                     <!-- sidebar start -->
-                    <!-- ================ -->
                     <aside class="col-md-3 col-lg-3 col-md-pull-8 col-lg-pull-9">
                         <div class="sidebar">
                             <h3 class="title">Filteri</h3>
@@ -217,8 +206,5 @@
             </div>
         </div>
     </section>
-    <!-- ================ -->
-
     <!-- section end -->
-
 @endsection

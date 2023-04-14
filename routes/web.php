@@ -119,6 +119,7 @@ Route::middleware(['web','auth'])->prefix('dashboard')->group(function() {
     //Admin-panel
 Route::get('/admin', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     //Frontend-routes
+Route::get('/publika', [App\Http\Controllers\FrontendController::class, 'bar'])->name('frontend.publika');
 Route::post('/save_comment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
 Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/contact_us', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');

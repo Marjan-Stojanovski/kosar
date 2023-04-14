@@ -258,7 +258,7 @@
                                                     <a href="{{route('frontend.products')}}">SADJE</a>
                                                 </li>
                                                 <li class="menu">
-                                                    <a href="">PUBLIKA BAR</a>
+                                                    <a href="{{route('frontend.publika')}}">PUBLIKA BAR</a>
                                                 </li>
                                                 <li class="menu">
                                                     <a href="{{route('frontend.shop')}}">E-TRGOVINA</a>

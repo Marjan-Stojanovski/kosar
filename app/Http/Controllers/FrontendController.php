@@ -91,4 +91,13 @@ class FrontendController extends Controller
 
         return view('frontend.shop')->with($data);
     }
+
+    public function bar()
+    {
+        $categories = Category::all();
+        $categoriesList = Category::getTreeHP();
+
+        $data = ['categoriesList' => $categoriesList,'categories' => $categories];
+        return view('frontend.publika')->with($data);
+    }
 }

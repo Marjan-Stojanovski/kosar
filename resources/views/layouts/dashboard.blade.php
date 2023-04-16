@@ -218,7 +218,7 @@
                         <label
                             class="dark-mode-checkbox size-40 d-flex align-items-center justify-content-center nav-link p-0"
                             for="ChangeTheme">
-                            <input type="checkbox" id="ChangeTheme"/> <span class="slide"></span>
+                            <input type="checkbox"  id="ChangeTheme"><span class="slide"></span>
                         </label>
                     </li>
                     <li class="nav-item dropdown d-flex align-items-center justify-content-center flex-column h-100">

@@ -22,6 +22,7 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th class="text-center">Име</th>
+                                                <th class="text-center">Адреса</th>
                                                 <th class="text-center">Улога</th>
                                                 <th class="text-center">Држава</th>
 
@@ -39,6 +40,9 @@
                                                                 <small class="text-muted">{{$users->email}}</small>
                                                             </div>
                                                         </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="fs-6">{{$users->address}}</span>
                                                     </td>
                                                     <td class="text-center">
                                                         <span class="badge bg-success fs-6">{{$users->role->name}}</span>

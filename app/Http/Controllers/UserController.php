@@ -46,7 +46,8 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
             'role_id' => 'required',
-            'country_id' => 'required'
+            'country_id' => 'required',
+            'address' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -60,13 +61,15 @@ class UserController extends Controller
         $password = bcrypt($request->get('password'));
         $role_id = $request->get('role_id');
         $country_id = $request->get('country_id');
+        $address = $request->get('address');
 
         User::create([
             'name' => $name,
             'email' => $email,
             'password' => $password,
             'role_id' => $role_id,
-            'country_id' => $country_id
+            'country_id' => $country_id,
+            'address' => $address
         ]);
 
         return redirect()->route('users.index');
@@ -98,6 +101,7 @@ class UserController extends Controller
             'password' => 'required',
             'role_id' => 'required',
             'country_id' => 'required',
+            'address' => 'required'
         ]);
 
         if ($validator->fails()) {

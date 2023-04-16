@@ -107,43 +107,21 @@
                                 <div class="btn-group">
                                     <a href="{{route('login')}}" class="btn btn-default btn-sm">
                                         <?php if (isset(Auth::user()->name)) {
-                                        echo Auth::user()->name;
+                                            echo Auth::user()->name;
                                         } else {
-                                        echo 'Login';
+                                            echo 'Login';
                                         } ?>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
-                                        <li>
-                                            <form class="login-form margin-clear">
-                                                <div class="form-group has-feedback">
-                                                    <label class="control-label">Username</label>
-                                                    <input type="text" class="form-control" placeholder="">
-                                                    <i class="fa fa-user form-control-feedback"></i>
-                                                </div>
-                                                <div class="form-group has-feedback">
-                                                    <label class="control-label">Password</label>
-                                                    <input type="password" class="form-control" placeholder="">
-                                                    <i class="fa fa-lock form-control-feedback"></i>
-                                                </div>
-                                                <button type="submit" class="btn btn-gray btn-sm">Log In</button>
-                                                <span class="pl-5 pr-5">or</span>
-                                                <button type="submit" class="btn btn-default btn-sm">Sign Up
-                                                </button>
-                                                <ul>
-                                                    <li><a href="#">Forgot your password?</a></li>
-                                                </ul>
-                                                <span class="text-center">Login with</span>
-                                                <ul class="social-links circle small colored clearfix">
-                                                    <li class="facebook"><a target="_blank"
-                                                                            href="http://www.facebook.com"><i
-                                                                class="fa fa-facebook"></i></a></li>
-                                                    <li class="google"><a target="_blank"
-                                                                          href="http://google.com"><i
-                                                                class="fa fa-google"></i></a></li>
-                                                </ul>
-                                            </form>
-                                        </li>
-                                    </ul>
+                                    <?php if (isset(Auth::user()->name)) { ?>
+                                    <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -156,74 +134,6 @@
                 <div class="row">
                     <div class="col-md-3 ">
                         <div class="header-left clearfix">
-                            <div class="header-dropdown-buttons visible-xs">
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i
-                                            class="icon-search"></i></button>
-                                    <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
-                                        <li>
-                                            <form role="search" class="search-box margin-clear">
-                                                <div class="form-group has-feedback">
-                                                    <input type="text" class="form-control" placeholder="Search">
-                                                    <i class="icon-search form-control-feedback"></i>
-                                                </div>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i
-                                            class="icon-basket-1"></i><span class="cart-count default-bg">8</span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
-                                        <li>
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th class="quantity">QTY</th>
-                                                    <th class="product">Product</th>
-                                                    <th class="amount">Subtotal</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td class="quantity">2 x</td>
-                                                    <td class="product"><a href="shop-product.html">Android 4.4
-                                                            Smartphone</a><span
-                                                            class="small">4.7" Dual Core 1GB</span></td>
-                                                    <td class="amount">$199.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="quantity">3 x</td>
-                                                    <td class="product"><a href="shop-product.html">Android 4.2
-                                                            Tablet</a><span class="small">7.3" Quad Core 2GB</span>
-                                                    </td>
-                                                    <td class="amount">$299.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="quantity">3 x</td>
-                                                    <td class="product"><a href="shop-product.html">Desktop
-                                                            PC</a><span class="small">Quad Core 3.2MHz, 8GB RAM, 1TB Hard Disk</span>
-                                                    </td>
-                                                    <td class="amount">$1499.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="total-quantity" colspan="2">Total 8 Items</td>
-                                                    <td class="total-amount">$1997.00</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="panel-body text-right">
-                                                <a href="shop-cart.html" class="btn btn-group btn-gray btn-sm">View
-                                                    Cart</a>
-                                                <a href="shop-checkout.html" class="btn btn-group btn-gray btn-sm">Checkout</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- header dropdown buttons end-->
-                            <!-- logo -->
                             <div id="logo" class="logo">
                                 <a href="{{route('frontend.index')}}"><img id="logo_img" style="width: 50px"
                                                                            src="/assets/img/logo.jpg"
@@ -236,15 +146,6 @@
                             <div class="main-navigation  animated with-dropdown-buttons">
                                 <nav class="navbar navbar-default" role="navigation">
                                     <div class="container-fluid">
-                                        <div class="navbar-header">
-                                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                    data-target="#navbar-collapse-1">
-                                                <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                            </button>
-                                        </div>
                                         <div class="collapse navbar-collapse" id="navbar-collapse-1">
                                             <ul class="nav navbar-nav ">
                                                 <li class="menu">
@@ -320,21 +221,6 @@
                                                                             4.4 Smartphone</a><span class="small">4.7" Dual Core 1GB</span>
                                                                     </td>
                                                                     <td class="amount">$199.00</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="quantity">3 x</td>
-                                                                    <td class="product"><a href="shop-product.html">Android
-                                                                            4.2 Tablet</a><span
-                                                                            class="small">7.3" Quad Core 2GB</span>
-                                                                    </td>
-                                                                    <td class="amount">$299.00</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="quantity">3 x</td>
-                                                                    <td class="product"><a href="shop-product.html">Desktop
-                                                                            PC</a><span class="small">Quad Core 3.2MHz, 8GB RAM, 1TB Hard Disk</span>
-                                                                    </td>
-                                                                    <td class="amount">$1499.00</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="total-quantity" colspan="2">Total 8

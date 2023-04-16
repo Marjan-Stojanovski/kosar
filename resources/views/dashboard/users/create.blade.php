@@ -52,6 +52,22 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-6 mb-3">
+                                        <!-- First name -->
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label class="form-label" for="address">Адреса</label>
+                                            <!-- Input -->
+                                            <input type="text" placeholder="Адреса"
+                                                   class="form-control @error('address') is-invalid @enderror"
+                                                   id="address" name="address">
+                                            @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
                                         <label for="country_id" class="form-label">Држава</label>
                                         <!--select-->
                                         <select name="country_id" id="country_id"
@@ -60,21 +76,6 @@
                                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                                             @endforeach
                                             @error('country_id')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </select>
-                                    </div>
-                                    <div class="col-12 col-md-6 mb-3">
-                                        <label for="role_id" class="form-label">Улога</label>
-                                        <!--select-->
-                                        <select name="role_id" id="role_id"
-                                                class="form-control @error('role_id') is-invalid @enderror">
-                                            @foreach($roles as $role)
-                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                            @endforeach
-                                            @error('role')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -95,6 +96,21 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                         @enderror
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <label for="role_id" class="form-label">Улога</label>
+                                        <!--select-->
+                                        <select name="role_id" id="role_id"
+                                                class="form-control @error('role_id') is-invalid @enderror">
+                                            @foreach($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                            @error('role')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="text-end">

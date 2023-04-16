@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Models\Country;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,7 +19,10 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        $countries = Country::all();
+        $data = ['countries' => $countries];
+
+        return view('auth.register')->with($data);
     }
 
     /**

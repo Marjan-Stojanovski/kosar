@@ -18,17 +18,10 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Marjan Stojanovski',
             'email' => 'stojanovskim@yahoo.com',
+            'address' => 'Ul.2 Br.54 s.Bujkovci',
             'password' => bcrypt('temp12345'),
             'role_id' => 1,
-            'country_id' => rand(1,233)
-        ]);
-
-        User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@admin.mk',
-            'password' => bcrypt('temp12345'),
-            'role_id' => 1,
-            'country_id' => rand(1,223)
+            'country_id' => 4
         ]);
     }
 }

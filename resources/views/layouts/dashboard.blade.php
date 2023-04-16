@@ -59,7 +59,7 @@
             <div class="h-100 flex-column d-flex justify-content-start">
                 <!--Aside-logo-->
                 <div class="aside-logo d-flex align-items-center flex-shrink-0 justify-content-start px-5 position-relative">
-                    <a href="index.html" class="d-block">
+                    <a href="{{route('users.index')}}" class="d-block">
                         <div class="d-flex align-items-center flex-no-wrap text-truncate">
                             <span class="sidebar-icon size-40 d-flex align-items-center justify-content-center fs-4 lh-1 text-white rounded-3 bg-gradient-primary fw-bolder"> K </span>
                             <span class="sidebar-text">
@@ -202,13 +202,6 @@
         <!--///////////Page content wrapper///////////////-->
         <main class="page-content d-flex flex-column flex-row-fluid">
             <header class="navbar mb-3 px-3 px-lg-6 px-3 px-lg-6 align-items-center page-header navbar-expand navbar-light">
-                <a href="index.html" class="navbar-brand d-block d-lg-none">
-                    <div class="d-flex align-items-center flex-no-wrap text-truncate">
-                        <span class="sidebar-icon bg-gradient-primary rounded-3 size-40 fw-bolder text-white">
-                  A
-                </span>
-                    </div>
-                </a>
                 <ul class="navbar-nav d-flex align-items-center h-100">
                     <li class="nav-item d-none d-lg-flex flex-column h-100 me-2 align-items-center justify-content-center"
                         data-tippy-placement="bottom-start" data-tippy-content="Toggle Sidebar">
@@ -260,20 +253,8 @@
                                 </div>
                             </div>
                             <div class="pt-2">
-                                <a href="profile.html" class="dropdown-item d-flex align-items-center">
-                      <span
-                          class="material-symbols-rounded align-middle me-2 size-30 fs-5 d-flex align-items-center justify-content-center bg-primary text-white rounded-2">
-                      account_circle
-                      </span>
-                                    <span class="flex-grow-1">Profile</span>
-                                </a>
-                                <a href="account-general.html" class="dropdown-item d-flex align-items-center">
-                      <span
-                          class="material-symbols-rounded align-middle me-2 size-30 fs-5 d-flex align-items-center justify-content-center bg-danger text-white rounded-2">
-                      settings
-                      </span>
-                                    <span class="flex-grow-1">Settings</span>
-                                </a>
+
+                                <!--
                                 <a href="page-tasks.html" class="dropdown-item d-flex align-items-center">
                       <span
                           class="material-symbols-rounded align-middle me-2 size-30 fs-5 d-flex align-items-center justify-content-center bg-info text-white rounded-2">
@@ -281,6 +262,7 @@
                       </span>
                                     <span class="flex-grow-1">Tasks</span>
                                 </a>
+                                -->
                                 <hr class="my-2">
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -309,50 +291,7 @@
             </header>
             <!--Main Header End-->
             <!--Main Search Modal-->
-            <div class="modal" id="modal_search" tabindex="-1" aria-labelledby="modal_searchLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="">
-                                <form>
-                                    <div class="position-relative mb-4">
-                                        <div class="text-muted">
-                  <span class="material-symbols-rounded position-absolute start-0 top-50 translate-middle-y ms-2">
-                    search
-                    </span>
-                                        </div>
-                                        <input type="text" autofocus
-                                               class="form-control form-control-lg border-2 border-primary border ps-6"
-                                               placeholder="Search App...">
-                                    </div>
-                                </form>
-                                <div class="d-flex mb-2 align-items-center">
-                                    <h6 class="d-block mb-0 me-3 flex-grow-1">
-                <span class="material-symbols-rounded align-middle me-1 fs-5 opacity-50">
-                  history
-                  </span>
-                                        Recent
-                                    </h6>
-                                    <a href="#!" class="small flex-shrink-0 d-block">Clear All</a>
-                                </div>
-                                <div class="list-group">
-                                    <a href="#"
-                                       class="list-group-item px-3 d-flex overflow-hidden align-items-center list-group-item-action">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <span class="text-truncate">Campaign reports</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-0 border-top-0 modal-footer">
-                 <span class="small">Press ESC or
-                 <span class="badge bg-secondary" role="button" data-bs-dismiss="modal">Click me</span> to close
-                 </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="content pt-3 px-3 px-lg-6 d-flex flex-column-fluid">
                 <div class="container-fluid px-0">
                     @yield('content')

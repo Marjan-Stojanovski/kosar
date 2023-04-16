@@ -1,7 +1,6 @@
 @extends('welcome')
 @section('content')
 
-
     <div class="breadcrumb-container">
         <div class="container">
             <ol class="breadcrumb">
@@ -62,9 +61,19 @@
                                                         <div class="elements-list clearfix">
                                                             <span class="price"><del>{{$product->price}}</del></span>
                                                             <span class="price"> &nbsp;€{{$product->action}}</span>
-                                                            <a href="#"
-                                                               class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
-                                                                To Cart<i class="fa fa-shopping-cart"></i></a>
+                                                            <form action="{{ route('cart.store') }}" method="POST"
+                                                                  enctype="multipart/form-data">
+                                                                @csrf
+                                                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                                                <input type="hidden" value="{{ $product->name }}" name="name">
+                                                                <input type="hidden" value="{{ $product->price }}" name="price">
+                                                                <input type="hidden" value="{{ $product->image }}" name="image">
+                                                                <input type="hidden" value="1" name="quantity">
+                                                                <button href="#"
+                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                                                    Add
+                                                                    To Cart<i class="fa fa-shopping-cart"></i></button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,7 +127,7 @@
                                 <nav>
                                     <ul class="nav nav-pills nav-stacked">
                                         @foreach($categories as $category)
-                                            <li><input type="checkbox">   {{$category->name}}</li>
+                                            <li><input type="checkbox"> {{$category->name}}</li>
                                         @endforeach
                                     </ul>
                                 </nav>
@@ -128,7 +137,7 @@
                                 <nav>
                                     <ul class="nav nav-pills nav-stacked">
                                         @foreach($brands as $brand)
-                                        <li><input type="checkbox">   {{$brand->name}}</li>
+                                            <li><input type="checkbox"> {{$brand->name}}</li>
                                         @endforeach
                                     </ul>
                                 </nav>
@@ -136,9 +145,10 @@
                             <div class="block clearfix">
                                 <h3 class="title">Volumen</h3>
                                 <nav>
-                                    <ul class="nav nav-pills nav-stacked" >
+                                    <ul class="nav nav-pills nav-stacked">
                                         @foreach($volumes as $volume)
-                                            <li><input type="checkbox" data-toggle="collapse">   {{$volume->volume}}</a></li>
+                                            <li><input type="checkbox" data-toggle="collapse">   {{$volume->volume}}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </nav>
@@ -148,16 +158,20 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short" style="color: black"></i> Kategorija
+                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                           data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                                           aria-controls="collapseTwo">
+                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
+                                               style="color: black"></i> Kategorija
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingTwo">
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($categories as $category)
-                                                <li><input type="checkbox">   {{$category->name}}</li>
+                                                <li><input type="checkbox"> {{$category->name}}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -166,16 +180,20 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingThree">
                                     <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short" style="color: black"></i> Brand
+                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                           data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                                           aria-controls="collapseThree">
+                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
+                                               style="color: black"></i> Brand
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingThree">
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($brands as $brand)
-                                                <li><input type="checkbox">   {{$brand->name}}</li>
+                                                <li><input type="checkbox"> {{$brand->name}}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -184,16 +202,20 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
-                                        <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short" style="color: black"></i> Volumen
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
+                                               style="color: black"></i> Volumen
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingOne">
                                     <div class="panel-body">
-                                        <ul class="nav nav-pills nav-stacked" >
+                                        <ul class="nav nav-pills nav-stacked">
                                             @foreach($volumes as $volume)
-                                                <li><input type="checkbox" data-toggle="collapse">   {{$volume->volume}}</a></li>
+                                                <li><input type="checkbox"
+                                                           data-toggle="collapse">   {{$volume->volume}}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>

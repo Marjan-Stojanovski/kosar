@@ -104,10 +104,14 @@
                     <div class="col-xs-9 col-sm-6 col-md-3">
                         <div id="header-top-second" class="clearfix">
                             <div class="header-top-dropdown text-right">
-                                <div class="btn-group dropdown">
-                                    <button type="button" class="btn dropdown-toggle btn-default btn-sm"
-                                            data-toggle="dropdown"><i class="fa fa-lock pr-10"></i> Login
-                                    </button>
+                                <div class="btn-group">
+                                    <a href="{{route('login')}}" class="btn btn-default btn-sm">
+                                        <?php if (isset(Auth::user()->name)) {
+                                        echo Auth::user()->name;
+                                        } else {
+                                        echo 'Login';
+                                        } ?>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
                                         <li>
                                             <form class="login-form margin-clear">

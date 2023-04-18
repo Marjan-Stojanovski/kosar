@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             <ul class="list-inline hidden-sm hidden-xs">
-                                <li><i class="fa fa-phone pr-5 pl-10"></i>+386 031 308 780</li>
+                                <li><i class="fa fa-phone pr-5 pl-10"></i>+386 31 308 780</li>
                                 <li><i class="fa fa-envelope-o pr-5 pl-10"></i>info@kosar.si</li>
                             </ul>
                             <ul class="list-inline hidden-sm hidden-xs">
@@ -199,11 +199,57 @@
                                                         </li>
                                                     </ul>
                                                 </div>
+                                                <?php if (isset(Auth::user()->name)) { ?>
                                                 <div class="btn-group dropdown">
                                                     <button type="button" class="btn dropdown-toggle"
                                                             data-toggle="dropdown"><i
                                                             class="icon-basket-1"></i><span
                                                             class="cart-count default-bg">8</span></button>
+                                                    @foreach($shoppinglists as $shoppinglist)
+                                                        <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
+                                                            <li>
+                                                                <table class="table table-hover">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th class="quantity">QTY</th>
+                                                                        <th class="product">Product</th>
+                                                                        <th class="amount">Subtotal</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="quantity">{{$shoppinglist->quantity}}
+                                                                            x
+                                                                        </td>
+                                                                        <td class="product"><a
+                                                                                href="shop-product.html">{{$shoppinglist->name}}</a><span class="small"></span>
+                                                                        </td>
+                                                                        <td class="amount">{{$shoppinglist->price}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="total-quantity" colspan="2">Number Items
+                                                                        </td>
+                                                                        <td class="total-amount">Total</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="panel-body text-right">
+                                                                    <a href="shop-cart.html"
+                                                                       class="btn btn-group btn-gray btn-sm">View
+                                                                        Cart</a>
+                                                                    <a href="shop-checkout.html"
+                                                                       class="btn btn-group btn-gray btn-sm">Checkout</a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    @endforeach
+                                                </div>
+                                                <?php } else { ?>
+                                                <div class="btn-group dropdown">
+                                                    <button type="button" class="btn dropdown-toggle"
+                                                            data-toggle="dropdown"><i
+                                                            class="icon-basket-1"></i><span
+                                                            class="cart-count default-bg">0</span></button>
                                                     <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
                                                         <li>
                                                             <table class="table table-hover">
@@ -216,17 +262,17 @@
                                                                 </thead>
                                                                 <tbody>
                                                                 <tr>
-                                                                    <td class="quantity">2 x</td>
-                                                                    <td class="product"><a href="shop-product.html">Android
-                                                                            4.4 Smartphone</a><span class="small">4.7" Dual Core 1GB</span>
+                                                                    <td class="quantity">
                                                                     </td>
-                                                                    <td class="amount">$199.00</td>
+                                                                    <td class="product"><a
+                                                                            href=""></a><span class="small"></span>
+                                                                    </td>
+                                                                    <td class="amount"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="total-quantity" colspan="2">Total 8
-                                                                        Items
+                                                                    <td class="total-quantity" colspan="2">
                                                                     </td>
-                                                                    <td class="total-amount">$1997.00</td>
+                                                                    <td class="total-amount"></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -240,6 +286,7 @@
                                                         </li>
                                                     </ul>
                                                 </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
@@ -354,6 +401,18 @@
 
 </div>
 <!-- page-wrapper end -->
+<script>
+    function alertLogin() {
+        alert("Login to make an order!");
+    }
+</script>
+<button onclick="myFunction()">Try it</button>
+
+<script>
+    function alertLogin() {
+        alert("Login to make an order!");
+    }
+</script>
 
 <!-- JavaScript files placed at the end of the document so the pages load faster -->
 <!-- Jquery and Bootstap core js files -->

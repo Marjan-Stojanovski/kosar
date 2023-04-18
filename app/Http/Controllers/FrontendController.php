@@ -5,21 +5,36 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Country;
 use App\Models\Product;
+use App\Models\ShoppingCart;
 use App\Models\Volume;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        $brands = Brand::all();
-        $categories = Category::all();
-        $products = Product::paginate(5);
-        $categoriesList = Category::getTreeHP();
-        $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories];
+        if (isset(Auth::user()->id)) {
+            $user = Auth::user()->id;
+            $brands = Brand::all();
+            $categories = Category::all();
+            $products = Product::paginate(5);
+            $categoriesList = Category::getTreeHP();
+            $shoppingLists = ShoppingCart::where('user_id', $user)->get();
+            $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories, 'shoppinglists' => $shoppingLists];
 
-        return view('frontend.index')->with($data);
+            return view('frontend.index')->with($data);
+        } else {
+            $brands = Brand::all();
+            $categories = Category::all();
+            $products = Product::paginate(5);
+            $categoriesList = Category::getTreeHP();
+            $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories];
+
+            return view('frontend.index')->with($data);
+        }
     }
 
     public function productview($id)
@@ -82,14 +97,30 @@ class FrontendController extends Controller
 
     public function shop()
     {
-        $brands = Brand::all();
-        $volumes = Volume::all();
-        $categories = Category::all();
-        $products = Product::paginate(12);
-        $categoriesList = Category::getTreeHP();
-        $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes];
+        if (isset(Auth::user()->id)) {
+            $user = Auth::user()->id;
+            $brands = Brand::all();
+            $volumes = Volume::all();
+            $categories = Category::all();
+            $products = Product::paginate(12);
+            $categoriesList = Category::getTreeHP();
+            $countries = Country::all();
+            $shoppingLists = ShoppingCart::where('user_id', $user)->get();
+            $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries, 'shoppinglists' => $shoppingLists];
 
-        return view('frontend.shop')->with($data);
+            return view('frontend.shop')->with($data);
+
+        } else {
+            $brands = Brand::all();
+            $volumes = Volume::all();
+            $categories = Category::all();
+            $products = Product::paginate(12);
+            $categoriesList = Category::getTreeHP();
+            $countries = Country::all();
+            $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries];
+
+            return view('frontend.shop')->with($data);
+        }
     }
 
     public function bar()

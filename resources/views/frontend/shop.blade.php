@@ -59,9 +59,10 @@
                                                         </h3>
                                                         <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                         <div class="elements-list clearfix">
-                                                            <span class="price"><del>{{$product->price}}</del></span>
+                                                            <span class="price"><del> €{{$product->price}}</del></span>
                                                             <span class="price"> &nbsp;€{{$product->action}}</span>
-                                                            <form action="{{ route('cart.store') }}" method="POST"
+                                                            <?php $user_id = Auth::user()->id ?>
+                                                            <form action="{{ route('cart.store', $user_id) }}" method="POST"
                                                                   enctype="multipart/form-data">
                                                                 @csrf
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
@@ -69,7 +70,7 @@
                                                                 <input type="hidden" value="{{ $product->price }}" name="price">
                                                                 <input type="hidden" value="{{ $product->image }}" name="image">
                                                                 <input type="hidden" value="1" name="quantity">
-                                                                <button href="#"
+                                                                <button type="submit"
                                                                         class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                                     Add
                                                                     To Cart<i class="fa fa-shopping-cart"></i></button>
@@ -97,12 +98,25 @@
                                                             <a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a>
                                                         </h3>
                                                         <p class="small"> {{strip_tags($product->brand->name)}}</p>
+                                                        <p class="small"> {{$product->brand->country->name}}</p>
                                                         <div class="elements-list clearfix">
                                                             <span class="price"> &nbsp;€{{$product->price}}</span>
-                                                            <a href="#"
-                                                               class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">Add
-                                                                To Cart<i class="fa fa-shopping-cart"></i></a>
+
+                                                            <form action="{{ route('cart.store') }}" method="POST">
+                                                                @csrf
+                                                                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                                                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                                                <input type="hidden" value="{{ $product->title }}" name="title">
+                                                                <input type="hidden" value="{{ $product->price }}" name="price">
+                                                                <input type="hidden" value="{{ $product->image }}" name="image">
+                                                                <input type="hidden" value="1" name="quantity">
+                                                                <button type="submit"
+                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                                                    Add
+                                                                    To Cart<i class="fa fa-shopping-cart"></i></button>
+                                                            </form>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,53 +135,21 @@
                     <aside class="col-md-3 col-lg-3 col-md-pull-8 col-lg-pull-9">
                         <div class="sidebar">
                             <h3 class="title">Filteri</h3>
-                            <div class="separator-2"></div>
-                            <div class="block clearfix">
-                                <h3 class="title">Kategorija</h3>
-                                <nav>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        @foreach($categories as $category)
-                                            <li><input type="checkbox"> {{$category->name}}</li>
-                                        @endforeach
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="block clearfix">
-                                <h3 class="title">Brand</h3>
-                                <nav>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        @foreach($brands as $brand)
-                                            <li><input type="checkbox"> {{$brand->name}}</li>
-                                        @endforeach
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="block clearfix">
-                                <h3 class="title">Volumen</h3>
-                                <nav>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        @foreach($volumes as $volume)
-                                            <li><input type="checkbox" data-toggle="collapse">   {{$volume->volume}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </nav>
-                            </div>
                         </div>
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
+                                <div class="panel-heading" role="tab" id="headingOne">
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                                           aria-controls="collapseTwo">
+                                           data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                                           aria-controls="collapseOne">
                                             <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
                                                style="color: black"></i> Kategorija
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingTwo">
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingOne">
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($categories as $category)
@@ -177,19 +159,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
+                                <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
                                         <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-                                           aria-controls="collapseThree">
+                                           data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                                           aria-controls="collapseTwo">
                                             <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
                                                style="color: black"></i> Brand
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingThree">
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingTwo">
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($brands as $brand)
@@ -199,23 +182,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
+                                <div class="panel-heading" role="tab" id="headingThree">
                                     <h4 class="panel-title">
                                         <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                           href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                                             <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
                                                style="color: black"></i> Volumen
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingOne">
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingThree">
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($volumes as $volume)
                                                 <li><input type="checkbox"
-                                                           data-toggle="collapse">   {{$volume->volume}}</a></li>
+                                                           data-toggle="collapse">   {{$volume->volume}}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
+                                               style="color: black"></i> Drzava
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="headingFour">
+                                    <div class="panel-body">
+                                        <ul class="nav nav-pills nav-stacked">
+                                            @foreach($countries as $country)
+                                                <li><input type="checkbox"
+                                                           data-toggle="collapse">   {{$country->name}}</li>
                                             @endforeach
                                         </ul>
                                     </div>

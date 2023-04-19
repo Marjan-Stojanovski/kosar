@@ -23,7 +23,22 @@ class FrontendController extends Controller
             $products = Product::paginate(5);
             $categoriesList = Category::getTreeHP();
             $shoppingLists = ShoppingCart::where('user_id', $user)->get();
-            $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories, 'shoppinglists' => $shoppingLists];
+            $shoppingListsCount = count($shoppingLists);
+            $collections = ShoppingCart::groupBy('name', 'price')
+                ->selectRaw('count(*) as total, name, price')
+                ->get();
+            $total = ShoppingCart::where('user_id', $user)->sum('price');
+
+            $data = [
+                'brands' => $brands,
+                'products' => $products,
+                'categoriesList' => $categoriesList,
+                'categories' => $categories,
+                'shoppinglists' => $shoppingLists,
+                'shoppingListsCount' => $shoppingListsCount,
+                'collections' => $collections,
+                'total' => $total
+                ];
 
             return view('frontend.index')->with($data);
         } else {
@@ -106,7 +121,14 @@ class FrontendController extends Controller
             $categoriesList = Category::getTreeHP();
             $countries = Country::all();
             $shoppingLists = ShoppingCart::where('user_id', $user)->get();
-            $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries, 'shoppinglists' => $shoppingLists];
+            $shoppingListsCount = count($shoppingLists);
+            $collections = ShoppingCart::groupBy('name', 'price')
+                ->selectRaw('count(*) as total, name, price')
+                ->get();
+            $total = ShoppingCart::where('user_id', $user)->sum('price');
+            $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries, 'shoppinglists' => $shoppingLists, 'shoppingListsCount' => $shoppingListsCount,
+                'collections' => $collections,
+                'total' => $total];
 
             return view('frontend.shop')->with($data);
 

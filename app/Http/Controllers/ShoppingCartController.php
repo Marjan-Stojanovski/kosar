@@ -39,7 +39,16 @@ class ShoppingCartController extends Controller
         $countries = Country::all();
         $shoppingCart = ShoppingCart::all();
         $shoppingLists = ShoppingCart::where('user_id', $user_id)->get();
-        $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries, 'shoppingcart' => $shoppingCart, 'shoppinglists' => $shoppingLists];
+        $shoppingListsCount = ShoppingCart::where('user_id', $user_id)->count();
+        $shoppingListsCount = count($shoppingLists);
+        $collections = ShoppingCart::groupBy('name', 'price')
+            ->selectRaw('count(*) as total, name, price')
+            ->get();
+        $total = ShoppingCart::where('user_id', $user_id)->sum('price');
+
+        $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries, 'shoppingcart' => $shoppingCart, 'shoppinglists' => $shoppingLists, 'shoppingListsCount' => $shoppingListsCount,
+            'collections' => $collections,
+            'total' => $total];
 
         return view('frontend.shop')->with($data);
 

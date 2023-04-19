@@ -204,9 +204,10 @@
                                                     <button type="button" class="btn dropdown-toggle"
                                                             data-toggle="dropdown"><i
                                                             class="icon-basket-1"></i><span
-                                                            class="cart-count default-bg">8</span></button>
-                                                    @foreach($shoppinglists as $shoppinglist)
+                                                            class="cart-count default-bg">{{$shoppingListsCount}}</span></button>
+
                                                         <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
+
                                                             <li>
                                                                 <table class="table table-hover">
                                                                     <thead>
@@ -214,22 +215,30 @@
                                                                         <th class="quantity">QTY</th>
                                                                         <th class="product">Product</th>
                                                                         <th class="amount">Subtotal</th>
+
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
+                                                                    @foreach($collections as $collection)
                                                                     <tr>
-                                                                        <td class="quantity">{{$shoppinglist->quantity}}
-                                                                            x
+                                                                        <td class="quantity">{{$collection->total}}
                                                                         </td>
                                                                         <td class="product"><a
-                                                                                href="shop-product.html">{{$shoppinglist->name}}</a><span class="small"></span>
+                                                                                href="shop-product.html">{{$collection->name}}</a><span class="small"></span>
                                                                         </td>
-                                                                        <td class="amount">{{$shoppinglist->price}}</td>
+                                                                        <?php
+                                                                            $unitPrice = $collection->price;
+                                                                            $unitCount = $collection->total;
+                                                                            $subTotal = $unitCount * $unitPrice;
+
+                                                                        ?>
+                                                                        <td class="amount">{{$subTotal}}</td>
                                                                     </tr>
+                                                                    @endforeach
                                                                     <tr>
-                                                                        <td class="total-quantity" colspan="2">Number Items
+                                                                        <td class="total-quantity" colspan="2">Number Items <strong>{{$shoppingListsCount}}</strong>
                                                                         </td>
-                                                                        <td class="total-amount">Total</td>
+                                                                        <td class="total-amount">{{$total}}</td>
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>
@@ -242,7 +251,7 @@
                                                                 </div>
                                                             </li>
                                                         </ul>
-                                                    @endforeach
+
                                                 </div>
                                                 <?php } else { ?>
                                                 <div class="btn-group dropdown">
@@ -404,14 +413,8 @@
 <script>
     function alertLogin() {
         alert("Login to make an order!");
-    }
-</script>
-<button onclick="myFunction()">Try it</button>
+    };
 
-<script>
-    function alertLogin() {
-        alert("Login to make an order!");
-    }
 </script>
 
 <!-- JavaScript files placed at the end of the document so the pages load faster -->

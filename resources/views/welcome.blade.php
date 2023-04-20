@@ -204,53 +204,56 @@
                                                     <button type="button" class="btn dropdown-toggle"
                                                             data-toggle="dropdown"><i
                                                             class="icon-basket-1"></i><span
-                                                            class="cart-count default-bg">{{$shoppingListsCount}}</span></button>
+                                                            class="cart-count default-bg">{{$shoppingListsCount}}</span>
+                                                    </button>
 
-                                                        <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
+                                                    <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
 
-                                                            <li>
-                                                                <table class="table table-hover">
-                                                                    <thead>
+                                                        <li>
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th class="quantity">QTY</th>
+                                                                    <th class="product">Product</th>
+                                                                    <th class="amount">Subtotal</th>
+
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($collections as $collection)
                                                                     <tr>
-                                                                        <th class="quantity">QTY</th>
-                                                                        <th class="product">Product</th>
-                                                                        <th class="amount">Subtotal</th>
-
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    @foreach($collections as $collection)
-                                                                    <tr>
-                                                                        <td class="quantity">{{$collection->total}}
+                                                                        <td class="quantity">{{$collection->quantity}}
                                                                         </td>
                                                                         <td class="product"><a
-                                                                                href="shop-product.html">{{$collection->name}}</a><span class="small"></span>
+                                                                                href="shop-product.html">{{$collection->name}}</a><span
+                                                                                class="small"></span>
                                                                         </td>
-                                                                        <?php
+                                                                            <?php
                                                                             $unitPrice = $collection->price;
-                                                                            $unitCount = $collection->total;
+                                                                            $unitCount = $collection->quantity;
                                                                             $subTotal = $unitCount * $unitPrice;
 
-                                                                        ?>
+                                                                            ?>
                                                                         <td class="amount">{{$subTotal}}</td>
                                                                     </tr>
-                                                                    @endforeach
-                                                                    <tr>
-                                                                        <td class="total-quantity" colspan="2">Number Items <strong>{{$shoppingListsCount}}</strong>
-                                                                        </td>
-                                                                        <td class="total-amount">{{$total}}</td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <div class="panel-body text-right">
-                                                                    <a href="shop-cart.html"
-                                                                       class="btn btn-group btn-gray btn-sm">View
-                                                                        Cart</a>
-                                                                    <a href="shop-checkout.html"
-                                                                       class="btn btn-group btn-gray btn-sm">Checkout</a>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
+                                                                @endforeach
+                                                                <tr>
+                                                                    <td class="total-quantity" colspan="2">Number Items
+                                                                        <strong>{{$shoppingListsCount}}</strong>
+                                                                    </td>
+                                                                    <td class="total-amount">{{$total}}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="panel-body text-right">
+                                                                <a href="{{route('frontend.shopcart')}}"
+                                                                   class="btn btn-group btn-gray btn-sm">View
+                                                                    Cart</a>
+                                                                <a href="shop-checkout.html"
+                                                                   class="btn btn-group btn-gray btn-sm">Checkout</a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
 
                                                 </div>
                                                 <?php } else { ?>
@@ -413,7 +416,13 @@
 <script>
     function alertLogin() {
         alert("Login to make an order!");
-    };
+    }
+
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if (exist) {
+        alert(msg);
+    }
 
 </script>
 

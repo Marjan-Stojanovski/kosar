@@ -103,18 +103,20 @@
                                                             <a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a>
                                                         </h3>
                                                         <p class="small"> {{$product->brand->name}}</p>
-                                                        <p class="small"> {{$product->brand->country->name}}</p>
                                                         <div class="elements-list clearfix">
                                                             <span class="price"> &nbsp;€{{$product->price}}</span>
                                                             <form action="{{ route('cart.store')}}" method="POST">
                                                                 @csrf
                                                                 <?php if(isset(Auth::user()->name)) { ?>
+                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px"> Quantity
+
                                                                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                                 <input type="hidden" value="{{ $product->title }}" name="title">
                                                                 <input type="hidden" value="{{ $product->price }}" name="price">
                                                                 <input type="hidden" value="{{ $product->image }}" name="image">
-                                                                <input type="hidden" value="1" name="quantity">
+
+
                                                                 <button type="submit"
                                                                         class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                                     Add<i class="fa fa-shopping-cart"></i></button>

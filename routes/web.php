@@ -119,7 +119,7 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     //Admin-panel
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     //Cart routes
-Route::get('/cart', [App\Http\Controllers\ShoppingCartController::class, 'cartList'])->name('cart.list');
+Route::get('/cart', [App\Http\Controllers\ShoppingCartController::class, 'cartList'])->name('frontend.shopcart');
 Route::post('/save-to-cart', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('cart.update');
 Route::post('/remove', [App\Http\Controllers\ShoppingCartController::class, 'removeCart'])->name('cart.remove');

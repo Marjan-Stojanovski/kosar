@@ -24,8 +24,8 @@ class FrontendController extends Controller
             $categoriesList = Category::getTreeHP();
             $shoppingLists = ShoppingCart::where('user_id', $user)->get();
             $shoppingListsCount = count($shoppingLists);
-            $collections = ShoppingCart::groupBy('name', 'price')
-                ->selectRaw('count(*) as total, name, price')
+            $collections = ShoppingCart::groupBy('name', 'price', 'quantity')
+                ->selectRaw('count(*) as total, name, price, quantity')
                 ->get();
             $total = ShoppingCart::where('user_id', $user)->sum('price');
 

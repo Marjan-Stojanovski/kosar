@@ -42,7 +42,7 @@
                                             <div class="col-md-4 col-sm-6 masonry-grid-item">
                                                 <div class="listing-item white-bg bordered mb-20">
                                                     <div class="overlay-container">
-                                                        <img src="/assets/img/products/medium/{{$product->image}}"
+                                                        <img src="/assets/img/products/thumbnails/{{$product->image}}"
                                                              alt="">
                                                         <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
                                                         <div class="overlay-to-top links">
@@ -88,7 +88,7 @@
                                             <div class="col-md-4 col-sm-6 masonry-grid-item">
                                                 <div class="listing-item white-bg bordered mb-20">
                                                     <div class="overlay-container">
-                                                        <img src="/assets/img/products/medium/{{$product->image}}"
+                                                        <img class="img-responsive" src="/assets/img/products/thumbnails/{{$product->image}}"
                                                              alt="">
                                                         <div class="overlay-to-top links">
 														<span class="small">

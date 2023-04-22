@@ -127,7 +127,6 @@ Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'ca
 Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
-Route::get('/publika', [App\Http\Controllers\FrontendController::class, 'bar'])->name('frontend.publika');
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
 Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');

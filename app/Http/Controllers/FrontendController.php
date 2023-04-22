@@ -394,16 +394,6 @@ class FrontendController extends Controller
         }
     }
 
-    public function bar()
-    {
-        $categoriesTree = Category::getTreeHP();
-
-        $data = [
-            'categoriesTree' => $categoriesTree
-        ];
-        return view('frontend.publika')->with($data);
-    }
-
     public function addToCart(Request $request)
     {
         $product_id         = $request->get('id');
@@ -458,6 +448,7 @@ class FrontendController extends Controller
             ->selectRaw('count(*) as total, name, price, quantity')
             ->get();
         $totalAmount            = null;
+
 
         $data = [
             'products'              => $products,

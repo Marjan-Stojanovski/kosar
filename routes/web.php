@@ -119,17 +119,16 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
 });
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
-
 //Cart routes
-Route::delete('/cart/{product}', [App\Http\Controllers\ShoppingCartController::class, 'destroy'])->name('cart.destroy');
-Route::get('/cart', [App\Http\Controllers\ShoppingCartController::class, 'cartList'])->name('frontend.shopCart');
-Route::post('/save-to-cart', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('cart.store');
-Route::post('/update-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('cart.update');
-Route::get('/cartCheckout', [App\Http\Controllers\ShoppingCartController::class, 'cartCheckout'])->name('frontend.cartCheckout');
-Route::post('/clear', [App\Http\Controllers\ShoppingCartController::class, 'clearAllCart'])->name('cart.clear');
+
+Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
+Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
+Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
+Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
+
 //Frontend-routes
 Route::get('/publika', [App\Http\Controllers\FrontendController::class, 'bar'])->name('frontend.publika');
-Route::post('/save_comment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
+Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
 Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
 Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');

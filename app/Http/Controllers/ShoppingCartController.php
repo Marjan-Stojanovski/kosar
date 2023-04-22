@@ -93,8 +93,8 @@ class ShoppingCartController extends Controller
         $categoriesTree         = Category::getTreeHP();
         $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
         $shoppingListsCount     = count($shoppingLists);
-        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity', 'product_id', 'id')
-                            ->selectRaw('count(*) as total, name, price, quantity, product_id, id')
+        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity', 'product_id', 'id', 'image')
+                            ->selectRaw('count(*) as total, name, price, quantity, product_id, id, image')
                             ->get();
         $totalAmount            = null;
 

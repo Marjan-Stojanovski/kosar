@@ -33,9 +33,11 @@
                     <table class="table cart table-hover table-colored">
                         <thead>
                         <tr>
+                            <th>Image </th>
                             <th>Product </th>
+                            <th class="text-center">Brand </th>
                             <th class="text-center">Unit Price </th>
-                            <th>Quantity</th>
+                            <th class="text-center">Quantity</th>
                             <th class="text-center">Remove </th>
                             <th class="amount text-center">Total </th>
                         </tr>
@@ -49,13 +51,18 @@
                                 $totalAmount +=$subTotal
                                 ?>
                         <tr class="remove-data">
-                            <td class="product"><a>{{$userList->name}}</a></td>
-                            <td class="price text-center">{{$unitPrice}}</td>
-                            <td class="quantity">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$userList->quantity}}">
+                            <td class="image-box">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <img src="/assets/img/products/thumbnails/{{ $userList->image }}"
+                                             class="mb-0 img-responsive" style="width: 50px">
+                                    </div>
                                 </div>
                             </td>
+                            <td class="product"><a>{{$userList->name}}</a></td>
+                            <td class="product text-center"><a>{{$userList->product->brand->name}}</a></td>
+                            <td class="price text-center">€ {{$unitPrice}}</td>
+                            <td class="price text-center">{{$userList->quantity}} pcs</td>
                             <td class="remove text-center">
                                 <form action="{{route('cart.destroy', $userList->id)}}" method="post">
                                     @csrf
@@ -66,11 +73,15 @@
                             <td class="amount text-center">{{$subTotal}} €</td>
                         </tr>
                         @endforeach
-                        <tr>
-                            <td class="total-quantity" colspan="4">Total {{$shoppingListsCount}} Items</td>
-                            <td class="total-amount">€ {{$totalAmount}}</td>
-                        </tr>
                         </tbody>
+                        <tfoot>
+                        <tr>
+                            <td class="total-quantity" colspan="4">Total</td>
+                            <td class="total-quantity" colspan="1">{{$shoppingListsCount}} Items</td>
+                            <td class="total-amount text-center">Total Price</td>
+                            <td class="total-amount text-right">€ {{$totalAmount}}</td>
+                        </tr>
+                        </tfoot>
                     </table>
                     <div class="text-right">
                         <a href="{{route('frontend.cartCheckout')}}" class="btn btn-group btn-default">Checkout</a>

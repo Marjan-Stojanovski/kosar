@@ -17,36 +17,45 @@ class FrontendController extends Controller
     public function index()
     {
         if (isset(Auth::user()->id)) {
-            $user = Auth::user()->id;
-            $brands = Brand::all();
-            $categories = Category::all();
-            $products = Product::paginate(5);
-            $categoriesList = Category::getTreeHP();
-            $shoppingLists = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $collections = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $total = ShoppingCart::where('user_id', $user)->sum('price');
+
+            $user                   = Auth::user()->id;
+            $brands                 = Brand::all();
+            $categories             = Category::all();
+            $products               = Product::paginate(5);
+            $categoriesTree         = Category::getTreeHP();
+            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
+            $shoppingListsCount     = count($shoppingLists);
+            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
+                                    ->selectRaw('count(*) as total, name, price, quantity')
+                                    ->get();
+            $totalAmount = null;
 
             $data = [
-                'brands' => $brands,
-                'products' => $products,
-                'categoriesList' => $categoriesList,
-                'categories' => $categories,
-                'shoppinglists' => $shoppingLists,
-                'shoppingListsCount' => $shoppingListsCount,
-                'collections' => $collections,
-                'total' => $total
+                'brands'                => $brands,
+                'products'              => $products,
+                'categoriesTree'        => $categoriesTree,
+                'categories'            => $categories,
+                'shoppingLists'         => $shoppingLists,
+                'shoppingListsCount'    => $shoppingListsCount,
+                'userLists'             => $userLists,
+                'totalAmount'           => $totalAmount
                 ];
 
             return view('frontend.index')->with($data);
+
         } else {
+
             $brands = Brand::all();
             $categories = Category::all();
             $products = Product::paginate(5);
-            $categoriesList = Category::getTreeHP();
-            $data = ['brands' => $brands, 'products' => $products, 'categoriesList' => $categoriesList, 'categories' => $categories];
+            $categoriesTree = Category::getTreeHP();
+
+            $data = [
+                'brands'                => $brands,
+                'products'              => $products,
+                'categoriesTree'        => $categoriesTree,
+                'categories'            => $categories
+            ];
 
             return view('frontend.index')->with($data);
         }
@@ -59,7 +68,12 @@ class FrontendController extends Controller
         $comments = Comment::where('product_id', $id)->get();
         $category_id = $products['category_id'];
         $categoryProducts = Product::where('category_id', $category_id)->get();
-        $data = ['products' => $products, 'categoriesList' => $categoriesList, 'categoryProducts' => $categoryProducts, 'comments' => $comments];
+        $data = [
+            'products'              => $products,
+            'categoriesList'        => $categoriesList,
+            'categoryProducts'      => $categoryProducts,
+            'comments'              => $comments
+        ];
 
         return view('frontend.productview')->with($data);
     }
@@ -122,10 +136,10 @@ class FrontendController extends Controller
             $countries = Country::all();
             $shoppingLists = ShoppingCart::where('user_id', $user)->get();
             $shoppingListsCount = count($shoppingLists);
-            $collections = ShoppingCart::groupBy('name', 'price')
-                ->selectRaw('count(*) as total, name, price')
+            $collections = ShoppingCart::groupBy('name', 'price', 'quantity')
+                ->selectRaw('count(*) as total, name, price, quantity')
                 ->get();
-            $total = ShoppingCart::where('user_id', $user)->sum('price');
+            $total = null;
             $data = ['products' => $products, 'categoriesList' => $categoriesList, 'brands' => $brands, 'categories' => $categories, 'volumes' => $volumes, 'countries' => $countries, 'shoppinglists' => $shoppingLists, 'shoppingListsCount' => $shoppingListsCount,
                 'collections' => $collections,
                 'total' => $total];

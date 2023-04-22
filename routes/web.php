@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+//Admin-panel
 Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(function() {
 
     //Users-web-route
@@ -116,15 +117,17 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::put('/comments/{comments}', [\App\Http\Controllers\CommentControler::class, 'update'])->name('comments.update');
     Route::delete('/comments/{comment}', [\App\Http\Controllers\CommentControler::class, 'destroy'])->name('comments.destroy');
 });
-    //Admin-panel
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-    //Cart routes
+
+
+//Cart routes
+Route::delete('/cart/{product}', [App\Http\Controllers\ShoppingCartController::class, 'destroy'])->name('cart.destroy');
 Route::get('/cart', [App\Http\Controllers\ShoppingCartController::class, 'cartList'])->name('frontend.shopcart');
 Route::post('/save-to-cart', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('cart.update');
-Route::post('/remove', [App\Http\Controllers\ShoppingCartController::class, 'removeCart'])->name('cart.remove');
+
 Route::post('/clear', [App\Http\Controllers\ShoppingCartController::class, 'clearAllCart'])->name('cart.clear');
-    //Frontend-routes
+//Frontend-routes
 Route::get('/publika', [App\Http\Controllers\FrontendController::class, 'bar'])->name('frontend.publika');
 Route::post('/save_comment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
 Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');

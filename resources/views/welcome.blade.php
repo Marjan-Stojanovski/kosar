@@ -155,7 +155,7 @@
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">ZGANE</a>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            {!! $categoriesList !!}
+                                                            {!! $categoriesTree !!}
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -220,19 +220,20 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                @foreach($collections as $collection)
+
+                                                                @foreach($userLists as $userList)
                                                                     <tr>
-                                                                        <td class="quantity">{{$collection->quantity}}
+                                                                        <td class="quantity">{{$userList->quantity}}
                                                                         </td>
                                                                         <td class="product"><a
-                                                                                href="shop-product.html">{{$collection->name}}</a><span
+                                                                                href="shop-product.html">{{$userList->name}}</a><span
                                                                                 class="small"></span>
                                                                         </td>
                                                                             <?php
-                                                                            $unitPrice = $collection->price;
-                                                                            $unitCount = $collection->quantity;
+                                                                            $unitPrice = $userList->price;
+                                                                            $unitCount = $userList->quantity;
                                                                             $subTotal = $unitCount * $unitPrice;
-
+                                                                            $totalAmount +=$subTotal
                                                                             ?>
                                                                         <td class="amount">{{$subTotal}}</td>
                                                                     </tr>
@@ -241,7 +242,7 @@
                                                                     <td class="total-quantity" colspan="2">Number Items
                                                                         <strong>{{$shoppingListsCount}}</strong>
                                                                     </td>
-                                                                    <td class="total-amount">{{$total}}</td>
+                                                                    <td class="total-amount">{{$totalAmount}}</td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -289,7 +290,7 @@
                                                                 </tbody>
                                                             </table>
                                                             <div class="panel-body text-right">
-                                                                <a href="shop-cart.html"
+                                                                <a href="{{route('frontend.shopcart')}}"
                                                                    class="btn btn-group btn-gray btn-sm">View
                                                                     Cart</a>
                                                                 <a href="shop-checkout.html"
@@ -374,7 +375,7 @@
                                 <li><i class="fa fa-map-marker pr-10 text-default"></i> Stare Črnuče 3, 1231
                                     Ljubljana
                                 </li>
-                                <li><i class="fa fa-phone pr-10 text-default"></i> +386 031 308 780</li>
+                                <li><i class="fa fa-phone pr-10 text-default"></i> +386 31 308 780</li>
                                 <li><a href="mailto:info@theproject.com"><i class="fa fa-envelope-o pr-10"></i>info@kosar.si</a>
                                 </li>
                             </ul>

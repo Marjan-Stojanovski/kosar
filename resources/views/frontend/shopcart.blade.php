@@ -34,39 +34,38 @@
                         <thead>
                         <tr>
                             <th>Product </th>
-                            <th>Price </th>
+                            <th class="text-center">Unit Price </th>
                             <th>Quantity</th>
-                            <th>Remove </th>
-                            <th class="amount">Total </th>
+                            <th class="text-center">Remove </th>
+                            <th class="amount text-center">Total </th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($collections as $collection)
                                 <?php
                                 $unitPrice = $collection->price;
-                                $unitCount = $collection->total;
+                                $unitCount = $collection->quantity;
                                 $subTotal = $unitCount * $unitPrice;
+                                $total +=$subTotal
                                 ?>
                         <tr class="remove-data">
-                            <td class="product"><a href="shop-product.html">{{$collection->name}}</a></td>
-                            <td class="price">{{$unitPrice}}</td>
+                            <td class="product"><a>{{$collection->name}}</a></td>
+                            <td class="price text-center">{{$unitPrice}}</td>
                             <td class="quantity">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$collection->total}}">
+                                    <input type="text" class="form-control" value="{{$collection->quantity}}">
                                 </div>
                             </td>
-                            <td class="remove"><a class="btn btn-remove btn-sm btn-default">Remove</a></td>
-                            <td class="amount">{{$subTotal}} €</td>
+                            <td class="remove text-center">
+                                <form action="{{route('cart.destroy', $collection->id)}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger mb-2 me-2">Delete</button>
+                                </form>
+                            </td>
+                            <td class="amount text-center">{{$subTotal}} €</td>
                         </tr>
                         @endforeach
-                        <tr>
-                            <td colspan="3">Discount Coupon</td>
-                            <td colspan="2">
-                                <div class="form-group">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </td>
-                        </tr>
                         <tr>
                             <td class="total-quantity" colspan="4">Total {{$shoppingListsCount}} Items</td>
                             <td class="total-amount">€ {{$total}}</td>

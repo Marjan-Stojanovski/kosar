@@ -41,23 +41,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($collections as $collection)
+                        @foreach($userLists as $userList)
                                 <?php
-                                $unitPrice = $collection->price;
-                                $unitCount = $collection->quantity;
+                                $unitPrice = $userList->price;
+                                $unitCount = $userList->quantity;
                                 $subTotal = $unitCount * $unitPrice;
-                                $total +=$subTotal
+                                $totalAmount +=$subTotal
                                 ?>
                         <tr class="remove-data">
-                            <td class="product"><a>{{$collection->name}}</a></td>
+                            <td class="product"><a>{{$userList->name}}</a></td>
                             <td class="price text-center">{{$unitPrice}}</td>
                             <td class="quantity">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$collection->quantity}}">
+                                    <input type="text" class="form-control" value="{{$userList->quantity}}">
                                 </div>
                             </td>
                             <td class="remove text-center">
-                                <form action="{{route('cart.destroy', $collection->id)}}" method="post">
+                                <form action="{{route('cart.destroy', $userList->id)}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger mb-2 me-2">Delete</button>
@@ -68,13 +68,12 @@
                         @endforeach
                         <tr>
                             <td class="total-quantity" colspan="4">Total {{$shoppingListsCount}} Items</td>
-                            <td class="total-amount">€ {{$total}}</td>
+                            <td class="total-amount">€ {{$totalAmount}}</td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="text-right">
-                        <a href="shop-cart.html" class="btn btn-group btn-default">Update Cart</a>
-                        <a href="shop-checkout.html" class="btn btn-group btn-default">Checkout</a>
+                        <a href="{{route('frontend.cartCheckout')}}" class="btn btn-group btn-default">Checkout</a>
                     </div>
 
                 </div>

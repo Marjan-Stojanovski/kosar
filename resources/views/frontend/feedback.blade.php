@@ -40,9 +40,9 @@
                         again.
                     </div>
                     <div class="contact-form">
-                        <form id="contact-form-with-recaptcha" class="margin-clear" role="form">
+                        <form action="" method="post" id="contact-form-with-recaptcha" class="margin-clear" role="form">
                             <div class="form-group has-feedback">
-                                <label for="name">Name*</label>
+                                <label for="name">Full Name*</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="">
                                 <i class="fa fa-user form-control-feedback"></i>
                             </div>
@@ -50,6 +50,11 @@
                                 <label for="email">Email*</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="">
                                 <i class="fa fa-envelope form-control-feedback"></i>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for="phone">Phone*</label>
+                                <input type="number" class="form-control" id="phone" name="phone" placeholder="">
+                                <i class="fa fa-phone form-control-feedback"></i>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for="subject">Subject*</label>

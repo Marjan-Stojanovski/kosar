@@ -247,7 +247,7 @@
                                                                 </tbody>
                                                             </table>
                                                             <div class="panel-body text-right">
-                                                                <a href="{{route('frontend.shopcart')}}"
+                                                                <a href="{{route('frontend.shopCart')}}"
                                                                    class="btn btn-group btn-gray btn-sm">View
                                                                     Cart</a>
                                                                 <a href="shop-checkout.html"
@@ -289,13 +289,6 @@
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <div class="panel-body text-right">
-                                                                <a href="{{route('frontend.shopcart')}}"
-                                                                   class="btn btn-group btn-gray btn-sm">View
-                                                                    Cart</a>
-                                                                <a href="shop-checkout.html"
-                                                                   class="btn btn-group btn-gray btn-sm">Checkout</a>
-                                                            </div>
                                                         </li>
                                                     </ul>
                                                 </div>

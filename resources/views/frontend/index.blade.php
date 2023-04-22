@@ -195,7 +195,7 @@
                                                 <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{route('frontend.productview', $product->id)}}"
+															<a href="{{route('frontend.productView', $product->id)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
@@ -203,7 +203,7 @@
                                             </div>
                                             <div class="body">
                                                 <h3>
-                                                    <a href="{{route('frontend.productview', $product->id)}}">{{$product->title}}</a>
+                                                    <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
                                                 </h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
@@ -274,7 +274,7 @@
 														<span class="small">
 															<a href="{{$brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-external-link pr-10"></i>{{$brand->name}}</a>
-															<a href="{{route('frontend.brandview', $brand->id)}}"
+															<a href="{{route('frontend.brandView', $brand->id)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Products</a>
 														</span>
@@ -331,7 +331,7 @@
                          style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
                         <div class="overlay-bottom">
                             <div class="text">
-                                <a href="{{route('frontend.categoryview', $category->id)}}" class="panel-title"
+                                <a href="{{route('frontend.categoryView', $category->id)}}" class="panel-title"
                                    style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                                 <div class="separator light"></div>
                             </div>

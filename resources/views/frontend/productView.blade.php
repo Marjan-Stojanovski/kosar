@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a>
                 </li>
-                <li class="active" style="color: black">{{$products->title}}</li>
+                <li class="active" style="color: black">{{$product->title}}</li>
             </ol>
         </div>
     </div>
@@ -16,12 +16,12 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="tab-content clear-style">
-                        <img src="/assets/img/products/medium/{{$products->image}}" alt="">
+                        <img src="/assets/img/products/medium/{{$product->image}}" alt="">
                     </div>
                 </div>
                 <div class="col-md-7 pv-30">
-                    <h2>{{$products->title}}</h2>
-                    <p>{!! $products->description !!}</p>
+                    <h2>{{$product->title}}</h2>
+                    <p>{!! $product->description !!}</p>
                     <hr class="mb-10">
                     <div class="clearfix mb-20">
 										<span>
@@ -45,24 +45,24 @@
                         <tbody>
                         <tr>
                             <td>Blagovna Znamka</td>
-                            <td class="text-right">{{$products->brand->name}}</td>
+                            <td class="text-right">{{$product->brand->name}}</td>
                         </tr>
                         <tr>
                             <td>Drzava</td>
-                            <td class="text-right">{{$products->brand->country->name}}</td>
+                            <td class="text-right">{{$product->brand->country->name}}</td>
                         </tr>
                         <tr>
                             <td>Alkoholna stopnja</td>
-                            <td class="text-right">{{$products->alcohol}}%</td>
+                            <td class="text-right">{{$product->alcohol}}%</td>
                         </tr>
                         <tr class="text-end">
                             <td>Volumen</td>
-                            <td class="text-right">{{$products->volume->volume}}</td>
+                            <td class="text-right">{{$product->volume->volume}}</td>
                         </tr>
                         </tbody>
                     </table>
                     <div class=" p-20 bordered clearfix">
-                        <span class="product price">{{$products->price}}&nbsp;€</span>
+                        <span class="product price">{{$product->price}}&nbsp;€</span>
                         <div class="product elements-list pull-right clearfix">
                             <input type="submit" value="Add to Cart" class="margin-clear btn btn-default">
                         </div>
@@ -89,7 +89,7 @@
                             <h4 class="space-top">Specifications</h4>
                             <hr>
                             <dl class="dl-horizontal">
-                                {!! $products->description !!}
+                                {!! $product->description !!}
                             </dl>
                             <hr>
                         </div>
@@ -146,7 +146,7 @@
                                             <label for="product_id" class="form-label"></label>
                                             <select name="product_id" id="product_id"
                                                     class="form-control">
-                                                <option value="{{ $products->id }}"></option>
+                                                <option value="{{ $product->id }}"></option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -211,12 +211,12 @@
                                     </div>
                                     <div class="body" style="margin: 30px">
                                         <h3>
-                                            <a href="{{route('frontend.productview', $categoryProduct->id)}}">{{$categoryProduct->title}}</a>
+                                            <a href="{{route('frontend.productView', $categoryProduct->id)}}">{{$categoryProduct->title}}</a>
                                         </h3>
                                         <p class="small"> {{strip_tags($categoryProduct->brand->name)}}</p>
                                         <div class="elements-list clearfix">
                                             <span class="price"> &nbsp;€{{$categoryProduct->price}}</span>
-                                            <a href="{{route('frontend.productview', $categoryProduct->id)}}"
+                                            <a href="{{route('frontend.productView', $categoryProduct->id)}}"
                                                class="pull-right text-right btn btn-info">View</a>
                                         </div>
                                     </div>

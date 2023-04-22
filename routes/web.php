@@ -122,20 +122,20 @@ Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])-
 
 //Cart routes
 Route::delete('/cart/{product}', [App\Http\Controllers\ShoppingCartController::class, 'destroy'])->name('cart.destroy');
-Route::get('/cart', [App\Http\Controllers\ShoppingCartController::class, 'cartList'])->name('frontend.shopcart');
+Route::get('/cart', [App\Http\Controllers\ShoppingCartController::class, 'cartList'])->name('frontend.shopCart');
 Route::post('/save-to-cart', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('cart.update');
-
+Route::get('/cartCheckout', [App\Http\Controllers\ShoppingCartController::class, 'cartCheckout'])->name('frontend.cartCheckout');
 Route::post('/clear', [App\Http\Controllers\ShoppingCartController::class, 'clearAllCart'])->name('cart.clear');
 //Frontend-routes
 Route::get('/publika', [App\Http\Controllers\FrontendController::class, 'bar'])->name('frontend.publika');
 Route::post('/save_comment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
 Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
-Route::get('/contact_us', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
-Route::get('/about_us', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
+Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
+Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
 Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
-Route::get('/{product}', [\App\Http\Controllers\FrontendController::class, 'productview'])->name('frontend.productview');
-Route::get('/categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryview'])->name('frontend.categoryview');
-Route::get('/brands/{brand}', [\App\Http\Controllers\FrontendController::class, 'brandview'])->name('frontend.brandview');
+Route::get('/{product}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
+Route::get('/categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
+Route::get('/brands/{brand}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 

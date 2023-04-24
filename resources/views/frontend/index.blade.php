@@ -224,7 +224,7 @@
                                                                 class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                             Add<i class="fa fa-shopping-cart"></i></button>
                                                         <?php } else { ?>
-                                                        <input type="number" placeholder="1" name="quantity" style="width: 50px"> Quantity
+
                                                         <a onclick="alertLogin()"
                                                            class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                             Add<i class="fa fa-shopping-cart"></i></a>

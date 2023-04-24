@@ -94,15 +94,18 @@ class Category extends Model
         return $this->hasMany(Gallery::class, 'cat_id');
     }
 
-    public static function getTreeHP() {
+
+    public static function getTreeHP()
+    {
         $categories = self::all();
-        $lists = '<li class="dropdown mega-menu">';
-        foreach($categories as $category)
-            $lists .= self::renderNodeHP($category);
-        $lists .= "</li>";
+        $lists = '';
+        foreach ($categories as $category) {
+            if ($category['parent_id'] === null) {
+                $lists .= self::renderNodeHP($category);
+            }
+        }
         return $lists;
     }
-
 
     public static function renderNodeHP($node) {
         $list = '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/categories/'.$node->id.'">'.$node->name.'</a>';

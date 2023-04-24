@@ -219,12 +219,12 @@
                                                         <input type="hidden" value="{{ $product->title }}" name="title">
                                                         <input type="hidden" value="{{ $product->action }}" name="price">
                                                         <input type="hidden" value="{{ $product->image }}" name="image">
-                                                        <input type="number" placeholder="1" name="quantity" style="width: 50px"> Quantity
+                                                        <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
+
                                                         <button type="submit"
                                                                 class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                             Add<i class="fa fa-shopping-cart"></i></button>
                                                         <?php } else { ?>
-
                                                         <a onclick="alertLogin()"
                                                            class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                             Add<i class="fa fa-shopping-cart"></i></a>
@@ -241,12 +241,9 @@
                     </div>
                     <!-- pills end -->
                 </div>
-
                     <nav class="text-center">
                         {{ $products->links() }}
                     </nav>
-
-
             </div>
         </div>
     </section>

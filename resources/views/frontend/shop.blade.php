@@ -65,14 +65,12 @@
                                                                   enctype="multipart/form-data">
                                                                 @csrf
                                                                 <?php if(isset(Auth::user()->name)) { ?>
-                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px"> Quantity
-
+                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
                                                                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
-                                                                <input type="hidden" value="{{ $product->name }}" name="name">
+                                                                <input type="hidden" value="{{ $product->title }}" name="title">
                                                                 <input type="hidden" value="{{ $product->action }}" name="price">
                                                                 <input type="hidden" value="{{ $product->image }}" name="image">
-
                                                                 <button type="submit"
                                                                         class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                                     Add<i class="fa fa-shopping-cart"></i></button>
@@ -110,15 +108,12 @@
                                                             <form action="{{ route('cart.store')}}" method="POST">
                                                                 @csrf
                                                                 <?php if(isset(Auth::user()->name)) { ?>
-                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px"> Quantity
-
+                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
                                                                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                                 <input type="hidden" value="{{ $product->title }}" name="title">
                                                                 <input type="hidden" value="{{ $product->price }}" name="price">
                                                                 <input type="hidden" value="{{ $product->image }}" name="image">
-
-
                                                                 <button type="submit"
                                                                         class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                                     Add<i class="fa fa-shopping-cart"></i></button>

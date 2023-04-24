@@ -396,6 +396,7 @@ class FrontendController extends Controller
 
     public function addToCart(Request $request)
     {
+
         $product_id         = $request->get('id');
         $user               = $request->get('user_id');
         $quantityNew        = $request->get('quantity');
@@ -414,7 +415,7 @@ class FrontendController extends Controller
             $price          = $request->get('price');
             $quantityNew    = $request->get('quantity');
             $image          = $request->get('image');
-            $user_id        = $request->get('user_id');
+            $user        = $request->get('user_id');
 
             ShoppingCart::create([
                 'product_id'    => $product_id,
@@ -422,7 +423,7 @@ class FrontendController extends Controller
                 'price'         => $price,
                 'quantity'      => $quantityNew,
                 'image'         => $image,
-                'user_id'       => $user_id
+                'user_id'       => $user
             ]);
 
         } else {

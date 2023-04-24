@@ -408,13 +408,6 @@
     function alertLogin() {
         alert("Login to make an order!");
     }
-
-    var msg = '{{Session::get('alert')}}';
-    var exist = '{{Session::has('alert')}}';
-    if (exist) {
-        alert(msg);
-    }
-
 </script>
 
 <!-- JavaScript files placed at the end of the document so the pages load faster -->

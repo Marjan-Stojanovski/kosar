@@ -29,6 +29,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="container mt-4">
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                    </div>
                     <div class="main col-md-8 col-lg-offset-1 col-md-push-4 col-lg-push-3">
                         <h1 class="page-title text-center">Blog Left Sidebar</h1>
                         <div class="separator-2"></div>

@@ -47,8 +47,6 @@ class ShoppingCartController extends Controller
 
         session()->put('cart', $cart);
 
-
-
         return redirect()->back();
     }
 
@@ -62,16 +60,15 @@ class ShoppingCartController extends Controller
         }
     }
 
-    public function deleteProduct(Request $request)
+    public function deleteProduct(Request $request, $id)
     {
-dd('here');
-        if($request->product_id) {
+        if($id) {
             $cart = session()->get('cart');
-            if(isset($cart[$request->product_id])) {
-                unset($cart[$request->product_id]);
+            if(isset($cart[$id])) {
+                unset($cart[$id]);
                 session()->put('cart', $cart);
             }
-            session()->flash('success', 'Book successfully deleted.');
+            return redirect()->back();
         }
     }
 }

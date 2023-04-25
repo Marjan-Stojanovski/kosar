@@ -125,7 +125,7 @@ Route::get('/dashboard', [App\Http\Controllers\ShoppingCartController::class, 'i
 Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'bookCart'])->name('shopping.cart');
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
-Route::delete('/delete-cart-product', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart.product');
+Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
 
 //Mysql Cart routes
 Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');

@@ -197,16 +197,14 @@
                                                     </ul>
                                                 </div>
                                                 <?php
-
                                                 $carts = session()->get('cart', []);
-
                                                 ?>
                                                 <?php if (!empty($carts)) { ?>
                                                 <div class="btn-group dropdown">
                                                     <button type="button" class="btn dropdown-toggle"
                                                             data-toggle="dropdown"><i
                                                             class="icon-basket-1"></i><span
-                                                            class="cart-count default-bg"></span>
+                                                            class="cart-count default-bg">{{ count((array) session('cart')) }}</span>
                                                     </button>
 
                                                     <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
@@ -215,31 +213,30 @@
                                                             <table class="table table-hover">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th>Product</th>
-                                                                    <th>Price</th>
-                                                                    <th>Total</th>
-                                                                    <th></th>
+                                                                    <th class="text-start">Product</th>
+                                                                    <th class="text-center">Quantity</th>
+                                                                    <th class="text-end">Action</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                 @php $total = 0 @endphp
                                                                 @if(session('cart'))
                                                                     @foreach(session('cart') as $id => $details)
-
                                                                         <tr rowId="{{ $id }}">
-                                                                            <td data-th="Product">
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-3 hidden-xs">{{ $details['quantity'] }}</div>
-                                                                                    <div class="col-sm-9">
-                                                                                        <h4 class="nomargin">{{ $details['name'] }}</h4>
-                                                                                    </div>
-                                                                                </div>
+                                                                            <td class="text-start">{{ $details['name'] }}</td>
+                                                                            <td class="text-center">{{$details['quantity']}}
+                                                                                pcs
                                                                             </td>
-                                                                            <td data-th="Price">${{ $details['unitPrice'] }}</td>
-
-                                                                            <td data-th="Subtotal" class="text-center"></td>
-                                                                            <td class="actions">
-                                                                                <a class="btn btn-outline-danger btn-sm delete-product"><i class="fa fa-trash-o"></i></a>
+                                                                            <td class="text-end">
+                                                                                <form
+                                                                                    action="{{route('delete.cart', $id)}}"
+                                                                                    method="post">
+                                                                                    @csrf
+                                                                                    @method('delete')
+                                                                                    <button class="btn btn-warning"><i
+                                                                                            class="fa fa-trash-o"></i>
+                                                                                    </button>
+                                                                                </form>
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
@@ -248,19 +245,13 @@
                                                                 <tfoot>
                                                                 <tr>
                                                                     <td colspan="5" class="text-right">
-                                                                        <a href="{{ url('/dashboard') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-                                                                        <button class="btn btn-danger">Checkout</button>
+                                                                        <a href=""
+                                                                           class="btn btn-group btn-gray btn-sm">View
+                                                                            Cart</a>
                                                                     </td>
                                                                 </tr>
                                                                 </tfoot>
                                                             </table>
-                                                            <div class="panel-body text-right">
-                                                                <a href="{{route('frontend.shopCart')}}"
-                                                                   class="btn btn-group btn-gray btn-sm">View
-                                                                    Cart</a>
-                                                                <a href="shop-checkout.html"
-                                                                   class="btn btn-group btn-gray btn-sm">Checkout</a>
-                                                            </div>
                                                         </li>
                                                     </ul>
 
@@ -276,24 +267,16 @@
                                                             <table class="table table-hover">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th class="quantity">QTY</th>
-                                                                    <th class="product">Product</th>
-                                                                    <th class="amount">Subtotal</th>
+                                                                    <th class="text-start">Product</th>
+                                                                    <th class="text-center">Quantity</th>
+                                                                    <th class="text-end">Action</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                 <tr>
-                                                                    <td class="quantity">
-                                                                    </td>
-                                                                    <td class="product"><a
-                                                                            href=""></a><span class="small"></span>
-                                                                    </td>
+                                                                    <td class="quantity"></td>
+                                                                    <td class="product"></td>
                                                                     <td class="amount"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="total-quantity" colspan="2">
-                                                                    </td>
-                                                                    <td class="total-amount"></td>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -415,50 +398,6 @@
 
 </div>
 <!-- page-wrapper end -->
-<script>
-    function alertLogin() {
-        alert("Login to make an order!");
-    }
-</script>
-<script type="text/javascript">
-
-    $(".edit-cart-info").change(function (e) {
-        e.preventDefault();
-        var ele = $(this);
-        $.ajax({
-            url: '{{ route('update.sopping.cart') }}',
-            method: "patch",
-            data: {
-                _token: '{{ csrf_token() }}',
-                id: ele.parents("tr").attr("rowId"),
-            },
-            success: function (response) {
-                window.location.reload();
-            }
-        });
-    });
-
-    $(".delete-product").click(function (e) {
-        e.preventDefault();
-
-        var ele = $(this);
-
-        if(confirm("Do you really want to delete?")) {
-            $.ajax({
-                url: '{{ route('delete.cart.product') }}',
-                method: "DELETE",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: ele.parents("tr").attr("rowId")
-                },
-                success: function (response) {
-                    window.location.reload();
-                }
-            });
-        }
-    });
-
-</script>
 
 <!-- JavaScript files placed at the end of the document so the pages load faster -->
 <!-- Jquery and Bootstap core js files -->
@@ -493,5 +432,55 @@
 <script type="text/javascript" src="/assets/frontend/js/template.js"></script>
 <!-- Custom Scripts -->
 <script type="text/javascript" src="/assets/frontend/js/custom.js"></script>
+
+<script>
+    function alertLogin() {
+        alert("Login to make an order!");
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".edit-cart-info").change(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+            $.ajax({
+                url: '{{ route('update.sopping.cart') }}',
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("rowId"),
+                },
+                success: function (response) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".delete-product").click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+            var id = ele.parents("tr").attr("rowId");
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            if (confirm("Do you really want to delete?")) {
+                $.ajax({
+                    url: "delete-cart-product/" + id,
+                    type: "DELETE",
+                    data: {
+                        "id": id,
+                        "_token": token,
+                    },
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                });
+
+            }
+        });
+    });
+
+</script>
+
 </body>
 </html>

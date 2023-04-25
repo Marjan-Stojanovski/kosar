@@ -1,7 +1,6 @@
 @extends('welcome')
 @section('content')
 
-
     <!-- SLIDER -->
     <!-- banner start -->
     <div class="banner clearfix">

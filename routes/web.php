@@ -119,8 +119,15 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
 });
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
-//Cart routes
 
+//session Cart routes
+Route::get('/dashboard', [App\Http\Controllers\ShoppingCartController::class, 'index']);
+Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'bookCart'])->name('shopping.cart');
+Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
+Route::delete('/delete-cart-product', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart.product');
+
+//Mysql Cart routes
 Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
 Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
 Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');

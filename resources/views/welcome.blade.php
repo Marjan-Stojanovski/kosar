@@ -196,12 +196,17 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <?php if (isset(Auth::user()->name)) { ?>
+                                                <?php
+
+                                                $carts = session()->get('cart', []);
+
+                                                ?>
+                                                <?php if (!empty($carts)) { ?>
                                                 <div class="btn-group dropdown">
                                                     <button type="button" class="btn dropdown-toggle"
                                                             data-toggle="dropdown"><i
                                                             class="icon-basket-1"></i><span
-                                                            class="cart-count default-bg">{{$shoppingListsCount}}</span>
+                                                            class="cart-count default-bg"></span>
                                                     </button>
 
                                                     <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
@@ -210,38 +215,44 @@
                                                             <table class="table table-hover">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th class="quantity">QTY</th>
-                                                                    <th class="product">Product</th>
-                                                                    <th class="amount">Subtotal</th>
-
+                                                                    <th>Product</th>
+                                                                    <th>Price</th>
+                                                                    <th>Total</th>
+                                                                    <th></th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                @php $total = 0 @endphp
+                                                                @if(session('cart'))
+                                                                    @foreach(session('cart') as $id => $details)
 
-                                                                @foreach($userLists as $userList)
-                                                                    <tr>
-                                                                        <td class="quantity">{{$userList->quantity}}
-                                                                        </td>
-                                                                        <td class="product"><a
-                                                                                href="shop-product.html">{{$userList->name}}</a><span
-                                                                                class="small"></span>
-                                                                        </td>
-                                                                            <?php
-                                                                            $unitPrice = $userList->price;
-                                                                            $unitCount = $userList->quantity;
-                                                                            $subTotal = $unitCount * $unitPrice;
-                                                                            $totalAmount +=$subTotal
-                                                                            ?>
-                                                                        <td class="amount">{{$subTotal}}</td>
-                                                                    </tr>
-                                                                @endforeach
-                                                                <tr>
-                                                                    <td class="total-quantity" colspan="2">Number Items
-                                                                        <strong>{{$shoppingListsCount}}</strong>
-                                                                    </td>
-                                                                    <td class="total-amount">{{$totalAmount}}</td>
-                                                                </tr>
+                                                                        <tr rowId="{{ $id }}">
+                                                                            <td data-th="Product">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-3 hidden-xs">{{ $details['quantity'] }}</div>
+                                                                                    <div class="col-sm-9">
+                                                                                        <h4 class="nomargin">{{ $details['name'] }}</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td data-th="Price">${{ $details['unitPrice'] }}</td>
+
+                                                                            <td data-th="Subtotal" class="text-center"></td>
+                                                                            <td class="actions">
+                                                                                <a class="btn btn-outline-danger btn-sm delete-product"><i class="fa fa-trash-o"></i></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                @endif
                                                                 </tbody>
+                                                                <tfoot>
+                                                                <tr>
+                                                                    <td colspan="5" class="text-right">
+                                                                        <a href="{{ url('/dashboard') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                                                                        <button class="btn btn-danger">Checkout</button>
+                                                                    </td>
+                                                                </tr>
+                                                                </tfoot>
                                                             </table>
                                                             <div class="panel-body text-right">
                                                                 <a href="{{route('frontend.shopCart')}}"
@@ -408,6 +419,45 @@
     function alertLogin() {
         alert("Login to make an order!");
     }
+</script>
+<script type="text/javascript">
+
+    $(".edit-cart-info").change(function (e) {
+        e.preventDefault();
+        var ele = $(this);
+        $.ajax({
+            url: '{{ route('update.sopping.cart') }}',
+            method: "patch",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: ele.parents("tr").attr("rowId"),
+            },
+            success: function (response) {
+                window.location.reload();
+            }
+        });
+    });
+
+    $(".delete-product").click(function (e) {
+        e.preventDefault();
+
+        var ele = $(this);
+
+        if(confirm("Do you really want to delete?")) {
+            $.ajax({
+                url: '{{ route('delete.cart.product') }}',
+                method: "DELETE",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("rowId")
+                },
+                success: function (response) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+
 </script>
 
 <!-- JavaScript files placed at the end of the document so the pages load faster -->

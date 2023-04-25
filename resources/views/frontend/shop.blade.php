@@ -61,12 +61,10 @@
                                                         <div class="elements-list clearfix">
                                                             <span style="color: red;"><del> €{{$product->price}}</del></span>
                                                             <span class="price"> &nbsp;€{{$product->action}}</span>
-                                                            <form action="{{ route('cart.store')}}" method="POST"
+                                                            <form action="{{ route('add.to.cart')}}" method="POST"
                                                                   enctype="multipart/form-data">
                                                                 @csrf
-                                                                <?php if(isset(Auth::user()->name)) { ?>
                                                                 <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-                                                                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                                 <input type="hidden" value="{{ $product->title }}" name="title">
                                                                 <input type="hidden" value="{{ $product->action }}" name="price">
@@ -74,11 +72,6 @@
                                                                 <button type="submit"
                                                                         class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                                     Add<i class="fa fa-shopping-cart"></i></button>
-                                                                <?php } else { ?>
-                                                                <a onclick="alertLogin()"
-                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                                                    Add<i class="fa fa-shopping-cart"></i></a>
-                                                                <?php } ?>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -105,11 +98,9 @@
                                                         <p class="small"> {{$product->brand->name}}</p>
                                                         <div class="elements-list clearfix">
                                                             <span class="price"> &nbsp;€{{$product->price}}</span>
-                                                            <form action="{{ route('cart.store')}}" method="POST">
+                                                            <form action="{{ route('add.to.cart')}}" method="POST">
                                                                 @csrf
-                                                                <?php if(isset(Auth::user()->name)) { ?>
                                                                 <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-                                                                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                                 <input type="hidden" value="{{ $product->title }}" name="title">
                                                                 <input type="hidden" value="{{ $product->price }}" name="price">
@@ -117,11 +108,6 @@
                                                                 <button type="submit"
                                                                         class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                                     Add<i class="fa fa-shopping-cart"></i></button>
-                                                                <?php } else { ?>
-                                                                <p onclick="alertLogin()"
-                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                                                    Add<i class="fa fa-shopping-cart"></i></p>
-                                                                <?php } ?>
                                                             </form>
                                                         </div>
 

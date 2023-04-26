@@ -183,15 +183,15 @@
                 <div class="col-md-12">
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
-                            <div class="row masonry-grid-fitrows grid-space-10">
+                            <div class="row masonry-grid-fit-rows grid-space-10">
                                 @foreach($products as $product)
                                         <?php
                                     if (isset($product->action)) { ?>
                                     <div class="col-md-3 col-sm-6 masonry-grid-item">
                                         <div class="listing-item white-bg bordered mb-20">
                                             <div class="overlay-container">
-                                                <img src="/assets/img/products/thumbnails/{{$product->image}}" alt="">
-                                                <div class="separator-2"></div>
+                                                <img src="/assets/img/products/thumbnails/{{$product->image}}"
+                                                     alt="">
                                                 <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
                                                 <div class="overlay-to-top links">
 														<span class="small">
@@ -205,29 +205,22 @@
                                                 <h3>
                                                     <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
                                                 </h3>
-                                                <p class="small">{{$product->brand->name}}</p>
+                                                <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
-                                                    <span style="color: red;"><del>€ {{$product->price}}</del></span>
-                                                    <span class="price"> &nbsp; &nbsp;€ {{$product->action}}</span>
-                                                    <form action="{{ route('cart.store')}}" method="POST"
+                                                    <span style="color: red;"><del> €{{$product->price}}</del></span>
+                                                    <span class="price"> &nbsp;€{{$product->action}}</span>
+                                                    <form action="{{ route('add.to.cart')}}" method="POST"
                                                           enctype="multipart/form-data">
                                                         @csrf
-                                                            <?php if(isset(Auth::user()->name)) { ?>
-                                                        <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                                                        <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
                                                         <input type="hidden" value="{{ $product->id }}" name="id">
                                                         <input type="hidden" value="{{ $product->title }}" name="title">
+                                                        <input type="hidden" value="{{$product->brand->name}}" name="brand">
                                                         <input type="hidden" value="{{ $product->action }}" name="price">
                                                         <input type="hidden" value="{{ $product->image }}" name="image">
-                                                        <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-
                                                         <button type="submit"
                                                                 class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
                                                             Add<i class="fa fa-shopping-cart"></i></button>
-                                                        <?php } else { ?>
-                                                        <a onclick="alertLogin()"
-                                                           class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                                            Add<i class="fa fa-shopping-cart"></i></a>
-                                                        <?php } ?>
                                                     </form>
                                                 </div>
                                             </div>

@@ -245,7 +245,7 @@
                                                                 <tfoot>
                                                                 <tr>
                                                                     <td colspan="5" class="text-right">
-                                                                        <a href=""
+                                                                        <a href="{{route('shopping.cart')}}"
                                                                            class="btn btn-group btn-gray btn-sm">View
                                                                             Cart</a>
                                                                     </td>
@@ -437,49 +437,6 @@
     function alertLogin() {
         alert("Login to make an order!");
     }
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".edit-cart-info").change(function (e) {
-            e.preventDefault();
-            var ele = $(this);
-            $.ajax({
-                url: '{{ route('update.sopping.cart') }}',
-                method: "patch",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: ele.parents("tr").attr("rowId"),
-                },
-                success: function (response) {
-                    window.location.reload();
-                }
-            });
-        });
-
-        $(".delete-product").click(function (e) {
-            e.preventDefault();
-
-            var ele = $(this);
-            var id = ele.parents("tr").attr("rowId");
-            var token = $("meta[name='csrf-token']").attr("content");
-
-            if (confirm("Do you really want to delete?")) {
-                $.ajax({
-                    url: "delete-cart-product/" + id,
-                    type: "DELETE",
-                    data: {
-                        "id": id,
-                        "_token": token,
-                    },
-                    success: function (response) {
-                        window.location.reload();
-                    }
-                });
-
-            }
-        });
-    });
-
 </script>
 
 </body>

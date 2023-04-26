@@ -74,6 +74,7 @@
                                                                 <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                                 <input type="hidden" value="{{ $product->title }}" name="title">
+                                                                <input type="hidden" value="{{$product->brand->name}}" name="brand">
                                                                 <input type="hidden" value="{{ $product->action }}" name="price">
                                                                 <input type="hidden" value="{{ $product->image }}" name="image">
                                                                 <button type="submit"
@@ -110,6 +111,7 @@
                                                                 <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
                                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                                 <input type="hidden" value="{{ $product->title }}" name="title">
+                                                                <input type="hidden" value="{{$product->brand->name}}" name="brand">
                                                                 <input type="hidden" value="{{ $product->price }}" name="price">
                                                                 <input type="hidden" value="{{ $product->image }}" name="image">
                                                                 <button type="submit"

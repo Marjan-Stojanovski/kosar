@@ -2,21 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Cart;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
     public function index()
     {
-        $carts = Cart::all();
+
         return view('products', compact('carts'));
     }
 
-    public function bookCart()
+    public function viewCart()
     {
-        return view('cart');
+        $carts = session()->get('cart', []);
+
+        $brands                 = Brand::all();
+        $categories             = Category::all();
+        $products               = Product::paginate(12);
+        $categoriesTree         = Category::getTreeHP();
+
+        $data = [
+            'carts' => $carts,
+            'products'              => $products,
+            'brands'                => $brands,
+            'categoriesTree'        => $categoriesTree,
+            'categories'            => $categories
+        ];
+
+        return view('frontend.shopCart')->with($data);
     }
+
     public function addToCart(Request $request)
     {
         $product_id = $request->get('id');
@@ -29,7 +48,6 @@ class ShoppingCartController extends Controller
             $quantity = $oldQuantity + $newQuantity;
             $cart[$product_id]['quantity'] = $quantity;
 
-
         } else {
 
                 $quantity = $request->get('quantity');
@@ -41,24 +59,25 @@ class ShoppingCartController extends Controller
                 "quantity" => $request->get('quantity'),
                 "unitPrice" => $request->get('price'),
                 "product_id" => $request->get('id'),
+                "brand" => $request->get('brand'),
+                "image" => $request->get('image'),
                 "productAmount" => $productAmount
             ];
         }
-
         session()->put('cart', $cart);
 
         return redirect()->back();
     }
 
-    public function updateCart(Request $request)
-    {
-        if($request->product_id && $request->quantity){
-            $cart = session()->get('cart');
-            $cart[$request->product_id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Book added to cart.');
-        }
-    }
+    //public function updateCart(Request $request)
+    //{
+    //if($request->product_id && $request->quantity){
+    //        $cart = session()->get('cart');
+    //        $cart[$request->product_id]["quantity"] = $request->quantity;
+    //        session()->put('cart', $cart);
+    //        session()->flash('success', 'Book added to cart.');
+    //    }
+    //}
 
     public function deleteProduct(Request $request, $id)
     {

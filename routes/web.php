@@ -122,7 +122,7 @@ Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])-
 
 //session Cart routes
 Route::get('/dashboard', [App\Http\Controllers\ShoppingCartController::class, 'index']);
-Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'bookCart'])->name('shopping.cart');
+Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('shopping.cart');
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');

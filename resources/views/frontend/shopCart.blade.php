@@ -39,32 +39,31 @@
                             <th class="text-center">Unit Price </th>
                             <th class="text-center">Quantity</th>
                             <th class="text-center">Remove </th>
-                            <th class="amount text-center">Total </th>
+                            <th class="amount text-center">Subtotal </th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($userLists as $userList)
-                                <?php
-                                $unitPrice = $userList->price;
-                                $unitCount = $userList->quantity;
-                                $subTotal = $unitCount * $unitPrice;
-                                $totalAmount +=$subTotal
-                                ?>
+                        @foreach($carts as $cart)
+                            <?php
+$unitPrice = $cart['unitPrice'];
+$unitQuantity = $cart['quantity'];
+$subTotal = $unitPrice * $unitQuantity;
+?>
                         <tr class="remove-data">
                             <td class="image-box">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <img src="/assets/img/products/thumbnails/{{ $userList->image }}"
+                                        <img src="/assets/img/products/thumbnails/{{$cart['image']}}"
                                              class="mb-0 img-responsive" style="width: 50px">
                                     </div>
                                 </div>
                             </td>
-                            <td class="product"><a>{{$userList->name}}</a></td>
-                            <td class="product text-center"><a>{{$userList->product->brand->name}}</a></td>
-                            <td class="price text-center">€ {{$unitPrice}}</td>
-                            <td class="price text-center">{{$userList->quantity}} pcs</td>
+                            <td class="product"><a>{{$cart['name']}}</a></td>
+                            <td class="product text-center"><a>{{$cart['brand']}}</a></td>
+                            <td class="price text-center">€ {{$cart['unitPrice']}}</td>
+                            <td class="price text-center">{{$cart['quantity']}} pcs</td>
                             <td class="remove text-center">
-                                <form action="{{route('cart.destroy', $userList->id)}}" method="post">
+                                <form action="{{route('delete.cart', $cart['product_id'])}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger mb-2 me-2">Delete</button>
@@ -77,9 +76,9 @@
                         <tfoot>
                         <tr>
                             <td class="total-quantity" colspan="4">Total</td>
-                            <td class="total-quantity" colspan="1">{{$shoppingListsCount}} Items</td>
+                            <td class="total-quantity" colspan="1">{{ count((array) session('cart')) }} Items</td>
                             <td class="total-amount text-center">Total Price</td>
-                            <td class="total-amount text-right">€ {{$totalAmount}}</td>
+                            <td class="total-amount text-right">€ </td>
                         </tr>
                         </tfoot>
                     </table>

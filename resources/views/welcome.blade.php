@@ -118,7 +118,7 @@
                                     </form>
                                     <?php } else { ?>
                                     <a href="{{route('login')}}" class="btn btn-default btn-sm">Login</a>
-                                    <a href="{{route('register-user')}}"
+                                    <a href="{{route('register')}}"
                                        class="btn btn-default btn-sm">Register</a> <?php } ?>
                                 </div>
                             </div>

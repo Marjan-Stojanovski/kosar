@@ -130,6 +130,11 @@ class UserController extends Controller
         Mail::to('stojanovskim@yahoo.com')->send(new MailSender($msg));
     }
 
+    public function info()
+    {
+
+    }
+
 
 
 }

@@ -16,12 +16,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Marjan Stojanovski',
+            'firstName' => 'Marjan',
+            'lastName' => 'Stojanovski',
             'email' => 'stojanovskim@yahoo.com',
-            'address' => 'Ul.2 Br.54 s.Bujkovci',
             'password' => bcrypt('temp12345'),
-            'role_id' => 1,
-            'country_id' => 4
+            'role_id' => 1
         ]);
     }
 }

@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+//Custom authentication
+
+Route::get('/login', [App\Http\Controllers\CustomAuthController::class, 'index'])->name('login');
+Route::post('/custom-login', [App\Http\Controllers\CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::get('/registration', [App\Http\Controllers\CustomAuthController::class, 'registration'])->name('register-user');
+Route::post('/custom-registration', [App\Http\Controllers\CustomAuthController::class, 'customRegistration'])->name('register.custom');
+Route::get('/signout', [App\Http\Controllers\CustomAuthController::class, 'signOut'])->name('signout');
 
 //Admin-panel
 Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(function() {
@@ -117,21 +124,20 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::put('/comments/{comments}', [\App\Http\Controllers\CommentControler::class, 'update'])->name('comments.update');
     Route::delete('/comments/{comment}', [\App\Http\Controllers\CommentControler::class, 'destroy'])->name('comments.destroy');
 });
-Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+
 
 
 //session Cart routes
-Route::get('/dashboard', [App\Http\Controllers\ShoppingCartController::class, 'index']);
 Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('shopping.cart');
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
 
 //Mysql Cart routes
-Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
-Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
-Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
-Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
+//Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
+//Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
+//Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
+//Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');

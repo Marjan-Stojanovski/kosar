@@ -105,14 +105,9 @@
                         <div id="header-top-second" class="clearfix">
                             <div class="header-top-dropdown text-right">
                                 <div class="btn-group">
-                                    <a href="{{route('login')}}" class="btn btn-default btn-sm">
-                                        <?php if (isset(Auth::user()->name)) {
-                                            echo Auth::user()->name;
-                                        } else {
-                                            echo 'Login';
-                                        } ?>
-                                    </a>
                                     <?php if (isset(Auth::user()->name)) { ?>
+                                    <a href="{{route('login')}}"
+                                       class="btn btn-default btn-sm">{{Auth::user()->name}}</a>
                                     <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -121,7 +116,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <?php } ?>
+                                    <?php } else { ?>
+                                    <a href="{{route('login')}}" class="btn btn-default btn-sm">Login</a>
+                                    <a href="{{route('register-user')}}"
+                                       class="btn btn-default btn-sm">Register</a> <?php } ?>
                                 </div>
                             </div>
                         </div>

@@ -22,36 +22,24 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th class="text-center">Име</th>
-                                                <th class="text-center">Адреса</th>
                                                 <th class="text-center">Улога</th>
-                                                <th class="text-center">Држава</th>
-
                                             </tr>
 
                                             </thead>
                                             <tbody>
-
                                                 <tr>
                                                     <td>{{$users->id}}</td>
                                                     <td class="text-center">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-grow-1">
-                                                                <h6 class="mb-0">{{$users->name}}</h6>
+                                                                <h6 class="mb-0">{{$users->firstName}} {{$users->lastName}}</h6>
                                                                 <small class="text-muted">{{$users->email}}</small>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span class="fs-6">{{$users->address}}</span>
-                                                    </td>
-                                                    <td class="text-center">
                                                         <span class="badge bg-success fs-6">{{$users->role->name}}</span>
                                                     </td>
-
-                                                    <td class="text-center">
-                                                        <span class="mb-0">{{$users->country->name}}</span>
-                                                    </td>
-
                                                 </tr>
 
                                             </tbody>

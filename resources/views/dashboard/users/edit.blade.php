@@ -22,18 +22,36 @@
                                         <!-- First name -->
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label class="form-label" for="name">Име</label>
+                                            <label class="form-label" for="firstName">Име</label>
                                             <!-- Input -->
                                             <input type="text" placeholder="Вашето Име"
-                                                   class="form-control @error('name') is-invalid @enderror"
-                                                   id="name" name="name" value="{{$user->name}}">
-                                            @error('name')
+                                                   class="form-control @error('firstName') is-invalid @enderror"
+                                                   id="firstName" name="firstName" value="{{$user->firstName}}">
+                                            @error('firstName')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <!-- First name -->
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label class="form-label" for="lastName">Презиме</label>
+                                            <!-- Input -->
+                                            <input type="text" placeholder="Вашето Презиме"
+                                                   class="form-control @error('lastName') is-invalid @enderror"
+                                                   id="lastName" name="lastName" value="{{$user->lastName}}">
+                                            @error('lastName')
+                                            <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-12 col-md-6 mb-3">
                                         <!-- First name -->
                                         <div class="form-group">
@@ -50,41 +68,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-md-6 mb-3">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
-                                            <label class="form-label" for="address">Адреса</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Адреса"
-                                                   class="form-control @error('address') is-invalid @enderror"
-                                                   id="address" name="address" value="{{$user->address}}">
-                                            @error('address')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 mb-3">
-                                        <label for="country_id" class="form-label">Држава</label>
-                                        <!--select-->
-                                        <select name="country_id" id="country_id"
-                                                class="form-control @error('country_id') is-invalid @enderror">
-                                            @foreach($countries as $country)
-                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                            @endforeach
-                                            @error('country_id')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-12 col-md-6 mb-3">
                                         <!-- Label -->
                                         <label class="form-label" for="password">Password</label>
@@ -98,6 +81,8 @@
                                                     </span>
                                         @enderror
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-12 col-md-6 mb-3">
                                         <label for="role_id" class="form-label">Улога</label>
                                         <!--select-->

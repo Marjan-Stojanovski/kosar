@@ -17,46 +17,29 @@
                         <p class="mb-4 text-center text-muted">
                             To get started, Please signup with details...
                         </p>
-                        <form action="{{ route('register') }}" method="POST"
+                        <form action="{{ route('register')}}" method="POST"
                               class="z-index-1 position-relative needs-validation" novalidate="">
                             @csrf
 
                             <div class="form-floating mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                       name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                @error('name')
+                                <label for="firstName" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
+                                <input id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror"
+                                       name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>
+                                @error('firstName')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-floating mb-3">
-                                <label for="address"
-                                       class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
-                                <input id="address" type="text"
-                                       class="form-control @error('address') is-invalid @enderror" name="address"
-                                       value="{{ old('address') }}" required autocomplete="address" autofocus>
-                                @error('address')
+                                <label for="lastName" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
+                                <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror"
+                                       name="lastName" value="{{ old('lastName') }}" required autocomplete="lastName" autofocus>
+                                @error('lastName')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                            <div class="form-floating mb-3">
-                                <label for="country_id" class="col-md-4 col-form-label text-md-end">{{ __('Country') }}</label>
-                                <!--select-->
-                                <select name="country_id" id="country_id"
-                                        class="form-control @error('country_id') is-invalid @enderror">
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                    @endforeach
-                                    @error('country_id')
-                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                    @enderror
-                                </select>
                             </div>
                             <div class="form-floating mb-3">
                                 <label for="email"

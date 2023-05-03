@@ -7,7 +7,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><i class="fa fa-home pr-10"></i><a href="../index.html">Home</a></li>
-                <li class="active">Page Sign Up</li>
+                <li class="active">Register User</li>
             </ol>
         </div>
     </div>
@@ -21,7 +21,7 @@
                 <div class="main object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
                     <div class="form-block center-block p-30 light-gray-bg border-clear">
                         <h2 class="title text-center">Register User</h2>
-                        <form class="form-horizontal" action="{{ route('register.custom') }}" method="POST">
+                        <form class="form-horizontal" action="{{ route('register')}}" method="POST">
                             @csrf
                             <div class="form-group has-feedback">
                                 <label for="firstName" class="col-sm-3 control-label">First Name <span
@@ -86,6 +86,19 @@
                                     <i class="fa fa-lock form-control-feedback"></i>
                                 </div>
                             </div>
+                            <div class="form-group has-feedback">
+                            <label for="password-confirm"
+                                   class="col-sm-3 control-label">{{ __('Confirm Password') }} <span
+                                    class="text-danger small">*</span></label>
+                                <div class="col-sm-8">
+                            <input id="password-confirm" type="password" class="form-control" placeholder="Confirm Password"
+                                   name="password_confirmation" required autocomplete="new-password">
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                    @endif
+                                    <i class="fa fa-lock form-control-feedback"></i>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-group btn-default btn-animated">Register<i
@@ -93,6 +106,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

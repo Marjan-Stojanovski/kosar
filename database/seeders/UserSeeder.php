@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'firstName' => 'Marjan',
             'lastName' => 'Stojanovski',
             'email' => 'stojanovskim@yahoo.com',
-            'password' => bcrypt('temp12345'),
+            'password' => bcrypt('test12345'),
             'role_id' => 1
         ]);
     }

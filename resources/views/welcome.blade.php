@@ -102,12 +102,13 @@
                         </div>
                     </div>
                     <div class="col-xs-9 col-sm-6 col-md-3">
+                        <!--
                         <div id="header-top-second" class="clearfix">
                             <div class="header-top-dropdown text-right">
                                 <div class="btn-group">
-                                    <?php if (isset(Auth::user()->name)) { ?>
+                                    <?php if (isset(Auth::user()->firstName)) { ?>
                                     <a href="{{route('login')}}"
-                                       class="btn btn-default btn-sm">{{Auth::user()->name}}</a>
+                                       class="btn btn-default btn-sm">{{Auth::user()->firstName}}</a>
                                     <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -122,6 +123,68 @@
                                        class="btn btn-default btn-sm">Register</a> <?php } ?>
                                 </div>
                             </div>
+                        </div>
+                        -->
+                        <div class="header-top-dropdown text-right" style="padding-top: 5px">
+                            <?php if (isset(Auth::user()->firstName)) { ?>
+                            <div class="btn-group">
+                                <a href="" class="btn btn-default btn-sm"><i
+                                        class="fa fa-user pr-10"></i>{{Auth::user()->firstName}}</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                            </div>
+                            <?php } else { ?>
+                            <div class="btn-group">
+                                <a href="{{route('frontend.register')}}" class="btn btn-default btn-sm"><i
+                                        class="fa fa-user pr-10"></i> Sign Up</a>
+                            </div>
+                            <div class="btn-group dropdown">
+                                <button type="button" class="btn dropdown-toggle btn-default btn-sm"
+                                        data-toggle="dropdown"><i class="fa fa-lock pr-10"></i> Login
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                                    <li>
+                                        <form class="login-form margin-clear" action="{{ route('login') }}" method="POST">
+                                            @csrf
+                                            <div class="form-group has-feedback">
+                                                <label for="email" class="control-label">Email</label>
+                                                <input type="text" placeholder="Email" id="email" class="form-control"
+                                                       name="email" required
+                                                       autofocus>
+                                                @if ($errors->has('email'))
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @endif
+                                                <i class="fa fa-user form-control-feedback"></i>
+                                            </div>
+                                            <div class="form-group has-feedback">
+                                                <label for="password" class="control-label">Password</label>
+                                                <input type="password" placeholder="Password" id="password"
+                                                       class="form-control" name="password" required>
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
+                                                <i class="fa fa-lock form-control-feedback"></i>
+                                            </div>
+                                            <button type="submit" class="btn btn-gray btn-sm">Log In</button>
+                                            <span class="pl-5 pr-5">or</span>
+                                            <a href="{{route('frontend.register')}}" class="btn btn-default btn-sm"><i
+                                                    class="fa fa-user pr-10"></i> Sign Up</a>
+                                            <ul>
+                                                <li><a href="{{'password/reset'}}">Forgot your password?</a></li>
+                                            </ul>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -150,7 +213,8 @@
                                                     <a href="{{route('frontend.index')}}">DOMOV</a>
                                                 </li>
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">ZGANE</a>
+                                                    <a href="#" class="dropdown-toggle"
+                                                       data-toggle="dropdown">ZGANE</a>
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             {!! $categoriesTree !!}
@@ -164,7 +228,8 @@
                                                     <a href="{{route('frontend.shop')}}">E-TRGOVINA</a>
                                                 </li>
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">O NAM</a>
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">O
+                                                        NAM</a>
                                                     <ul class="dropdown-menu">
                                                         <li><a href="{{route('frontend.about')}}"
                                                                class="dropdown-toggle" data-toggle="dropdown">O
@@ -231,7 +296,8 @@
                                                                                     method="post">
                                                                                     @csrf
                                                                                     @method('delete')
-                                                                                    <button class="btn btn-warning"><i
+                                                                                    <button class="btn btn-warning">
+                                                                                        <i
                                                                                             class="fa fa-trash-o"></i>
                                                                                     </button>
                                                                                 </form>

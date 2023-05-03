@@ -42,12 +42,11 @@ class UserController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
             'email' => 'required',
             'password' => 'required',
-            'role_id' => 'required',
-            'country_id' => 'required',
-            'address' => 'required'
+            'role_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -56,20 +55,18 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        $name = $request->get('name');
+        $firstName = $request->get('firstName');
+        $lastName = $request->get('lastName');
         $email = $request->get('email');
         $password = bcrypt($request->get('password'));
         $role_id = $request->get('role_id');
-        $country_id = $request->get('country_id');
-        $address = $request->get('address');
 
         User::create([
-            'name' => $name,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
             'email' => $email,
             'password' => $password,
-            'role_id' => $role_id,
-            'country_id' => $country_id,
-            'address' => $address
+            'role_id' => $role_id
         ]);
 
         return redirect()->route('users.index');
@@ -96,12 +93,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
             'email' => 'required',
             'password' => 'required',
-            'role_id' => 'required',
-            'country_id' => 'required',
-            'address' => 'required'
+            'role_id' => 'required'
         ]);
 
         if ($validator->fails()) {

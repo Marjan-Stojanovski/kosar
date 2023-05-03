@@ -29,7 +29,6 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th class="text-center">Име</th>
-                                                <th class="text-center">Адреса</th>
                                                 <th class="text-center">Улога</th>
                                                 <th class="text-end">Action</th>
                                             </tr>
@@ -41,13 +40,10 @@
                                                     <td class="text-center">
                                                         <div class="d-flex align-items-center">
                                                             <div class="flex-grow-1">
-                                                                <h6 class="mb-0">{{$user->name}}</h6>
+                                                                <h6 class="mb-0">{{$user->firstName}} {{$user->lastName}}</h6>
                                                                 <small class="text-muted">{{$user->email}}</small>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span class="fs-6">{{$user->address}}</span>
                                                     </td>
                                                     <td class="text-center">
                                                         <span class="fs-6">{{$user->role->name}}</span>

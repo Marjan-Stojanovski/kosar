@@ -107,26 +107,48 @@
                             <div class="header-top-dropdown text-right">
                                 <div class="btn-group">
                                     <?php if (isset(Auth::user()->firstName)) { ?>
-                                    <a href="{{route('login')}}"
+                            <a href="{{route('login')}}"
                                        class="btn btn-default btn-sm">{{Auth::user()->firstName}}</a>
                                     <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
-                                    <?php } else { ?>
-                                    <a href="{{route('login')}}" class="btn btn-default btn-sm">Login</a>
+                        </form>
+<?php } else { ?>
+                            <a href="{{route('login')}}" class="btn btn-default btn-sm">Login</a>
                                     <a href="{{route('register')}}"
                                        class="btn btn-default btn-sm">Register</a> <?php } ?>
-                                </div>
                             </div>
                         </div>
-                        -->
+                    </div>
+-->
                         <div class="header-top-dropdown text-right" style="padding-top: 5px">
                             <?php if (isset(Auth::user()->firstName)) { ?>
+                            <div class="btn-group dropdown">
+                                <button type="button" class="btn dropdown-toggle btn-default btn-sm"
+                                        data-toggle="dropdown"><i
+                                        class="fa fa-user pr-10"></i>{{Auth::user()->firstName}}
+                                </button>
+
+                                <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                                    <ul class="menu">
+                                        <li ><a href=""><i class="icon-home pr-10"></i>Account Details</a></li>
+                                        <li ><a href=""><i class="icon-suitcase pr-10"></i>Orders History</a></li>
+                                        <li ><a  href="{{ route('logout') }}"
+                                                 onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                                                <i class="icon-home pr-10"></i>{{ __('Logout') }}
+                                            </a><form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                            </form></li>
+                                    </ul>
+                                </ul>
+                            </div>
+
+<!--
                             <div class="btn-group">
                                 <a href="" class="btn btn-default btn-sm"><i
                                         class="fa fa-user pr-10"></i>{{Auth::user()->firstName}}</a>
@@ -141,18 +163,17 @@
                                     @csrf
                                 </form>
                             </div>
+                            -->
                             <?php } else { ?>
-                            <div class="btn-group">
-                                <a href="{{route('frontend.register')}}" class="btn btn-default btn-sm"><i
-                                        class="fa fa-user pr-10"></i> Sign Up</a>
-                            </div>
+
                             <div class="btn-group dropdown">
                                 <button type="button" class="btn dropdown-toggle btn-default btn-sm"
                                         data-toggle="dropdown"><i class="fa fa-lock pr-10"></i> Login
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
                                     <li>
-                                        <form class="login-form margin-clear" action="{{ route('login') }}" method="POST">
+                                        <form class="login-form margin-clear" action="{{ route('login') }}"
+                                              method="POST">
                                             @csrf
                                             <div class="form-group has-feedback">
                                                 <label for="email" class="control-label">Email</label>
@@ -185,6 +206,8 @@
                                 </ul>
                             </div>
                             <?php } ?>
+
+
                         </div>
                     </div>
                 </div>

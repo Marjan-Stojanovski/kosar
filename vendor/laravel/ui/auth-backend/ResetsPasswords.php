@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
+use App\Models\Category;
 
 trait ResetsPasswords
 {
@@ -27,9 +28,9 @@ trait ResetsPasswords
     public function showResetForm(Request $request)
     {
         $token = $request->route()->parameter('token');
-
-        return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
+        $categoriesTree = Category::getTreeHP();
+        return view('frontend.passwordUpdate')->with(
+            ['token' => $token, 'email' => $request->email, 'categoriesTree' => $categoriesTree]
         );
     }
 

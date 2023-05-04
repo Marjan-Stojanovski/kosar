@@ -178,7 +178,7 @@
                                             <a href="{{route('frontend.register')}}" class="btn btn-default btn-sm"><i
                                                     class="fa fa-user pr-10"></i> Sign Up</a>
                                             <ul>
-                                                <li><a href="{{'password/reset'}}">Forgot your password?</a></li>
+                                                <li><a href="{{route('frontend.reset')}}">Forgot your password?</a></li>
                                             </ul>
                                         </form>
                                     </li>

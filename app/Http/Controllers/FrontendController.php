@@ -610,4 +610,55 @@ class FrontendController extends Controller
             return view('frontend.register')->with($data);
         }
     }
+
+    public function preReset()
+    {
+        if (isset(Auth::user()->id)) {
+
+            $user                   = Auth::user()->id;
+            $brands                 = Brand::all();
+            $countries              = Country::all();
+            $categories             = Category::all();
+            $products               = Product::paginate(5);
+            $categoriesTree         = Category::getTreeHP();
+            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
+            $shoppingListsCount     = count($shoppingLists);
+            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
+                ->selectRaw('count(*) as total, name, price, quantity')
+                ->get();
+            $totalAmount = null;
+
+            $data = [
+                'brands'                => $brands,
+                'products'              => $products,
+                'countries'             => $countries,
+                'categoriesTree'        => $categoriesTree,
+                'categories'            => $categories,
+                'shoppingLists'         => $shoppingLists,
+                'shoppingListsCount'    => $shoppingListsCount,
+                'userLists'             => $userLists,
+                'totalAmount'           => $totalAmount
+            ];
+
+            return view('frontend.reset')->with($data);
+
+        } else {
+
+            $brands                     = Brand::all();
+            $categories                 = Category::all();
+            $countries                  = Country::all();
+            $products                   = Product::paginate(5);
+            $categoriesTree             = Category::getTreeHP();
+
+            $data = [
+                'brands'                => $brands,
+                'products'              => $products,
+                'countries'             => $countries,
+                'categoriesTree'        => $categoriesTree,
+                'categories'            => $categories
+            ];
+
+            return view('frontend.reset')->with($data);
+        }
+    }
 }

@@ -155,6 +155,8 @@ Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController:
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
+Route::get('/edit-details', [App\Http\Controllers\FrontendController::class, 'editDetails'])->name('frontend.editDetails');
+Route::get('/details', [App\Http\Controllers\FrontendController::class, 'userDetails'])->name('frontend.details');
 Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
 Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');

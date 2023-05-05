@@ -661,4 +661,78 @@ class FrontendController extends Controller
             return view('frontend.reset')->with($data);
         }
     }
+
+    public function userDetails()
+    {
+        if (isset(Auth::user()->id)) {
+
+            $user                   = Auth::user()->id;
+            $loggedUser             = Auth::user();
+            $brands                 = Brand::all();
+            $countries              = Country::all();
+            $categories             = Category::all();
+            $products               = Product::paginate(5);
+            $categoriesTree         = Category::getTreeHP();
+            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
+            $shoppingListsCount     = count($shoppingLists);
+            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
+                ->selectRaw('count(*) as total, name, price, quantity')
+                ->get();
+            $totalAmount = null;
+
+            $data = [
+                'loggedUser'            => $loggedUser,
+                'brands'                => $brands,
+                'products'              => $products,
+                'countries'             => $countries,
+                'categoriesTree'        => $categoriesTree,
+                'categories'            => $categories,
+                'shoppingLists'         => $shoppingLists,
+                'shoppingListsCount'    => $shoppingListsCount,
+                'userLists'             => $userLists,
+                'totalAmount'           => $totalAmount
+            ];
+
+            return view('frontend.userInfo')->with($data);
+        }
+    }
+
+    public function editDetails()
+    {
+        if (isset(Auth::user()->id)) {
+
+            $user                   = Auth::user()->id;
+            $loggedUser             = Auth::user();
+            $brands                 = Brand::all();
+            $countries              = Country::all();
+            $categories             = Category::all();
+            $products               = Product::paginate(5);
+            $categoriesTree         = Category::getTreeHP();
+            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
+            $shoppingListsCount     = count($shoppingLists);
+            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
+                ->selectRaw('count(*) as total, name, price, quantity')
+                ->get();
+            $totalAmount = null;
+
+            $data = [
+                'loggedUser'            => $loggedUser,
+                'brands'                => $brands,
+                'products'              => $products,
+                'countries'             => $countries,
+                'categoriesTree'        => $categoriesTree,
+                'categories'            => $categories,
+                'shoppingLists'         => $shoppingLists,
+                'shoppingListsCount'    => $shoppingListsCount,
+                'userLists'             => $userLists,
+                'totalAmount'           => $totalAmount
+            ];
+
+            return view('frontend.editUserInfo')->with($data);
+        }
+    }
+
+
+
+
 }

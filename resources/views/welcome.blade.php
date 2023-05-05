@@ -133,14 +133,14 @@
                                         class="fa fa-user pr-10"></i>{{Auth::user()->firstName}}
                                 </button>
 
-                                <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                                <ul class="dropdown-menu dropdown-animation">
                                     <ul class="menu">
-                                        <li ><a href=""><i class="icon-home pr-10"></i>Account Details</a></li>
-                                        <li ><a href=""><i class="icon-suitcase pr-10"></i>Orders History</a></li>
+                                        <li ><a href="{{route('frontend.details')}}"><i class="icon-list"></i> Account Details</a></li>
+                                        <li ><a href=""><i class="icon-bag"></i> Orders History</a></li>
                                         <li ><a  href="{{ route('logout') }}"
                                                  onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
-                                                <i class="icon-home pr-10"></i>{{ __('Logout') }}
+                                                <i class="icon-logout"></i> {{ __('Logout') }}
                                             </a><form id="logout-form" action="{{ route('logout') }}" method="POST">
                                                 @csrf
                                             </form></li>

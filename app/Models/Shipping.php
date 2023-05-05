@@ -21,7 +21,9 @@ class Shipping extends Model
         'city',
         'zipcode',
         'user_id',
-        'info'
+        'info',
+        'company',
+        'taxNumber'
     ];
 
 

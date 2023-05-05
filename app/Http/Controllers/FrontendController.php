@@ -7,10 +7,13 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Country;
 use App\Models\Product;
+use App\Models\Shipping;
 use App\Models\ShoppingCart;
 use App\Models\Volume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use function PHPUnit\Framework\isEmpty;
 
 class FrontendController extends Controller
 {
@@ -666,34 +669,55 @@ class FrontendController extends Controller
     {
         if (isset(Auth::user()->id)) {
 
-            $user                   = Auth::user()->id;
-            $loggedUser             = Auth::user();
-            $brands                 = Brand::all();
-            $countries              = Country::all();
-            $categories             = Category::all();
-            $products               = Product::paginate(5);
-            $categoriesTree         = Category::getTreeHP();
-            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount     = count($shoppingLists);
-            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
+            $user = Auth::user()->id;
+            $loggedUser = Auth::user();
+            $brands = Brand::all();
+            $countries = Country::all();
+            $categories = Category::all();
+            $products = Product::paginate(5);
+            $categoriesTree = Category::getTreeHP();
+            $shoppingLists = ShoppingCart::where('user_id', $user)->get();
+            $shoppingListsCount = count($shoppingLists);
+            $userLists = ShoppingCart::groupBy('name', 'price', 'quantity')
                 ->selectRaw('count(*) as total, name, price, quantity')
                 ->get();
             $totalAmount = null;
+            $shippingDetails = Shipping::where('user_id', $user)->get();
+            $detailsCount = count($shippingDetails);
+            $details = Shipping::where('user_id', $user)->first();
 
-            $data = [
-                'loggedUser'            => $loggedUser,
-                'brands'                => $brands,
-                'products'              => $products,
-                'countries'             => $countries,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
+            if ( $detailsCount === 0 ) {
 
-            return view('frontend.userInfo')->with($data);
+                $data = [
+                    'loggedUser' => $loggedUser,
+                    'brands' => $brands,
+                    'products' => $products,
+                    'countries' => $countries,
+                    'categoriesTree' => $categoriesTree,
+                    'categories' => $categories,
+                    'shoppingLists' => $shoppingLists,
+                    'shoppingListsCount' => $shoppingListsCount,
+                    'userLists' => $userLists,
+                    'totalAmount' => $totalAmount
+                ];
+
+                return view('frontend.editUserInfo')->with($data);
+            } else {
+                $data = [
+                    'loggedUser' => $loggedUser,
+                    'brands' => $brands,
+                    'products' => $products,
+                    'countries' => $countries,
+                    'categoriesTree' => $categoriesTree,
+                    'categories' => $categories,
+                    'shoppingLists' => $shoppingLists,
+                    'shoppingListsCount' => $shoppingListsCount,
+                    'userLists' => $userLists,
+                    'totalAmount' => $totalAmount,
+                    'details' => $details
+                ];
+                return view('frontend.userInfo')->with($data);
+            }
         }
     }
 
@@ -710,10 +734,11 @@ class FrontendController extends Controller
             $categoriesTree         = Category::getTreeHP();
             $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
             $shoppingListsCount     = count($shoppingLists);
-            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
+            $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity')
                 ->selectRaw('count(*) as total, name, price, quantity')
                 ->get();
             $totalAmount = null;
+
 
             $data = [
                 'loggedUser'            => $loggedUser,
@@ -732,7 +757,70 @@ class FrontendController extends Controller
         }
     }
 
+    public function storeDetails(Request $request)
+    {
 
+        $company            = $request->get('company');
+        $taxNumber          = $request->get('taxNumber');
+        $firstName          = $request->get('firstName');
+        $lastName           = $request->get('lastName');
+        $phoneNumber        = $request->get('phoneNumber');
+        $email              = $request->get('email');
+        $address            = $request->get('address');
+        $country_id         = $request->get('country_id');
+        $city               = $request->get('city');
+        $zipcode            = $request->get('zipcode');
+        $user               = Auth::user()->id;
+        $loggedUser         = Auth::user();
 
+        $shippingDetails = Shipping::where('user_id', $user)->get();
+        $detailsCount = count($shippingDetails);
 
+        if ( $detailsCount === 0 ) {
+
+            Shipping::create([
+                'company'           => $company,
+                'taxNumber'         => $taxNumber,
+                'firstName'         => $firstName,
+                'lastName'          => $lastName,
+                'phoneNumber'       => $phoneNumber,
+                'email'             => $email,
+                'address'           => $address,
+                'country_id'        => $country_id,
+                'city'              => $city,
+                'zipcode'           => $zipcode,
+                'user_id'           => $user,
+
+            ]);
+        };
+
+        $brands                 = Brand::all();
+        $volumes                = Volume::all();
+        $categories             = Category::all();
+        $products               = Product::paginate(12);
+        $categoriesTree         = Category::getTreeHP();
+        $countries              = Country::all();
+        $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
+        $shoppingListsCount     = count($shoppingLists);
+        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity')
+            ->selectRaw('count(*) as total, name, price, quantity')
+            ->get();
+        $totalAmount            = null;
+
+        $data = [
+            'products'              => $products,
+            'categoriesTree'        => $categoriesTree,
+            'brands'                => $brands,
+            'categories'            => $categories,
+            'volumes'               => $volumes,
+            'countries'             => $countries,
+            'shoppingLists'         => $shoppingLists,
+            'shoppingListsCount'    => $shoppingListsCount,
+            'userLists'             => $userLists,
+            'totalAmount'           => $totalAmount,
+            'loggedUser'            => $loggedUser
+        ];
+
+        return view('frontend.userInfo')->with($data);
+    }
 }

@@ -54,14 +54,8 @@
 <!-- "gradient-background-header": applies gradient background to header -->
 <!-- "page-loader-1 ... page-loader-6": add a page loader to the page (more info @components-page-loaders.html) -->
 <body class="no-trans front-page">
-<!-- scrollToTop -->
-<!-- ================ -->
 <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
-<!-- page wrapper start -->
-<!-- ================ -->
 <div class="page-wrapper">
-    <!-- header-container start -->
-    <!-- header-container start -->
     <div class="header-container">
         <div class="header-top dark">
             <div class="container">
@@ -102,29 +96,6 @@
                         </div>
                     </div>
                     <div class="col-xs-9 col-sm-6 col-md-3">
-                        <!--
-                        <div id="header-top-second" class="clearfix">
-                            <div class="header-top-dropdown text-right">
-                                <div class="btn-group">
-                                    <?php if (isset(Auth::user()->firstName)) { ?>
-                            <a href="{{route('login')}}"
-                                       class="btn btn-default btn-sm">{{Auth::user()->firstName}}</a>
-                                    <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                        </form>
-<?php } else { ?>
-                            <a href="{{route('login')}}" class="btn btn-default btn-sm">Login</a>
-                                    <a href="{{route('register')}}"
-                                       class="btn btn-default btn-sm">Register</a> <?php } ?>
-                            </div>
-                        </div>
-                    </div>
--->
                         <div class="header-top-dropdown text-right" style="padding-top: 5px">
                             <?php if (isset(Auth::user()->firstName)) { ?>
                             <div class="btn-group dropdown">
@@ -132,40 +103,24 @@
                                         data-toggle="dropdown"><i
                                         class="fa fa-user pr-10"></i>{{Auth::user()->firstName}}
                                 </button>
-
                                 <ul class="dropdown-menu dropdown-animation">
                                     <ul class="menu">
-                                        <li ><a href="{{route('frontend.details')}}"><i class="icon-list"></i> Account Details</a></li>
-                                        <li ><a href=""><i class="icon-bag"></i> Orders History</a></li>
-                                        <li ><a  href="{{ route('logout') }}"
-                                                 onclick="event.preventDefault();
+                                        <li><a href="{{route('frontend.details')}}"><i class="icon-list"></i> Account
+                                                Details</a></li>
+                                        <li><a href=""><i class="icon-bag"></i> Orders History</a></li>
+                                        <li><a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
                                                 <i class="icon-logout"></i> {{ __('Logout') }}
-                                            </a><form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                                 @csrf
-                                            </form></li>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </ul>
                             </div>
-
-<!--
-                            <div class="btn-group">
-                                <a href="" class="btn btn-default btn-sm"><i
-                                        class="fa fa-user pr-10"></i>{{Auth::user()->firstName}}</a>
-                            </div>
-                            <div class="btn-group">
-                                <a class="btn btn-default btn-sm" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                </form>
-                            </div>
-                            -->
                             <?php } else { ?>
-
                             <div class="btn-group dropdown">
                                 <button type="button" class="btn dropdown-toggle btn-default btn-sm"
                                         data-toggle="dropdown"><i class="fa fa-lock pr-10"></i> Login
@@ -206,8 +161,6 @@
                                 </ul>
                             </div>
                             <?php } ?>
-
-
                         </div>
                     </div>
                 </div>
@@ -263,8 +216,6 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                            <!-- main-menu end -->
-                                            <!-- header dropdown buttons -->
                                             <div class="header-dropdown-buttons hidden-xs ">
                                                 <div class="btn-group dropdown">
                                                     <button type="button" class="btn dropdown-toggle"
@@ -292,9 +243,7 @@
                                                             class="icon-basket-1"></i><span
                                                             class="cart-count default-bg">{{ count((array) session('cart')) }}</span>
                                                     </button>
-
                                                     <ul class="dropdown-menu dropdown-menu-right dropdown-animation cart">
-
                                                         <li>
                                                             <table class="table table-hover">
                                                                 <thead>
@@ -341,7 +290,6 @@
                                                             </table>
                                                         </li>
                                                     </ul>
-
                                                 </div>
                                                 <?php } else { ?>
                                                 <div class="btn-group dropdown">
@@ -382,17 +330,10 @@
             </div>
         </header>
     </div>
-    <!-- header-container end -->
-
     <div id="page-start"></div>
 
-
-    <!-- MAIN CONTENT -->
     @yield('content')
-    <!-- MAIN CONTENT END -->
 
-
-    <!-- section start -->
     <section class="section dark-bg" style="background-position: 50% 52%;">
         <div class="container">
             <div class="row">
@@ -412,9 +353,6 @@
             </div>
         </div>
     </section>
-    <!-- section end -->
-
-    <!-- footer start (Add "dark" class to #footer in order to enable dark footer) -->
     <footer id="footer" class="clearfix">
         <div class="container">
             <div class="footer-inner">
@@ -481,12 +419,8 @@
             </div>
         </div>
     </footer>
-    <!-- footer end -->
-
 </div>
-<!-- page-wrapper end -->
 
-<!-- JavaScript files placed at the end of the document so the pages load faster -->
 <!-- Jquery and Bootstap core js files -->
 <script type="text/javascript" src="/assets/frontend/plugins/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/frontend/bootstrap/js/bootstrap.min.js"></script>
@@ -519,12 +453,20 @@
 <script type="text/javascript" src="/assets/frontend/js/template.js"></script>
 <!-- Custom Scripts -->
 <script type="text/javascript" src="/assets/frontend/js/custom.js"></script>
-
 <script>
-    function alertLogin() {
-        alert("Login to make an order!");
+        function onSelectChangeHandler() {
+        let val = document.getElementById("type").value;
+        switch (val) {
+        case "private":
+        document.getElementById("companyTax").style.display = "none";
+        document.getElementById("companyName").style.display = "none";
+        break;
+        case "company":
+        document.getElementById("companyTax").style.display = "block";
+        document.getElementById("companyName").style.display = "block";
+        break;
+    }
     }
 </script>
-
 </body>
 </html>

@@ -23,7 +23,8 @@ class Shipping extends Model
         'user_id',
         'info',
         'company',
-        'taxNumber'
+        'taxNumber',
+        'type'
     ];
 
 

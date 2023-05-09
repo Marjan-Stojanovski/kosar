@@ -26,6 +26,7 @@ return array(
     'App\\Http\\Controllers\\ReferentsController' => $baseDir . '/app/Http/Controllers/ReferentsController.php',
     'App\\Http\\Controllers\\ServicesController' => $baseDir . '/app/Http/Controllers/ServicesController.php',
     'App\\Http\\Controllers\\SettingsControler' => $baseDir . '/app/Http/Controllers/SettingsControler.php',
+    'App\\Http\\Controllers\\ShippingController' => $baseDir . '/app/Http/Controllers/ShippingController.php',
     'App\\Http\\Controllers\\ShoppingCartController' => $baseDir . '/app/Http/Controllers/ShoppingCartController.php',
     'App\\Http\\Controllers\\SliderController' => $baseDir . '/app/Http/Controllers/SliderController.php',
     'App\\Http\\Controllers\\StaticPagesController' => $baseDir . '/app/Http/Controllers/StaticPagesController.php',

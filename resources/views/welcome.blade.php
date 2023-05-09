@@ -454,18 +454,18 @@
 <!-- Custom Scripts -->
 <script type="text/javascript" src="/assets/frontend/js/custom.js"></script>
 <script>
-        function onSelectChangeHandler() {
+    function onSelectChangeHandler() {
         let val = document.getElementById("type").value;
         switch (val) {
-        case "private":
-        document.getElementById("companyTax").style.display = "none";
-        document.getElementById("companyName").style.display = "none";
-        break;
-        case "company":
-        document.getElementById("companyTax").style.display = "block";
-        document.getElementById("companyName").style.display = "block";
-        break;
-    }
+            case "private":
+                document.getElementById("companyPrivate").style.display = "block";
+                document.getElementById("companyCompany").style.display = "none";
+                break;
+            case "company":
+                document.getElementById("companyPrivate").style.display = "none";
+                document.getElementById("companyCompany").style.display = "block";
+                break;
+        }
     }
 </script>
 </body>

@@ -157,11 +157,8 @@ Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController:
 //Frontend-routes
 Route::get('/details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
 Route::post('/details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
-
-
-Route::get('/edit-details', [App\Http\Controllers\ShippingController::class, 'editDetails'])->name('frontend.editDetails');
-
-
+Route::get('/details/{details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
+Route::put('/details/{details}', [App\Http\Controllers\ShippingController::class, 'updateDetails'])->name('frontend.updateDetails');
 Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
 Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
@@ -169,7 +166,7 @@ Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop']
 Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
 Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
 Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
-Route::get('/{product}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
+Route::get('/products/{product}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
 Route::get('/categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
 Route::get('/brands/{brand}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');

@@ -11,6 +11,7 @@ use App\Models\ShoppingCart;
 use App\Models\Volume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Constraint\Count;
 
 class ShippingController extends Controller
 {
@@ -126,41 +127,62 @@ class ShippingController extends Controller
     }
 
 
-    public function editDetails()
+    public function showDetails($id)
     {
-        if (isset(Auth::user()->id)) {
-
-            $user = Auth::user()->id;
-            $loggedUser = Auth::user();
-            $brands = Brand::all();
-            $countries = Country::all();
-            $categories = Category::all();
-            $products = Product::paginate(5);
-            $categoriesTree = Category::getTreeHP();
-            $shoppingLists = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $totalAmount = null;
+        $user = Auth::user()->id;
+        $loggedUser = Auth::user();
+        $details = Shipping::FindorFail($id);
+        $countries = Country::all();
+        $categoriesTree = Category::getTreeHP();
+        $shoppingLists = ShoppingCart::where('user_id', $user)->get();
+        $shoppingListsCount = count($shoppingLists);
+        $userLists = ShoppingCart::groupBy('name', 'price', 'quantity')
+            ->selectRaw('count(*) as total, name, price, quantity')
+            ->get();
+        $totalAmount = null;
 
 
-            $data = [
-                'loggedUser' => $loggedUser,
-                'brands' => $brands,
-                'products' => $products,
-                'countries' => $countries,
-                'categoriesTree' => $categoriesTree,
-                'categories' => $categories,
-                'shoppingLists' => $shoppingLists,
-                'shoppingListsCount' => $shoppingListsCount,
-                'userLists' => $userLists,
-                'totalAmount' => $totalAmount
-            ];
+        $data = [
+            'loggedUser' => $loggedUser,
+            'countries' => $countries,
+            'categoriesTree' => $categoriesTree,
+            'shoppingLists' => $shoppingLists,
+            'shoppingListsCount' => $shoppingListsCount,
+            'userLists' => $userLists,
+            'totalAmount' => $totalAmount,
+            'details' => $details
+        ];
 
-            return view('frontend.editUserInfo')->with($data);
-        }
+        return view('frontend.updateUserInfo')->with($data);
     }
 
+    public function updateDetails(Request $request, $id)
+    {
+        $user = Auth::user()->id;
+        $loggedUser = Auth::user();
+        $categoriesTree = Category::getTreeHP();
+        $shoppingLists = ShoppingCart::where('user_id', $user)->get();
+        $shoppingListsCount = count($shoppingLists);
+        $userLists = ShoppingCart::groupBy('name', 'price', 'quantity')
+            ->selectRaw('count(*) as total, name, price, quantity')
+            ->get();
+        $totalAmount = null;
 
+        $details = Shipping::FindorFail($id);
+        $input = $request->all();
+        $details->fill($input)->save();
+
+
+        $data = [
+            'loggedUser' => $loggedUser,
+            'categoriesTree' => $categoriesTree,
+            'shoppingLists' => $shoppingLists,
+            'shoppingListsCount' => $shoppingListsCount,
+            'userLists' => $userLists,
+            'totalAmount' => $totalAmount,
+            'details' => $details
+        ];
+
+        return view('frontend.userInfo')->with($data);
+    }
 }

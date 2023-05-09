@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="main col-md-12">
-                    <h1 class="page-title">Frequently Asked Questions</h1>
+                    <h1 class="page-title">User Profile</h1>
                     <div class="separator-2"></div>
                     <ul class="nav nav-tabs style-1" role="tablist">
                         <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><i class="fa fa-user pr-10"></i>User Info</a>
@@ -96,7 +96,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-start"><strong>Country</strong></td>
-                                            <td class="text-start">{{$details->country_id}}</td>
+                                            <td class="text-start">{{$details->country->name}}</td>
                                         </tr>
                                         <?php
                                             } else {
@@ -131,7 +131,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-start"><strong>Country</strong></td>
-                                            <td class="text-start">{{$details->country_id}}</td>
+                                            <td class="text-start">{{$details->country->name}}</td>
                                         </tr>
                                         <?php
                                         }
@@ -141,7 +141,7 @@
                                 </div>
 
                                 <div class="text-right">
-                                    <a class="btn btn-warning" href="{{route('frontend.editDetails')}}">Change your
+                                    <a class="btn btn-warning" href="{{route('frontend.showDetails', $details->id)}}">Change your
                                         info</a>
                                 </div>
                             </div>

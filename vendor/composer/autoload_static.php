@@ -597,6 +597,7 @@ class ComposerStaticInit1142f306b01967a2445680525560b90b
         'App\\Http\\Controllers\\ReferentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReferentsController.php',
         'App\\Http\\Controllers\\ServicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServicesController.php',
         'App\\Http\\Controllers\\SettingsControler' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingsControler.php',
+        'App\\Http\\Controllers\\ShippingController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShippingController.php',
         'App\\Http\\Controllers\\ShoppingCartController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShoppingCartController.php',
         'App\\Http\\Controllers\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/SliderController.php',
         'App\\Http\\Controllers\\StaticPagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/StaticPagesController.php',

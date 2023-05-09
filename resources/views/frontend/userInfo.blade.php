@@ -43,9 +43,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="text-right">
-                                    <a class="btn btn-warning" href="">Edit your info</a>
-                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab2">
@@ -58,13 +55,16 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                            if(!empty($details->company)) {
+                                                ?>
                                         <tr>
                                             <td class="text-start"><strong>Company Name</strong></td>
-                                            <td class="text-start"></td>
+                                            <td class="text-start">{{$details->company}}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-start"><strong>Company Tax Number</strong></td>
-                                            <td class="text-start"></td>
+                                            <td class="text-start">{{$details->taxNumber}}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-start"><strong>First Name</strong></td>
@@ -98,12 +98,50 @@
                                             <td class="text-start"><strong>Country</strong></td>
                                             <td class="text-start">{{$details->country_id}}</td>
                                         </tr>
+                                        <?php
+                                            } else {
+                                                ?>
+                                        <tr>
+                                            <td class="text-start"><strong>First Name</strong></td>
+                                            <td class="text-start">{{$details->firstName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>Last Name</strong></td>
+                                            <td class="text-start">{{$details->lastName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>Phone Number</strong></td>
+                                            <td class="text-start">{{$details->phoneNumber}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>Email</strong></td>
+                                            <td class="text-start">{{$details->email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>Address</strong></td>
+                                            <td class="text-start">{{$details->address}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>City</strong></td>
+                                            <td class="text-start">{{$details->city}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>ZIP</strong></td>
+                                            <td class="text-start">{{$details->zipcode}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start"><strong>Country</strong></td>
+                                            <td class="text-start">{{$details->country_id}}</td>
+                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
 
                                 <div class="text-right">
-                                    <a class="btn btn-warning" href="{{route('frontend.editDetails')}}">Edit your
+                                    <a class="btn btn-warning" href="{{route('frontend.editDetails')}}">Change your
                                         info</a>
                                 </div>
                             </div>

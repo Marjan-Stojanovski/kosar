@@ -20,7 +20,7 @@
                 <!-- main start -->
                 <!-- ================ -->
                 <div class="main col-md-12">
-                    <h2 class="title text-center">Edit user info</h2>
+                    <p class="title text-center" style="font-size: 25px; color: black">Enter user details</p>
                     <div class="separator"></div>
                     <br>
                     <form class="form-horizontal" action="{{route('frontend.storeDetails')}}" method="POST">

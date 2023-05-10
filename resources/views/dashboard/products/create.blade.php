@@ -69,12 +69,12 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label for="user_id" class="form-label">Улога</label>
+                                            <label for="user_id" class="form-label">Креатор</label>
                                             <!--select-->
                                             <select name="user_id" id="user_id"
                                                     class="form-control @error('user_id') is-invalid @enderror">
                                                 @foreach($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}">{{ $user->firstName }} {{ $user->lastName }}</option>
                                                 @endforeach
                                                 @error('user_id')
                                                 <span class="invalid-feedback" role="alert">

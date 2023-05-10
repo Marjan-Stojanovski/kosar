@@ -64,7 +64,19 @@
                     <div class=" p-20 bordered clearfix">
                         <span class="product price">{{$product->price}}&nbsp;€</span>
                         <div class="product elements-list pull-right clearfix">
-                            <input type="submit" value="Add to Cart" class="margin-clear btn btn-default">
+                            <form action="{{ route('add.to.cart')}}" method="POST"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1">Quantity
+                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                <input type="hidden" value="{{ $product->title }}" name="title">
+                                <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                                <input type="hidden" value="{{ $product->action }}" name="price">
+                                <input type="hidden" value="{{ $product->image }}" name="image">
+                                <button type="submit"
+                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                    Add<i class="fa fa-shopping-cart"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>

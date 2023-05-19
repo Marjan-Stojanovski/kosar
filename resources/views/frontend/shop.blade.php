@@ -41,138 +41,142 @@
                     <br>
                     <!-- sidebar start -->
                     <aside class="col-md-3 ">
-                        <div class="sidebar">
-                            <h3 class="title">Filteri</h3>
-                        </div>
-                        <br>
-
-
-                        <h6 class="title">By Category </h6>
-
-
-                        <div class="filter-content collapse show" id="collapse44">
-                            <form action="{{ route('frontend.shop') }}" method="GET">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Category
-                                            <button type="submit" class="btn btn-primary btn-sm text-end">Show</button>
-                                        </h5>
+                        <form action="{{ route('frontend.shop') }}" method="GET">
+                            <div class="sidebar">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3 class="title">Filteri</h3>
                                     </div>
-                                    <div class="card-body">
-                                        @foreach($categories as $category)
-                                            <?php
-                                            $checked = [];
-                                            if (isset($_GET['category']))
-                                            {
-                                                $checked = $_GET['category'];
-                                            }
-                                            ?>
-                                            <div class="mb-1">
-                                                <input type="checkbox" name="category[]"
-                                                       value="{{ $category->id }}"
-                                                @if(in_array($category->id, $checked)) checked  @endif
-                                                />
-                                                {{ $category->name }}
-                                            </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseOne" aria-expanded="false"
-                                           aria-controls="collapseOne">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
-                                               style="color: black"></i> Kategorija
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingOne">
-                                    <div class="panel-body">
-                                        <ul class="nav nav-pills nav-stacked">
-                                            @foreach($categories as $category)
-                                                <li><input type="checkbox"> {{$category->name}}</li>
-                                            @endforeach
-                                        </ul>
+                                    <div class="col-md-6 text-right">
+                                        <button type="submit" class="btn btn-primary btn-sm text-end">Show</button>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" role="button" data-toggle="collapse"
-                                           data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                                           aria-controls="collapseTwo">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
-                                               style="color: black"></i> Brand
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <ul class="nav nav-pills nav-stacked">
-                                            @foreach($brands as $brand)
-                                                <li><input type="checkbox"> {{$brand->name}}</li>
-                                            @endforeach
-                                        </ul>
+
+                            <div class="panel-group" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed"
+                                               data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                                               aria-controls="collapseOne">
+                                                Kategorija
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="" role="tabpanel"
+                                         aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <ul class="nav nav-pills nav-stacked list-group">
+                                                @foreach($categories as $category)
+                                                        <?php
+                                                        $checked = [];
+                                                        if (isset($_GET['category'])) {
+                                                            $checked = $_GET['category'];
+                                                        }
+                                                        ?>
+                                                    <div class="mb-1">
+                                                        <input type="checkbox" name="category[]"
+                                                               value="{{ $category->id }}"
+                                                               @if(in_array($category->id, $checked)) checked @endif
+                                                        />
+                                                        {{ $category->name }}
+                                                    </div>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
-                                               style="color: black"></i> Volumen
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingThree">
-                                    <div class="panel-body">
-                                        <ul class="nav nav-pills nav-stacked">
-                                            @foreach($volumes as $volume)
-                                                <li><input type="checkbox"> {{$volume->volume}}</li>
-                                            @endforeach
-                                        </ul>
+                                <br>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed"
+                                               data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                                               aria-controls="collapseTwo">
+                                                Brand
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="" role="tabpanel"
+                                         aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            <ul class="nav nav-pills nav-stacked list-group">
+                                                @foreach($brands as $brand)
+                                                        <?php
+                                                        $checked = [];
+                                                        if (isset($_GET['brand'])) {
+                                                            $checked = $_GET['brand'];
+                                                        }
+                                                        ?>
+                                                    <li><input type="checkbox" name="brand[]" value="{{ $brand->id }}"
+                                                               @if(in_array($brand->id, $checked)) checked @endif
+                                                        /> {{$brand->name}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingFour">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                            <i class="fs-2 text-primary d-block mb-2 bi bi-arrow-down-short"
-                                               style="color: black"></i> Drzava
-                                        </a>
-                                    </h4>
+                                <br>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke">
+                                        <h4 class="panel-title">
+                                            <a role="button"
+                                               href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                                Volumen
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="" role="tabpanel"
+                                         aria-labelledby="headingThree">
+                                        <div class="panel-body">
+                                            <ul class="nav nav-pills nav-stacked list-group">
+                                                @foreach($volumes as $volume)
+                                                        <?php
+                                                        $checked = [];
+                                                        if (isset($_GET['volume'])) {
+                                                            $checked = $_GET['volume'];
+                                                        }
+                                                        ?>
+                                                    <li><input type="checkbox" name="volume[]" value="{{ $volume->id }}"
+                                                               @if(in_array($volume->id, $checked)) checked @endif
+                                                        /> {{$volume->volume}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingFour">
+                                <br>
+                                <div class="panel panel-default" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
+                                    <div class="panel-heading"
+                                         style="background-color: #0c9ec7; color: whitesmoke; border-radius: 30px">
+                                        <h4 class="panel-title">
+                                            <a role="button"
+                                               href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                                Drzava
+                                            </a>
+                                        </h4>
+                                    </div>
                                     <div class="panel-body">
-                                        <ul class="nav nav-pills nav-stacked">
+                                        <ul class="nav nav-pills nav-stacked list-group">
                                             @foreach($countries as $country)
-                                                <li><input type="checkbox"> {{$country->name}}</li>
+                                                    <?php
+                                                    $checked = [];
+                                                    if (isset($_GET['country'])) {
+                                                        $checked = $_GET['country'];
+                                                    }
+                                                    ?>
+                                                <li><input type="checkbox" name="country[]"
+                                                           value="{{ $volume->id }}"
+                                                           @if(in_array($country->id, $checked)) checked @endif
+                                                    /> {{$country->name}}</li>
                                             @endforeach
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </aside>
                     <!-- sidebar end -->
                     <div class="col-md-9 ">

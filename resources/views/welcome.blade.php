@@ -46,6 +46,12 @@
     <link href="/assets/frontend/css/skins/light_blue.css" rel="stylesheet">
     <!-- Custom css -->
     <link href="/assets/frontend/css/custom.css" rel="stylesheet">
+    <style>
+        .list-group{
+            max-height: 200px;
+            overflow:auto;
+        }
+    </style>
 </head>
 <!-- body classes:  -->
 <!-- "boxed": boxed layout mode e.g. <body class="boxed"> -->

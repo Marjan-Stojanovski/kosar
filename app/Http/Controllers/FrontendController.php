@@ -381,13 +381,37 @@ class FrontendController extends Controller
 
         } else {
 
-            $checked = $_GET['category'];
 
 
-            if (isset($checked)) {
 
+            if (!empty($_GET)) {
+                if (isset($_GET['category'])) {
+                    $category = $_GET['category'];
+                } else {
+                    $category = [];
+                }
+                if (isset($_GET['brand'])) {
+                    $brand = $_GET['brand'];
+                } else {
+                    $brand = [];
+                }
+                if (isset($_GET['volume'])) {
+                    $volume = $_GET['volume'];
+                } else {
+                    $volume = [];
+                }
+                if (isset($_GET['country'])) {
+                    $country = $_GET['country'];
+                } else {
+                    $country = [];
+                }
 
-                $products               = Product::whereIn('category_id', $checked)->paginate(12);
+                $products               = Product::whereIn('category_id', $category)->orWhereNull('category_id')
+                                                ->orwhereIn('brand_id', $brand)->orWhereNull('brand_id')
+                                                ->orwhereIn('volume_id', $volume)->orWhereNull('volume_id')
+                                              //  ->orwhereIn('country_id', $country)->orWhereNull('country_id')
+                                                ->paginate(12);
+
 
             } else {
                 $products               = Product::paginate(12);

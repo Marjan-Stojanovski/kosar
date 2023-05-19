@@ -22,7 +22,7 @@
                     <div class="main object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
                         <div class="form-block center-block p-30 light-gray-bg border-clear">
                             <h2 class="title">Login</h2>
-                                <form class="form-horizontal" method="POST" action="{{ route('login.custom') }}">
+                                <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                     @csrf
                                 <div class="form-group has-feedback">
                                     <label for="inputUserName" class="col-sm-3 control-label">User Name</label>

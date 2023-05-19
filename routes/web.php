@@ -163,6 +163,7 @@ Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'
 Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
 Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
+Route::post('/category', [App\Http\Controllers\FrontendController::class, 'filter'])->name('frontend.shopFilter');
 Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
 Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
 Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');

@@ -348,6 +348,7 @@ class FrontendController extends Controller
 
     public function shop()
     {
+
         if (isset(Auth::user()->id)) {
             $user                   = Auth::user()->id;
             $brands                 = Brand::all();
@@ -380,10 +381,22 @@ class FrontendController extends Controller
 
         } else {
 
+            $checked = $_GET['category'];
+
+
+            if (isset($checked)) {
+
+
+                $products               = Product::whereIn('category_id', $checked)->paginate(12);
+
+            } else {
+                $products               = Product::paginate(12);
+            }
+
+            $test = null;
             $brands             = Brand::all();
             $volumes            = Volume::all();
             $categories         = Category::all();
-            $products           = Product::paginate(12);
             $categoriesTree     = Category::getTreeHP();
             $countries          = Country::all();
 
@@ -393,7 +406,8 @@ class FrontendController extends Controller
                 'brands'            => $brands,
                 'categories'        => $categories,
                 'volumes'           => $volumes,
-                'countries'         => $countries
+                'countries'         => $countries,
+                'test' => $test
             ];
 
             return view('frontend.shop')->with($data);
@@ -665,5 +679,41 @@ class FrontendController extends Controller
         }
     }
 
+    public function filter(Request $request)
+    {
+        $temp= implode(',', $request->category_id);
+
+        $test = null;
+        $test = $request->get('category_id');
+        $test1 = $request->get('test');
+$products = null;
+        for ($i = 0; $i < strlen($temp); $i++)
+        {
+            $products[$i] = Product::where('category_id', $temp[$i])->paginate(5);
+
+
+
+        }
+
+
+        $brands                     = Brand::all();
+        $categories                 = Category::all();
+        $countries                  = Country::all();
+        $volumes                = Volume::all();
+        $categoriesTree             = Category::getTreeHP();
+
+        $data = [
+            'test' => $test,
+
+            'brands'                => $brands,
+            'products'              => $products,
+            'countries'             => $countries,
+            'categoriesTree'        => $categoriesTree,
+            'categories'            => $categories,
+            'volumes' => $volumes
+        ];
+
+        return view('frontend.shop')->with($data);
+    }
 
 }

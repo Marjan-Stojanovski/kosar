@@ -36,109 +36,52 @@
                             </div>
                         @endif
                     </div>
-                    <div class="main col-md-8 col-lg-offset-1 col-md-push-4 col-lg-push-3">
-                        <h1 class="page-title text-center">Blog Left Sidebar</h1>
-                        <div class="separator-2"></div>
-                        <div class="col-md-12">
-                            <div class="tab-content clear-style">
-                                <div class="tab-pane active" id="pill-1">
-                                    <div class="row masonry-grid-fitrows grid-space-10">
-                                        @foreach($products as $product)
-                                                <?php
-                                            if (isset($product->action)) { ?>
-                                            <div class="col-md-4 col-sm-6 masonry-grid-item">
-                                                <div class="listing-item white-bg bordered mb-20">
-                                                    <div class="overlay-container">
-                                                        <img src="/assets/img/products/thumbnails/{{$product->image}}"
-                                                             alt="">
-                                                        <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
-                                                        <div class="overlay-to-top links">
-														<span class="small">
-															<a href="{{route('frontend.productView', $product->id)}}"
-                                                               class="btn-sm-link"><i
-                                                                    class="icon-link pr-5"></i>View Details</a>
-														</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="body">
-                                                        <h3>
-                                                            <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
-                                                        </h3>
-                                                        <p class="small"> {{strip_tags($product->brand->name)}}</p>
-                                                        <div class="elements-list clearfix">
-                                                            <span style="color: red;"><del> €{{$product->price}}</del></span>
-                                                            <span class="price"> &nbsp;€{{$product->action}}</span>
-                                                            <form action="{{ route('add.to.cart')}}" method="POST"
-                                                                  enctype="multipart/form-data">
-                                                                @csrf
-                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-                                                                <input type="hidden" value="{{ $product->id }}" name="id">
-                                                                <input type="hidden" value="{{ $product->title }}" name="title">
-                                                                <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                                                <input type="hidden" value="{{ $product->action }}" name="price">
-                                                                <input type="hidden" value="{{ $product->image }}" name="image">
-                                                                <button type="submit"
-                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                                                    Add<i class="fa fa-shopping-cart"></i></button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php } else { ?>
-                                            <div class="col-md-4 col-sm-6 masonry-grid-item">
-                                                <div class="listing-item white-bg bordered mb-20">
-                                                    <div class="overlay-container">
-                                                        <img class="img-responsive" src="/assets/img/products/thumbnails/{{$product->image}}"
-                                                             alt="">
-                                                        <div class="overlay-to-top links">
-														<span class="small">
-															<a href="{{route('frontend.productView', $product->id)}}"
-                                                               class="btn-sm-link"><i
-                                                                    class="icon-link pr-5"></i>View Details</a>
-														</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="body">
-                                                        <h3>
-                                                            <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
-                                                        </h3>
-                                                        <p class="small"> {{$product->brand->name}}</p>
-                                                        <div class="elements-list clearfix">
-                                                            <span class="price"> &nbsp;€{{$product->price}}</span>
-                                                            <form action="{{ route('add.to.cart')}}" method="POST">
-                                                                @csrf
-                                                                <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-                                                                <input type="hidden" value="{{ $product->id }}" name="id">
-                                                                <input type="hidden" value="{{ $product->title }}" name="title">
-                                                                <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                                                <input type="hidden" value="{{ $product->price }}" name="price">
-                                                                <input type="hidden" value="{{ $product->image }}" name="image">
-                                                                <button type="submit"
-                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                                                    Add<i class="fa fa-shopping-cart"></i></button>
-                                                            </form>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php } ?>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            {{ $products->links() }}
-                        </div>
-                    </div>
-                    <!-- main end -->
+                    <h1 class="page-title text-center">Blog Left Sidebar</h1>
+                    <br>
+                    <br>
                     <!-- sidebar start -->
-                    <aside class="col-md-3 col-lg-3 col-md-pull-8 col-lg-pull-9">
+                    <aside class="col-md-3 ">
                         <div class="sidebar">
                             <h3 class="title">Filteri</h3>
                         </div>
+                        <br>
+
+
+                        <h6 class="title">By Category </h6>
+
+
+                        <div class="filter-content collapse show" id="collapse44">
+                            <form action="{{ route('frontend.shop') }}" method="GET">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Category
+                                            <button type="submit" class="btn btn-primary btn-sm text-end">Show</button>
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        @foreach($categories as $category)
+                                            <?php
+                                            $checked = [];
+                                            if (isset($_GET['category']))
+                                            {
+                                                $checked = $_GET['category'];
+                                            }
+                                            ?>
+                                            <div class="mb-1">
+                                                <input type="checkbox" name="category[]"
+                                                       value="{{ $category->id }}"
+                                                @if(in_array($category->id, $checked)) checked  @endif
+                                                />
+                                                {{ $category->name }}
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
@@ -201,8 +144,7 @@
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($volumes as $volume)
-                                                <li><input type="checkbox"
-                                                           data-toggle="collapse">   {{$volume->volume}}</li>
+                                                <li><input type="checkbox"> {{$volume->volume}}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -224,8 +166,7 @@
                                     <div class="panel-body">
                                         <ul class="nav nav-pills nav-stacked">
                                             @foreach($countries as $country)
-                                                <li><input type="checkbox"
-                                                           data-toggle="collapse">   {{$country->name}}</li>
+                                                <li><input type="checkbox"> {{$country->name}}</li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -234,6 +175,120 @@
                         </div>
                     </aside>
                     <!-- sidebar end -->
+                    <div class="col-md-9 ">
+
+                        <div class="col-md-12">
+                            <div class="tab-content clear-style">
+                                <div class="tab-pane active" id="pill-1">
+                                    <div class="row masonry-grid-fitrows grid-space-10">
+                                        @foreach($products as $product)
+                                                <?php
+                                            if (isset($product->action)) { ?>
+                                            <div class="col-md-4 col-sm-6 masonry-grid-item">
+                                                <div class="listing-item white-bg bordered mb-20">
+                                                    <div class="overlay-container">
+                                                        <img class="img-responsive"
+                                                             style="margin-left: auto; margin-right: auto"
+                                                             src="/assets/img/products/thumbnails/{{$product->image}}"
+                                                             alt="{{$product->title}}">
+                                                        <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
+                                                        <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productView', $product->id)}}"
+                                                               class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="body">
+                                                        <h3>
+                                                            <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                                                        </h3>
+                                                        <p class="small"> {{strip_tags($product->brand->name)}}</p>
+                                                        <div class="elements-list clearfix">
+                                                            <span style="color: red;"><del> €{{$product->price}}</del></span>
+                                                            <span class="price"> &nbsp;€{{$product->action}}</span>
+                                                            <form action="{{ route('add.to.cart')}}" method="POST"
+                                                                  enctype="multipart/form-data">
+                                                                @csrf
+                                                                <input type="number" placeholder="1" name="quantity"
+                                                                       style="width: 50px" value="1"> Quantity
+                                                                <input type="hidden" value="{{ $product->id }}"
+                                                                       name="id">
+                                                                <input type="hidden" value="{{ $product->title }}"
+                                                                       name="title">
+                                                                <input type="hidden" value="{{$product->brand->name}}"
+                                                                       name="brand">
+                                                                <input type="hidden" value="{{ $product->action }}"
+                                                                       name="price">
+                                                                <input type="hidden" value="{{ $product->image }}"
+                                                                       name="image">
+                                                                <button type="submit"
+                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                                                    Add<i class="fa fa-shopping-cart"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php } else { ?>
+                                            <div class="col-md-4 col-sm-6 masonry-grid-item">
+                                                <div class="listing-item white-bg bordered mb-20">
+                                                    <div class="overlay-container">
+                                                        <img class="img-responsive"
+                                                             style="margin-left: auto; margin-right: auto"
+                                                             src="/assets/img/products/thumbnails/{{$product->image}}"
+                                                             alt="{{$product->title}}">
+                                                        <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productView', $product->id)}}"
+                                                               class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="body">
+                                                        <h3>
+                                                            <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                                                        </h3>
+                                                        <p class="small"> {{$product->brand->name}}</p>
+                                                        <div class="elements-list clearfix">
+                                                            <span class="price"> &nbsp;€{{$product->price}}</span>
+                                                            <form action="{{ route('add.to.cart')}}" method="POST">
+                                                                @csrf
+                                                                <input type="number" placeholder="1" name="quantity"
+                                                                       style="width: 50px" value="1"> Quantity
+                                                                <input type="hidden" value="{{ $product->id }}"
+                                                                       name="id">
+                                                                <input type="hidden" value="{{ $product->title }}"
+                                                                       name="title">
+                                                                <input type="hidden" value="{{$product->brand->name}}"
+                                                                       name="brand">
+                                                                <input type="hidden" value="{{ $product->price }}"
+                                                                       name="price">
+                                                                <input type="hidden" value="{{ $product->image }}"
+                                                                       name="image">
+                                                                <button type="submit"
+                                                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                                                    Add<i class="fa fa-shopping-cart"></i></button>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php } ?>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            {{ $products->links() }}
+                        </div>
+                    </div>
+                    <!-- main end -->
+
                 </div>
             </div>
         </div>

@@ -160,7 +160,7 @@
     </div>
 
     <!-- PRODUCTS Naslov-->
-    <section class="section dark-bg" style="background-position: 50% 52%;">
+    <section class="section dark-bg" style="background-position: 50% 52%;background-color: #0c9ec7">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -177,7 +177,7 @@
     </section>
     <!-- PRODUCTS Naslov End -->
     <!-- PRODUCTS AKCIJA -->
-    <section class="section clearfix">
+    <section class="section clearfix" style="background-color: forestgreen">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -276,7 +276,7 @@
                                         <div class="listing-item pl-10 pr-10 mb-20">
                                             <div class="overlay-container bordered overlay-visible">
                                                 <img src="/assets/img/brands/thumbnails/{{$brand->image}}"
-                                                     alt="">
+                                                     alt="{{$brand->name}}">
                                                 <div class="overlay-to-top links">
 														<span class="small">
 															<a href="{{$brand->weblink}}" class="btn-sm-link"><i
@@ -323,7 +323,7 @@
     </section>
     <!-- CATEGORIES Title End -->
     <!-- CATEGORIES -->
-    <section class="section clearfix">
+    <section class="section clearfix" style="background-color: yellow">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">

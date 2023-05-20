@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 col-md-6 mb-3">
+                                    <div class="col-6 col-md-3 mb-3">
                                         <div class="form-group">
                                             <!-- Label -->
                                             <label for="brand_id" class="form-label">Бренд</label>
@@ -114,6 +114,24 @@
                                                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                                 @endforeach
                                                 @error('brand_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3 mb-3">
+                                        <div class="form-group">
+                                            <!-- Label -->
+                                            <label for="country_id" class="form-label">Држава</label>
+                                            <!--select-->
+                                            <select name="country_id" id="country_id"
+                                                    class="form-control @error('country_id') is-invalid @enderror">
+                                                @foreach($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
+                                                @error('country_id')
                                                 <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>

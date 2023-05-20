@@ -55,8 +55,8 @@
                             <br>
 
                             <div class="panel-group" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke">
+                                <div class="panel panel-default" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke; border-radius: 30px">
                                         <h4 class="panel-title">
                                             <a class="collapsed"
                                                data-parent="#accordion" href="#collapseOne" aria-expanded="false"
@@ -89,8 +89,8 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke">
+                                <div class="panel panel-default" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke; border-radius: 30px">
                                         <h4 class="panel-title">
                                             <a class="collapsed"
                                                data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
@@ -119,8 +119,8 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke">
+                                <div class="panel panel-default" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke; border-radius: 30px">
                                         <h4 class="panel-title">
                                             <a role="button"
                                                href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
@@ -150,7 +150,7 @@
                                 <br>
                                 <div class="panel panel-default" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
                                     <div class="panel-heading"
-                                         style="background-color: #0c9ec7; color: whitesmoke; border-radius: 30px">
+                                         style="background-color: #0c9ec7; color: white; border-radius: 30px">
                                         <h4 class="panel-title">
                                             <a role="button"
                                                href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">

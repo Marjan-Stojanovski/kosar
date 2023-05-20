@@ -23,7 +23,8 @@ class Product extends Model
         'alcohol',
         'price',
         'action',
-        'discount'
+        'discount',
+        'country_id'
     ];
 
     public function user()
@@ -49,5 +50,9 @@ class Product extends Model
     public function comment()
     {
         return $this->belongsTo(Comment::class, 'product_id', 'id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
     }
 }

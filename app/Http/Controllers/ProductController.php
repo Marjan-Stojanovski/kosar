@@ -73,7 +73,7 @@ class ProductController extends Controller
             'volume_id'     => 'required',
             'alcohol'       => 'required',
             'price'         => 'required',
-            'county_id'     => 'required'
+            'country_id'     => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -167,7 +167,7 @@ class ProductController extends Controller
             'volume_id'     => 'required',
             'alcohol'       => 'required',
             'price'         => 'required',
-            'county_id'     => 'required'
+            'country_id'     => 'required'
         ]);
 
         if ($validator->fails()) {

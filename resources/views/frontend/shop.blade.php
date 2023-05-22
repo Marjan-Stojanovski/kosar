@@ -124,7 +124,7 @@
                                         <h4 class="panel-title">
                                             <a role="button"
                                                href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                                Volumen
+                                                Volume
                                             </a>
                                         </h4>
                                     </div>
@@ -168,7 +168,7 @@
                                                     }
                                                     ?>
                                                 <li><input type="checkbox" name="country[]"
-                                                           value="{{ $volume->id }}"
+                                                           value="{{ $country->id }}"
                                                            @if(in_array($country->id, $checked)) checked @endif
                                                     /> {{$country->name}}</li>
                                             @endforeach

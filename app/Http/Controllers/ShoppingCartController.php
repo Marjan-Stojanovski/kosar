@@ -26,7 +26,7 @@ class ShoppingCartController extends Controller
         $categoriesTree         = Category::getTreeHP();
 
         $data = [
-            'carts' => $carts,
+            'carts'                 => $carts,
             'products'              => $products,
             'brands'                => $brands,
             'categoriesTree'        => $categoriesTree,
@@ -68,16 +68,6 @@ class ShoppingCartController extends Controller
 
         return redirect()->back();
     }
-
-    //public function updateCart(Request $request)
-    //{
-    //if($request->product_id && $request->quantity){
-    //        $cart = session()->get('cart');
-    //        $cart[$request->product_id]["quantity"] = $request->quantity;
-    //        session()->put('cart', $cart);
-    //        session()->flash('success', 'Book added to cart.');
-    //    }
-    //}
 
     public function deleteProduct(Request $request, $id)
     {

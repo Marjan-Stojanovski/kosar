@@ -19,725 +19,259 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        $loggedUser = Auth::user();
+        $brands = Brand::all();
+        $categories = Category::all();
+        $products = Product::paginate(5);
+        $categoriesTree = Category::getTreeHP();
+        $discountProducts = Product::whereNotNull('discount')->paginate(5);
+        $totalAmount = null;
 
-        if (isset(Auth::user()->id)) {
+        $data = [
+            'loggedUser' => $loggedUser,
+            'brands' => $brands,
+            'products' => $products,
+            'categoriesTree' => $categoriesTree,
+            'categories' => $categories,
+            'totalAmount' => $totalAmount,
+            'discountProducts' => $discountProducts
+        ];
 
-            $user                   = Auth::user()->id;
-            $loggedUser              = Auth::user();
-            $brands                 = Brand::all();
-            $categories             = Category::all();
-            $products               = Product::paginate(5);
-            $categoriesTree         = Category::getTreeHP();
-            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount     = count($shoppingLists);
-            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
-                                    ->selectRaw('count(*) as total, name, price, quantity')
-                                    ->get();
-            $totalAmount = null;
-
-            $data = [
-                'loggedUser'            => $loggedUser,
-                'brands'                => $brands,
-                'products'              => $products,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-                ];
-
-            return view('frontend.index')->with($data);
-
-        } else {
-
-            $brands                     = Brand::all();
-            $categories                 = Category::all();
-            $products                   = Product::paginate(5);
-            $categoriesTree             = Category::getTreeHP();
-
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories
-            ];
-
-            return view('frontend.index')->with($data);
-        }
+        return view('frontend.index')->with($data);
     }
 
     public function productView($id)
     {
-        if (isset(Auth::user()->id)) {
+        $brands = Brand::all();
+        $categories = Category::all();
+        $product = Product::FindorFail($id);
+        $products = Product::paginate(5);
+        $categoriesTree = Category::getTreeHP();
+        $comments = Comment::where('product_id', $id)->get();
+        $category_id = $product['category_id'];
+        $categoryProducts = Product::where('category_id', $category_id)->get();
+        $totalAmount = null;
 
-            $user               = Auth::user()->id;
-            $brands             = Brand::all();
-            $categories         = Category::all();
-            $product            = Product::FindorFail($id);
-            $products           = Product::paginate(5);
-            $categoriesTree     = Category::getTreeHP();
-            $comments           = Comment::where('product_id', $id)->get();
-            $category_id        = $product['category_id'];
-            $categoryProducts   = Product::where('category_id', $category_id)->get();
-            $shoppingLists      = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists          = ShoppingCart::groupBy('name', 'price', 'quantity')
-                            ->selectRaw('count(*) as total, name, price, quantity')
-                            ->get();
-            $totalAmount        = null;
+        $data = [
+            'brands' => $brands,
+            'categories' => $categories,
+            'product' => $product,
+            'products' => $products,
+            'categoriesTree' => $categoriesTree,
+            'comments' => $comments,
+            'categoryProducts' => $categoryProducts,
+            'totalAmount' => $totalAmount
+        ];
 
-            $data = [
-                'brands'                => $brands,
-                'categories'            => $categories,
-                'product'               => $product,
-                'products'              => $products,
-                'categoriesTree'        => $categoriesTree,
-                'comments'              => $comments,
-                'categoryProducts'      => $categoryProducts,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.productView')->with($data);
-        } else {
-
-            $brands             = Brand::all();
-            $categories         = Category::all();
-            $product            = Product::FindorFail($id);
-            $products           = Product::paginate(5);
-            $categoriesTree     = Category::getTreeHP();
-            $comments           = Comment::where('product_id', $id)->get();
-            $category_id        = $product['category_id'];
-            $categoryProducts   = Product::where('category_id', $category_id)->get();
-
-            $data = [
-                'brands'                => $brands,
-                'categories'            => $categories,
-                'product'               => $product,
-                'products'              => $products,
-                'categoriesTree'        => $categoriesTree,
-                'comments'              => $comments,
-                'categoryProducts'      => $categoryProducts
-            ];
-
-            return view('frontend.productView')->with($data);
-        }
+        return view('frontend.productView')->with($data);
     }
 
     public function categoryView($category_id)
     {
-        if (isset(Auth::user()->id)) {
+        $brands = Brand::all();
+        $category = Category::FindorFail($category_id);
+        $categories = Category::all();
+        $products = Product::where('category_id', $category_id)->get();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
-            $user               = Auth::user()->id;
-            $brands             = Brand::all();
-            $category           = Category::FindorFail($category_id);
-            $categories         = Category::all();
-            $products           = Product::where('category_id', $category_id)->get();
-            $categoriesTree     = Category::getTreeHP();
-            $shoppingLists      = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists          = ShoppingCart::groupBy('name', 'price', 'quantity')
-                            ->selectRaw('count(*) as total, name, price, quantity')
-                            ->get();
-            $totalAmount        = null;
+        $data = [
+            'brands' => $brands,
+            'categories' => $categories,
+            'category' => $category,
+            'products' => $products,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount
+        ];
 
-            $data = [
-                'brands'                => $brands,
-                'categories'            => $categories,
-                'category'              => $category,
-                'products'              => $products,
-                'categoriesTree'        => $categoriesTree,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.categoryView')->with($data);
-        } else {
-
-            $category           = Category::FindorFail($category_id);
-            $categoriesTree     = Category::getTreeHP();
-            $products           = Product::where('category_id', $category_id)->get();
-
-            $data = [
-                'products'          => $products,
-                'category'          => $category,
-                'categoriesTree'    => $categoriesTree
-            ];
-
-            return view('frontend.categoryView')->with($data);
-        }
+        return view('frontend.categoryView')->with($data);
     }
 
     public function brandView($brand_id)
     {
+        $brand = Brand::FindorFail($brand_id);
+        $brands = Brand::all();
+        $categories = Category::all();
+        $products = Product::where('brand_id', $brand_id)->get();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
-        if (isset(Auth::user()->id)) {
+        $data = [
+            'brand' => $brand,
+            'brands' => $brands,
+            'categories' => $categories,
+            'products' => $products,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount
+        ];
 
-            $user               = Auth::user()->id;
-            $brand              = Brand::FindorFail($brand_id);
-            $brands             = Brand::all();
-            $categories         = Category::all();
-            $products           = Product::where('brand_id', $brand_id)->get();
-            $categoriesTree     = Category::getTreeHP();
-            $shoppingLists      = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists          = ShoppingCart::groupBy('name', 'price', 'quantity')
-                            ->selectRaw('count(*) as total, name, price, quantity')
-                            ->get();
-            $totalAmount        = null;
-
-            $data = [
-                'brand'                 => $brand,
-                'brands'                => $brands,
-                'categories'            => $categories,
-                'products'              => $products,
-                'categoriesTree'        => $categoriesTree,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.brandView')->with($data);
-        } else {
-
-
-            $brand              = Brand::FindorFail($brand_id);
-            $categoriesTree     = Category::getTreeHP();
-            $products           = Product::where('brand_id', $brand_id)->get();
-
-            $data = [
-                'products'          => $products,
-                'brand'             => $brand,
-                'categoriesTree'    => $categoriesTree
-            ];
-
-            return view('frontend.brandView')->with($data);
-        }
+        return view('frontend.brandView')->with($data);
     }
 
     public function feedback()
     {
-        if (isset(Auth::user()->id)) {
+        $brands = Brand::all();
+        $products = Product::all();
+        $categories = Category::all();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
-            $user               = Auth::user()->id;
-            $brands             = Brand::all();
-            $products           = Product::all();
-            $categories         = Category::all();
-            $categoriesTree     = Category::getTreeHP();
-            $shoppingLists      = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists          = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $totalAmount        = null;
+        $data = [
+            'brands' => $brands,
+            'products' => $products,
+            'categories' => $categories,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount
+        ];
 
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'categories'            => $categories,
-                'categoriesTree'        => $categoriesTree,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.feedback')->with($data);
-        } else {
-
-            $products = Product::all();
-            $categoriesTree = Category::getTreeHP();
-
-            $data = [
-                'products' => $products,
-                'categoriesTree' => $categoriesTree
-            ];
-
-            return view('frontend.feedback')->with($data);
-        }
+        return view('frontend.feedback')->with($data);
     }
 
     public function about_us()
     {
-        if (isset(Auth::user()->id)) {
+        $brands = Brand::all();
+        $products = Product::all();
+        $categories = Category::all();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
-            $user               = Auth::user()->id;
-            $brands             = Brand::all();
-            $products           = Product::all();
-            $categories         = Category::all();
-            $categoriesTree     = Category::getTreeHP();
-            $shoppingLists      = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists          = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $totalAmount        = null;
+        $data = [
+            'brands' => $brands,
+            'products' => $products,
+            'categories' => $categories,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount
+        ];
 
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'categories'            => $categories,
-                'categoriesTree'        => $categoriesTree,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.about')->with($data);
-        } else {
-
-            $categoriesTree = Category::getTreeHP();
-
-            $data = [
-                'categoriesTree' => $categoriesTree
-            ];
-
-            return view('frontend.about')->with($data);
-        }
+        return view('frontend.about')->with($data);
     }
 
     public function products()
     {
-        if (isset(Auth::user()->id)) {
+        $brands = Brand::all();
+        $products = Product::all();
+        $categories = Category::all();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
-            $user               = Auth::user()->id;
-            $brands             = Brand::all();
-            $products           = Product::all();
-            $categories         = Category::all();
-            $categoriesTree     = Category::getTreeHP();
-            $shoppingLists      = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount = count($shoppingLists);
-            $userLists          = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $totalAmount        = null;
+        $data = [
+            'brands' => $brands,
+            'products' => $products,
+            'categories' => $categories,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount
+        ];
 
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'categories'            => $categories,
-                'categoriesTree'        => $categoriesTree,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.products')->with($data);
-
-        } else {
-
-            $products           = Product::all();
-            $categoriesTree     = Category::getTreeHP();
-
-            $data = [
-                'products'          => $products,
-                'categoriesTree'    => $categoriesTree
-            ];
-
-            return view('frontend.products')->with($data);
-        }
+        return view('frontend.products')->with($data);
     }
 
     public function shop()
     {
 
-        if (isset(Auth::user()->id)) {
-            $user                   = Auth::user()->id;
-            $brands                 = Brand::all();
-            $volumes                = Volume::all();
-            $categories             = Category::all();
-            $products               = Product::paginate(12);
-            $categoriesTree         = Category::getTreeHP();
-            $countries              = Country::all();
-            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount     = count($shoppingLists);
-            $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity')
-                                ->selectRaw('count(*) as total, name, price, quantity')
-                                ->get();
-            $totalAmount                  = null;
-
-            $data = [
-                'products' => $products,
-                'categoriesTree' => $categoriesTree,
-                'brands' => $brands,
-                'categories' => $categories,
-                'volumes' => $volumes,
-                'countries' => $countries,
-                'shoppingLists' => $shoppingLists,
-                'shoppingListsCount' => $shoppingListsCount,
-                'userLists' => $userLists,
-                'totalAmount' => $totalAmount
-            ];
-
-            return view('frontend.shop')->with($data);
-
-        } else {
-
-
-
-
-            if (!empty($_GET)) {
-                if (isset($_GET['category'])) {
-                    $category = $_GET['category'];
-                } else {
-                    $category = [];
-                }
-                if (isset($_GET['brand'])) {
-                    $brand = $_GET['brand'];
-                } else {
-                    $brand = [];
-                }
-                if (isset($_GET['volume'])) {
-                    $volume = $_GET['volume'];
-                } else {
-                    $volume = [];
-                }
-                if (isset($_GET['country'])) {
-                    $country = $_GET['country'];
-                } else {
-                    $country = [];
-                }
-
-                $products               = Product::whereIn('category_id', $category)->orWhereNull('category_id')
-                                                ->orwhereIn('brand_id', $brand)->orWhereNull('brand_id')
-                                                ->orwhereIn('volume_id', $volume)->orWhereNull('volume_id')
-                                              //  ->orwhereIn('country_id', $country)->orWhereNull('country_id')
-                                                ->paginate(12);
-
-
-            } else {
-                $products               = Product::paginate(12);
+        if (isset($_GET)) {
+            $builder = Product::query();
+            if (!empty($_GET['category'])) {
+                $category = $_GET['category'];
+                $builder->whereIn('category_id', $category);
+            }
+            if (!empty($_GET['brand'])) {
+                $brand = $_GET['brand'];
+                $builder->whereIn('brand_id', $brand);
+            }
+            if (!empty($_GET['volume'])) {
+                $volume = $_GET['volume'];
+                $builder->whereIn('volume_id', $volume);
+            }
+            if (!empty($_GET['country'])) {
+                $country = $_GET['country'];
+                $builder->whereIn('country_id', $country);
             }
 
-            $test = null;
-            $brands             = Brand::all();
-            $volumes            = Volume::all();
-            $categories         = Category::all();
-            $categoriesTree     = Category::getTreeHP();
-            $countries          = Country::all();
-
-            $data = [
-                'products'          => $products,
-                'categoriesTree'    => $categoriesTree,
-                'brands'            => $brands,
-                'categories'        => $categories,
-                'volumes'           => $volumes,
-                'countries'         => $countries,
-                'test' => $test
-            ];
-
-            return view('frontend.shop')->with($data);
-        }
-    }
-
-    public function addToCart(Request $request)
-    {
-
-        $product_id         = $request->get('id');
-        $user               = $request->get('user_id');
-        $quantityNew        = $request->get('quantity');
-
-        if ($quantityNew === null) {
-            return redirect()->back() ->with('alert', 'Please enter quantity!');
-        };
-
-        $count              = ShoppingCart::where('product_id', $product_id)
-            ->where('user_id', $user)
-            ->count();
-
-        if ($count === 0) {
-            $product_id     = $request->get('id');
-            $title          = $request->get('title');
-            $price          = $request->get('price');
-            $quantityNew    = $request->get('quantity');
-            $image          = $request->get('image');
-            $user        = $request->get('user_id');
-
-            ShoppingCart::create([
-                'product_id'    => $product_id,
-                'name'          => $title,
-                'price'         => $price,
-                'quantity'      => $quantityNew,
-                'image'         => $image,
-                'user_id'       => $user
-            ]);
-
+            $products = $builder->paginate(12);
         } else {
-            $testProduct    = ShoppingCart::where('product_id', $product_id)
-                ->where('user_id', $user)
-                ->get();
-            $quantityOld    = $testProduct[0]['quantity'];
-            $quantity       = $quantityOld + $quantityNew;
-            $testProduct    = ShoppingCart::where('product_id', $product_id)
-                ->where('user_id', $user)
-                ->update(array('quantity' => $quantity));
+            $products = Product::all()->paginate(12);
         }
-
-        $brands                 = Brand::all();
-        $volumes                = Volume::all();
-        $categories             = Category::all();
-        $products               = Product::paginate(12);
-        $categoriesTree         = Category::getTreeHP();
-        $countries              = Country::all();
-        $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-        $shoppingListsCount     = count($shoppingLists);
-        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity')
-            ->selectRaw('count(*) as total, name, price, quantity')
-            ->get();
-        $totalAmount            = null;
-
+        $brands = Brand::all();
+        $volumes = Volume::all();
+        $categories = Category::all();
+        $categoriesTree = Category::getTreeHP();
+        $countries = Country::all();
 
         $data = [
-            'products'              => $products,
-            'categoriesTree'        => $categoriesTree,
-            'brands'                => $brands,
-            'categories'            => $categories,
-            'volumes'               => $volumes,
-            'countries'             => $countries,
-            'shoppingLists'         => $shoppingLists,
-            'shoppingListsCount'    => $shoppingListsCount,
-            'userLists'             => $userLists,
-            'totalAmount'           => $totalAmount
+            'products' => $products,
+            'categoriesTree' => $categoriesTree,
+            'brands' => $brands,
+            'categories' => $categories,
+            'volumes' => $volumes,
+            'countries' => $countries
         ];
 
         return view('frontend.shop')->with($data);
-    }
-
-    public function cartList()
-    {
-        $user                   = Auth::user()->id;
-        $brands                 = Brand::all();
-        $categories             = Category::all();
-        $products               = Product::paginate(12);
-        $categoriesTree         = Category::getTreeHP();
-        $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-        $shoppingListsCount     = count($shoppingLists);
-        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity', 'product_id', 'id', 'image')
-            ->selectRaw('count(*) as total, name, price, quantity, product_id, id, image')
-            ->get();
-        $totalAmount            = null;
-
-        $data = [
-            'products'              => $products,
-            'brands'                => $brands,
-            'categoriesTree'        => $categoriesTree,
-            'categories'            => $categories,
-            'shoppingLists'         => $shoppingLists,
-            'shoppingListsCount'    => $shoppingListsCount,
-            'userLists'             => $userLists,
-            'totalAmount'           => $totalAmount
-        ];
-
-        return view('frontend.shopCart')->with($data);
-    }
-    public function destroy($id)
-    {
-        $product                = ShoppingCart::FindorFail($id);
-
-        $product->delete();
-
-        $user                   = Auth::user()->id;
-        $brands                 = Brand::all();
-        $categories             = Category::all();
-        $products               = Product::paginate(12);
-        $categoriesTree         = Category::getTreeHP();
-        $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-        $shoppingListsCount     = count($shoppingLists);
-        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity', 'product_id', 'id')
-            ->selectRaw('count(*) as total, name, price, quantity, product_id, id')
-            ->get();
-        $totalAmount            = null;
-
-        $data = [
-            'products'              => $products,
-            'brands'                => $brands,
-            'categoriesTree'        => $categoriesTree,
-            'categories'            => $categories,
-            'shoppingLists'         => $shoppingLists,
-            'shoppingListsCount'    => $shoppingListsCount,
-            'userLists'             => $userLists,
-            'totalAmount'           => $totalAmount
-        ];
-
-        return view('frontend.shopCart')->with($data);
     }
 
     public function cartCheckout()
     {
-        $user                   = Auth::user()->id;
-        $loggedUser              = Auth::user();
-        $brands                 = Brand::all();
-        $categories             = Category::all();
-        $countries              = Country::all();
-        $products               = Product::paginate(12);
-        $categoriesTree         = Category::getTreeHP();
-        $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-        $shoppingListsCount     = count($shoppingLists);
-        $userLists              = ShoppingCart::groupBy('name', 'price', 'quantity', 'product_id', 'id')
-            ->selectRaw('count(*) as total, name, price, quantity, product_id, id')
-            ->get();
-        $totalAmount            = null;
+        $loggedUser = Auth::user();
+        $brands = Brand::all();
+        $categories = Category::all();
+        $countries = Country::all();
+        $products = Product::paginate(12);
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
         $data = [
-            'products'              => $products,
-            'loggedUser'            => $loggedUser,
-            'brands'                => $brands,
-            'countries'             => $countries,
-            'categoriesTree'        => $categoriesTree,
-            'categories'            => $categories,
-            'shoppingLists'         => $shoppingLists,
-            'shoppingListsCount'    => $shoppingListsCount,
-            'userLists'             => $userLists,
-            'totalAmount'           => $totalAmount
+            'products' => $products,
+            'loggedUser' => $loggedUser,
+            'brands' => $brands,
+            'countries' => $countries,
+            'categoriesTree' => $categoriesTree,
+            'categories' => $categories,
+            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.cartCheckout')->with($data);
     }
+
     public function preSignUp()
     {
-        if (isset(Auth::user()->id)) {
+        $brands = Brand::all();
+        $countries = Country::all();
+        $categories = Category::all();
+        $products = Product::paginate(5);
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
-            $user                   = Auth::user()->id;
-            $brands                 = Brand::all();
-            $countries              = Country::all();
-            $categories             = Category::all();
-            $products               = Product::paginate(5);
-            $categoriesTree         = Category::getTreeHP();
-            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount     = count($shoppingLists);
-            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $totalAmount = null;
+        $data = [
+            'brands' => $brands,
+            'products' => $products,
+            'countries' => $countries,
+            'categoriesTree' => $categoriesTree,
+            'categories' => $categories,
+            'totalAmount' => $totalAmount
+        ];
 
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'countries'             => $countries,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.register')->with($data);
-
-        } else {
-
-            $brands                     = Brand::all();
-            $categories                 = Category::all();
-            $countries                  = Country::all();
-            $products                   = Product::paginate(5);
-            $categoriesTree             = Category::getTreeHP();
-
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'countries'             => $countries,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories
-            ];
-
-            return view('frontend.register')->with($data);
-        }
+        return view('frontend.register')->with($data);
     }
 
     public function preReset()
     {
-        if (isset(Auth::user()->id)) {
-
-            $user                   = Auth::user()->id;
-            $brands                 = Brand::all();
-            $countries              = Country::all();
-            $categories             = Category::all();
-            $products               = Product::paginate(5);
-            $categoriesTree         = Category::getTreeHP();
-            $shoppingLists          = ShoppingCart::where('user_id', $user)->get();
-            $shoppingListsCount     = count($shoppingLists);
-            $userLists            = ShoppingCart::groupBy('name', 'price', 'quantity')
-                ->selectRaw('count(*) as total, name, price, quantity')
-                ->get();
-            $totalAmount = null;
-
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'countries'             => $countries,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories,
-                'shoppingLists'         => $shoppingLists,
-                'shoppingListsCount'    => $shoppingListsCount,
-                'userLists'             => $userLists,
-                'totalAmount'           => $totalAmount
-            ];
-
-            return view('frontend.reset')->with($data);
-
-        } else {
-
-            $brands                     = Brand::all();
-            $categories                 = Category::all();
-            $countries                  = Country::all();
-            $products                   = Product::paginate(5);
-            $categoriesTree             = Category::getTreeHP();
-
-            $data = [
-                'brands'                => $brands,
-                'products'              => $products,
-                'countries'             => $countries,
-                'categoriesTree'        => $categoriesTree,
-                'categories'            => $categories
-            ];
-
-            return view('frontend.reset')->with($data);
-        }
-    }
-
-    public function filter(Request $request)
-    {
-        $temp= implode(',', $request->category_id);
-
-        $test = null;
-        $test = $request->get('category_id');
-        $test1 = $request->get('test');
-$products = null;
-        for ($i = 0; $i < strlen($temp); $i++)
-        {
-            $products[$i] = Product::where('category_id', $temp[$i])->paginate(5);
-
-
-
-        }
-
-
-        $brands                     = Brand::all();
-        $categories                 = Category::all();
-        $countries                  = Country::all();
-        $volumes                = Volume::all();
-        $categoriesTree             = Category::getTreeHP();
+        $brands = Brand::all();
+        $countries = Country::all();
+        $categories = Category::all();
+        $products = Product::paginate(5);
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
 
         $data = [
-            'test' => $test,
-
-            'brands'                => $brands,
-            'products'              => $products,
-            'countries'             => $countries,
-            'categoriesTree'        => $categoriesTree,
-            'categories'            => $categories,
-            'volumes' => $volumes
+            'brands' => $brands,
+            'products' => $products,
+            'countries' => $countries,
+            'categoriesTree' => $categoriesTree,
+            'categories' => $categories,
+            'totalAmount' => $totalAmount
         ];
 
-        return view('frontend.shop')->with($data);
+        return view('frontend.reset')->with($data);
     }
 
 }

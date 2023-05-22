@@ -154,7 +154,7 @@
                                         <select name="country_id" id="country_id"
                                                 class="form-control @error('country_id') is-invalid @enderror">
                                             @foreach($countries as $country)
-                                                <option value="{{ $product->country->id }}">{{ $country->name }}</option>
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
                                             @endforeach
                                             @error('country_id')
                                             <span class="invalid-feedback" role="alert">

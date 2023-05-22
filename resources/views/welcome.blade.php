@@ -195,8 +195,8 @@
                                                     <a href="{{route('frontend.index')}}">DOMOV</a>
                                                 </li>
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle"
-                                                       data-toggle="dropdown">ZGANE</a>
+                                                    <a href="#"
+                                                       >ZGANE</a>
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             {!! $categoriesTree !!}

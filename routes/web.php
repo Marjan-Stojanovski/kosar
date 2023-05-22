@@ -151,7 +151,7 @@ Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController:
 //Mysql Cart routes
 //Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
 //Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
-//Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
+Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
@@ -162,8 +162,7 @@ Route::put('/details/{details}', [App\Http\Controllers\ShippingController::class
 Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
 Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
-Route::get('/trgovina', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
-Route::post('/category', [App\Http\Controllers\FrontendController::class, 'filter'])->name('frontend.shopFilter');
+Route::get('/e-shop', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
 Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
 Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');

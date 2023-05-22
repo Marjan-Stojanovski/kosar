@@ -181,12 +181,59 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+    <div class="owl-carousel carousel-autoplay pl-10 pr-10">
+        @foreach($discountProducts as $product)
+            <div class="listing-item rounded pl-8 pr-10 mb-20">
+                <div class="overlay-container">
+                    <img src="/assets/img/products/thumbnails/{{$product->image}}"
+                         alt="">
+                    <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
+                    <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productView', $product->id)}}"
+                                                               class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                    </div>
+                </div>
+                <div class="body">
+                    <h3>
+                        <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                    </h3>
+                    <p class="small"> {{strip_tags($product->brand->name)}}</p>
+                    <div class="elements-list clearfix">
+                        <span style="color: red;"><del> €{{$product->price}}</del></span>
+                        <span class="price"> &nbsp;€{{$product->action}}</span>
+                        <form action="{{ route('add.to.cart')}}" method="POST"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
+                            <input type="hidden" value="{{ $product->id }}" name="id">
+                            <input type="hidden" value="{{ $product->title }}" name="title">
+                            <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                            <input type="hidden" value="{{ $product->action }}" name="price">
+                            <input type="hidden" value="{{ $product->image }}" name="image">
+                            <button type="submit"
+                                    class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                Add<i class="fa fa-shopping-cart"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section clearfix" style="background-color: forestgreen">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fit-rows grid-space-10">
-                                @foreach($products as $product)
-                                        <?php
-                                    if (isset($product->action)) { ?>
+                                @foreach($discountProducts as $product)
                                     <div class="col-md-3 col-sm-6 masonry-grid-item">
                                         <div class="listing-item white-bg bordered mb-20">
                                             <div class="overlay-container">
@@ -226,7 +273,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?php } ?>
                                 @endforeach
                             </div>
                         </div>
@@ -234,7 +280,7 @@
                     <!-- pills end -->
                 </div>
                     <nav class="text-center">
-                        {{ $products->links() }}
+                        {{ $discountProducts->links() }}
                     </nav>
             </div>
         </div>

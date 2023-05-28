@@ -51,6 +51,9 @@
             max-height: 200px;
             overflow:auto;
         }
+        .own-item{
+            padding: 20px;
+        }
     </style>
 </head>
 <!-- body classes:  -->
@@ -195,8 +198,8 @@
                                                     <a href="{{route('frontend.index')}}">DOMOV</a>
                                                 </li>
                                                 <li class="dropdown">
-                                                    <a href="#"
-                                                       >ZGANE</a>
+                                                    <a class="dropdown-toggle"
+                                                       data-toggle="dropdown">ZGANE</a>
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             {!! $categoriesTree !!}
@@ -473,6 +476,7 @@
                 break;
         }
     }
+
 </script>
 </body>
 </html>

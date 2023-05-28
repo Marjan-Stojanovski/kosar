@@ -205,8 +205,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="body">
+                                                        <div class="separator-3"></div>
                                                         <h3>
-                                                            <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                                                            <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
                                                         </h3>
                                                         <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                         <div class="elements-list clearfix">
@@ -252,8 +253,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="body">
+                                                        <div class="separator-3"></div>
                                                         <h3>
-                                                            <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                                                            <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
                                                         </h3>
                                                         <p class="small"> {{$product->brand->name}}</p>
                                                         <div class="elements-list clearfix">

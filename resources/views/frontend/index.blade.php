@@ -177,115 +177,60 @@
     </section>
     <!-- PRODUCTS Naslov End -->
     <!-- PRODUCTS AKCIJA -->
-    <section class="section clearfix" style="background-color: forestgreen">
+
+    <!-- PRODUCTS AKCIJA  END -->
+
+    <section class="section light-gray-bg clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-    <div class="owl-carousel carousel-autoplay pl-10 pr-10">
-        @foreach($discountProducts as $product)
-            <div class="listing-item rounded pl-8 pr-10 mb-20">
-                <div class="overlay-container">
-                    <img src="/assets/img/products/thumbnails/{{$product->image}}"
-                         alt="">
-                    <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
-                    <div class="overlay-to-top links">
+                <div class="owl-carousel carousel-autoplay">
+
+                        @foreach($products as $product)
+                        <div class="listing-item" style="padding: 10px">
+                        <div class="overlay-container bordered rounded-1 overlay-visible">
+                            <img src="/assets/img/products/thumbnails/{{$product->image}}"
+                                 alt="" width="260" >
+                            <span class="badge" style="color: red; border: 1px solid red; border-radius: 8px">{{$product->discount}}% OFF</span>
+                            <div class="overlay-to-top links">
 														<span class="small">
 															<a href="{{route('frontend.productView', $product->id)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
 														</span>
-                    </div>
-                </div>
-                <div class="body">
-                    <h3>
-                        <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
-                    </h3>
-                    <p class="small"> {{strip_tags($product->brand->name)}}</p>
-                    <div class="elements-list clearfix">
-                        <span style="color: red;"><del> €{{$product->price}}</del></span>
-                        <span class="price"> &nbsp;€{{$product->action}}</span>
-                        <form action="{{ route('add.to.cart')}}" method="POST"
-                              enctype="multipart/form-data">
-                            @csrf
-                            <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-                            <input type="hidden" value="{{ $product->id }}" name="id">
-                            <input type="hidden" value="{{ $product->title }}" name="title">
-                            <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                            <input type="hidden" value="{{ $product->action }}" name="price">
-                            <input type="hidden" value="{{ $product->image }}" name="image">
-                            <button type="submit"
-                                    class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                Add<i class="fa fa-shopping-cart"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section clearfix" style="background-color: forestgreen">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tab-content clear-style">
-                        <div class="tab-pane active" id="pill-1">
-                            <div class="row masonry-grid-fit-rows grid-space-10">
-                                @foreach($discountProducts as $product)
-                                    <div class="col-md-3 col-sm-6 masonry-grid-item">
-                                        <div class="listing-item white-bg bordered mb-20">
-                                            <div class="overlay-container">
-                                                <img src="/assets/img/products/thumbnails/{{$product->image}}"
-                                                     alt="">
-                                                <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
-                                                <div class="overlay-to-top links">
-														<span class="small">
-															<a href="{{route('frontend.productView', $product->id)}}"
-                                                               class="btn-sm-link"><i
-                                                                    class="icon-link pr-5"></i>View Details</a>
-														</span>
-                                                </div>
-                                            </div>
-                                            <div class="body">
-                                                <h3>
-                                                    <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
-                                                </h3>
-                                                <p class="small"> {{strip_tags($product->brand->name)}}</p>
-                                                <div class="elements-list clearfix">
-                                                    <span style="color: red;"><del> €{{$product->price}}</del></span>
-                                                    <span class="price"> &nbsp;€{{$product->action}}</span>
-                                                    <form action="{{ route('add.to.cart')}}" method="POST"
-                                                          enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1"> Quantity
-                                                        <input type="hidden" value="{{ $product->id }}" name="id">
-                                                        <input type="hidden" value="{{ $product->title }}" name="title">
-                                                        <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                                        <input type="hidden" value="{{ $product->action }}" name="price">
-                                                        <input type="hidden" value="{{ $product->image }}" name="image">
-                                                        <button type="submit"
-                                                                class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                                            Add<i class="fa fa-shopping-cart"></i></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    <!-- pills end -->
+                        <div class="body">
+                            <h3>
+                                <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
+                            </h3>
+                            <p class="small"> {{strip_tags($product->brand->name)}}</p>
+                            <div class="elements-list clearfix">
+                                <span style="color: red;"><del> €{{$product->price}}</del></span>
+                                <span class="price" style="color: black"> &nbsp;€{{$product->action}}</span>
+                                <form action="{{ route('add.to.cart')}}" method="POST"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="number" placeholder="1" name="quantity" style="width: 50px"
+                                           value="1"> Quantity
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <input type="hidden" value="{{ $product->title }}" name="title">
+                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                                    <input type="hidden" value="{{ $product->action }}" name="price">
+                                    <input type="hidden" value="{{ $product->image }}" name="image">
+                                    <button type="submit"
+                                            class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
+                                        Add<i class="fa fa-shopping-cart"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                        @endforeach
+
                 </div>
-                    <nav class="text-center">
-                        {{ $discountProducts->links() }}
-                    </nav>
             </div>
         </div>
+
     </section>
-    <!-- PRODUCTS AKCIJA  END -->
 
 
     <!-- BRANDS Naslov-->
@@ -305,6 +250,7 @@
         </div>
     </section>
     <!-- BRANDS Naslov End-->
+
     <!-- BRANDS-->
     <section class="section clearfix">
         <div class="container">
@@ -349,7 +295,7 @@
             </div>
         </div>
     </section>
-   <!-- BRANDS END-->
+    <!-- BRANDS END-->
 
     <!-- CATEGORIES Title -->
     <section class="section dark-bg" style="background-position: 50% 52%;">

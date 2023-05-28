@@ -75,6 +75,7 @@
                                                 </div>
                                             </div>
                                             <div class="body">
+                                                <div class="separator-3"></div>
                                                 <h3>
                                                     <a href="{{route('frontend.productView', $product->slug)}}">{{$product->title}}</a>
                                                 </h3>

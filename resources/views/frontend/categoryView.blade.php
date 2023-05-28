@@ -39,8 +39,8 @@
                                     <div class="col-md-4 col-sm-6 masonry-grid-item">
                                         <div class="listing-item white-bg bordered mb-20">
                                             <div class="overlay-container">
-                                                <img src="/assets/img/products/thumbnails/{{$product->image}}"
-                                                     alt="">
+                                                <img class="img-responsive" style="margin-left: auto; margin-right: auto" src="/assets/img/products/thumbnails/{{$product->image}}"
+                                                     alt="{{$product->title}}">
                                                 <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
                                                 <div class="overlay-to-top links">
 														<span class="small">
@@ -51,13 +51,14 @@
                                                 </div>
                                             </div>
                                             <div class="body">
+                                                <div class="separator-3"></div>
                                                 <h3>
-                                                    <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                                                    <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
                                                 </h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="elements-list clearfix">
                                                     <span style="color: red;"><del> €{{$product->price}}</del></span>
-                                                    <span class="price"> &nbsp;€{{$product->action}}</span>
+                                                    <span class="price" style="color: black"> &nbsp;€{{$product->action}}</span>
                                                     <form action="{{ route('add.to.cart')}}" method="POST"
                                                           enctype="multipart/form-data">
                                                         @csrf
@@ -90,12 +91,13 @@
                                                 </div>
                                             </div>
                                             <div class="body">
+                                                <div class="separator-3"></div>
                                                 <h3>
-                                                    <a href="{{route('frontend.productView', $product->id)}}">{{$product->title}}</a>
+                                                    <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
                                                 </h3>
                                                 <p class="small"> {{$product->brand->name}}</p>
                                                 <div class="elements-list clearfix">
-                                                    <span class="price"> &nbsp;€{{$product->price}}</span>
+                                                    <span class="price" style="color: black"> &nbsp;€{{$product->price}}</span>
                                                     <form action="{{ route('add.to.cart')}}" method="POST"
                                                           enctype="multipart/form-data">
                                                         @csrf

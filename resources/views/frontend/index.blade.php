@@ -203,7 +203,7 @@
                             <h3>
                                 <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
                             </h3>
-                            <p class="small"> {{strip_tags($product->brand->name)}}</p>
+                            <p class="small"><i>{{strip_tags($product->brand->name)}}</i></p>
                             <div class="elements-list clearfix">
                                 <span style="color: red;"><del> €{{$product->price}}</del></span>
                                 <span class="price" style="color: black"> &nbsp;€{{$product->action}}</span>

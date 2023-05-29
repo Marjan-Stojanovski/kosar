@@ -24,13 +24,6 @@
                     <p>{!! $product->description !!}</p>
                     <hr class="mb-10">
                     <div class="clearfix mb-20">
-										<span>
-											<i class="fa fa-star text-default"></i>
-											<i class="fa fa-star text-default"></i>
-											<i class="fa fa-star text-default"></i>
-											<i class="fa fa-star text-default"></i>
-											<i class="fa fa-star"></i>
-										</span>
                         <a href="#" class="wishlist"><i class="fa fa-heart-o pl-10 pr-5"></i>Wishlist</a>
                         <ul class="pl-20 pull-right social-links circle small clearfix margin-clear animated-effect-1">
                             <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i
@@ -61,23 +54,46 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class=" p-20 bordered clearfix">
-                        <span class="product price">{{$product->price}}&nbsp;€</span>
-                        <div class="product elements-list pull-right clearfix">
-                            <form action="{{ route('add.to.cart')}}" method="POST"
-                                  enctype="multipart/form-data">
-                                @csrf
-                                <input type="number" placeholder="1" name="quantity" style="width: 50px" value="1">Quantity
-                                <input type="hidden" value="{{ $product->id }}" name="id">
-                                <input type="hidden" value="{{ $product->title }}" name="title">
-                                <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                <input type="hidden" value="{{ $product->action }}" name="price">
-                                <input type="hidden" value="{{ $product->image }}" name="image">
-                                <button type="submit"
-                                        class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                    Add<i class="fa fa-shopping-cart"></i></button>
-                            </form>
-                        </div>
+                    <br>
+                    <br>
+                    <div class="row grid-space-10">
+                        <form action="{{ route('add.to.cart')}}" method="POST" class="clearfix"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <span class="product price"><s class="small text-muted">149.00€</s> {{$product->price}}&nbsp;€</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="text-center">
+                                    <select class="form-control" name="quantity">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group pull-right">
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <input type="hidden" value="{{ $product->title }}" name="title">
+                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                                    <input type="hidden" value="{{ $product->action }}" name="price">
+                                    <input type="hidden" value="{{ $product->image }}" name="image">
+                                    <button type="submit"
+                                            class="margin-clear btn btn-gray-transparent btn-animated">
+                                        Add<i class="fa fa-shopping-cart"></i></button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

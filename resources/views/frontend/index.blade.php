@@ -201,25 +201,60 @@
                         </div>
                         <div class="body">
                             <h3>
-                                <a href="{{route('frontend.productView', $product->id)}}"><strong>{{$product->title}}</strong></a>
+                                <a href="{{route('frontend.productView', $product->slug)}}"><strong>{{$product->title}}</strong></a>
                             </h3>
                             <p class="small"><i>{{strip_tags($product->brand->name)}}</i></p>
-                            <div class="elements-list clearfix">
-                                <span style="color: red;"><del> €{{$product->price}}</del></span>
-                                <span class="price" style="color: black"> &nbsp;€{{$product->action}}</span>
-                                <form action="{{ route('add.to.cart')}}" method="POST"
+                            <div class="row grid-space-10">
+                                <form action="{{ route('add.to.cart')}}" method="POST" class="clearfix"
                                       enctype="multipart/form-data">
                                     @csrf
-                                    <input type="number" placeholder="1" name="quantity" style="width: 50px"
-                                           value="1"> Quantity
-                                    <input type="hidden" value="{{ $product->id }}" name="id">
-                                    <input type="hidden" value="{{ $product->title }}" name="title">
-                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                    <input type="hidden" value="{{ $product->action }}" name="price">
-                                    <input type="hidden" value="{{ $product->image }}" name="image">
-                                    <button type="submit"
-                                            class="pull-right margin-clear btn btn-gray-transparent btn-sm btn-animated">
-                                        Add<i class="fa fa-shopping-cart"></i></button>
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="product price" style="color: red"><s class="small text-muted">{{$product->price}}€</s> {{$product->action}}&nbsp;€</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="text-center" style="padding-left: 10px">
+                                            <select class="form-control pull-left" name="quantity">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group pull-right">
+                                            <input type="hidden" value="{{ $product->id }}" name="id">
+                                            <input type="hidden" value="{{ $product->title }}" name="title">
+                                            <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                                            <input type="hidden" value="{{ $product->action }}" name="price">
+                                            <input type="hidden" value="{{ $product->image }}" name="image">
+                                            <button type="submit"
+                                                    class="margin-clear btn btn-gray-transparent btn-animated">
+                                                Add<i class="fa fa-shopping-cart"></i></button>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -240,8 +275,12 @@
                 <div class="col-md-12">
                     <div class="call-to-action text-center">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <h1 class="title">Partnerji</h1>
+                            <div class="col-sm-6">
+                                <h2 style="padding-top: 10px" class="title">Brands</h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <p><a href="{{ route('frontend.brands') }}" class="btn btn-lg btn-default btn-animated">Vec<i
+                                            class="fa fa-arrow-right pl-20"></i></a></p>
                             </div>
                         </div>
                     </div>
@@ -257,9 +296,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="separator-2"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At distinctio quia, et natus nulla
-                        cumque consequuntur, sed, quam aliquam excepturi ea necessitatibus facilis, vero illum
-                        dignissimos eligendi quasi consectetur possimus.</p>
+                    <h4>Companies we work with!!!!.</h4>
                     <div class="clients-container">
                         <div class="clients">
                             <div class="row">
@@ -273,7 +310,7 @@
 														<span class="small">
 															<a href="{{$brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-external-link pr-10"></i>{{$brand->name}}</a>
-															<a href="{{route('frontend.brandView', $brand->id)}}"
+															<a href="{{route('frontend.brandView', $brand->name)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Products</a>
 														</span>
@@ -315,7 +352,7 @@
     </section>
     <!-- CATEGORIES Title End -->
     <!-- CATEGORIES -->
-    <section class="section clearfix" style="background-color: yellow">
+    <section class="section clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -330,7 +367,7 @@
                          style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
                         <div class="overlay-bottom">
                             <div class="text">
-                                <a href="{{route('frontend.categoryView', $category->id)}}" class="panel-title"
+                                <a href="{{route('frontend.categoryView', $category->slug)}}" class="panel-title"
                                    style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                                 <div class="separator light"></div>
                             </div>

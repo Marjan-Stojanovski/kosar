@@ -166,8 +166,10 @@ Route::get('/e-shop', [App\Http\Controllers\FrontendController::class, 'shop'])-
 Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
 Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
 Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
-Route::get('/products/{product}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
-Route::get('/categories/{category}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
-Route::get('/brands/{brand}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
+Route::get('/products/{slug}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
+Route::get('/categories', [\App\Http\Controllers\FrontendController::class, 'categories'])->name('frontend.categories');
+Route::get('/categories/{slug}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
+Route::get('/brands', [\App\Http\Controllers\FrontendController::class, 'brands'])->name('frontend.brands');
+Route::get('/brands/{name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 

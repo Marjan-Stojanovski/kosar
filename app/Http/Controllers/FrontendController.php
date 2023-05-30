@@ -40,13 +40,14 @@ class FrontendController extends Controller
         return view('frontend.index')->with($data);
     }
 
-    public function productView($id)
+    public function productView($slug)
     {
         $brands = Brand::all();
         $categories = Category::all();
-        $product = Product::FindorFail($id);
+        $product = Product::where('slug', $slug)->first();
         $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
+        $id = $product['id'];
         $comments = Comment::where('product_id', $id)->get();
         $category_id = $product['category_id'];
         $categoryProducts = Product::where('category_id', $category_id)->get();
@@ -66,10 +67,31 @@ class FrontendController extends Controller
         return view('frontend.productView')->with($data);
     }
 
-    public function categoryView($category_id)
+    public function categories()
     {
         $brands = Brand::all();
-        $category = Category::FindorFail($category_id);
+        $categories = Category::all();
+        $products = Product::paginate(5);
+        $categoriesTree = Category::getTreeHP();
+        $discountProducts = Product::whereNotNull('discount')->paginate(5);
+        $totalAmount = null;
+
+        $data = [
+            'brands' => $brands,
+            'products' => $products,
+            'categoriesTree' => $categoriesTree,
+            'categories' => $categories,
+            'totalAmount' => $totalAmount,
+            'discountProducts' => $discountProducts
+        ];
+
+        return view('frontend.categories')->with($data);
+    }
+    public function categoryView($slug)
+    {
+        $brands = Brand::all();
+        $category = Category::where('slug',$slug)->first();
+        $category_id = $category['id'];
         $categories = Category::all();
         $products = Product::where('category_id', $category_id)->get();
         $categoriesTree = Category::getTreeHP();
@@ -87,9 +109,26 @@ class FrontendController extends Controller
         return view('frontend.categoryView')->with($data);
     }
 
-    public function brandView($brand_id)
+    public function brands()
     {
-        $brand = Brand::FindorFail($brand_id);
+        $brands = Brand::all();
+        $categories = Category::all();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
+
+        $data = [
+            'brands' => $brands,
+            'categories' => $categories,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount
+        ];
+
+        return view('frontend.brands')->with($data);
+    }
+    public function brandView($name)
+    {
+        $brand = Brand::where('name', $name)->first();
+        $brand_id = $brand['id'];
         $brands = Brand::all();
         $categories = Category::all();
         $products = Product::where('brand_id', $brand_id)->get();

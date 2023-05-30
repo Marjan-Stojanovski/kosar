@@ -239,13 +239,17 @@
                                     </div>
                                     <div class="body" style="margin: 30px">
                                         <h3>
-                                            <a href="{{route('frontend.productView', $categoryProduct->id)}}">{{$categoryProduct->title}}</a>
+                                            <a href="{{route('frontend.productView', $categoryProduct->slug)}}">{{$categoryProduct->title}}</a>
                                         </h3>
                                         <p class="small"> {{strip_tags($categoryProduct->brand->name)}}</p>
                                         <div class="elements-list clearfix">
-                                            <span class="price"> &nbsp;€{{$categoryProduct->price}}</span>
-                                            <a href="{{route('frontend.productView', $categoryProduct->id)}}"
+                                            <div class="col-md-6">
+                                            <span class="product price"> &nbsp;€{{$categoryProduct->price}}</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <a href="{{route('frontend.productView', $categoryProduct->slug)}}"
                                                class="pull-right text-right btn btn-info">View</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

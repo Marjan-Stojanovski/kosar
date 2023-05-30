@@ -108,7 +108,7 @@ class Category extends Model
     }
 
     public static function renderNodeHP($node) {
-        $list = '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/categories/'.$node->id.'">'.$node->name.'</a>';
+        $list = '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/categories/'.$node->slug.'">'.$node->name.'</a>';
         if ( $node->children()->count() > 0 ) {
             $list .= '<ul class="dropdown-menu">';
             foreach($node->children as $child)
@@ -145,7 +145,7 @@ class Category extends Model
         }
 
         $list = '<li '.$linkId.'>
-                    <a '. $linkId .' href="/#filters" data-filter-id="'.$node->id.'" aria-haspopup="true" aria-expanded="false">
+                    <a '. $linkId .' href="/#filters" data-filter-id="'.$node->slug.'" aria-haspopup="true" aria-expanded="false">
                                ' . $node->name . '
                             </a>';
 

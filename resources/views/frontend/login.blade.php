@@ -5,8 +5,8 @@
         <div class="breadcrumb-container">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><i class="fa fa-home pr-10"></i><a href="../index.html">Home</a></li>
-                    <li class="active">Page Login</li>
+                    <li><i class="fa fa-home pr-10"></i><a href="{{ route('frontend.index') }}">Home</a></li>
+                    <li class="active">Login</li>
                 </ol>
             </div>
         </div>
@@ -14,7 +14,7 @@
 
         <!-- main-container start -->
         <!-- ================ -->
-        <div class="main-container dark-translucent-bg" style="background-image:url('images/background-img-6.jpg');">
+        <div class="main-container dark-translucent-bg" style="background-image:url('/assets/img/zgane.jpg');">
             <div class="container">
                 <div class="row">
                     <!-- main start -->

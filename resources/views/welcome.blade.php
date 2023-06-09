@@ -257,9 +257,9 @@
                                                             <table class="table table-hover">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th class="text-start">Product</th>
-                                                                    <th class="text-center">Quantity</th>
-                                                                    <th class="text-end">Action</th>
+                                                                    <th class="quantity text-start">QTY</th>
+                                                                    <th class="product text-center">Product</th>
+                                                                    <th class="amount text-end">Subtotal</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -267,21 +267,12 @@
                                                                 @if(session('cart'))
                                                                     @foreach(session('cart') as $id => $details)
                                                                         <tr rowId="{{ $id }}">
-                                                                            <td class="text-start">{{ $details['name'] }}</td>
-                                                                            <td class="text-center">{{$details['quantity']}}
-                                                                                pcs
+                                                                            <td class="quantity text-start">{{$details['quantity']}}
+                                                                                x
                                                                             </td>
-                                                                            <td class="text-end">
-                                                                                <form
-                                                                                    action="{{route('delete.cart', $id)}}"
-                                                                                    method="post">
-                                                                                    @csrf
-                                                                                    @method('delete')
-                                                                                    <button class="btn btn-warning">
-                                                                                        <i
-                                                                                            class="fa fa-trash-o"></i>
-                                                                                    </button>
-                                                                                </form>
+                                                                            <td class="product text-center">{{ $details['name'] }}</td>
+                                                                            <td class="amount text-end">
+                                                                                {{ $details['unitPrice'] }} €
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
@@ -352,8 +343,8 @@
                             <div class="col-sm-8">
                                 <h2 style="padding-top: 10px" class="title">Pogledajte naso akcisko ponudbo</h2>
                             </div>
-                            <div class="col-sm-4">
-                                <p><a href="#" class="btn btn-lg btn-default btn-animated">Vec<i
+                            <div class="col-sm-4" style="padding-top: 10px">
+                                <p><a href="{{URL::to('/e-shop/?discount[]=checked')}}" class="btn btn-sm btn-default btn-animated" >Preberite Vec<i
                                             class="fa fa-arrow-right pl-20"></i></a></p>
                             </div>
                         </div>

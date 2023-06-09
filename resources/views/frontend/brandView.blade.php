@@ -73,9 +73,6 @@
                                                 <span class="badge" style="color: red; border: 1px solid red">{{$product->discount}}% OFF</span>
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{$product->brand->weblink}}"
-                                                               class="btn-sm-link"><i
-                                                                    class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
 															<a href="{{route('frontend.productView', $product->slug)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>
@@ -151,9 +148,6 @@
                                                 <img src="/assets/img/products/medium/{{$product->image}}" alt="">
                                                 <div class="overlay-to-top links">
 														<span class="small">
-															<a href="{{$product->brand->weblink}}"
-                                                               class="btn-sm-link"><i
-                                                                    class="fa fa-heart-o pr-10"></i>{{$product->title}}</a>
 															<a href="{{route('frontend.productView', $product->slug)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Details</a>

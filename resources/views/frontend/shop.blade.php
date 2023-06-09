@@ -61,6 +61,36 @@
                                             <a class="collapsed"
                                                data-parent="#accordion" href="#collapseOne" aria-expanded="false"
                                                aria-controls="collapseOne">
+                                                Akciski Izdelki
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="" role="tabpanel"
+                                         aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <ul class="nav nav-pills nav-stacked list-group">
+                                                        <?php
+                                                        $checked = [];
+                                                        if (isset($_GET['discount'])) {
+                                                            $checked = $_GET['discount'];
+                                                        }
+                                                        ?>
+                                                    <div class="mb-1">
+                                                        <input type="checkbox" name="discount[]"
+                                                               value="checked"
+                                                               @if(in_array('checked', $checked)) checked @endif
+                                                        /> Akciski
+                                                    </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
+                                    <div class="panel-heading" style="background-color: #0c9ec7; color: whitesmoke; border-radius: 30px">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed"
+                                               data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                                               aria-controls="collapseOne">
                                                 Kategorija
                                             </a>
                                         </h4>

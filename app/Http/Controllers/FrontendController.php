@@ -206,7 +206,6 @@ class FrontendController extends Controller
 
     public function shop()
     {
-
         if (isset($_GET)) {
             $builder = Product::query();
             if (!empty($_GET['category'])) {
@@ -224,6 +223,10 @@ class FrontendController extends Controller
             if (!empty($_GET['country'])) {
                 $country = $_GET['country'];
                 $builder->whereIn('country_id', $country);
+            }
+            if (!empty($_GET['discount'])) {
+                $country = $_GET['discount'];
+                $builder->whereNotNull('discount');
             }
 
             $products = $builder->paginate(12);

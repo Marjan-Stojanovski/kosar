@@ -43,7 +43,7 @@
                                         <p>{!! $brand->description !!}</p>
                                     </div>
                                     <div class="pull-right">
-                                        <a class="text-center btn btn-gray-transparent btn-animated"  href="{{route('frontend.brandView', $brand->name)}}">{{$brand->name}} Products<i class="fa fa-arrow-right"></i></a>
+                                        <a class="text-center btn btn-gray-transparent btn-animated"  href="{{URL::to('/e-shop/?brand[]='.$brand->id)}}">{{$brand->name}} Products<i class="fa fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>

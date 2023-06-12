@@ -11,7 +11,7 @@
 
 	// Collection of derived classes
 	JQClass.classes = {};
- 
+
 	// Create a new JQClass that inherits from this class
 	JQClass.extend = function extender(prop) {
 		var base = this.prototype;
@@ -37,7 +37,7 @@
 							return base[name].apply(this, args || []);
 						};
 
-						var ret = fn.apply(this, arguments);				
+						var ret = fn.apply(this, arguments);
 
 						// The method only need to be bound temporarily, so we
 						// remove it when we're done executing
@@ -89,7 +89,7 @@
  	triggers: 'click'
  } */
 		defaultOptions: {},
-		
+
 		/** Options dependent on the locale.
 			Indexed by language and (optional) country code, with '' denoting the default language (English/US).
 			@example regionalOptions: {
@@ -98,7 +98,7 @@
 	}
  } */
 		regionalOptions: {},
-		
+
 		/** Names of getter methods - those that can't be chained (default: []).
 			@example _getters: ['activeTab'] */
 		_getters: [],
@@ -109,7 +109,7 @@
 		_getMarker: function() {
 			return 'is-' + this.name;
 		},
-		
+
 		/** Initialise the plugin.
 			Create the jQuery bridge - plugin name <code>xyz</code>
 			produces <code>$.xyz</code> and <code>$.fn.xyz</code>. */
@@ -146,7 +146,7 @@
 		setDefaults: function(options) {
 			$.extend(this.defaultOptions, options || {});
 		},
-		
+
 		/** Determine whether a method is a getter and doesn't permit chaining.
 			@private
 			@param name {string} The method name.
@@ -159,11 +159,11 @@
 			}
 			return $.inArray(name, this._getters) > -1;
 		},
-		
+
 		/** Initialise an element. Called internally only.
 			Adds an instance object as data named for the plugin.
 			@param elem {Element} The element to enhance.
-			@param options {object} Overriding settings. */
+			@param options {object} Overriding company_info. */
 		_attach: function(elem, options) {
 			elem = $(elem);
 			if (elem.hasClass(this._getMarker())) {
@@ -178,8 +178,8 @@
 			this.option(elem, options);
 		},
 
-		/** Retrieve additional instance settings.
-			Override this in a sub-class to provide extra settings.
+		/** Retrieve additional instance company_info.
+			Override this in a sub-class to provide extra company_info.
 			@param elem {jQuery} The current jQuery element.
 			@param options {object} The instance options.
 			@return {object} Any extra instance values.
@@ -193,7 +193,7 @@
 		/** Plugin specific post initialisation.
 			Override this in a sub-class to perform extra activities.
 			@param elem {jQuery} The current jQuery element.
-			@param inst {object} The instance settings.
+			@param inst {object} The instance company_info.
 			@example _postAttach: function(elem, inst) {
  	elem.on('click.' + this.name, function() {
  		...
@@ -213,7 +213,7 @@
 			try {
 				var data = elem.data(this.name.toLowerCase()) || '';
 				data = data.replace(/'/g, '"');
-				data = data.replace(/([a-zA-Z0-9]+):/g, function(match, group, i) { 
+				data = data.replace(/([a-zA-Z0-9]+):/g, function(match, group, i) {
 					var count = data.substring(0, i).match(/"/g); // Handle embedded ':'
 					return (!count || count.length % 2 === 0 ? '"' + group + '":' : group + ':');
 				});
@@ -237,8 +237,8 @@
 		_getInst: function(elem) {
 			return $(elem).data(this.name) || {};
 		},
-		
-		/** Retrieve or reconfigure the settings for a plugin.
+
+		/** Retrieve or reconfigure the company_info for a plugin.
 			@param elem {Element} The source element.
 			@param name {object|string} The collection of new option values or the name of a single option.
 			@param [value] {any} The value for a single named option.
@@ -265,12 +265,12 @@
 			this._optionsChanged(elem, inst, options);
 			$.extend(inst.options, options);
 		},
-		
+
 		/** Plugin specific options processing.
 			Old value available in <code>inst.options[name]</code>, new value in <code>options[name]</code>.
 			Override this in a sub-class to perform extra activities.
 			@param elem {jQuery} The current jQuery element.
-			@param inst {object} The instance settings.
+			@param inst {object} The instance company_info.
 			@param options {object} The new options.
 			@example _optionsChanged: function(elem, inst, options) {
  	if (options.name != inst.options.name) {
@@ -279,7 +279,7 @@
  } */
 		_optionsChanged: function(elem, inst, options) {
 		},
-		
+
 		/** Remove all trace of the plugin.
 			Override <code>_preDestroy</code> for plugin-specific processing.
 			@param elem {Element} The source element.
@@ -297,14 +297,14 @@
 			Override this in a sub-class to perform extra activities and undo everything that was
 			done in the <code>_postAttach</code> or <code>_optionsChanged</code> functions.
 			@param elem {jQuery} The current jQuery element.
-			@param inst {object} The instance settings.
+			@param inst {object} The instance company_info.
 			@example _preDestroy: function(elem, inst) {
  	elem.off('.' + this.name);
  } */
 		_preDestroy: function(elem, inst) {
 		}
 	});
-	
+
 	/** Convert names from hyphenated to camel-case.
 		@private
 		@param value {string} The original hyphenated name.
@@ -314,11 +314,11 @@
 			return group.toUpperCase();
 		});
 	}
-	
+
 	/** Expose the plugin base.
 		@namespace "$.JQPlugin" */
 	$.JQPlugin = {
-	
+
 		/** Create a new collection plugin.
 			@memberof "$.JQPlugin"
 			@param [superClass='JQPlugin'] {string} The name of the parent class to inherit from.

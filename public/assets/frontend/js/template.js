@@ -1938,7 +1938,7 @@
 					// options
 					message: 'Great! you have just created this message :-) you can configure this into the template.js file'
 				},{
-					// settings
+					// company_info
 					type: 'info',
 					delay: 4000,
 					offset : {

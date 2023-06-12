@@ -1311,7 +1311,7 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 		color-stop(0.13, rgb(0,0,0)),
 		color-stop(1, rgb(50,50,50))
 	);
-	
+
 	display:table;max-width:100%; overflow:hidden;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;
 }
 
@@ -1512,7 +1512,7 @@ img.tp-slider-alternative-image	{	width:100%; height:auto;}
 	-	TP THUMBS 	-
 *****************************************************************************************************
 
- - tp-thumbs & tp-mask Width is the width of the basic Thumb Container (500px basic settings)
+ - tp-thumbs & tp-mask Width is the width of the basic Thumb Container (500px basic company_info)
 
  - .bullet width & height is the dimension of a simple Thumbnail (basic 100px x 50px)
 

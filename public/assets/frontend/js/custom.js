@@ -18,7 +18,7 @@
 				// options
 				message: 'The Dropdowns of the Main Menu, are now open with click on Parent Items. Click "Home" to checkout this behavior.'
 			},{
-				// settings
+				// company_info
 				type: 'info',
 				delay: 10000,
 				offset : {
@@ -32,7 +32,7 @@
 				// options
 				message: 'The animations of main menu are disabled.'
 			},{
-				// settings
+				// company_info
 				type: 'info',
 				delay: 10000,
 				offset : {

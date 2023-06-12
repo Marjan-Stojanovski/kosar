@@ -1259,7 +1259,7 @@ utils.modulo = function( num, div ) {
 };
 
 // ----- isArray ----- //
-  
+
 var objToString = Object.prototype.toString;
 utils.isArray = function( obj ) {
   return objToString.call( obj ) == '[object Array]';
@@ -2155,7 +2155,7 @@ function Outlayer( element, options ) {
   }
 }
 
-// settings are for internal use only
+// company_info are for internal use only
 Outlayer.namespace = 'outlayer';
 Outlayer.Item = Item;
 
@@ -2945,7 +2945,7 @@ Outlayer.create = function( namespace, options ) {
   Layout.defaults = utils.extend( {}, Outlayer.defaults );
   // apply new options
   utils.extend( Layout.defaults, options );
-  // keep prototype.settings for backwards compatibility (Packery v1.2.0)
+  // keep prototype.company_info for backwards compatibility (Packery v1.2.0)
   Layout.prototype.settings = {};
 
   Layout.namespace = namespace;

@@ -70,11 +70,11 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
 
     //Settings-web-route
 
-    Route::get('/settings', [\App\Http\Controllers\SettingsControler::class, 'index'])->name('settings.index');
-    Route::get('/settings/create', [\App\Http\Controllers\SettingsControler::class, 'create'])->name('settings.create');
-    Route::post('/settings', [\App\Http\Controllers\SettingsControler::class, 'store'])->name('settings.store');
-    Route::get('/settings/{settings}/edit', [\App\Http\Controllers\SettingsControler::class, 'edit'])->name('settings.edit');
-    Route::put('/settings/{settings}', [\App\Http\Controllers\SettingsControler::class, 'update'])->name('settings.update');
+    Route::get('/company_info', [\App\Http\Controllers\CompanyInfoController::class, 'index'])->name('company_info.index');
+    Route::get('/company_info/create', [\App\Http\Controllers\CompanyInfoController::class, 'create'])->name('company_info.create');
+    Route::post('/company_info', [\App\Http\Controllers\CompanyInfoController::class, 'store'])->name('company_info.store');
+    Route::get('/company_info/{company_info}/edit', [\App\Http\Controllers\CompanyInfoController::class, 'edit'])->name('company_info.edit');
+    Route::put('/company_info/{company_info}', [\App\Http\Controllers\CompanyInfoController::class, 'update'])->name('company_info.update');
 
     //Referents-web-route
 

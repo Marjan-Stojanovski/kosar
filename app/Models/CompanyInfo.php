@@ -5,28 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model
+class CompanyInfo extends Model
 {
     use HasFactory;
 
-    protected $table = 'settings';
+    protected $table = 'company_info';
 
     protected $fillable = [
-        'title',
-        'mainurl',
-        'email',
-        'description',
-        'image',
-        'link',
+        'name',
+        'info',
         'address',
+        'mail',
         'phone',
-        'twitter',
         'facebook',
-        'skype',
-        'linkedin',
-        'youtube',
-        'flickr',
-        'pinterest',
+        'instagram',
+        'image',
+        'description',
         'user_id',
     ];
 
@@ -34,6 +28,5 @@ class Settings extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 
 }

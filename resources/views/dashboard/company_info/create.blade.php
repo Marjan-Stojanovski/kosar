@@ -4,16 +4,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action="{{route('settings.update', $settings->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('company_info.store')}}" enctype="multipart/form-data">
                     @csrf
-                    @method('put')
                     <div class="col-lg-12">
                         <!--Card-->
                         <div class="card mb-3 mb-lg-5">
                             <div class="card-body">
                                 <div class="row justify-content-between align-items-center">
                                     <div class="col-12">
-                                        <h3>Подесувања</h3>
+                                        <h3>Информации за компанијата</h3>
                                     </div>
                                 </div>
                                 <hr class="my-4">
@@ -22,12 +21,12 @@
                                         <!-- First name -->
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label class="form-label" for="title">Име на компанијата</label>
+                                            <label class="form-label" for="name">Име на компанијата</label>
                                             <!-- Input -->
                                             <input type="text" placeholder="Внесете име на компанијата"
-                                                   class="form-control @error('title') is-invalid @enderror"
-                                                   id="title" name="title" value="{{$settings->title}}">
-                                            @error('title')
+                                                   class="form-control @error('name') is-invalid @enderror"
+                                                   id="name" name="name">
+                                            @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -38,12 +37,12 @@
                                         <!-- First name -->
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label class="form-label" for="mainurl">Линк</label>
+                                            <label class="form-label" for="info">Инфо за компанијата</label>
                                             <!-- Input -->
-                                            <input type="text" placeholder="Линк до веб страна"
-                                                   class="form-control @error('mainurl') is-invalid @enderror"
-                                                   id="mainurl" name="mainurl" value="{{$settings->mainurl}}">
-                                            @error('mainurl')
+                                            <input type="text" placeholder="Инфо за компанијата"
+                                                   class="form-control @error('info') is-invalid @enderror"
+                                                   id="info" name="info">
+                                            @error('info')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -57,12 +56,12 @@
                                         <!-- First name -->
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label class="form-label" for="email">Email</label>
+                                            <label class="form-label" for="mail">Email</label>
                                             <!-- Input -->
                                             <input type="email" placeholder="Внеси Email"
-                                                   class="form-control @error('email') is-invalid @enderror"
-                                                   id="email" name="email" value="{{$settings->email}}">
-                                            @error('email')
+                                                   class="form-control @error('mail') is-invalid @enderror"
+                                                   id="mail" name="mail">
+                                            @error('mail')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -77,7 +76,7 @@
                                             <!-- Input -->
                                             <input type="text" placeholder="Внеси адреса"
                                                    class="form-control @error('address') is-invalid @enderror"
-                                                   id="address" name="address" value="{{$settings->address}}">
+                                                   id="address" name="address">
                                             @error('address')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -95,7 +94,7 @@
                                             <!-- Input -->
                                             <input type="text" placeholder="Внеси телефон"
                                                    class="form-control @error('phone') is-invalid @enderror"
-                                                   id="phone" name="phone" value="{{$settings->phone}}">
+                                                   id="phone" name="phone">
                                             @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -132,7 +131,7 @@
                                             <!-- Input -->
                                             <textarea
                                                 class="form-control quill-editor @error('description') is-invalid @enderror"
-                                                id="description" name="description">{{$settings->description}}</textarea>
+                                                id="description" name="description"></textarea>
                                             @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -146,27 +145,11 @@
                                         <!-- First name -->
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label class="form-label" for="link">Линк</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Внеси Линк"
-                                                   class="form-control @error('email') is-invalid @enderror"
-                                                   id="link" name="link" value="{{$settings->link}}">
-                                            @error('link')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
                                             <label class="form-label" for="facebook">Facebook</label>
                                             <!-- Input -->
                                             <input type="text" placeholder="Линк до профилот"
                                                    class="form-control @error('facebook') is-invalid @enderror"
-                                                   id="facebook" name="facebook" value="{{$settings->facebook}}">
+                                                   id="facebook" name="facebook">
                                             @error('facebook')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -174,104 +157,16 @@
                                             @enderror
                                         </div>
                                     </div>
-
-                                </div>
-
-                                <div class="row">
                                     <div class="col-12 col-md-6 mb-3 d-inline-block">
                                         <!-- First name -->
                                         <div class="form-group">
                                             <!-- Label -->
-                                            <label class="form-label" for="twitter">Twitter</label>
+                                            <label class="form-label" for="instagram">Instagram</label>
                                             <!-- Input -->
                                             <input type="text" placeholder="Линк до профилот"
-                                                   class="form-control @error('twitter') is-invalid @enderror"
-                                                   id="twitter" name="twitter" value="{{$settings->twitter}}">
-                                            @error('twitter')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
-                                            <label class="form-label" for="skype">Skype</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Линк до профилот"
-                                                   class="form-control @error('skype') is-invalid @enderror"
-                                                   id="skype" name="skype" value="{{$settings->skype}}">
-                                            @error('skype')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
-                                            <label class="form-label" for="linkedin">LinkedIn</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Линк до профилот"
-                                                   class="form-control @error('linkedin') is-invalid @enderror"
-                                                   id="linkedin" name="linkedin" value="{{$settings->linkedin}}">
-                                            @error('linkedin')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
-                                            <label class="form-label" for="youtube">Youtube</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Линк до профилот"
-                                                   class="form-control @error('youtube') is-invalid @enderror"
-                                                   id="youtube" name="youtube" value="{{$settings->youtube}}">
-                                            @error('youtube')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
-                                            <label class="form-label" for="flickr">Flickr</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Линк до профилот"
-                                                   class="form-control @error('flickr') is-invalid @enderror"
-                                                   id="flickr" name="flickr" value="{{$settings->flickr}}">
-                                            @error('flickr')
-                                            <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 mb-3 d-inline-block">
-                                        <!-- First name -->
-                                        <div class="form-group">
-                                            <!-- Label -->
-                                            <label class="form-label" for="pinterest">Pinterest</label>
-                                            <!-- Input -->
-                                            <input type="text" placeholder="Линк до профилот"
-                                                   class="form-control @error('pinterest') is-invalid @enderror"
-                                                   id="pinterest" name="pinterest" value="{{$settings->pinterest}}">
-                                            @error('pinterest')
+                                                   class="form-control @error('instagram') is-invalid @enderror"
+                                                   id="instagram" name="instagram">
+                                            @error('instagram')
                                             <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -288,7 +183,7 @@
                                             <select name="user_id" id="user_id"
                                                     class="form-control @error('user_id') is-invalid @enderror">
                                                 @foreach($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}">{{ $user->firstName }} {{ $user->lastName }}</option>
                                                 @endforeach
                                                 @error('user_id')
                                                 <span class="invalid-feedback" role="alert">
@@ -307,7 +202,7 @@
                                                     save
                                                     </span>Сочувај
                                                 </button>
-                                                <a href="{{route('settings.index')}}" class="btn btn-secondary"
+                                                <a href="{{route('company_info.index')}}" class="btn btn-secondary"
                                                    data-tippy-content="Назад кон продукти">
                                                 <span class="material-symbols-rounded align-middle me-2">
                                                     arrow_back_ios

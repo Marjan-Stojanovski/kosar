@@ -27,7 +27,7 @@
   var PLUGIN_NAME = 'vide';
 
   /**
-   * Default settings
+   * Default company_info
    * @private
    * @const
    * @type {Object}

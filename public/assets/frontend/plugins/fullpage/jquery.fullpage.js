@@ -1433,7 +1433,7 @@
         }
 
         /**
-        * Gets the scrolling settings depending on the plugin autoScrolling option
+        * Gets the scrolling company_info depending on the plugin autoScrolling option
         */
         function getScrollSettings(v){
             var scroll = {};
@@ -2664,7 +2664,7 @@
                 return;
             }
 
-            // Disable mutually exclusive settings
+            // Disable mutually exclusive company_info
             if (options.continuousVertical &&
                 (options.loopTop || options.loopBottom)) {
                 options.continuousVertical = false;

@@ -1,7 +1,7 @@
 /* http://keith-wood.name/countdown.html
    Countdown for jQuery v2.0.2.
    Written by Keith Wood (kbwood{at}iinet.com.au) January 2008.
-   Available under the MIT (http://keith-wood.name/licence.html) license. 
+   Available under the MIT (http://keith-wood.name/licence.html) license.
    Please attribute the author if you use it. */
 
 (function($) { // Hide scope, no $ conflict
@@ -26,7 +26,7 @@
 		@augments JQPlugin
 		@example $(selector).countdown({until: +300}) */
 	$.JQPlugin.createPlugin({
-	
+
 		/** The name of the plugin. */
 		name: pluginName,
 
@@ -38,7 +38,7 @@
 			Triggered when the countdown is initialised.
 			@callback serverSyncCallback
 			@return {Date} The current date/time on the server as expressed in the local timezone. */
-			
+
 		/** Countdown tick callback.
 			Triggered on every <code>tickInterval</code> ticks of the countdown.
 			@callback tickCallback
@@ -51,8 +51,8 @@
 			@callback whichLabelsCallback
 			@param num {number} The current period value.
 			@return {number} The suffix for the label set to use. */
-			
-		/** Default settings for the plugin.
+
+		/** Default company_info for the plugin.
 			@property until {Date|number|string} The date/time to count down to, or number of seconds
 						offset from now, or string of amounts and units for offset(s) from now:
 						'Y' years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds.
@@ -135,8 +135,8 @@
 			@property [digits=['0','1',...,'9']] {number[]} The digits to display (0-9).
 			@property [timeSeparator=':'] {string} Separator for time periods in the compact layout.
 			@property [isRTL=false] {boolean} True for right-to-left languages, false for left-to-right. */
-		regionalOptions: { // Available regional settings, indexed by language/country code
-			'': { // Default regional settings - English/US
+		regionalOptions: { // Available regional company_info, indexed by language/country code
+			'': { // Default regional company_info - English/US
 				labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
 				labels1: ['Year', 'Month', 'Week', 'Day', 'Hour', 'Minute', 'Second'],
 				compactLabels: ['y', 'm', 'w', 'd'],
@@ -146,7 +146,7 @@
 				isRTL: false
 			}
 		},
-		
+
 		/** Names of getter methods - those that can't be chained. */
 		_getters: ['getTimes'],
 
@@ -208,7 +208,7 @@
 				requestAnimationFrame(timerCallBack);
 			}
 		},
-	
+
 		/** Convert a date/time to UTC.
 			@param tz {number} The hour or minute offset from GMT, e.g. +9, -360.
 			@param year {Date|number} the date/time in that timezone or the year in that timezone.
@@ -343,7 +343,7 @@
 		/** Redisplay the countdown with an updated display.
 			@private
 			@param elem {Element|jQuery} The containing division.
-			@param inst {object} The current settings for this instance. */
+			@param inst {object} The current company_info for this instance. */
 		_updateCountdown: function(elem, inst) {
 			elem = elem.jquery ? elem : $(elem);
 			inst = inst || this._getInst(elem);
@@ -402,11 +402,11 @@
 				}
 			}
 		},
-	
-		/** Calculate internal settings for an instance.
+
+		/** Calculate internal company_info for an instance.
 			@private
 			@param elem {jQuery} The containing division.
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@param recalc {boolean} True if until or since are set. */
 		_adjustSettings: function(elem, inst, recalc) {
 		var serverEntry = null;
@@ -505,7 +505,7 @@
 				inst[inst._since ? '_since' : '_until'] =
 					this._determineTime(sign + inst._periods[0] + 'y' +
 						sign + inst._periods[1] + 'o' + sign + inst._periods[2] + 'w' +
-						sign + inst._periods[3] + 'd' + sign + inst._periods[4] + 'h' + 
+						sign + inst._periods[3] + 'd' + sign + inst._periods[4] + 'h' +
 						sign + inst._periods[5] + 'm' + sign + inst._periods[6] + 's');
 					this._addElem(elem);
 			}
@@ -557,7 +557,7 @@
 					case 'd': day += parseInt(matches[1], 10); break;
 					case 'w': day += parseInt(matches[1], 10) * 7; break;
 					case 'o':
-						month += parseInt(matches[1], 10); 
+						month += parseInt(matches[1], 10);
 							day = Math.min(day, self._getDaysInMonth(year, month));
 						break;
 					case 'y':
@@ -596,7 +596,7 @@
 
 		/** Generate the HTML to display the countdown widget.
 			@private
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@return {string} The new HTML for the countdown display. */
 	_generateHTML: function(inst) {
 		var self = this;
@@ -648,8 +648,8 @@
 			inst.options.compact, inst.options.significant, showSignificant) :
 			((inst.options.compact ? // Compact version
 			'<span class="' + this._rowClass + ' ' + this._amountClass +
-			(inst._hold ? ' ' + this._holdingClass : '') + '">' + 
-			showCompact(Y) + showCompact(O) + showCompact(W) + showCompact(D) + 
+			(inst._hold ? ' ' + this._holdingClass : '') + '">' +
+			showCompact(Y) + showCompact(O) + showCompact(W) + showCompact(D) +
 			(show[H] ? this._minDigits(inst, inst._periods[H], 2) : '') +
 			(show[M] ? (show[H] ? inst.options.timeSeparator : '') +
 			this._minDigits(inst, inst._periods[M], 2) : '') +
@@ -666,7 +666,7 @@
 
 		/** Construct a custom layout.
 			@private
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@param show {boolean[]} Flags indicating which periods are requested.
 			@param layout {string} The customised layout.
 			@param compact {boolean} True if using compact labels.
@@ -737,7 +737,7 @@
 
 		/** Ensure a numeric value has at least n digits for display.
 			@private
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@param value {number} The value to display.
 			@param len {number} The minimum length.
 			@return {string} The display text. */
@@ -752,7 +752,7 @@
 
 		/** Translate digits into other representations.
 			@private
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@param value {string} The text to translate.
 			@return {string} The translated text. */
 	_translateDigits: function(inst, value) {
@@ -763,7 +763,7 @@
 
 		/** Translate the format into flags for each period.
 			@private
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@return {string[]} Flags indicating which periods are requested (?) or
 					required (!) by year, month, week, day, hour, minute, second. */
 	_determineShow: function(inst) {
@@ -778,10 +778,10 @@
 		show[S] = (format.match('s') ? '?' : (format.match('S') ? '!' : null));
 		return show;
 	},
-	
+
 		/** Calculate the requested periods between now and the target time.
 			@private
-			@param inst {object} The current settings for this instance.
+			@param inst {object} The current company_info for this instance.
 			@param show {string[]} Flags indicating which periods are requested/required.
 			@param significant {number} The number of periods with values to show, zero for all.
 			@param now {Date} The current date and time.

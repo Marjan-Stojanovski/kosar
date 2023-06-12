@@ -385,14 +385,12 @@
                                     Ljubljana
                                 </li>
                                 <li><i class="fa fa-phone pr-10 text-default"></i> +386 31 308 780</li>
-                                <li><a href="mailto:info@theproject.com"><i class="fa fa-envelope-o pr-10"></i>info@kosar.si</a>
+                                <li><a href="mailto:info@kosar.si"><i class="fa fa-envelope-o pr-10"></i>info@kosar.si</a>
                                 </li>
                             </ul>
                             <ul class="social-links circle colored">
                                 <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i
                                             class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i
-                                            class="fa fa-twitter"></i></a></li>
                                 <li class="instagram"><a target="_blank" href="http://plus.google.com"><i
                                             class="fa fa-instagram"></i></a></li>
                             </ul>

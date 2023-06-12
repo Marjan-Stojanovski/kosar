@@ -42,14 +42,12 @@ class ShoppingCartController extends Controller
         $cart = session()->get('cart', []);
 
         if(isset($cart[$product_id])) {
-
             $oldQuantity = $cart[$product_id]['quantity'];
             $newQuantity = $request->get('quantity');
             $quantity = $oldQuantity + $newQuantity;
             $cart[$product_id]['quantity'] = $quantity;
 
         } else {
-
                 $quantity = $request->get('quantity');
                 $unitPrice = $request->get('price');
                 $productAmount = $quantity * $unitPrice;

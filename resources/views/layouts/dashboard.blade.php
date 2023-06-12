@@ -99,6 +99,16 @@
                                     <span class="sidebar-text">Инфо</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('employees.index')}}"
+                                   class="nav-link d-flex align-items-center text-truncate ">
+                              <span class="sidebar-icon">
+                                <i class="fs-2 text-primary d-block mb-2 bi bi-gear"></i>
+                              </span>
+                                    <!--Sidebar nav text-->
+                                    <span class="sidebar-text">Вработени</span>
+                                </a>
+                            </li>
                             <li class="nav-item sidebar-title text-truncate opacity-50 small">
                                 <i class="bi bi-three-dots"></i>
                                 <span>Уредување на веб страна</span>

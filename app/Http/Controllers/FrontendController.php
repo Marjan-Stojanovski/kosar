@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\CompanyInfo;
 use App\Models\Country;
+use App\Models\Employee;
 use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\ShoppingCart;
@@ -20,6 +22,8 @@ class FrontendController extends Controller
     public function index()
     {
         $loggedUser = Auth::user();
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $products = Product::paginate(5);
@@ -28,6 +32,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'loggedUser' => $loggedUser,
             'brands' => $brands,
             'products' => $products,
@@ -42,6 +48,8 @@ class FrontendController extends Controller
 
     public function productView($slug)
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $product = Product::where('slug', $slug)->first();
@@ -54,6 +62,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'categories' => $categories,
             'product' => $product,
@@ -69,6 +79,8 @@ class FrontendController extends Controller
 
     public function categories()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $products = Product::paginate(5);
@@ -77,6 +89,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'products' => $products,
             'categoriesTree' => $categoriesTree,
@@ -89,6 +103,8 @@ class FrontendController extends Controller
     }
     public function categoryView($slug)
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $category = Category::where('slug',$slug)->first();
         $category_id = $category['id'];
@@ -98,6 +114,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'categories' => $categories,
             'category' => $category,
@@ -111,12 +129,16 @@ class FrontendController extends Controller
 
     public function brands()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'categories' => $categories,
             'categoriesTree' => $categoriesTree,
@@ -127,6 +149,8 @@ class FrontendController extends Controller
     }
     public function brandView($name)
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brand = Brand::where('name', $name)->first();
         $brand_id = $brand['id'];
         $brands = Brand::all();
@@ -136,6 +160,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brand' => $brand,
             'brands' => $brands,
             'categories' => $categories,
@@ -149,6 +175,8 @@ class FrontendController extends Controller
 
     public function feedback()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $products = Product::all();
         $categories = Category::all();
@@ -156,6 +184,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'products' => $products,
             'categories' => $categories,
@@ -168,13 +198,18 @@ class FrontendController extends Controller
 
     public function about_us()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $products = Product::all();
         $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
         $totalAmount = null;
 
+
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'products' => $products,
             'categories' => $categories,
@@ -187,6 +222,8 @@ class FrontendController extends Controller
 
     public function products()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $products = Product::all();
         $categories = Category::all();
@@ -194,6 +231,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'products' => $products,
             'categories' => $categories,
@@ -233,6 +272,8 @@ class FrontendController extends Controller
         } else {
             $products = Product::all()->paginate(12);
         }
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $volumes = Volume::all();
         $categories = Category::all();
@@ -240,6 +281,8 @@ class FrontendController extends Controller
         $countries = Country::all();
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'products' => $products,
             'categoriesTree' => $categoriesTree,
             'brands' => $brands,
@@ -254,6 +297,8 @@ class FrontendController extends Controller
     public function cartCheckout()
     {
         $loggedUser = Auth::user();
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $countries = Country::all();
@@ -262,6 +307,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'products' => $products,
             'loggedUser' => $loggedUser,
             'brands' => $brands,
@@ -276,6 +323,8 @@ class FrontendController extends Controller
 
     public function preSignUp()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $countries = Country::all();
         $categories = Category::all();
@@ -284,6 +333,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'products' => $products,
             'countries' => $countries,
@@ -297,6 +348,8 @@ class FrontendController extends Controller
 
     public function preReset()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands = Brand::all();
         $countries = Country::all();
         $categories = Category::all();
@@ -305,6 +358,8 @@ class FrontendController extends Controller
         $totalAmount = null;
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands' => $brands,
             'products' => $products,
             'countries' => $countries,

@@ -4,6 +4,8 @@ namespace Illuminate\Foundation\Auth;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\CompanyInfo;
+use App\Models\Employee;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,12 +23,16 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $brands                     = Brand::all();
         $categories                 = Category::all();
         $products                   = Product::paginate(5);
         $categoriesTree             = Category::getTreeHP();
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'brands'                => $brands,
             'products'              => $products,
             'categoriesTree'        => $categoriesTree,

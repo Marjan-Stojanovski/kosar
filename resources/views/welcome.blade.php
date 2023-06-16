@@ -8,7 +8,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>Kosar Beverages</title>
+    <title>{{ $company->name }} Beverages</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Mobile Meta -->
@@ -47,11 +47,12 @@
     <!-- Custom css -->
     <link href="/assets/frontend/css/custom.css" rel="stylesheet">
     <style>
-        .list-group{
+        .list-group {
             max-height: 200px;
-            overflow:auto;
+            overflow: auto;
         }
-        .own-item{
+
+        .own-item {
             padding: 20px;
         }
     </style>
@@ -73,10 +74,10 @@
                         <div class="header-top-first clearfix">
                             <ul class="social-links circle small clearfix hidden-xs">
                                 <li class="facebook"><a target="_blank"
-                                                        href="https://www.facebook.com/KOSAR.beverages"><i
+                                                        href="{{ $company->facebook }}"><i
                                             class="fa fa-facebook"></i></a></li>
                                 <li class="instagram"><a target="_blank"
-                                                         href="https://www.instagram.com/kosar.spirits/"><i
+                                                         href="{{ $company->instagram }}"><i
                                             class="fa fa-instagram"></i></a></li>
                             </ul>
                             <div class="social-links hidden-lg hidden-md hidden-sm circle small">
@@ -85,21 +86,22 @@
                                             class="fa fa-share-alt"></i></button>
                                     <ul class="dropdown-menu dropdown-animation">
                                         <li class="facebook"><a target="_blank"
-                                                                href="https://www.facebook.com/KOSAR.beverages"><i
+                                                                href="{{ $company->facebook }}"><i
                                                     class="fa fa-facebook"></i></a></li>
                                         <li class="instagram"><a target="_blank"
-                                                                 href="https://www.instagram.com/kosar.spirits/"><i
+                                                                 href="{{ $company->instagram }}"><i
                                                     class="fa fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <ul class="list-inline hidden-sm hidden-xs">
-                                <li><i class="fa fa-phone pr-5 pl-10"></i>+386 31 308 780</li>
-                                <li><i class="fa fa-envelope-o pr-5 pl-10"></i>info@kosar.si</li>
+                                <li><i class="fa fa-phone pr-5 pl-10"></i>{{ $company->phone }}</li>
+                                <li><a href="mailto:{{ $company->mail }}"><i
+                                            class="fa fa-envelope-o pr-5 pl-10"></i>{{ $company->mail }}</a></li>
                             </ul>
                             <ul class="list-inline hidden-sm hidden-xs">
                                 <li><i class="fa pr-5 pl-10"></i><span
-                                        style="font-size: 20px; padding: 2px; margin-left: 200px "><strong>KOSAR</strong></span>
+                                        style="font-size: 20px; padding: 2px; margin-left: 200px "><strong>{{ $company->name }}</strong></span>
                                 </li>
                             </ul>
                         </div>
@@ -271,8 +273,13 @@
                                                                                 x
                                                                             </td>
                                                                             <td class="product text-center">{{ $details['name'] }}</td>
+                                                                                <?php
+                                                                                $unitPrice = $details['unitPrice'];
+                                                                                $unitQuantity = $details['quantity'];
+                                                                                $subTotal = $unitPrice * $unitQuantity;
+                                                                                ?>
                                                                             <td class="amount text-end">
-                                                                                {{ $details['unitPrice'] }} €
+                                                                                {{ $subTotal }} €
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
@@ -344,7 +351,8 @@
                                 <h2 style="padding-top: 10px" class="title">Pogledajte naso akcisko ponudbo</h2>
                             </div>
                             <div class="col-sm-4" style="padding-top: 10px">
-                                <p><a href="{{URL::to('/e-shop/?discount[]=checked')}}" class="btn btn-sm btn-default btn-animated" >Preberite Vec<i
+                                <p><a href="{{URL::to('/e-shop/?discount[]=checked')}}"
+                                      class="btn btn-sm btn-default btn-animated">Preberite Vec<i
                                             class="fa fa-arrow-right pl-20"></i></a></p>
                             </div>
                         </div>
@@ -378,20 +386,21 @@
                         <div class="footer-content">
                             <h2 class="title">KONTAKT</h2>
                             <div class="separator-2"></div>
-                            <p><b>KOŠAR</b></p>
-                            <p>Darko Stojanovski s.p.</p>
+                            <p><b>{{ $company->name }}</b></p>
+                            <p>{{ $company->info }}</p>
                             <ul class="list-icons">
-                                <li><i class="fa fa-map-marker pr-10 text-default"></i> Stare Črnuče 3, 1231
-                                    Ljubljana
+                                <li><i class="fa fa-map-marker pr-10 text-default"></i>
+                                    {{ $company->address }}
                                 </li>
-                                <li><i class="fa fa-phone pr-10 text-default"></i> +386 31 308 780</li>
-                                <li><a href="mailto:info@kosar.si"><i class="fa fa-envelope-o pr-10"></i>info@kosar.si</a>
+                                <li><i class="fa fa-phone pr-10 text-default"></i> {{ $company->phone }}</li>
+                                <li><a href="mailto:{{ $company->mail }}"><i
+                                            class="fa fa-envelope-o pr-10"></i>{{ $company->mail }}</a>
                                 </li>
                             </ul>
                             <ul class="social-links circle colored">
-                                <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i
+                                <li class="facebook"><a target="_blank" href="{{ $company->facebook }}"><i
                                             class="fa fa-facebook"></i></a></li>
-                                <li class="instagram"><a target="_blank" href="http://plus.google.com"><i
+                                <li class="instagram"><a target="_blank" href="{{ $company->instagram }}"><i
                                             class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>

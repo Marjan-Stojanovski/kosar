@@ -147,6 +147,12 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::get('/comments/{comments}/edit', [\App\Http\Controllers\CommentControler::class, 'edit'])->name('comments.edit');
     Route::put('/comments/{comments}', [\App\Http\Controllers\CommentControler::class, 'update'])->name('comments.update');
     Route::delete('/comments/{comment}', [\App\Http\Controllers\CommentControler::class, 'destroy'])->name('comments.destroy');
+
+    //Routes messages
+    Route::get('/messages', [App\Http\Controllers\MessageController::class, 'index'])->name('messages.index');
+    Route::post('/messages', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
+    Route::get('/messages/{message}/edit', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
+    Route::put('/message/{message}', [\App\Http\Controllers\MessageController::class, 'update'])->name('message.update');
 });
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 

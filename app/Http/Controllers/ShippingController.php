@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\CompanyInfo;
 use App\Models\Country;
+use App\Models\Employee;
 use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\ShoppingCart;
@@ -22,7 +24,8 @@ class ShippingController extends Controller
 
     public function userDetails()
     {
-
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $user = Auth::user()->id;
         $loggedUser = Auth::user();
         $countries = Country::all();
@@ -40,6 +43,8 @@ class ShippingController extends Controller
         if ($detailsCount === 0) {
 
             $data = [
+                'company' => $company,
+                'employees' => $employees,
                 'loggedUser' => $loggedUser,
                 'countries' => $countries,
                 'categoriesTree' => $categoriesTree,
@@ -52,6 +57,8 @@ class ShippingController extends Controller
             return view('frontend.storeUserInfo')->with($data);
         } else {
             $data = [
+                'company' => $company,
+                'employees' => $employees,
                 'loggedUser' => $loggedUser,
                 'countries' => $countries,
                 'categoriesTree' => $categoriesTree,
@@ -67,7 +74,8 @@ class ShippingController extends Controller
 
     public function storeDetails(Request $request)
     {
-
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $company = $request->get('company');
         $taxNumber = $request->get('taxNumber');
         $firstName = $request->get('firstName');
@@ -113,6 +121,8 @@ class ShippingController extends Controller
         $details = Shipping::where('user_id', $user)->first();
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'categoriesTree' => $categoriesTree,
             'countries' => $countries,
             'shoppingLists' => $shoppingLists,
@@ -129,6 +139,8 @@ class ShippingController extends Controller
 
     public function showDetails($id)
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $user = Auth::user()->id;
         $loggedUser = Auth::user();
         $details = Shipping::FindorFail($id);
@@ -143,6 +155,8 @@ class ShippingController extends Controller
 
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'loggedUser' => $loggedUser,
             'countries' => $countries,
             'categoriesTree' => $categoriesTree,
@@ -158,6 +172,8 @@ class ShippingController extends Controller
 
     public function updateDetails(Request $request, $id)
     {
+        $company = CompanyInfo::first();
+        $employees = Employee::all();
         $user = Auth::user()->id;
         $loggedUser = Auth::user();
         $categoriesTree = Category::getTreeHP();
@@ -174,6 +190,8 @@ class ShippingController extends Controller
 
 
         $data = [
+            'company' => $company,
+            'employees' => $employees,
             'loggedUser' => $loggedUser,
             'categoriesTree' => $categoriesTree,
             'shoppingLists' => $shoppingLists,

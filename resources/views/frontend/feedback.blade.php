@@ -10,7 +10,7 @@
             </ol>
         </div>
     </div>
-    <div class="banner dark-translucent-bg" style="background-position: 50% 30%;">
+    <div class="banner dark-translucent-bg" style="background-image: url(/assets/img/zgane.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;background-position: 50% 30%;">
         <!-- breadcrumb start -->
         <!-- breadcrumb end -->
         <div class="container">
@@ -30,6 +30,7 @@
             <div class="row">
                 <!-- main start -->
                 <div class="main col-md-12 space-bottom">
+                    <!--
                     <p class="lead">It would be great to hear from you! Just drop us a line and ask for anything with
                         which you think we could be helpful. We are looking forward to hearing from you!</p>
                     <div class="alert alert-success hidden" id="MessageSent">
@@ -39,38 +40,73 @@
                         Oops! Something went wrong, please verify that you are not a robot or refresh the page and try
                         again.
                     </div>
+                    -->
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="text-center">
+                        @if(Session::has('flash_message'))
+                            <p class="alert alert-success">Пораката е испратена</p>
+                        @endif
+                        </div>
                     <div class="contact-form">
-                        <form action="" method="post" id="contact-form-with-recaptcha" class="margin-clear" role="form">
+                        <form action="{{route('messages.store')}}" method="post" class="margin-clear">
+                            @csrf
                             <div class="form-group has-feedback">
-                                <label for="name">Full Name*</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="">
+                                <label for="fullName">Full Name*</label>
+                                <input type="text" class="form-control @error('fullName') is-invalid @enderror" id="fullName" name="fullName" placeholder="">
+                                @error('fullName')
+                                <span style="color: red" class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
                                 <i class="fa fa-user form-control-feedback"></i>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for="email">Email*</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="">
+                                @error('email')
+                                <span style="color: red" class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
                                 <i class="fa fa-envelope form-control-feedback"></i>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for="phone">Phone*</label>
-                                <input type="number" class="form-control" id="phone" name="phone" placeholder="">
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="">
+                                @error('phone')
+                                <span style="color: red" class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
                                 <i class="fa fa-phone form-control-feedback"></i>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for="subject">Subject*</label>
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder="">
+                                <input type="text" class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject" placeholder="">
+                                @error('subject')
+                                <span style="color: red" class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
                                 <i class="fa fa-navicon form-control-feedback"></i>
                             </div>
                             <div class="form-group has-feedback">
                                 <label for="message">Message*</label>
-                                <textarea class="form-control" rows="6" id="message" name="message"
+                                <textarea class="form-control @error('message') is-invalid @enderror" rows="6" id="message" name="message"
                                           placeholder=""></textarea>
+                                @error('message')
+                                <span style="color: red" class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                @enderror
                                 <i class="fa fa-pencil form-control-feedback"></i>
                             </div>
-                            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-                            <input type="submit" value="Submit" class="submit-button btn btn-default">
+                            <button type="submit" class="submit-button btn btn-default pull-right">Submit</button>
                         </form>
                     </div>
+                    </div>
+                    <div class="col-md-2"></div>
                 </div>
             </div>
         </div>

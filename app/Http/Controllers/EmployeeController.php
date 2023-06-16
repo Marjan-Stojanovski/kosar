@@ -15,7 +15,12 @@ class EmployeeController extends Controller
 
     public function index()
     {
-        return view('dashboard.employee.index');
+        $employees = Employee::all();
+
+        $data = [
+            'employees' => $employees,
+        ];
+        return view('dashboard.employee.index')->with($data);
     }
 
     public function create()
@@ -66,6 +71,46 @@ class EmployeeController extends Controller
 
         return view('dashboard.employee.edit')->with($data);
 
+    }
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'         => 'required|max:255',
+            'position'         => 'required',
+            'description'   => 'required',
+        ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $employee = Employee::FindorFail($id);
+        $input      = $request->all();
+
+        $employee->fill($input)->save();
+
+        $employees = Employee::all();
+
+        $data = [
+            'employees' => $employees,
+        ];
+
+        return view('dashboard.employee.index')->with($data);
+
+    }
+    public function destroy($id)
+    {
+        $employee = Employee::FindorFail($id);
+        $employee->delete();
+
+        $employees = Employee::all();
+
+        $data = [
+            'employees' => $employees,
+        ];
+
+        return view('dashboard.employee.index')->with($data);
     }
 }

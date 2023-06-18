@@ -10,8 +10,18 @@
 </head>
 
 <body>
-<h1>Hello</h1>
-<p>{{ $msg }}</p>
+<h3>Spostovani</h3>
+<br>
+
+<p>{{$msg}}</p>
+
+<br>
+<footer>
+    <h3>{{$company[0]['name']}}</h3>
+    <h4>{{$company[0]['info']}}</h4>
+    <h4>{{$company[0]['address']}}</h4>
+    <h4>{{$company[0]['mail']}}</h4>
+</footer>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\CompanyInfo;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -19,10 +20,14 @@ class MailSender extends Mailable
      * @return void
      */
 
-    protected $msg;
-    public function __construct($msg)
+    public $msg;
+    public $subject;
+    public $company;
+    public function __construct($msg, $subject, $company)
     {
         $this->msg = $msg;
+        $this->subject = $subject;
+        $this->company = $company;
     }
 
     /**
@@ -33,7 +38,7 @@ class MailSender extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Mail Sender',
+            subject: $this->subject,
         );
     }
 
@@ -45,9 +50,12 @@ class MailSender extends Mailable
     public function content()
     {
         return new Content(
+
+
             view: 'mail.message',
             with: [
-                'msg' => $this->msg
+                'msg' => $this->msg,
+            'company' => $this->company
             ]
         );
     }

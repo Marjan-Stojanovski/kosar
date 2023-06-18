@@ -153,6 +153,11 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::post('/messages', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
     Route::get('/messages/{message}/edit', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
     Route::put('/message/{message}', [\App\Http\Controllers\MessageController::class, 'update'])->name('message.update');
+    Route::delete('messages/{message}', [\App\Http\Controllers\MessageController::class, 'delete'])->name('message.delete');
+
+    //Route feedback
+    Route::get('/feedbacks/{feedback}', [\App\Http\Controllers\MessageController::class, 'answer'])->name('message.answer');
+    Route::post('/feedbacks/{feedback}/sent', [\App\Http\Controllers\MessageController::class, 'sendResponse'])->name('message.response');
 });
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 

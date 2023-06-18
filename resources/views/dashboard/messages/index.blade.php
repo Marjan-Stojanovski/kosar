@@ -20,6 +20,7 @@
                         <th class="text-center">Наслов</th>
                         <th class="text-center">Порака</th>
                         <th class="text-center">Креирана</th>
+                        <th class="text-center">Модифицирана</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,9 @@
                             </td>
                             <td class="text-center">
                                 <span class="text">{{ $message->created_at->diffForHumans() }}</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text">{{ $message->updated_at->diffForHumans() }}</span>
                             </td>
                         </tr>
                     @endforeach

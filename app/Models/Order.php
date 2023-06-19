@@ -13,9 +13,18 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'order_id',
-        'product_id',
-        'quantity',
-        'user_id'
+        'user_id',
+        'name',
+        'address',
+        'zip',
+        'city',
+        'country',
+        'phone',
+        'email',
+        'shipping_charges',
+        'discount',
+        'order_status',
+        'payment_status',
+        'total',
     ];
 }

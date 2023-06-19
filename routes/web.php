@@ -158,6 +158,9 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     //Route feedback
     Route::get('/feedbacks/{feedback}', [\App\Http\Controllers\MessageController::class, 'answer'])->name('message.answer');
     Route::post('/feedbacks/{feedback}/sent', [\App\Http\Controllers\MessageController::class, 'sendResponse'])->name('message.response');
+
+    //Route checkout
+
 });
 Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
@@ -168,11 +171,11 @@ Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
-
+Route::get('/checkout', [App\Http\Controllers\ShoppingCartController::class, 'checkout'])->name('frontend.checkout');
 //Mysql Cart routes
 //Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
 //Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
-Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
+
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
@@ -180,6 +183,7 @@ Route::get('/details', [App\Http\Controllers\ShippingController::class, 'userDet
 Route::post('/details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
 Route::get('/details/{details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
 Route::put('/details/{details}', [App\Http\Controllers\ShippingController::class, 'updateDetails'])->name('frontend.updateDetails');
+Route::get('/details/messages/{message}', [App\Http\Controllers\ShippingController::class, 'viewMessage'])->name('frontend.userMessage');
 Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
 Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
 Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');

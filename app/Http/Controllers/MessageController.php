@@ -7,6 +7,7 @@ use App\Models\CompanyInfo;
 use App\Models\Message;
 use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +43,7 @@ class MessageController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        $user_id = Auth::user()->id;
         $fullName = $request->get('fullName');
         $email = $request->get('email');
         $phone = $request->get('phone');
@@ -50,6 +52,7 @@ class MessageController extends Controller
 
         Message::create([
            'fullName' => $fullName,
+           'user_id' => $user_id,
            'email' => $email,
            'phone' => $phone,
            'subject' => $subject,

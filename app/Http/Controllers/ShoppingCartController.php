@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\CompanyInfo;
+use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartController extends Controller
 {
@@ -26,6 +28,7 @@ class ShoppingCartController extends Controller
         $categories = Category::all();
         $products = Product::paginate(12);
         $categoriesTree = Category::getTreeHP();
+
 
         $data = [
             'company' => $company,
@@ -81,5 +84,27 @@ class ShoppingCartController extends Controller
             }
             return redirect()->back();
         }
+    }
+
+    public function checkout()
+    {
+        $products = session()->get('cart', []);
+        $loggedUser = Auth::user();
+        $company = CompanyInfo::first();
+        $countries = Country::all();
+        $categoriesTree = Category::getTreeHP();
+        $totalAmount = null;
+
+        $data = [
+            'company' => $company,
+            'loggedUser' => $loggedUser,
+            'countries' => $countries,
+            'categoriesTree' => $categoriesTree,
+            'totalAmount' => $totalAmount,
+            'products' => $products,
+        ];
+
+        return view('frontend.cartCheckout')->with($data);
+
     }
 }

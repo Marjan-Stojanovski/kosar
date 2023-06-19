@@ -66,7 +66,7 @@ $subTotal = $unitPrice * $unitQuantity;
                                 <form action="{{route('delete.cart', $cart['product_id'])}}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger mb-2 me-2">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm mb-2 me-2">Delete</button>
                                 </form>
                             </td>
                             <td class="amount text-center">{{$subTotal}} €</td>
@@ -83,7 +83,7 @@ $subTotal = $unitPrice * $unitQuantity;
                         </tfoot>
                     </table>
                     <div class="text-right">
-                        <a href="{{route('frontend.cartCheckout')}}" class="btn btn-group btn-default">Checkout</a>
+                        <a href="{{route('frontend.checkout')}}" class="btn btn-group btn-default">Checkout</a>
                     </div>
 
                 </div>

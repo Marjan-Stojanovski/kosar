@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class OrderProduct extends Model
 {
     use HasFactory;
 
-    protected $table = 'messages';
-
     protected $fillable = [
-        'fullName',
-        'email',
-        'user_id',
-        'phone',
-        'subject',
-        'message'
+      'order_id',
+      'product_id',
+      'quantity',
     ];
 }

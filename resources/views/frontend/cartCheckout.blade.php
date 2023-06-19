@@ -42,38 +42,38 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($userLists as $userList)
-                                <?php
-                                $unitPrice = $userList->price;
-                                $unitCount = $userList->quantity;
-                                $subTotal = $unitCount * $unitPrice;
-                                $totalAmount +=$subTotal
-                                ?>
+                        @foreach($products as $product)
                         <tr>
                             <td class="product">
-                                <a href="shop-product.html">{{$userList->name}}</a>
+                                <a href="shop-product.html"></a>
                             </td>
-                            <td class="text-center">{{$userList->product->brand->name}}</td>
-                            <td class="text-center">$ {{$userList->price}}</td>
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
                             <td class="text-center">
-                                    <input type="text" class="form-control-sm" value="{{$userList->quantity}}" disabled style="text-align: center; align-content: center; max-width: 70px">
+                                    <input type="text" class="form-control-sm" value="" disabled style="text-align: center; align-content: center; max-width: 70px">
                             </td>
-                            <td class="amount">$ {{$subTotal}} </td>
+                            <td class="amount">$</td>
                         </tr>
                         @endforeach
                         <tr>
-                            <td class="total-quantity" colspan="4">Subtotal</td>
-                            <td class="amount">$ {{$totalAmount}}</td>
+                            <td colspan="2"></td>
+                            <td class="total-quantity text-center" colspan="2">Subtotal</td>
+
+                            <td class="amount">$ </td>
                         </tr>
                         <tr>
-                            <td class="total-quantity" colspan="3">Discount Coupon</td>
-                            <td class="price">TheProject25672</td>
+                            <td colspan="2"></td>
+                            <td class="total-quantity text-center" colspan="2">Discount Coupon</td>
+
                             <td class="amount">-20%</td>
                         </tr>
                         <tr>
-                            <td class="total-quantity" colspan="4">Total 8 Items</td>
+                            <td colspan="2"></td>
+                            <td class="total-quantity text-center" colspan="2">Total 8 Items</td>
+
                             <td class="total-amount">$1597.00</td>
                         </tr>
+
                         </tbody>
                     </table>
                     <div class="space-bottom"></div>
@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label for="billingFirstName" class="col-md-2 control-label">First Name<small class="text-default">*</small></label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="billingFirstName" value="{{$loggedUser->name}}">
+                                            <input type="text" class="form-control" id="billingFirstName" value=">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -106,7 +106,7 @@
                                     <div class="form-group">
                                         <label for="billingemail" class="col-md-2 control-label">Email<small class="text-default">*</small></label>
                                         <div class="col-md-10">
-                                            <input type="email" class="form-control" id="billingemail" value="{{$loggedUser->email}}">
+                                            <input type="email" class="form-control" id="billingemail" value=">
                                         </div>
                                     </div>
                                 </div>
@@ -120,17 +120,13 @@
                                     <div class="form-group">
                                         <label for="billingAddress" class="col-md-2 control-label">Address<small class="text-default">*</small></label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="billingAddress" value="{{$loggedUser->address}}">
+                                            <input type="text" class="form-control" id="billingAddress" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">Country<small class="text-default">*</small></label>
                                         <div class="col-md-10">
-                                            <select class="form-control">
-                                                @foreach($countries as $country)
-                                                <option value="{{$loggedUser->country_id}}">{{$loggedUser->country->name}}</option>
-                                                @endforeach
-                                            </select>
+
                                         </div>
                                     </div>
                                     <div class="form-group">

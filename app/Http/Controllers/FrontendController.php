@@ -294,33 +294,6 @@ class FrontendController extends Controller
         return view('frontend.shop')->with($data);
     }
 
-    public function cartCheckout()
-    {
-        $loggedUser = Auth::user();
-        $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $categories = Category::all();
-        $countries = Country::all();
-        $products = Product::paginate(12);
-        $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
-
-        $data = [
-            'company' => $company,
-            'employees' => $employees,
-            'products' => $products,
-            'loggedUser' => $loggedUser,
-            'brands' => $brands,
-            'countries' => $countries,
-            'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount
-        ];
-
-        return view('frontend.cartCheckout')->with($data);
-    }
-
     public function preSignUp()
     {
         $company = CompanyInfo::first();

@@ -261,7 +261,8 @@
                                                                 <tr>
                                                                     <th class="quantity text-start">QTY</th>
                                                                     <th class="product text-center">Product</th>
-                                                                    <th class="amount text-end">Subtotal</th>
+                                                                    <th></th>
+                                                                    <th class="total-amount text-end">Subtotal</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -274,11 +275,10 @@
                                                                             </td>
                                                                             <td class="product text-center">{{ $details['name'] }}</td>
                                                                                 <?php
-                                                                                $unitPrice = $details['unitPrice'];
-                                                                                $unitQuantity = $details['quantity'];
-                                                                                $subTotal = $unitPrice * $unitQuantity;
+                                                                                $sub = $details['productAmount'];
+                                                                                $subTotal = number_format($sub, 2);
                                                                                 ?>
-                                                                            <td class="amount text-end">
+                                                                            <td class="amount text-right" colspan="2">
                                                                                 {{ $subTotal }} €
                                                                             </td>
                                                                         </tr>
@@ -288,7 +288,7 @@
                                                                 <tfoot>
                                                                 <tr>
                                                                     <td colspan="5" class="text-right">
-                                                                        <a href="{{route('shopping.cart')}}"
+                                                                        <a href="{{route('frontend.shoppingCart')}}"
                                                                            class="btn btn-group btn-gray btn-sm">View
                                                                             Cart</a>
                                                                     </td>

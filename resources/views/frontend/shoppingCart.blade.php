@@ -45,10 +45,9 @@
                         <tbody>
                         @foreach($carts as $cart)
                             <?php
-$unitPrice = $cart['unitPrice'];
-$unitQuantity = $cart['quantity'];
-$subTotal = $unitPrice * $unitQuantity;
-?>
+                                $sub = $cart['productAmount'];
+                                $subTotal = number_format($sub, 2);
+                            ?>
                         <tr class="remove-data">
                             <td class="image-box">
                                 <div class="d-flex align-items-center">
@@ -71,6 +70,7 @@ $subTotal = $unitPrice * $unitQuantity;
                             </td>
                             <td class="amount text-center">{{$subTotal}} €</td>
                         </tr>
+
                         @endforeach
                         </tbody>
                         <tfoot>
@@ -78,12 +78,15 @@ $subTotal = $unitPrice * $unitQuantity;
                             <td class="total-quantity" colspan="4">Total</td>
                             <td class="total-quantity" colspan="1">{{ count((array) session('cart')) }} Items</td>
                             <td class="total-amount text-center">Total Price</td>
-                            <td class="total-amount text-right">€ </td>
+                            <?php
+                                $totalAmount = number_format($total, 2)
+                            ?>
+                            <td class="total-amount text-right">{{ $totalAmount }}€ </td>
                         </tr>
                         </tfoot>
                     </table>
                     <div class="text-right">
-                        <a href="{{route('frontend.checkout')}}" class="btn btn-group btn-default">Checkout</a>
+                        <a href="{{route('frontend.orderDetails')}}" class="btn btn-group btn-default">Checkout</a>
                     </div>
 
                 </div>

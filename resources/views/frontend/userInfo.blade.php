@@ -165,6 +165,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @if(isset($messages))
                                         @foreach($messages as $message)
                                             <tr>
                                                 <td class="text-center">
@@ -198,6 +199,8 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>

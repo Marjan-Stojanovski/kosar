@@ -167,18 +167,23 @@ Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])-
 
 //session Cart routes
 
-Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('shopping.cart');
+
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
-Route::get('/checkout', [App\Http\Controllers\ShoppingCartController::class, 'checkout'])->name('frontend.checkout');
+Route::get('/ShoppingCart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('frontend.shoppingCart');
+//
+Route::get('/OrderDetails', [App\Http\Controllers\OrderController::class, 'orderDetails'])->name('frontend.orderDetails');
+Route::post('/Checkout/ViewOrder', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('frontend.saveOrder');
+Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
 //Mysql Cart routes
-//Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
+//Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');frontend.saveOrder
 //Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
 
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
+Route::get('/payment', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
 Route::get('/details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
 Route::post('/details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
 Route::get('/details/{details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');

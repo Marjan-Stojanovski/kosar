@@ -7,7 +7,10 @@ use App\Models\Category;
 use App\Models\CompanyInfo;
 use App\Models\Country;
 use App\Models\Employee;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +32,12 @@ class ShoppingCartController extends Controller
         $products = Product::paginate(12);
         $categoriesTree = Category::getTreeHP();
 
+        $total = 0;
+        foreach ($carts as $cart)
+            {
+                $tempTotal = $cart['productAmount'];
+                $total += $tempTotal;
+            }
 
         $data = [
             'company' => $company,
@@ -37,10 +46,11 @@ class ShoppingCartController extends Controller
             'products' => $products,
             'brands' => $brands,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories
+            'categories' => $categories,
+            'total'=> $total
         ];
 
-        return view('frontend.shopCart')->with($data);
+        return view('frontend.shoppingCart')->with($data);
     }
 
     public function addToCart(Request $request)
@@ -52,13 +62,14 @@ class ShoppingCartController extends Controller
             $oldQuantity = $cart[$product_id]['quantity'];
             $newQuantity = $request->get('quantity');
             $quantity = $oldQuantity + $newQuantity;
+            $unitPrice = $request->get('price');
+            $productAmount = $quantity * $unitPrice;
             $cart[$product_id]['quantity'] = $quantity;
-
+            $cart[$product_id]['productAmount'] = $productAmount;
         } else {
             $quantity = $request->get('quantity');
             $unitPrice = $request->get('price');
             $productAmount = $quantity * $unitPrice;
-
             $cart[$product_id] = [
                 "name" => $request->get('title'),
                 "quantity" => $request->get('quantity'),
@@ -86,25 +97,7 @@ class ShoppingCartController extends Controller
         }
     }
 
-    public function checkout()
-    {
-        $products = session()->get('cart', []);
-        $loggedUser = Auth::user();
-        $company = CompanyInfo::first();
-        $countries = Country::all();
-        $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
-        $data = [
-            'company' => $company,
-            'loggedUser' => $loggedUser,
-            'countries' => $countries,
-            'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount,
-            'products' => $products,
-        ];
 
-        return view('frontend.cartCheckout')->with($data);
 
-    }
 }

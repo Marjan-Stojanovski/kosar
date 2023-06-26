@@ -18,7 +18,6 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
-
         return view('products', compact('carts'));
     }
 
@@ -32,11 +31,11 @@ class ShoppingCartController extends Controller
         $products = Product::paginate(12);
         $categoriesTree = Category::getTreeHP();
 
-        $total = 0;
+        $subTotal = 0;
         foreach ($carts as $cart)
             {
                 $tempTotal = $cart['productAmount'];
-                $total += $tempTotal;
+                $subTotal += $tempTotal;
             }
 
         $data = [
@@ -47,7 +46,7 @@ class ShoppingCartController extends Controller
             'brands' => $brands,
             'categoriesTree' => $categoriesTree,
             'categories' => $categories,
-            'total'=> $total
+            'subTotal'=> $subTotal
         ];
 
         return view('frontend.shoppingCart')->with($data);

@@ -61,33 +61,39 @@
                                 <td class="product text-center"><a>{{$product['brand']}}</a></td>
                                 <td class="price text-center">€ {{$product['unitPrice']}}</td>
                                 <td class="quantity text-center">{{$product['quantity']}} pcs</td>
-                                <td class="amount text-center">{{ $subTotal }} €</td>
+                                <td class="amount text-center"> €</td>
                             </tr>
                         @endforeach
                         <tr>
                             <td colspan="2"></td>
                             <td class="total-quantity text-center" colspan="2">Subtotal</td>
                             <td></td>
-                            <?php
-                            $totalAmount = number_format($total, 2)
-                            ?>
-                            <td class="amount">$ {{ $totalAmount }}</td>
+                            <td class="amount">{{ number_format($subTotal, 2) }} €</td>
                         </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td class="total-quantity text-center" colspan="2">
-                                <label for="coupon">Coupon</label>
-                            </td>
-                            <td></td>
-                            <td class="amount">
-                                <input id="coupon" style="width: 100px"/>
-                            </td>
-                        </tr>
+                        @if($shippingCharges === 5)
+                            <tr>
+                                <td colspan="2"></td>
+                                <td class="total-quantity text-center" colspan="2">
+                                    <label for="coupon">Shipment</label>
+                                </td>
+                                <td class="text-center"><small style="color: red">Min 50 € for free shipping</small></td>
+                                <td class="amount">{{$shippingCharges}} €</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td colspan="2"></td>
+                                <td class="total-quantity text-center" colspan="2">
+                                    <label for="coupon">Shipment</label>
+                                </td>
+                                <td></td>
+                                <td class="amount">{{$shippingCharges}} €</td>
+                            </tr>
+                        @endif
                         <tr>
                             <td colspan="2"></td>
                             <td class="total-quantity text-center" colspan="2">Total 8 Items</td>
                             <td></td>
-                            <td class="total-amount">$ {{ $totalAmount }}</td>
+                            <td class="total-amount">{{ number_format($subTotal, 2) }} €</td>
                         </tr>
                         </tbody>
                     </table>
@@ -208,6 +214,14 @@
                                                                 <input type="text" class="form-control" id="zipcode"
                                                                        value="{{ $shippingDetails->zipcode }}"
                                                                        name="zipcode" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="discount" class="col-md-2 control-label">Coupon<small
+                                                                    class="text-default">*</small></label>
+                                                            <div class="col-md-10">
+                                                                <input type="text" class="form-control" id="discount"
+                                                                       name="discount">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -333,20 +347,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="space"></div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3">
-                                                                <label for="comment" class="title">Additional
-                                                                    comments</label>
-                                                            </div>
-                                                            <div class="col-lg-8 col-lg-offset-1">
-                                                                <div class="form-group">
-                                                                    <div class="col-md-12">
-                                                            <textarea class="form-control" rows="4"
-                                                                      name="comment"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -477,6 +477,14 @@
                                                                        name="zipcode">
                                                             </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="discount" class="col-md-2 control-label">Coupon<small
+                                                                    class="text-default">*</small></label>
+                                                            <div class="col-md-10">
+                                                                <input type="text" class="form-control" id="discount"
+                                                                       name="discount">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="space"></div>
@@ -603,6 +611,14 @@
                                                             <div class="col-md-10">
                                                                 <input type="text" class="form-control" id="zipcode"
                                                                        name="zipcode" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="discount" class="col-md-2 control-label">Coupon<small
+                                                                    class="text-default">*</small></label>
+                                                            <div class="col-md-10">
+                                                                <input type="text" class="form-control" id="discount"
+                                                                       name="discount">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -744,6 +760,14 @@
                                                         <div class="col-md-10">
                                                             <input type="text" class="form-control" id="zipcode"
                                                                    name="zipcode" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="discount" class="col-md-2 control-label">Coupon<small
+                                                                class="text-default">*</small></label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" class="form-control" id="discount"
+                                                                   name="discount">
                                                         </div>
                                                     </div>
                                                 </div>

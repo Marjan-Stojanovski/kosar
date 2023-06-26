@@ -13,56 +13,55 @@ use App\Models\Product;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+
 
 class OrderController extends Controller
 {
     public function orderDetails()
     {
+        $products = session()->get('cart', []);
+        $company = CompanyInfo::first();
+        $countries = Country::all();
+        $categoriesTree = Category::getTreeHP();
+        $subTotal = 0;
+        $shippingCharges = 0;
+        foreach ($products as $product)
+        {
+            $tempTotal = $product['productAmount'];
+            $subTotal += $tempTotal;
+        }
+
+        if ($subTotal <= 50 ) {
+            $shippingCharges = 5;
+        }
+
+
         if (Auth::user()) {
             $user_id = Auth::user()->id;
-            $products = session()->get('cart', []);
-            $company = CompanyInfo::first();
-            $countries = Country::all();
-            $categoriesTree = Category::getTreeHP();
             $shippingDetails = Shipping::where('user_id', $user_id)->first();
-
-            $total = 0;
-            foreach ($products as $product)
-            {
-                $tempTotal = $product['productAmount'];
-                $total += $tempTotal;
-            }
-
             $data = [
                 'company' => $company,
                 'countries' => $countries,
                 'categoriesTree' => $categoriesTree,
                 'shippingDetails' => $shippingDetails,
                 'products' => $products,
-                'total' => $total
+                'subTotal' => $subTotal,
+                'shippingCharges' => $shippingCharges
             ];
             return view('frontend.orderDetails')->with($data);
+        } else {
+            $data = [
+                'company' => $company,
+                'countries' => $countries,
+                'categoriesTree' => $categoriesTree,
+                'products' => $products,
+                'subTotal' => $subTotal,
+                'shippingCharges' => $shippingCharges
+            ];
         }
 
-        $products = session()->get('cart', []);
-        $company = CompanyInfo::first();
-        $countries = Country::all();
-        $categoriesTree = Category::getTreeHP();
 
-        $total = 0;
-        foreach ($products as $product)
-        {
-            $tempTotal = $product['productAmount'];
-            $total += $tempTotal;
-        }
-
-        $data = [
-            'company' => $company,
-            'countries' => $countries,
-            'categoriesTree' => $categoriesTree,
-            'products' => $products,
-            'total' => $total
-        ];
 
         return view('frontend.orderDetails')->with($data);
     }
@@ -88,7 +87,19 @@ class OrderController extends Controller
         $shipCity = $request->get('shipCity');
         $shipCountry_id = $request->get('shipCountry_id');
         $shipComment = $request->get('shipComment');
-
+        $discountCode = $request->get('discount');
+        $discount = 0;
+        if ($discountCode == 'A') {
+            $discount = 5;
+        } elseif ($discountCode == 'B') {
+            $discount = 10;
+        } elseif ($discountCode == 'C') {
+            $discount = 15;
+        } elseif ($discountCode == 'D') {
+            $discount = 20;
+        } elseif ($discountCode == 'E') {
+            $discount = 25;
+        };
         $products = session()->get('cart', []);
         $total = 0;
         foreach ($products as $product)
@@ -98,7 +109,7 @@ class OrderController extends Controller
         }
         $shippingCharges = 0;
         if ($total < 50){
-            $shippingCharges = 100;
+            $shippingCharges = 5;
         } else {
             $shippingCharges = 0;
         }
@@ -126,6 +137,7 @@ class OrderController extends Controller
                 'shipCity' => $shipCity,
                 'shipCountry_id' => $shipCountry_id,
                 'shipComment' => $shipComment,
+                'discount' => $discount,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges
             ]);
@@ -153,6 +165,7 @@ class OrderController extends Controller
                 'shipCity' => $shipCity,
                 'shipCountry_id' => $shipCountry_id,
                 'shipComment' => $shipComment,
+                'discount' => $discount,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges
             ]);
@@ -186,7 +199,10 @@ class OrderController extends Controller
             ->first();
         $lastOrderId = $lastOrder->id;
         $orderDetails = OrderProduct::where('order_id', $lastOrderId)->get();
-
+        $orderProductsCount = $orderDetails->count();
+        $tempDate = $lastOrder->created_at;
+        $dateYear = Carbon::now()->format('Y');
+        $dateOrder = Carbon::createFromFormat('Y-m-d H:i:s', $tempDate)->format('M-d-Y');
         $data = [
             'company' => $company,
             'employees' => $employees,
@@ -197,13 +213,16 @@ class OrderController extends Controller
             'categories' => $categories,
             'total'=> $total,
             'lastOrder' => $lastOrder,
-            'orderDetails' => $orderDetails
+            'orderDetails' => $orderDetails,
+            'dateYear' => $dateYear,
+            'dateOrder' => $dateOrder,
+            'orderProductsCount' => $orderProductsCount
         ];
 
         return view('frontend.viewOrder')->with($data);
 
     }
-
+/*
     public function viewOrder()
     {
 
@@ -215,34 +234,40 @@ class OrderController extends Controller
             ->first();
         $lastOrderId = $lastOrder->id;
         $orderDetails = OrderProduct::where('order_id', $lastOrderId)->get();
-
+        $dateYear = Carbon::now()->format('Y');
+        dd($dateYear);
         $data = [
             'company' => $company,
             'employees' => $employees,
             'brands' => $brands,
             'categoriesTree' => $categoriesTree,
             'lastOrder' => $lastOrder,
-            'orderDetails' => $orderDetails
+            'orderDetails' => $orderDetails,
+            'dateYear' => $dateYear
         ];
 
         return view('frontend.viewOrder')->with($data);
     }
+*/
 
-    public function payment()
+    public function payment($id)
     {
         $company = CompanyInfo::first();
         $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
+        $order = Order::where('id', $id)->first();
 
         $data = [
             'company' => $company,
             'employees' => $employees,
             'brands' => $brands,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories
+            'categories' => $categories,
+            'order' => $order
         ];
+
         return view('frontend.payment')->with($data);
     }
 

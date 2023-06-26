@@ -175,6 +175,7 @@ Route::get('/ShoppingCart', [App\Http\Controllers\ShoppingCartController::class,
 //
 Route::get('/OrderDetails', [App\Http\Controllers\OrderController::class, 'orderDetails'])->name('frontend.orderDetails');
 Route::post('/Checkout/ViewOrder', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('frontend.saveOrder');
+Route::get('/Checkout/Payment/{payment}', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
 Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
 //Mysql Cart routes
 //Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');frontend.saveOrder
@@ -183,7 +184,6 @@ Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrde
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
-Route::get('/payment', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
 Route::get('/details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
 Route::post('/details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
 Route::get('/details/{details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
@@ -203,3 +203,5 @@ Route::get('/brands', [\App\Http\Controllers\FrontendController::class, 'brands'
 Route::get('/brands/{name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 
+Route::get('pdf/preview', [App\Http\Controllers\PDFController::class, 'preview'])->name('pdf.preview');
+Route::get('pdf/generate', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('pdf.generate');

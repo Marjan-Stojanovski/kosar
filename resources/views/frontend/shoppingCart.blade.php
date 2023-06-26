@@ -44,10 +44,6 @@
                         </thead>
                         <tbody>
                         @foreach($carts as $cart)
-                            <?php
-                                $sub = $cart['productAmount'];
-                                $subTotal = number_format($sub, 2);
-                            ?>
                         <tr class="remove-data">
                             <td class="image-box">
                                 <div class="d-flex align-items-center">
@@ -68,7 +64,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm mb-2 me-2">Delete</button>
                                 </form>
                             </td>
-                            <td class="amount text-center">{{$subTotal}} €</td>
+                            <td class="amount text-center">{{number_format($cart['productAmount'], 2)}} €</td>
                         </tr>
 
                         @endforeach
@@ -78,10 +74,7 @@
                             <td class="total-quantity" colspan="4">Total</td>
                             <td class="total-quantity" colspan="1">{{ count((array) session('cart')) }} Items</td>
                             <td class="total-amount text-center">Total Price</td>
-                            <?php
-                                $totalAmount = number_format($total, 2)
-                            ?>
-                            <td class="total-amount text-right">{{ $totalAmount }}€ </td>
+                            <td class="total-amount text-right">{{ number_format($subTotal, 2) }}€ </td>
                         </tr>
                         </tfoot>
                     </table>

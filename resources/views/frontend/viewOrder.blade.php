@@ -31,6 +31,7 @@
 
                     <div id="invoice-container" class="invoice-container">
                         <div class="row">
+                            <!-- Company info SELLER -->
                             <div class="col-sm-6">
                                 <img style="width: 50px"
                                      src="/assets/img/logo.jpg"
@@ -45,67 +46,122 @@
                                     E-mail: <a href="mailto:{{ $company->mail }}">{{ $company->mail }}</a>
                                 </address>
                             </div>
-                            <div class="col-sm-offset-3 col-sm-3">
-                                <p class="text-right small"><strong>Invoice #001</strong> <br> May 15, 2015</p>
-                                <h5 class="text-right">Client</h5>
-                                <p class="text-right small">
-                                    <strong>Name:</strong> <span>John Doe</span> <br>
-                                    <strong>Company:</strong> John Doe <br>
-                                    <strong>Address:</strong> 795 Folsom Ave, Suite 600 <br>
-                                    <strong>Tel:</strong> +12 123 123 1234 <br>
-                                    <strong>Vat:</strong> 1231231231
-                                </p>
-                            </div>
+                            <!-- Recipient info -->
+                            @if(isset($orderDetail->companyName))
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <p class="text-right small"><strong>Invoice #{{ $lastOrder->id }}
+                                            /{{ $dateYear }}</strong> <br> {{ $dateOrder }} </p>
+                                    <h5 class="text-right"> {{ $lastOrder->firstName }}  {{ $lastOrder->lastName }}</h5>
+                                    <p class="text-right small">
+                                        <strong>Name:</strong>
+                                        <span> {{ $lastOrder->firstName }}  {{ $lastOrder->lastName }}</span> <br>
+                                        <strong>Company:</strong> John Doe <br>
+                                        <strong>Address:</strong> {{ $lastOrder->address }} <br>
+                                        <strong>Tel:</strong> {{ $lastOrder->phoneNumber }} <br>
+                                        <strong>Vat:</strong> 1231231231
+                                    </p>
+                                </div>
+                            @endif
+                            @if(!isset($orderDetail->companyName))
+                                <div class="col-sm-offset-3 col-sm-3">
+                                    <p class="text-right small"><strong>Invoice #{{ $lastOrder->id }}
+                                            /{{ $dateYear }}</strong> <br> {{ $dateOrder }} </p>
+                                    <br>
+                                    <h5 class="text-right"> {{ $lastOrder->firstName }}  {{ $lastOrder->lastName }}</h5>
+                                    <p class="text-right small">
+                                        <br>
+                                        <strong>Address:</strong> {{ $lastOrder->address }} <br>
+                                        <strong>Country:</strong> {{ $lastOrder->country->name }} <br>
+                                        <strong>Tel:</strong> {{ $lastOrder->phoneNumber }} <br>
+                                    </p>
+                                </div>
+                            @endif
                         </div>
-                        <p class="small"><strong>Comments/PO:</strong> Lorem ipsum dolor sit amet, consectetur.</p>
-                        <table class="table cart table-bordered">
+                        <p class="small"><strong>Comments/PO:</strong>{{ $lastOrder->comment }}</p>
+                        <table class="table cart table-bordered " style="table-layout: fixed;width: 100%">
                             <thead>
                             <tr>
-                                <th>Description </th>
-                                <th>Price </th>
-                                <th>Quantity</th>
-                                <th class="amount">Total </th>
+                                <th class="text-center" style="width:8%">Product</th>
+                                <th class="text-center" style="width:42%">Description</th>
+                                <th class="text-center" style="width:15%">Unit price</th>
+                                <th class="text-center" style="width:15%">Quantity</th>
+                                <th class="text-right" style="width:20%">Price</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            $subTotal = 0;
+                            ?>
                             @foreach($orderDetails as $orderDetail)
-                            <tr>
-                                <td class="product"><a href="shop-product.html">{{ $orderDetail->product->title }}</a> <small>{{ $orderDetail->product->brand->name }}</small></td>
-                                <td class="price">$ {{ $orderDetail->product->price }} </td>
-                                <td class="quantity">{{ $orderDetail->quantity }} </td>
-                                <td class="amount">$199.00 </td>
-                            </tr>
+                                <tr>
+                                        <?php
+                                        $unitPrice = 0;
+                                        if (isset($orderDetail->product->action)) {
+                                            $unitPrice = $orderDetail->product->action;
+                                        } else {
+                                            $unitPrice = $orderDetail->product->price;
+                                        }
+                                        $sub = $unitPrice * $orderDetail->quantity;
+                                        $price = number_format($sub, 2);
+                                        $subTotal += $price;
+                                        $discount = $subTotal * $lastOrder->discount /100;
+                                        $grandTotal = $lastOrder->total + $lastOrder->shippingCharges - $discount;
+                                        ?>
+                                    <td class="text-center">
+                                        <img style="width: 50px;position: center"
+                                             src="/assets/img/products/thumbnails/{{ $orderDetail->product->image }}"
+                                             alt="{{ $orderDetail->product->title }}">
+                                    </td>
+                                    <td class="text-center product"><a
+                                            href="shop-product.html">{{ $orderDetail->product->title }}</a>
+                                        <small>{{ $orderDetail->product->brand->name }}</small></td>
+                                    @if(isset($orderDetail->product->action))
+                                        <td class="text-center price">{{ $orderDetail->product->action }} €</td>
+                                    @endif
+                                    @if(!isset($orderDetail->product->action))
+                                        <td class="text-center price">{{ $orderDetail->product->price }} €</td>
+                                    @endif
+                                    <td class="text-center quantity">{{ $orderDetail->quantity }} </td>
+                                    <td class="amount text-end">{{ $price }} €</td>
+                                </tr>
                             @endforeach
                             <tr>
-                                <td class="total-quantity" colspan="3">Subtotal</td>
-                                <td class="amount">$1997.00</td>
+                                <td colspan="2"></td>
+                                <td class="total-quantity text-center" colspan="2">Subtotal</td>
+                                <td class="amount">{{ number_format($subTotal, 2) }} €</td>
                             </tr>
                             <tr>
-                                <td class="total-quantity" colspan="1">Discount Coupon</td>
-                                <td class="price">TheProject25672</td>
-                                <td class="price">-20%</td>
-                                <td class="amount">-$399.40</td>
+                                <td colspan="2"></td>
+                                <td class="total-quantity text-center" colspan="2">Discount &nbsp&nbsp&nbsp {{ $lastOrder->discount }} %</td>
+                                <td class="amount">{{  $discount }} €</td>
                             </tr>
                             <tr>
-                                <td class="total-quantity" colspan="2">Sales Tax</td>
-                                <td class="price">+10%</td>
-                                <td class="amount">$159.76</td>
+                                <td colspan="2"></td>
+                                <td class="total-quantity text-center" colspan="2">Shipping</td>
+                                <td class="amount">{{ number_format($lastOrder->shippingCharges, 2) }} €</td>
                             </tr>
                             <tr>
-                                <td class="total-quantity" colspan="3">Shipping</td>
-                                <td class="amount">$12.00</td>
-                            </tr>
-                            <tr>
-                                <td class="total-quantity" colspan="3">Total 8 Items</td>
-                                <td class="total-amount">${{ $lastOrder->total }}</td>
+                                <td colspan="2"></td>
+                                <td class="total-quantity text-center" colspan="2">Total {{ $orderProductsCount }} Items</td>
+                                <td class="total-amount">{{ number_format($grandTotal, 2) }} €</td>
                             </tr>
                             </tbody>
                         </table>
-                        <p class="small">If you have any questions concerning this invoice, contact <strong>The Project Inc.</strong>, tel: <strong>+12 123 123 1234</strong>, email: <strong>theproject@info.com</strong> <br> Thank you for your business!</p>
+                        <p class="small">Dear <br>If you have any questions concerning this invoice, contact <br><br>
+                            <strong>{{ $company->name }}</strong>, <br> tel: <strong>{{ $company->phone }}</strong>,<br>
+                            email:
+                            <strong>{{ $company->mail }}</strong><br><br> Thank you for your business!</p>
                         <hr>
                     </div>
                     <div class="text-right">
-                        <button onclick="print_window();" class="btn btn-print btn-default-transparent btn-hvr hvr-shutter-out-horizontal">Print <i class="fa fa-print pl-10"></i></button>
+                        <!--
+                        <button onclick="print_window();"
+                                class="btn btn-print btn-default-transparent btn-hvr hvr-shutter-out-horizontal">Print
+                            <i class="fa fa-print pl-10"></i></button>
+                            -->
+                        <a href="{{ route('frontend.payment', $lastOrder->id) }}" class="btn btn-primary">Proceed to payment</a>
+                        <a href="{{ route('pdf.preview')}}" class="btn btn-primary">Proceed to payment</a>
+
                     </div>
                 </div>
                 <!-- main end -->

@@ -8,6 +8,7 @@ use App\Models\CompanyInfo;
 use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Message;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\ShoppingCart;
@@ -37,6 +38,8 @@ class ShippingController extends Controller
         $shippingDetails = Shipping::where('user_id', $user)->get();
         $detailsCount = count($shippingDetails);
         $details = Shipping::where('user_id', $user)->first();
+        $orders = Order::where('user_id', $user)->paginate(10);
+
 
         if ($detailsCount === 0) {
 
@@ -47,7 +50,8 @@ class ShippingController extends Controller
                 'loggedUser' => $loggedUser,
                 'countries' => $countries,
                 'categoriesTree' => $categoriesTree,
-                'totalAmount' => $totalAmount
+                'totalAmount' => $totalAmount,
+                'orders' => $orders
             ];
 
             return view('frontend.storeUserInfo')->with($data);
@@ -60,7 +64,8 @@ class ShippingController extends Controller
                 'countries' => $countries,
                 'categoriesTree' => $categoriesTree,
                 'totalAmount' => $totalAmount,
-                'details' => $details
+                'details' => $details,
+                'orders' => $orders
             ];
             return view('frontend.userInfo')->with($data);
         }

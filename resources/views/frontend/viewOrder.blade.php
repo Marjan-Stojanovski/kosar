@@ -154,13 +154,8 @@
                         <hr>
                     </div>
                     <div class="text-right">
-                        <!--
-                        <button onclick="print_window();"
-                                class="btn btn-print btn-default-transparent btn-hvr hvr-shutter-out-horizontal">Print
-                            <i class="fa fa-print pl-10"></i></button>
-                            -->
-                        <a href="{{ route('frontend.payment', $lastOrder->id) }}" class="btn btn-primary">Proceed to payment</a>
-                        <a href="{{ route('pdf.preview')}}" class="btn btn-primary">Proceed to payment</a>
+                        <a href="{{ route('pdf.preview')}}" class="btn btn-primary">View PDF</a>
+                        <a href="{{ route('frontend.payment', $lastOrder->id) }}" class="btn btn-primary">Save and Proceed</a>
 
                     </div>
                 </div>

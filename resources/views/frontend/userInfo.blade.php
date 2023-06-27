@@ -24,6 +24,7 @@
                                 Details</a></li>
                         <li><a href="#tab3" role="tab" data-toggle="tab"><i
                                     class="fa fa-comments pr-10"></i>Messages</a></li>
+                        <li><a href="#tab4" role="tab" data-toggle="tab"><i class="fa fa-database pr-10"></i>Orders</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1">
@@ -203,6 +204,66 @@
                                         @endif
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab4">
+                            <div class="panel-group collapse-style-1" id="accordion-faq-2">
+                                <div class="table-responsive">
+                                    <table class="table table-responsive align-middle table-hover mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Број на нарачка</th>
+                                            <th class="text-center">Сума</th>
+                                            <th class="text-center">Креирана</th>
+                                            <th class="text-center">Статус</th>
+                                            <th class="text-center">Види</th>
+                                            <th class="text-center">Избриши</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(isset($orders))
+                                            @foreach($orders as $order)
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $order->id }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ number_format($order->total, 2) }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                    <span
+                                                        class="text">{{ $order->created_at->diffForHumans() }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $order->order_status }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="btn btn-primary btn-sm" style="margin-top: 0px"
+                                                           href="{{ route('user.viewOrder', $order->id) }}"><i class="fa fa-search-plus pr-10"></i>Види</a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div>
+                                                        <form style="margin: 0px" method="post"
+                                                              action="{{ route('order.delete', $order->id) }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button class="btn btn-danger btn-sm" style="margin: 0px"
+                                                                type="submit" data-tippy-content="Delete user">
+                                                                <i class="fa fa-remove pr-10"></i>Delete
+                                                            </button>
+                                                        </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    {{ $orders->links() }}
                                 </div>
                             </div>
                         </div>

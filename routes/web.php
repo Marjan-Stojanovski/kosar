@@ -177,6 +177,8 @@ Route::get('/OrderDetails', [App\Http\Controllers\OrderController::class, 'order
 Route::post('/Checkout/ViewOrder', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('frontend.saveOrder');
 Route::get('/Checkout/Payment/{payment}', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
 Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
+Route::delete('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('order.delete');
+Route::get('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'viewUserOrder'])->name('user.viewOrder');
 //Mysql Cart routes
 //Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');frontend.saveOrder
 //Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');

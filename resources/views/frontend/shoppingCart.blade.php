@@ -79,6 +79,7 @@
                         </tfoot>
                     </table>
                     <div class="text-right">
+                        <a href="{{route('frontend.shop')}}" class="btn btn-group btn-default">Continue Shopping</a>
                         <a href="{{route('frontend.orderDetails')}}" class="btn btn-group btn-default">Checkout</a>
                     </div>
 

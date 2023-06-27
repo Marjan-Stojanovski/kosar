@@ -44,10 +44,6 @@
                         </thead>
                         <tbody>
                         @foreach($products as $product)
-                                <?php
-                                $sub = $product['productAmount'];
-                                $subTotal = number_format($sub, 2);
-                                ?>
                             <tr class="remove-data">
                                 <td class="image-box">
                                     <div class="d-flex align-items-center">
@@ -61,7 +57,7 @@
                                 <td class="product text-center"><a>{{$product['brand']}}</a></td>
                                 <td class="price text-center">€ {{$product['unitPrice']}}</td>
                                 <td class="quantity text-center">{{$product['quantity']}} pcs</td>
-                                <td class="amount text-center"> €</td>
+                                <td class="amount text-center">{{$product['productAmount']}} €</td>
                             </tr>
                         @endforeach
                         <tr>

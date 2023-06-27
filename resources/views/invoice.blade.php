@@ -1,20 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Generate PDF Laravel 9 - NiceSnippets.com</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>{{ $company->name }} Beverages</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/frontend/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="/assets/frontend/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- Fontello CSS -->
+    <link href="/assets/frontend/fonts/fontello/css/fontello.css" rel="stylesheet">
+    <!-- Plugins -->
+    <link href="/assets/frontend/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/assets/frontend/plugins/rs-plugin/css/settings.css" rel="stylesheet">
+    <link href="/assets/frontend/css/animations.css" rel="stylesheet">
+    <link href="/assets/frontend/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/frontend/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="/assets/frontend/plugins/hover/hover-min.css" rel="stylesheet">
+    <link href="/assets/frontend/plugins/morphext/morphext.css" rel="stylesheet">
+    <!-- The Project's core CSS file -->
+    <link href="/assets/frontend/css/style.css" rel="stylesheet">
+    <!-- The Project's Typography CSS file, includes used fonts -->
+    <!-- Used font for body: Roboto -->
+    <!-- Used font for headings: Raleway -->
+    <link href="/assets/frontend/css/typography-default.css" rel="stylesheet">
+    <!-- Color Scheme (In order to change the color scheme, replace the blue.css with the color scheme that you prefer)-->
+    <link href="/assets/frontend/css/skins/light_blue.css" rel="stylesheet">
+    <!-- Custom css -->
+    <link href="/assets/frontend/css/custom.css" rel="stylesheet">
 </head>
 <body>    <!-- breadcrumb start -->
-    <!-- ================ -->
-    <div class="breadcrumb-container">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li><i class="fa fa-home pr-10"></i><a href="../index.html">Home</a></li>
-                <li class="active">Product Title</li>
-            </ol>
-        </div>
-    </div>
-    <!-- breadcrumb end -->
 
     <!-- main-container start -->
     <!-- ================ -->

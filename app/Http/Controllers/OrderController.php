@@ -219,36 +219,53 @@ class OrderController extends Controller
             'orderProductsCount' => $orderProductsCount
         ];
 
+
+
         return view('frontend.viewOrder')->with($data);
 
     }
-/*
-    public function viewOrder()
-    {
 
+
+
+
+    public function viewUserOrder($id)
+    {
+        $order = Order::FindorFail($id);
+        $order_id = $order->id;
+        $orderProducts = OrderProduct::where('order_id', $order_id)->get();
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
         $categoriesTree = Category::getTreeHP();
-        $lastOrder = Order::latest('created_at')
-            ->first();
-        $lastOrderId = $lastOrder->id;
-        $orderDetails = OrderProduct::where('order_id', $lastOrderId)->get();
-        $dateYear = Carbon::now()->format('Y');
-        dd($dateYear);
+
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
             'categoriesTree' => $categoriesTree,
-            'lastOrder' => $lastOrder,
-            'orderDetails' => $orderDetails,
-            'dateYear' => $dateYear
+            'order' => $order,
+            'orderProducts' => $orderProducts
         ];
 
-        return view('frontend.viewOrder')->with($data);
+        return view('frontend.userOrder')->with($data);
     }
-*/
+
+    public function deleteOrder($id)
+    {
+
+        $order = Order::FindorFail($id);
+        $order->delete();
+        return redirect()->route('frontend.details');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function payment($id)
     {

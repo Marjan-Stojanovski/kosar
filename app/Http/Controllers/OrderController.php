@@ -34,8 +34,11 @@ class OrderController extends Controller
 
         if ($subTotal <= 50 ) {
             $shippingCharges = 5;
+        } else {
+            $shippingCharges = 0;
         }
 
+        $total = $subTotal + $shippingCharges;
 
         if (Auth::user()) {
             $user_id = Auth::user()->id;
@@ -47,6 +50,7 @@ class OrderController extends Controller
                 'shippingDetails' => $shippingDetails,
                 'products' => $products,
                 'subTotal' => $subTotal,
+                'total' => $total,
                 'shippingCharges' => $shippingCharges
             ];
             return view('frontend.orderDetails')->with($data);
@@ -57,11 +61,10 @@ class OrderController extends Controller
                 'categoriesTree' => $categoriesTree,
                 'products' => $products,
                 'subTotal' => $subTotal,
+                'total' => $total,
                 'shippingCharges' => $shippingCharges
             ];
         }
-
-
 
         return view('frontend.orderDetails')->with($data);
     }
@@ -102,17 +105,21 @@ class OrderController extends Controller
         };
         $products = session()->get('cart', []);
         $total = 0;
+        $subTotal = 0;
         foreach ($products as $product)
         {
             $tempTotal = $product['productAmount'];
-            $total += $tempTotal;
+            $subTotal += $tempTotal;
         }
+        $discountPrice = $subTotal * $discount / 100;
         $shippingCharges = 0;
-        if ($total < 50){
+        if ($subTotal < 50){
             $shippingCharges = 5;
         } else {
             $shippingCharges = 0;
         }
+        $total = $subTotal + $shippingCharges - $discountPrice;
+
         if (Auth::user()) {
             $user_id = Auth::user()->id;
             Order::create([
@@ -138,6 +145,8 @@ class OrderController extends Controller
                 'shipCountry_id' => $shipCountry_id,
                 'shipComment' => $shipComment,
                 'discount' => $discount,
+                'subTotal' => $subTotal,
+                'discountPrice' => $discountPrice,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges
             ]);
@@ -166,6 +175,8 @@ class OrderController extends Controller
                 'shipCountry_id' => $shipCountry_id,
                 'shipComment' => $shipComment,
                 'discount' => $discount,
+                'subTotal' => $subTotal,
+                'discountPrice' => $discountPrice,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges
             ]);
@@ -179,15 +190,18 @@ class OrderController extends Controller
         foreach($carts as $cart) {
             $product_id = $cart['product_id'];
             $quantity = $cart['quantity'];
-
+            $unitPrice = $cart['unitPrice'];
+            $price = $cart['productAmount'];
             OrderProduct::create([
                 'order_id' => $order_id,
                 'product_id' => $product_id,
-                'quantity' => $quantity
+                'quantity' => $quantity,
+                'unitPrice' => $unitPrice,
+                'price' => $price
             ]);
 
         }
-        //session()->flush();
+        session()->flush();
 
         $company = CompanyInfo::first();
         $employees = Employee::all();
@@ -195,8 +209,7 @@ class OrderController extends Controller
         $categories = Category::all();
         $products = Product::paginate(12);
         $categoriesTree = Category::getTreeHP();
-        $lastOrder = Order::latest('created_at')
-            ->first();
+        $lastOrder = Order::latest('created_at')->first();
         $lastOrderId = $lastOrder->id;
         $orderDetails = OrderProduct::where('order_id', $lastOrderId)->get();
         $orderProductsCount = $orderDetails->count();
@@ -219,14 +232,9 @@ class OrderController extends Controller
             'orderProductsCount' => $orderProductsCount
         ];
 
-
-
         return view('frontend.viewOrder')->with($data);
 
     }
-
-
-
 
     public function viewUserOrder($id)
     {

@@ -89,24 +89,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php
-                            $subTotal = 0;
-                            ?>
                             @foreach($orderDetails as $orderDetail)
                                 <tr>
-                                        <?php
-                                        $unitPrice = 0;
-                                        if (isset($orderDetail->product->action)) {
-                                            $unitPrice = $orderDetail->product->action;
-                                        } else {
-                                            $unitPrice = $orderDetail->product->price;
-                                        }
-                                        $sub = $unitPrice * $orderDetail->quantity;
-                                        $price = number_format($sub, 2);
-                                        $subTotal += $price;
-                                        $discount = $subTotal * $lastOrder->discount /100;
-                                        $grandTotal = $lastOrder->total + $lastOrder->shippingCharges - $discount;
-                                        ?>
                                     <td class="text-center">
                                         <img style="width: 50px;position: center"
                                              src="/assets/img/products/thumbnails/{{ $orderDetail->product->image }}"
@@ -115,25 +99,22 @@
                                     <td class="text-center product"><a
                                             href="shop-product.html">{{ $orderDetail->product->title }}</a>
                                         <small>{{ $orderDetail->product->brand->name }}</small></td>
-                                    @if(isset($orderDetail->product->action))
-                                        <td class="text-center price">{{ $orderDetail->product->action }} €</td>
-                                    @endif
-                                    @if(!isset($orderDetail->product->action))
-                                        <td class="text-center price">{{ $orderDetail->product->price }} €</td>
-                                    @endif
+
+                                        <td class="text-center price">{{ $orderDetail->unitPrice }} €</td>
+
                                     <td class="text-center quantity">{{ $orderDetail->quantity }} </td>
-                                    <td class="amount text-end">{{ $price }} €</td>
+                                    <td class="amount text-end">{{ $orderDetail->price }} €</td>
                                 </tr>
                             @endforeach
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="total-quantity text-center" colspan="2">Subtotal</td>
-                                <td class="amount">{{ number_format($subTotal, 2) }} €</td>
+                                <td class="amount">{{ number_format( $lastOrder->subTotal, 2) }} €</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="total-quantity text-center" colspan="2">Discount &nbsp&nbsp&nbsp {{ $lastOrder->discount }} %</td>
-                                <td class="amount">{{  $discount }} €</td>
+                                <td class="amount">{{  $lastOrder->discountPrice }} €</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
@@ -143,7 +124,7 @@
                             <tr>
                                 <td colspan="2"></td>
                                 <td class="total-quantity text-center" colspan="2">Total {{ $orderProductsCount }} Items</td>
-                                <td class="total-amount">{{ number_format($grandTotal, 2) }} €</td>
+                                <td class="total-amount">{{ number_format($lastOrder->total, 2) }} €</td>
                             </tr>
                             </tbody>
                         </table>

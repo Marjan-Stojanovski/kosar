@@ -39,7 +39,7 @@
                             <th class="text-center">Unit Price </th>
                             <th class="text-center">Quantity</th>
                             <th class="text-center">Remove </th>
-                            <th class="amount text-center">Subtotal </th>
+                            <th class="amount text-center">Price </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -73,7 +73,7 @@
                         <tr>
                             <td class="total-quantity" colspan="4">Total</td>
                             <td class="total-quantity" colspan="1">{{ count((array) session('cart')) }} Items</td>
-                            <td class="total-amount text-center">Total Price</td>
+                            <td class="total-amount text-center">Subtotal</td>
                             <td class="total-amount text-right">{{ number_format($subTotal, 2) }}€ </td>
                         </tr>
                         </tfoot>

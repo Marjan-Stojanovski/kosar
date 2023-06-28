@@ -36,6 +36,8 @@ class Order extends Model
         'discount',
         'order_status',
         'payment_status',
+        'subTotal',
+        'discountPrice',
         'total'
     ];
 

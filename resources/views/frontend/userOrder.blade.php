@@ -50,19 +50,9 @@
                                 </td>
                                 <td class="product text-center"><a>{{$orderProduct->product->title}}</a></td>
                                 <td class="product text-center"><a>{{$orderProduct->product->brand->name}}</a></td>
-                                @if(isset($orderProduct->product->action))
-                                <td class="price text-center">€ {{$orderProduct->product->action}}</td>
-                                @else
-                                    <td class="price text-center">€ {{$orderProduct->product->price}}</td>
-                                @endif
+                                <td class="product text-center"><a>{{$orderProduct->unitPrice}}</a></td>
                                 <td class="quantity text-center">{{$orderProduct->quantity}} pcs</td>
-                                <?php
-                                    if(isset($orderProduct->product->action))
-                                    $subTotal = $orderProduct->quantity * $orderProduct->product->action;
-                                    else
-                                        $subTotal = $orderProduct->quantity * $orderProduct->product->price;
-                                    ?>
-                                <td class="amount text-center">{{ number_format($subTotal, 2) }} €</td>
+                                <td class="amount text-center">{{ number_format($orderProduct->price, 2) }} €</td>
                             </tr>
 
                         @endforeach

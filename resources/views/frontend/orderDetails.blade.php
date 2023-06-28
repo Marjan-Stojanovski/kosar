@@ -39,7 +39,7 @@
                             <th class="text-center">Brand</th>
                             <th class="text-center">Unit Price</th>
                             <th class="text-center">Quantity</th>
-                            <th class="amount text-center">Unit Total</th>
+                            <th class="amount text-center">Price</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                 <td class="product text-center"><a>{{$product['brand']}}</a></td>
                                 <td class="price text-center">€ {{$product['unitPrice']}}</td>
                                 <td class="quantity text-center">{{$product['quantity']}} pcs</td>
-                                <td class="amount text-center">{{$product['productAmount']}} €</td>
+                                <td class="amount text-center">{{number_format($product['productAmount'], 2)}} €</td>
                             </tr>
                         @endforeach
                         <tr>
@@ -89,7 +89,7 @@
                             <td colspan="2"></td>
                             <td class="total-quantity text-center" colspan="2">Total 8 Items</td>
                             <td></td>
-                            <td class="total-amount">{{ number_format($subTotal, 2) }} €</td>
+                            <td class="total-amount">{{ number_format($total, 2) }} €</td>
                         </tr>
                         </tbody>
                     </table>
@@ -347,7 +347,7 @@
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <button class="btn btn-primary pull-right" type="submit">Next Step</button>
+                                        <button class="btn btn-primary pull-right" type="submit">Save Order and Continue</button>
                                     </form>
                                 </div>
                             </div>
@@ -499,7 +499,7 @@
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <button class="btn btn-primary pull-right" type="submit">Next Step</button>
+                                        <button class="btn btn-primary pull-right" type="submit">Save Order and Continue</button>
                                     </form>
                                 </div>
                             </div>
@@ -635,7 +635,7 @@
                                                 </div>
                                             </div>
                                         </fieldset>
-                                        <button class="btn btn-primary pull-right" type="submit">Next Step</button>
+                                        <button class="btn btn-primary pull-right" type="submit">Save Order and Continue</button>
                                     </form>
                                 </div>
                             </div>
@@ -785,7 +785,7 @@
                                             </div>
                                         </div>
                                     </fieldset>
-                                        <button class="btn btn-primary pull-right" type="submit">Next Step</button>
+                                        <button class="btn btn-primary pull-right" type="submit">Save Order and Continue</button>
                                     </form>
                                 </div>
                             </div>

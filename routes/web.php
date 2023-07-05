@@ -155,6 +155,18 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::put('/message/{message}', [\App\Http\Controllers\MessageController::class, 'update'])->name('message.update');
     Route::delete('messages/{message}', [\App\Http\Controllers\MessageController::class, 'delete'])->name('message.delete');
 
+    //Routes orders
+    //Routes messages
+
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'listOrders'])->name('orders.list');
+    Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'getOrder'])->name('orders.get');
+    Route::delete('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'delete'])->name('orders.delete');
+    Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'changeStatus'])->name('orders.update');
+    //Route::post('/messages', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
+    //Route::get('/messages/{message}/edit', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
+    //Route::put('/message/{message}', [\App\Http\Controllers\MessageController::class, 'update'])->name('message.update');
+    //Route::delete('messages/{message}', [\App\Http\Controllers\MessageController::class, 'delete'])->name('message.delete');
+
     //Route feedback
     Route::get('/feedbacks/{feedback}', [\App\Http\Controllers\MessageController::class, 'answer'])->name('message.answer');
     Route::post('/feedbacks/{feedback}/sent', [\App\Http\Controllers\MessageController::class, 'sendResponse'])->name('message.response');
@@ -186,14 +198,14 @@ Route::get('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'vie
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
-Route::get('/details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
-Route::post('/details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
-Route::get('/details/{details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
-Route::put('/details/{details}', [App\Http\Controllers\ShippingController::class, 'updateDetails'])->name('frontend.updateDetails');
-Route::get('/details/messages/{message}', [App\Http\Controllers\ShippingController::class, 'viewMessage'])->name('frontend.userMessage');
-Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
-Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
-Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'frontendSave'])->name('comment.save');
+Route::get('/Details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
+Route::post('/Details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
+Route::get('/Details/{Details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
+Route::put('/Details/{Details}', [App\Http\Controllers\ShippingController::class, 'updateDetails'])->name('frontend.updateDetails');
+Route::get('/Details/Messages/{Message}', [App\Http\Controllers\ShippingController::class, 'viewMessage'])->name('frontend.userMessage');
+Route::get('/Reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
+Route::get('/SignUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
+Route::post('/SaveComment', [App\Http\Controllers\CommentControler::class, 'frontendSave'])->name('comment.save');
 Route::get('/e-shop', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
 Route::get('/ContactUs', [App\Http\Controllers\FrontendController::class, 'contact_us'])->name('frontend.feedback');
 Route::get('/AboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
@@ -205,5 +217,7 @@ Route::get('/Brands', [\App\Http\Controllers\FrontendController::class, 'brands'
 Route::get('/Brands/{Name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 
+
+//// test PDF creation
 Route::get('pdf/preview', [App\Http\Controllers\PDFController::class, 'preview'])->name('pdf.preview');
 Route::get('pdf/generate', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('pdf.generate');

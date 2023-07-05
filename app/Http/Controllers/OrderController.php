@@ -7,17 +7,74 @@ use App\Models\Category;
 use App\Models\CompanyInfo;
 use App\Models\Country;
 use App\Models\Employee;
-use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use App\Models\Order;
+use Illuminate\Pagination;
 
 
 class OrderController extends Controller
 {
+    public function listOrders()
+    {
+        $orders = Order::orderBy('id', 'DESC')->paginate(12);
+
+        $data = [
+            'orders' => $orders
+        ];
+
+        return view('dashboard.orders.index')->with($data);
+    }
+
+    public function getOrder($id)
+    {
+        $order = Order::FindorFail($id);
+
+        $data = [
+            'order' => $order
+        ];
+
+        return view('dashboard.orders.edit')->with($data);
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $status = $request->get('status');
+        $order = Order::FindorFail($id);
+        $order['order_status'] = $status;
+        $order->save();
+        $data = [
+            'order' => $order
+        ];
+
+        return view('dashboard.orders.edit')->with($data);
+    }
+
+    public function delete($id)
+    {
+        $order = Order::FindorFail($id);
+        $order->delete();
+
+        $orders = Order::orderBy('id', 'DESC')->paginate(12);
+
+        $data = [
+            'orders' => $orders
+        ];
+
+        return view('dashboard.orders.index')->with($data);
+    }
+
+
+
+
+
+
+
+
     public function orderDetails()
     {
         $products = session()->get('cart', []);

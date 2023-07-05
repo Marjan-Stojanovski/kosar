@@ -199,6 +199,15 @@
                                     <span class="sidebar-text">Пораки</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('orders.list')}}"
+                                   class="nav-link d-flex align-items-center text-truncate ">
+                              <span class="sidebar-icon">
+                                <i class="fs-2 text-primary d-block mb-2 bi bi-chat-dots-fill"></i>
+                              </span>
+                                    <span class="sidebar-text">Порачки</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

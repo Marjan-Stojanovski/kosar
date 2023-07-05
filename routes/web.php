@@ -193,16 +193,16 @@ Route::put('/details/{details}', [App\Http\Controllers\ShippingController::class
 Route::get('/details/messages/{message}', [App\Http\Controllers\ShippingController::class, 'viewMessage'])->name('frontend.userMessage');
 Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
 Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
-Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
+Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'frontendSave'])->name('comment.save');
 Route::get('/e-shop', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
-Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
-Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
-Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
-Route::get('/products/{slug}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
-Route::get('/categories', [\App\Http\Controllers\FrontendController::class, 'categories'])->name('frontend.categories');
-Route::get('/categories/{slug}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
-Route::get('/brands', [\App\Http\Controllers\FrontendController::class, 'brands'])->name('frontend.brands');
-Route::get('/brands/{name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
+Route::get('/ContactUs', [App\Http\Controllers\FrontendController::class, 'contact_us'])->name('frontend.feedback');
+Route::get('/AboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
+Route::get('/Products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
+Route::get('/Products/{Slug}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
+Route::get('/Categories', [\App\Http\Controllers\FrontendController::class, 'categories'])->name('frontend.categories');
+Route::get('/Categories/{Slug}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
+Route::get('/Brands', [\App\Http\Controllers\FrontendController::class, 'brands'])->name('frontend.brands');
+Route::get('/Brands/{Name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
 
 Route::get('pdf/preview', [App\Http\Controllers\PDFController::class, 'preview'])->name('pdf.preview');

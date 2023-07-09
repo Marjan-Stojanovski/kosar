@@ -174,7 +174,6 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     //Route checkout
 
 });
-Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
 
 //session Cart routes

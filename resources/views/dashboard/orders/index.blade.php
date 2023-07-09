@@ -51,7 +51,7 @@
                                         <td class="text-center" style="background-color:
                                         <?php if($order->order_status == 'in-progress')
                                         echo 'orange';
-                                        else if ($order->order_status == 'finished')
+                                        else if ($order->order_status == 'shipped')
                                                     echo 'green';
                                         else
                                                     echo 'yellow';
@@ -59,7 +59,7 @@
                                         ">{{$order->order_status}}</td>
                                         <td class="text-center">{{ $order->created_at->diffForHumans() }}</td>
                                         <td class="text-end">
-                                            <div class="drodown">
+                                            <div class="dropdown">
                                                 <a data-bs-toggle="dropdown" href="#" class="btn p-1">
                                   <span class="material-symbols-rounded align-middle">
                                     more_vert
@@ -67,10 +67,18 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a href="{{ route('orders.get', $order->id) }}" class="dropdown-item">Погледни Нарачка</a>
-                                                    <form action="{{ route('orders.delete', $order->id )}}" method="post">
+                                                    <form action="{{ route('orders.update', $order->id )}}" method="post" style="margin-bottom: unset;">
+                                                        @csrf
+                                                        @method('put')
+                                                        <input type="text" value="cancelled" class="form-control" hidden
+                                                               id="status" name="status">
+                                                        <button type="submit" class="dropdown-item">Откажи нарачка
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('orders.delete', $order->id )}}" method="post" style="margin-bottom: unset;">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="dropdown-item">Cancel and delete
+                                                        <button type="submit" class="dropdown-item" >Избриши нарачка
                                                         </button>
                                                     </form>
                                                 </div>

@@ -6,7 +6,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><i class="fa fa-home pr-10"></i><a href="../index.html">Home</a></li>
-                <li class="active">Product Title</li>
+                <li class="active">Order #{{ $lastOrder->id }}</li>
             </ol>
         </div>
     </div>
@@ -25,7 +25,7 @@
 
                     <!-- page-title start -->
                     <!-- ================ -->
-                    <h1 class="page-title text-center">Order Details</h1>
+                    <h1 class="page-title text-center">Order Created</h1>
                     <div class="separator"></div>
                     <!-- page-title end -->
 
@@ -47,22 +47,20 @@
                                 </address>
                             </div>
                             <!-- Recipient info -->
-                            @if(isset($orderDetail->companyName))
+                            @if(isset($lastOrder->companyName))
                                 <div class="col-sm-offset-3 col-sm-3">
                                     <p class="text-right small"><strong>Invoice #{{ $lastOrder->id }}
                                             /{{ $dateYear }}</strong> <br> {{ $dateOrder }} </p>
-                                    <h5 class="text-right"> {{ $lastOrder->firstName }}  {{ $lastOrder->lastName }}</h5>
+                                    <h5 class="text-right"> {{ $lastOrder->companyName }}</h5>
+                                    <h6 class="text-right">Vat - {{ $lastOrder->taxNumber }}</h6>
+                                    <br>
                                     <p class="text-right small">
-                                        <strong>Name:</strong>
-                                        <span> {{ $lastOrder->firstName }}  {{ $lastOrder->lastName }}</span> <br>
-                                        <strong>Company:</strong> John Doe <br>
+                                        <strong>Name: </strong>{{ $lastOrder->firstName }}  {{ $lastOrder->lastName }}<br>
                                         <strong>Address:</strong> {{ $lastOrder->address }} <br>
                                         <strong>Tel:</strong> {{ $lastOrder->phoneNumber }} <br>
-                                        <strong>Vat:</strong> 1231231231
                                     </p>
                                 </div>
-                            @endif
-                            @if(!isset($orderDetail->companyName))
+                            @else
                                 <div class="col-sm-offset-3 col-sm-3">
                                     <p class="text-right small"><strong>Invoice #{{ $lastOrder->id }}
                                             /{{ $dateYear }}</strong> <br> {{ $dateOrder }} </p>
@@ -97,7 +95,7 @@
                                              alt="{{ $orderDetail->product->title }}">
                                     </td>
                                     <td class="text-center product"><a
-                                            href="shop-product.html">{{ $orderDetail->product->title }}</a>
+                                            href="{{ route('frontend.productView', $orderDetail->product->id) }}">{{ $orderDetail->product->title }}</a>
                                         <small>{{ $orderDetail->product->brand->name }}</small></td>
 
                                         <td class="text-center price">{{ $orderDetail->unitPrice }} €</td>

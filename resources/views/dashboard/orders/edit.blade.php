@@ -15,9 +15,9 @@
                         <form action="{{ route('orders.update', $order->id )}}" method="post">
                             @csrf
                             @method('put')
-                            <input type="text" value="finished" class="form-control" hidden
+                            <input type="text" value="shipped" class="form-control" hidden
                                    id="status" name="status">
-                            <button type="submit" class="dropdown-item">Change to closed
+                            <button type="submit" class="btn btn-success">Change to shipped
                             </button>
                         </form>
                         <form action="{{ route('orders.update', $order->id )}}" method="post">
@@ -25,7 +25,7 @@
                             @method('put')
                             <input type="text" value="cancelled" class="form-control" hidden
                                    id="status" name="status">
-                            <button type="submit" class="dropdown-item">Change to cancelled
+                            <button type="submit" class="btn btn-danger">Change to cancelled
                             </button>
                         </form>
                     </div>
@@ -49,7 +49,8 @@
                                         <th class="text-center">Payment method</th>
                                         <th class="text-center">Order Cost</th>
                                         <th class="text-center">Order Status</th>
-                                        <th class="text-end">Created Date</th>
+                                        <th class="text-center">Created Date</th>
+                                        <th class="text-end">Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -66,13 +67,16 @@
                                         <td class="text-center" style="background-color:
                                         <?php if($order->order_status == 'in-progress')
                                                     echo 'orange';
-                                        else if ($order->order_status == 'finished')
+                                        else if ($order->order_status == 'shipped')
                                                     echo 'green';
                                         else
                                                     echo 'yellow';
                                         ?>
                                         ">{{$order->order_status}}</td>
-                                        <td class="text-end">{{ $order->created_at->diffForHumans() }}</td>
+                                        <td class="text-center">{{ $order->created_at->diffForHumans() }}</td>
+                                        <td class="text-end">
+                                            <a href="" class="btn btn-info">Poglej</a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

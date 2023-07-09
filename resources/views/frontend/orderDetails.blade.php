@@ -27,14 +27,14 @@
 
                     <!-- page-title start -->
                     <!-- ================ -->
-                    <h1 class="page-title">Cart Checkout</h1>
+                    <h1 class="page-title">Order Checkout</h1>
                     <div class="separator-2"></div>
                     <!-- page-title end -->
 
                     <table class="table cart">
                         <thead>
                         <tr>
-                            <th class="text-center">Image</th>
+                            <th class="text-start">Image</th>
                             <th class="text-center">Product</th>
                             <th class="text-center">Brand</th>
                             <th class="text-center">Unit Price</th>
@@ -45,11 +45,11 @@
                         <tbody>
                         @foreach($products as $product)
                             <tr class="remove-data">
-                                <td class="image-box">
+                                <td class="text-center">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1">
                                             <img src="/assets/img/products/thumbnails/{{$product['image']}}"
-                                                 class="mb-0 img-responsive" style="width: 50px">
+                                                 class="img-responsive" style="width: 50px">
                                         </div>
                                     </div>
                                 </td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailSender;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\CompanyInfo;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use App\Models\Order;
 use Illuminate\Pagination;
+use Illuminate\Support\Facades\Mail;
+use Session;
 
 
 class OrderController extends Controller
@@ -22,6 +25,9 @@ class OrderController extends Controller
     public function listOrders()
     {
         $orders = Order::orderBy('id', 'DESC')->paginate(12);
+        $shipped = Order::where('order_status', 'shipped')->get();
+        $inProgress = Order::where('order_status', 'in-progress')->get();
+        $cancelled = Order::where('order_status', 'cancelled')->get();
 
         $data = [
             'orders' => $orders
@@ -47,11 +53,18 @@ class OrderController extends Controller
         $order = Order::FindorFail($id);
         $order['order_status'] = $status;
         $order->save();
+
+        $company = CompanyInfo::all();
+        $subject = 'Re: Order #'.$order->id;
+        $msg = 'Order: #'.$order->id. ' changed status to ' . $order->order_status;
+
+        Mail::to($order->email)->send(new MailSender($msg, $subject, $company));
+
         $data = [
             'order' => $order
         ];
 
-        return view('dashboard.orders.edit')->with($data);
+        return redirect()->back();
     }
 
     public function delete($id)
@@ -61,11 +74,8 @@ class OrderController extends Controller
 
         $orders = Order::orderBy('id', 'DESC')->paginate(12);
 
-        $data = [
-            'orders' => $orders
-        ];
 
-        return view('dashboard.orders.index')->with($data);
+        return redirect()->back();
     }
 
 
@@ -125,6 +135,7 @@ class OrderController extends Controller
 
         return view('frontend.orderDetails')->with($data);
     }
+
     public function saveOrder(Request $request)
     {
         $firstName = $request->get('firstName');
@@ -148,6 +159,7 @@ class OrderController extends Controller
         $shipCountry_id = $request->get('shipCountry_id');
         $shipComment = $request->get('shipComment');
         $discountCode = $request->get('discount');
+
         $discount = 0;
         if ($discountCode == 'A') {
             $discount = 5;
@@ -242,6 +254,35 @@ class OrderController extends Controller
             $order_id = $lastOrder->id;
         }
 
+        $orderInfo = [
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'phoneNumber' => $phoneNumber,
+            'email' => $email,
+            'address' => $address,
+            'zipcode' => $zipcode,
+            'city' => $city,
+            'country_id' => $country_id,
+            'comment' => $comment,
+            'companyName' => $companyName,
+            'taxNumber' => $taxNumber,
+            'shipFirstName' => $shipFirstName,
+            'shipLastName' => $shipLastName,
+            'shipPhoneNumber' => $shipPhoneNumber,
+            'shipEmail' => $shipEmail,
+            'shipAddress' => $shipAddress,
+            'shipZipcode' => $shipZipcode,
+            'shipCity' => $shipCity,
+            'shipCountry_id' => $shipCountry_id,
+            'shipComment' => $shipComment,
+            'discount' => $discount,
+            'subTotal' => $subTotal,
+            'discountPrice' => $discountPrice,
+            'total' => $total,
+            'shippingCharges' => $shippingCharges
+        ];
+        Session::put('orderInfo', $orderInfo);
+
         $carts = session()->get('cart', []);
 
         foreach($carts as $cart) {
@@ -256,9 +297,8 @@ class OrderController extends Controller
                 'unitPrice' => $unitPrice,
                 'price' => $price
             ]);
-
         }
-        session()->flush();
+
 
         $company = CompanyInfo::first();
         $employees = Employee::all();
@@ -286,7 +326,8 @@ class OrderController extends Controller
             'orderDetails' => $orderDetails,
             'dateYear' => $dateYear,
             'dateOrder' => $dateOrder,
-            'orderProductsCount' => $orderProductsCount
+            'orderProductsCount' => $orderProductsCount,
+            'orderInfo' => $orderInfo
         ];
 
         return view('frontend.viewOrder')->with($data);
@@ -334,12 +375,16 @@ class OrderController extends Controller
 
     public function payment($id)
     {
+        $orderInfo = session()->get('orderProduct');
+        dd($orderInfo);
         $company = CompanyInfo::first();
         $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
         $order = Order::where('id', $id)->first();
+
+        session()->forget('cart');
 
         $data = [
             'company' => $company,

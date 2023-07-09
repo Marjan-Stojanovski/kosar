@@ -23,6 +23,8 @@ class Order extends Model
         'city',
         'country_id',
         'comment',
+        'companyName',
+        'taxNumber',
         'shipFirstName',
         'shipLastName',
         'shipPhoneNumber',

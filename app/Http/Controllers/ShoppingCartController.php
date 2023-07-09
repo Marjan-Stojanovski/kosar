@@ -25,10 +25,6 @@ class ShoppingCartController extends Controller
     {
         $carts = session()->get('cart', []);
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $categories = Category::all();
-        $products = Product::paginate(12);
         $categoriesTree = Category::getTreeHP();
 
         $subTotal = 0;
@@ -40,12 +36,8 @@ class ShoppingCartController extends Controller
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
             'carts' => $carts,
-            'products' => $products,
-            'brands' => $brands,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
             'subTotal'=> $subTotal
         ];
 

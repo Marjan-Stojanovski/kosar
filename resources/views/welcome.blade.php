@@ -371,13 +371,13 @@
                             <div class="separator-2"></div>
                             <nav class="mb-20">
                                 <ul class="nav nav-pills nav-stacked list-style-icons">
-                                    <li><a href="">Domov</a></li>
-                                    <li><a href="">Trgovina</a></li>
-                                    <li><a href="">Znamke</a></li>
+                                    <li><a href="{{ route('frontend.index') }}">Domov</a></li>
+                                    <li><a href="{{ route('frontend.shop') }}">Trgovina</a></li>
+                                    <li><a href="{{ route('frontend.brands') }}">Znamke</a></li>
                                     <li><a href="">Nacin placila</a></li>
                                     <li><a href="">Dostava</a></li>
-                                    <li><a href="">O podjetju</a></li>
-                                    <li><a href="">Kontakt</a></li>
+                                    <li><a href="{{ route('frontend.about') }}">O podjetju</a></li>
+                                    <li><a href="{{ route('frontend.feedback') }}">Kontakt</a></li>
                                 </ul>
                             </nav>
                         </div>

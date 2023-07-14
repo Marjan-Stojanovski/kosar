@@ -53,8 +53,8 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="product"><a>{{$cart['name']}}</a></td>
-                            <td class="product text-center"><a>{{$cart['brand']}}</a></td>
+                            <td class="product"><a href="{{ route('frontend.productView', $cart['slug'])}}">{{$cart['name']}}</a></td>
+                            <td class="product text-center"><a href="{{ route('frontend.brandView', $cart['brand'])}}">{{$cart['brand']}}</a></td>
                             <td class="price text-center">€ {{$cart['unitPrice']}}</td>
                             <td class="price text-center">{{$cart['quantity']}} pcs</td>
                             <td class="remove text-center">

@@ -27,7 +27,7 @@
 
                     <!-- page-title start -->
                     <!-- ================ -->
-                    <h1 class="page-title">Order Checkout</h1>
+                    <h2 class="page-title">Order Checkout</h2>
                     <div class="separator-2"></div>
                     <!-- page-title end -->
 
@@ -53,8 +53,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="product text-center"><a>{{$product['name']}}</a></td>
-                                <td class="product text-center"><a>{{$product['brand']}}</a></td>
+                                <td class="product text-center"><a href="{{ route('frontend.productView', $product['slug'])}}">{{$product['name']}}</a></td>
+                                <td class="product text-center"><a href="{{ route('frontend.brandView', $product['brand'])}}">{{$product['brand']}}</a></td>
                                 <td class="price text-center">€ {{$product['unitPrice']}}</td>
                                 <td class="quantity text-center">{{$product['quantity']}} pcs</td>
                                 <td class="amount text-center">{{number_format($product['productAmount'], 2)}} €</td>

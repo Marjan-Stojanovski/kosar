@@ -45,7 +45,8 @@ class FrontendController extends Controller
         $company = CompanyInfo::first();
         $product = Product::where('slug', $slug)->first();
         $categoriesTree = Category::getTreeHP();
-        $comments = Comment::where('product_id', $product->id)->get();
+        dd($slug);
+        $comments = Comment::where('product_id', $product['id'])->get();
         $commentsCount = $comments->count();
         $products = Product::where('category_id', $product->category_id)->get();
 

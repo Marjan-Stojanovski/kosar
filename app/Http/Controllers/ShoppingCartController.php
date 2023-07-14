@@ -26,19 +26,17 @@ class ShoppingCartController extends Controller
         $carts = session()->get('cart', []);
         $company = CompanyInfo::first();
         $categoriesTree = Category::getTreeHP();
-
         $subTotal = 0;
-        foreach ($carts as $cart)
-            {
-                $tempTotal = $cart['productAmount'];
-                $subTotal += $tempTotal;
-            }
+        foreach ($carts as $cart) {
+            $tempTotal = $cart['productAmount'];
+            $subTotal += $tempTotal;
+        }
 
         $data = [
             'company' => $company,
             'carts' => $carts,
             'categoriesTree' => $categoriesTree,
-            'subTotal'=> $subTotal
+            'subTotal' => $subTotal
         ];
 
         return view('frontend.shoppingCart')->with($data);
@@ -47,6 +45,8 @@ class ShoppingCartController extends Controller
     public function addToCart(Request $request)
     {
         $product_id = $request->get('id');
+        $productTemp = Product::where('id', $product_id)->first();
+        $productSlug = $productTemp->slug;
         $cart = session()->get('cart', []);
 
         if (isset($cart[$product_id])) {
@@ -57,12 +57,14 @@ class ShoppingCartController extends Controller
             $productAmount = $quantity * $unitPrice;
             $cart[$product_id]['quantity'] = $quantity;
             $cart[$product_id]['productAmount'] = $productAmount;
+            $cart[$product_id]['slug'] = $productSlug;
         } else {
             $quantity = $request->get('quantity');
             $unitPrice = $request->get('price');
             $productAmount = $quantity * $unitPrice;
             $cart[$product_id] = [
                 "name" => $request->get('title'),
+                "slug" => $productSlug,
                 "quantity" => $request->get('quantity'),
                 "unitPrice" => $request->get('price'),
                 "product_id" => $request->get('id'),
@@ -87,8 +89,6 @@ class ShoppingCartController extends Controller
             return redirect()->back();
         }
     }
-
-
 
 
 }

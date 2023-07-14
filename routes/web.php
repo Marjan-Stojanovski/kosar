@@ -175,18 +175,19 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
 
 });
 
-
-//session Cart routes
-
-
+// shopping Cart SESSION routes/////
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
 Route::get('/ShoppingCart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('frontend.shoppingCart');
-//
+//session Cart routes
+
+
+
+//ORDERS ROUTES///
 Route::get('/OrderDetails', [App\Http\Controllers\OrderController::class, 'orderDetails'])->name('frontend.orderDetails');
 Route::post('/Checkout/ViewOrder', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('frontend.saveOrder');
-Route::get('/Checkout/Payment/{payment}', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
+Route::get('/Checkout/Payment', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
 Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
 Route::delete('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('order.delete');
 Route::get('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'viewUserOrder'])->name('user.viewOrder');

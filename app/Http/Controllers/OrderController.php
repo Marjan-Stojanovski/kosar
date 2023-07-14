@@ -55,8 +55,8 @@ class OrderController extends Controller
         $order->save();
 
         $company = CompanyInfo::all();
-        $subject = 'Re: Order #'.$order->id;
-        $msg = 'Order: #'.$order->id. ' changed status to ' . $order->order_status;
+        $subject = 'Re: Order #' . $order->id;
+        $msg = 'Order: #' . $order->id . ' changed status to ' . $order->order_status;
 
         Mail::to($order->email)->send(new MailSender($msg, $subject, $company));
 
@@ -79,12 +79,6 @@ class OrderController extends Controller
     }
 
 
-
-
-
-
-
-
     public function orderDetails()
     {
         $products = session()->get('cart', []);
@@ -93,18 +87,14 @@ class OrderController extends Controller
         $categoriesTree = Category::getTreeHP();
         $subTotal = 0;
         $shippingCharges = 0;
-        foreach ($products as $product)
-        {
+        foreach ($products as $product) {
             $tempTotal = $product['productAmount'];
             $subTotal += $tempTotal;
         }
 
-        if ($subTotal <= 50 ) {
+        if ($subTotal <= 50) {
             $shippingCharges = 5;
-        } else {
-            $shippingCharges = 0;
         }
-
         $total = $subTotal + $shippingCharges;
 
         if (Auth::user()) {
@@ -146,6 +136,8 @@ class OrderController extends Controller
         $zipcode = $request->get('zipcode');
         $city = $request->get('city');
         $country_id = $request->get('country_id');
+        $country_temp = Country::where('id', $country_id)->get();
+        $country = $country_temp[0]['name'];
         $comment = $request->get('comment');
         $companyName = $request->get('companyName');
         $taxNumber = $request->get('taxNumber');
@@ -157,9 +149,15 @@ class OrderController extends Controller
         $shipZipcode = $request->get('shipZipcode');
         $shipCity = $request->get('shipCity');
         $shipCountry_id = $request->get('shipCountry_id');
+        $shipCountry = null;
+        if (isset($shipCountry_id)) {
+            $shipCountry_temp = Country::where('id', $shipCountry_id)->get();
+            $shipCountry = $shipCountry_temp[0]['name'];
+        }
         $shipComment = $request->get('shipComment');
         $discountCode = $request->get('discount');
 
+        //  Discount Calculation
         $discount = 0;
         if ($discountCode == 'A') {
             $discount = 5;
@@ -172,26 +170,28 @@ class OrderController extends Controller
         } elseif ($discountCode == 'E') {
             $discount = 25;
         };
+        // End Discount Calculation
+
+        // Total Charges Calculation
         $products = session()->get('cart', []);
         $total = 0;
         $subTotal = 0;
-        foreach ($products as $product)
-        {
+        foreach ($products as $product) {
             $tempTotal = $product['productAmount'];
             $subTotal += $tempTotal;
         }
         $discountPrice = $subTotal * $discount / 100;
         $shippingCharges = 0;
-        if ($subTotal < 50){
+        if ($subTotal < 50) {
             $shippingCharges = 5;
-        } else {
-            $shippingCharges = 0;
         }
         $total = $subTotal + $shippingCharges - $discountPrice;
+        // End Total Charges Calculation
 
+        // Creating and saving in session orderInfo
         if (Auth::user()) {
             $user_id = Auth::user()->id;
-            Order::create([
+            $orderInfo = [
                 'user_id' => $user_id,
                 'firstName' => $firstName,
                 'lastName' => $lastName,
@@ -201,6 +201,7 @@ class OrderController extends Controller
                 'zipcode' => $zipcode,
                 'city' => $city,
                 'country_id' => $country_id,
+                'country' => $country,
                 'comment' => $comment,
                 'companyName' => $companyName,
                 'taxNumber' => $taxNumber,
@@ -212,17 +213,17 @@ class OrderController extends Controller
                 'shipZipcode' => $shipZipcode,
                 'shipCity' => $shipCity,
                 'shipCountry_id' => $shipCountry_id,
+                'shipCountry' => $shipCountry,
                 'shipComment' => $shipComment,
                 'discount' => $discount,
                 'subTotal' => $subTotal,
                 'discountPrice' => $discountPrice,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges
-            ]);
-            $lastOrder = Order::where('user_id', $user_id)->latest('created_at')->first();
-            $order_id = $lastOrder->id;
+            ];
+            Session::put('orderInfo', $orderInfo);
         } else {
-            Order::create([
+            $orderInfo = [
                 'firstName' => $firstName,
                 'lastName' => $lastName,
                 'phoneNumber' => $phoneNumber,
@@ -231,6 +232,7 @@ class OrderController extends Controller
                 'zipcode' => $zipcode,
                 'city' => $city,
                 'country_id' => $country_id,
+                'country' => $country,
                 'comment' => $comment,
                 'companyName' => $companyName,
                 'taxNumber' => $taxNumber,
@@ -242,91 +244,31 @@ class OrderController extends Controller
                 'shipZipcode' => $shipZipcode,
                 'shipCity' => $shipCity,
                 'shipCountry_id' => $shipCountry_id,
+                'shipCountry' => $shipCountry,
                 'shipComment' => $shipComment,
                 'discount' => $discount,
                 'subTotal' => $subTotal,
                 'discountPrice' => $discountPrice,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges
-            ]);
-            $lastOrder = Order::latest('created_at')
-                ->first();
-            $order_id = $lastOrder->id;
+            ];
+            Session::put('orderInfo', $orderInfo);
         }
+        // End Creating and saving in session orderInfo
 
-        $orderInfo = [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'phoneNumber' => $phoneNumber,
-            'email' => $email,
-            'address' => $address,
-            'zipcode' => $zipcode,
-            'city' => $city,
-            'country_id' => $country_id,
-            'comment' => $comment,
-            'companyName' => $companyName,
-            'taxNumber' => $taxNumber,
-            'shipFirstName' => $shipFirstName,
-            'shipLastName' => $shipLastName,
-            'shipPhoneNumber' => $shipPhoneNumber,
-            'shipEmail' => $shipEmail,
-            'shipAddress' => $shipAddress,
-            'shipZipcode' => $shipZipcode,
-            'shipCity' => $shipCity,
-            'shipCountry_id' => $shipCountry_id,
-            'shipComment' => $shipComment,
-            'discount' => $discount,
-            'subTotal' => $subTotal,
-            'discountPrice' => $discountPrice,
-            'total' => $total,
-            'shippingCharges' => $shippingCharges
-        ];
-        Session::put('orderInfo', $orderInfo);
-
+        // View data preparation
         $carts = session()->get('cart', []);
-
-        foreach($carts as $cart) {
-            $product_id = $cart['product_id'];
-            $quantity = $cart['quantity'];
-            $unitPrice = $cart['unitPrice'];
-            $price = $cart['productAmount'];
-            OrderProduct::create([
-                'order_id' => $order_id,
-                'product_id' => $product_id,
-                'quantity' => $quantity,
-                'unitPrice' => $unitPrice,
-                'price' => $price
-            ]);
-        }
-
-
         $company = CompanyInfo::first();
-        $employees = Employee::all();
         $brands = Brand::all();
-        $categories = Category::all();
-        $products = Product::paginate(12);
         $categoriesTree = Category::getTreeHP();
-        $lastOrder = Order::latest('created_at')->first();
-        $lastOrderId = $lastOrder->id;
-        $orderDetails = OrderProduct::where('order_id', $lastOrderId)->get();
-        $orderProductsCount = $orderDetails->count();
-        $tempDate = $lastOrder->created_at;
-        $dateYear = Carbon::now()->format('Y');
-        $dateOrder = Carbon::createFromFormat('Y-m-d H:i:s', $tempDate)->format('M-d-Y');
+
         $data = [
             'company' => $company,
-            'employees' => $employees,
             'carts' => $carts,
             'products' => $products,
             'brands' => $brands,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'total'=> $total,
-            'lastOrder' => $lastOrder,
-            'orderDetails' => $orderDetails,
-            'dateYear' => $dateYear,
-            'dateOrder' => $dateOrder,
-            'orderProductsCount' => $orderProductsCount,
+            'total' => $total,
             'orderInfo' => $orderInfo
         ];
 
@@ -354,49 +296,101 @@ class OrderController extends Controller
 
     public function deleteOrder($id)
     {
-
         $order = Order::FindorFail($id);
         $order->delete();
         return redirect()->route('frontend.details');
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public function payment($id)
+    public function payment()
     {
-        $orderInfo = session()->get('orderProduct');
-        dd($orderInfo);
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
-        $order = Order::where('id', $id)->first();
+        $orderInfo = session()->get('orderInfo');
+        $carts = session()->get('cart', []);
 
-        session()->forget('cart');
+        // GET ORDER INFO FROM SESSION  //
+        $firstName = $orderInfo['firstName'];
+        $lastName = $orderInfo['lastName'];
+        $phoneNumber = $orderInfo['phoneNumber'];
+        $email = $orderInfo['email'];
+        $address = $orderInfo['address'];
+        $zipcode = $orderInfo['zipcode'];
+        $city = $orderInfo['city'];
+        $country_id = $orderInfo['country_id'];
+        $comment = $orderInfo['comment'];
+        $companyName = $orderInfo['companyName'];
+        $taxNumber = $orderInfo['taxNumber'];
+        $shipFirstName = $orderInfo['shipFirstName'];
+        $shipLastName = $orderInfo['shipLastName'];
+        $shipPhoneNumber = $orderInfo['shipPhoneNumber'];
+        $shipEmail = $orderInfo['shipEmail'];
+        $shipAddress = $orderInfo['shipAddress'];
+        $shipZipcode = $orderInfo['shipZipcode'];
+        $shipCity = $orderInfo['shipCity'];
+        $shipCountry_id = $orderInfo['shipCountry_id'];
+        $shipComment = $orderInfo['shipComment'];
+        $discount = $orderInfo['discount'];
+        $subTotal = $orderInfo['subTotal'];
+        $discountPrice = $orderInfo['discountPrice'];
+        $total = $orderInfo['total'];
+        $shippingCharges = $orderInfo['shippingCharges'];
+
+        Order::create([
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'phoneNumber' => $phoneNumber,
+            'email' => $email,
+            'address' => $address,
+            'zipcode' => $zipcode,
+            'city' => $city,
+            'country_id' => $country_id,
+            'comment' => $comment,
+            'companyName' => $companyName,
+            'taxNumber' => $taxNumber,
+            'shipFirstName' => $shipFirstName,
+            'shipLastName' => $shipLastName,
+            'shipPhoneNumber' => $shipPhoneNumber,
+            'shipEmail' => $shipEmail,
+            'shipAddress' => $shipAddress,
+            'shipZipcode' => $shipZipcode,
+            'shipCity' => $shipCity,
+            'shipCountry_id' => $shipCountry_id,
+            'shipComment' => $shipComment,
+            'discount' => $discount,
+            'subTotal' => $subTotal,
+            'discountPrice' => $discountPrice,
+            'total' => $total,
+            'shippingCharges' => $shippingCharges
+        ]);
+
+
+        dd('Make order in database');
+
+        //session()->forget('cart');
+        //session()->forget('orderInfo');
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'order' => $order
+            'categoriesTree' => $categoriesTree
         ];
 
         return view('frontend.payment')->with($data);
     }
 
 
+// Saving OrderProducts
+//foreach ($carts as $cart) {
+//$product_id = $cart['product_id'];
+//$quantity = $cart['quantity'];
+//$unitPrice = $cart['unitPrice'];
+//$price = $cart['productAmount'];
+//OrderProduct::create([
+//'order_id' => $order_id,
+//'product_id' => $product_id,
+//'quantity' => $quantity,
+//'unitPrice' => $unitPrice,
+//'price' => $price
+//]);
+//}
 }

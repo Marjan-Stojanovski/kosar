@@ -374,8 +374,7 @@
                                     <li><a href="{{ route('frontend.index') }}">Domov</a></li>
                                     <li><a href="{{ route('frontend.shop') }}">Trgovina</a></li>
                                     <li><a href="{{ route('frontend.brands') }}">Znamke</a></li>
-                                    <li><a href="">Nacin placila</a></li>
-                                    <li><a href="">Dostava</a></li>
+                                    <li><a href="">Nacin placila in Dostava</a></li>
                                     <li><a href="{{ route('frontend.about') }}">O podjetju</a></li>
                                     <li><a href="{{ route('frontend.feedback') }}">Kontakt</a></li>
                                 </ul>

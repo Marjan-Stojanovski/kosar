@@ -40,7 +40,8 @@ class Order extends Model
         'payment_status',
         'subTotal',
         'discountPrice',
-        'total'
+        'total',
+        'order_id'
     ];
 
     public function country()

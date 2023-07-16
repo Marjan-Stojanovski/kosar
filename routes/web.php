@@ -181,16 +181,17 @@ Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartControll
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
 Route::get('/ShoppingCart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('frontend.shoppingCart');
 //session Cart routes
-
-
-
 //ORDERS ROUTES///
-Route::get('/OrderDetails', [App\Http\Controllers\OrderController::class, 'orderDetails'])->name('frontend.orderDetails');
-Route::post('/Checkout/ViewOrder', [\App\Http\Controllers\OrderController::class, 'saveOrder'])->name('frontend.saveOrder');
-Route::get('/Checkout/Payment', [\App\Http\Controllers\OrderController::class, 'payment'])->name('frontend.payment');
+Route::get('/Checkout/ShippingDetails', [App\Http\Controllers\OrderController::class, 'orderDetails'])->name('frontend.orderDetails');
+Route::post('/Checkout/OrderPayment', [\App\Http\Controllers\OrderController::class, 'saveOrderInfo'])->name('frontend.saveOrderInfo');
+Route::post('/Checkout/Order/Review', [App\Http\Controllers\OrderController::class, 'savePaymentInfo'])->name('frontend.savePaymentInfo');
+Route::get('/Checkout/OrderPayment', [App\Http\Controllers\OrderController::class, 'paymentInfo'])->name('frontend.payment');
+Route::get('/Checkout/Order/Status', [App\Http\Controllers\OrderController::class, 'processOrder'])->name('frontend.processOrder');
+
 Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
 Route::delete('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('order.delete');
 Route::get('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'viewUserOrder'])->name('user.viewOrder');
+
 //Mysql Cart routes
 //Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');frontend.saveOrder
 //Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');

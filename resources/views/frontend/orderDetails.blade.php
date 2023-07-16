@@ -105,7 +105,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="tab1">
                                 <div class="panel-group collapse-style-1" id="accordion-faq">
-                                    <form action="{{ route('frontend.saveOrder') }}" method="post">
+                                    <form action="{{ route('frontend.saveOrderInfo') }}" method="post">
                                         @csrf
                                         <!--Client information-->
                                         <fieldset>
@@ -353,7 +353,7 @@
                             </div>
                             <div class="tab-pane fade" id="tab2">
                                 <div class="panel-group collapse-style-1" id="accordion-faq-2">
-                                    <form action="{{ route('frontend.saveOrder') }}" method="post">
+                                    <form action="{{ route('frontend.saveOrderInfo') }}" method="post">
                                         @csrf
                                         <!--Shipping Kompanija information-->
                                         <fieldset>
@@ -515,7 +515,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="tab1">
                                 <div class="panel-group collapse-style-1" id="accordion-faq">
-                                    <form action="{{ route('frontend.saveOrder') }}" method="post">
+                                    <form action="{{ route('frontend.saveOrderInfo') }}" method="post">
                                         @csrf
                                         <fieldset>
                                             <legend class="text-center">Client information</legend>
@@ -641,7 +641,7 @@
                             </div>
                             <div class="tab-pane fade" id="tab2">
                                 <div class="panel-group collapse-style-1" id="accordion-faq-2">
-                                    <form action="{{ route('frontend.saveOrder') }}" method="post">
+                                    <form action="{{ route('frontend.saveOrderInfo') }}" method="post">
                                         @csrf
                                     <fieldset>
                                         <legend class="text-center">Shipping Kompanija information</legend>

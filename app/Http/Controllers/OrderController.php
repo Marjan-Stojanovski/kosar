@@ -11,12 +11,14 @@ use App\Models\Employee;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Shipping;
+use Illuminate\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use App\Models\Order;
 use Illuminate\Pagination;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Session;
 
 
@@ -126,7 +128,7 @@ class OrderController extends Controller
         return view('frontend.orderDetails')->with($data);
     }
 
-    public function saveOrder(Request $request)
+    public function saveOrderInfo(Request $request)
     {
         $firstName = $request->get('firstName');
         $lastName = $request->get('lastName');
@@ -257,23 +259,89 @@ class OrderController extends Controller
         // End Creating and saving in session orderInfo
 
         // View data preparation
-        $carts = session()->get('cart', []);
         $company = CompanyInfo::first();
-        $brands = Brand::all();
         $categoriesTree = Category::getTreeHP();
 
         $data = [
             'company' => $company,
-            'carts' => $carts,
             'products' => $products,
-            'brands' => $brands,
             'categoriesTree' => $categoriesTree,
-            'total' => $total,
             'orderInfo' => $orderInfo
         ];
 
-        return view('frontend.viewOrder')->with($data);
+        return view('frontend.payment')->with($data);
 
+    }
+
+    public function paymentInfo()
+    {
+        $company = CompanyInfo::first();
+        $categoriesTree = Category::getTreeHP();
+
+        $data = [
+            'company' => $company,
+            'categoriesTree' => $categoriesTree,
+        ];
+
+        return view('frontend.payment')->with($data);
+    }
+
+
+    public function savePaymentInfo(Request $request)
+    {
+        $methodForPayment = $request->get('methodForPayment');
+        $paymentFullName = $request->get('paymentFullName');
+        $cardName = $request->get('cardName');
+        $cardNumber = $request->get('cardNumber');
+        $expDateMonth = $request->get('expDateMonth');
+        $expDateYear = $request->get('expDateYear');
+        $csv = $request->get('csv');
+
+        if ($methodForPayment === 'Credit Card') {
+            $validator = Validator::make($request->all(), [
+                'paymentFullName' => 'required',
+                'cardName' => 'required',
+                'cardNumber' => 'required|min:16|max:16',
+                'expDateMonth' => 'required|min:2|max:2',
+                'expDateYear' => 'required|min:4|max:4',
+                'csv' => 'required|min:3|max:3'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('frontend.payment')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
+
+        $paymentInfo = [
+            'methodForPayment' => $methodForPayment,
+            'paymentFullName' => $paymentFullName,
+            'cardName' => $cardName,
+            'cardNumber' => $cardNumber,
+            'expDateMonth' => $expDateMonth,
+            'expDateYear' => $expDateYear,
+            'csv' => $csv,
+        ];
+        Session::put('paymentInfo', $paymentInfo);
+
+
+        $company = CompanyInfo::first();
+        $categoriesTree = Category::getTreeHP();
+        $paymentInfo = session()->get('paymentInfo');
+        $orderInfo = session()->get('orderInfo');
+        $products = session()->get('cart', []);
+
+        $data = [
+            'company' => $company,
+            'categoriesTree' => $categoriesTree,
+            'paymentInfo' => $paymentInfo,
+            'orderInfo' => $orderInfo,
+            'products' => $products,
+
+        ];
+
+        return view('frontend.orderReview')->with($data);
     }
 
     public function viewUserOrder($id)
@@ -301,14 +369,19 @@ class OrderController extends Controller
         return redirect()->route('frontend.details');
     }
 
-
-    public function payment()
+    public function processOrder(Request $request)
     {
-        $company = CompanyInfo::first();
-        $categoriesTree = Category::getTreeHP();
-        $orderInfo = session()->get('orderInfo');
-        $carts = session()->get('cart', []);
+        //PROCESS PAYMENT
+        // payment_status "0" -> not paid
+        // payment_status "1" -> paid
+        $paymentInfo = session()->get('paymentInfo');
 
+        if($paymentInfo['methodForPayment'] === 'Credit Card') {
+            dd('SetUp Stripe');
+            $paymentStatus = 1;
+        }
+        $paymentStatus = 0;
+        $orderInfo = session()->get('orderInfo');
         // GET ORDER INFO FROM SESSION  //
         $firstName = $orderInfo['firstName'];
         $lastName = $orderInfo['lastName'];
@@ -336,61 +409,114 @@ class OrderController extends Controller
         $total = $orderInfo['total'];
         $shippingCharges = $orderInfo['shippingCharges'];
 
-        Order::create([
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'phoneNumber' => $phoneNumber,
-            'email' => $email,
-            'address' => $address,
-            'zipcode' => $zipcode,
-            'city' => $city,
-            'country_id' => $country_id,
-            'comment' => $comment,
-            'companyName' => $companyName,
-            'taxNumber' => $taxNumber,
-            'shipFirstName' => $shipFirstName,
-            'shipLastName' => $shipLastName,
-            'shipPhoneNumber' => $shipPhoneNumber,
-            'shipEmail' => $shipEmail,
-            'shipAddress' => $shipAddress,
-            'shipZipcode' => $shipZipcode,
-            'shipCity' => $shipCity,
-            'shipCountry_id' => $shipCountry_id,
-            'shipComment' => $shipComment,
-            'discount' => $discount,
-            'subTotal' => $subTotal,
-            'discountPrice' => $discountPrice,
-            'total' => $total,
-            'shippingCharges' => $shippingCharges
-        ]);
+        //Unique order_id generator///
+        do {
+            $number = mt_rand(100000, 999999);
+            $temp = Order::where('order_id', $number)->get();
+        } while (!isset($temp));
+
+        //END Unique order_id generator///
+        if (Auth::user()) {
+            $user_id = Auth::user()->id;
+            Order::create([
+                'user_id' => $user_id,
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'phoneNumber' => $phoneNumber,
+                'email' => $email,
+                'address' => $address,
+                'zipcode' => $zipcode,
+                'city' => $city,
+                'country_id' => $country_id,
+                'comment' => $comment,
+                'companyName' => $companyName,
+                'taxNumber' => $taxNumber,
+                'shipFirstName' => $shipFirstName,
+                'shipLastName' => $shipLastName,
+                'shipPhoneNumber' => $shipPhoneNumber,
+                'shipEmail' => $shipEmail,
+                'shipAddress' => $shipAddress,
+                'shipZipcode' => $shipZipcode,
+                'shipCity' => $shipCity,
+                'shipCountry_id' => $shipCountry_id,
+                'shipComment' => $shipComment,
+                'discount' => $discount,
+                'subTotal' => $subTotal,
+                'discountPrice' => $discountPrice,
+                'total' => $total,
+                'shippingCharges' => $shippingCharges,
+                'order_id' => $number,
+                'payment_status' => $paymentStatus
+            ]);
+        } else {
+            Order::create([
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'phoneNumber' => $phoneNumber,
+                'email' => $email,
+                'address' => $address,
+                'zipcode' => $zipcode,
+                'city' => $city,
+                'country_id' => $country_id,
+                'comment' => $comment,
+                'companyName' => $companyName,
+                'taxNumber' => $taxNumber,
+                'shipFirstName' => $shipFirstName,
+                'shipLastName' => $shipLastName,
+                'shipPhoneNumber' => $shipPhoneNumber,
+                'shipEmail' => $shipEmail,
+                'shipAddress' => $shipAddress,
+                'shipZipcode' => $shipZipcode,
+                'shipCity' => $shipCity,
+                'shipCountry_id' => $shipCountry_id,
+                'shipComment' => $shipComment,
+                'discount' => $discount,
+                'subTotal' => $subTotal,
+                'discountPrice' => $discountPrice,
+                'total' => $total,
+                'shippingCharges' => $shippingCharges,
+                'order_id' => $number,
+                'payment_status' => $paymentStatus
+            ]);
+        }
+        $carts = session()->get('cart', []);
+        // Saving OrderProducts
+        $order = Order::where('order_id', $number)->first();
+        $order_id = $order->id;
+        foreach ($carts as $cart) {
+            $product_id = $cart['product_id'];
+            $quantity = $cart['quantity'];
+            $unitPrice = $cart['unitPrice'];
+            $price = $cart['productAmount'];
+            OrderProduct::create([
+                'order_id' => $order_id,
+                'product_id' => $product_id,
+                'quantity' => $quantity,
+                'unitPrice' => $unitPrice,
+                'price' => $price,
+                'order_parent' => $number
+            ]);
+        }
+
+        dd('Create Profaktura Creation');
+        session()->forget('cart');
+        session()->forget('orderInfo');
 
 
-        dd('Make order in database');
-
-        //session()->forget('cart');
-        //session()->forget('orderInfo');
+        //BACK TO VIEW
+        $company = CompanyInfo::first();
+        $categoriesTree = Category::getTreeHP();
+        $orderData = Order::where('order_id', $number)->first();
+        $orderProducts = OrderProduct::where('order_parent', $number)->get();
 
         $data = [
             'company' => $company,
-            'categoriesTree' => $categoriesTree
+            'categoriesTree' => $categoriesTree,
+            'orderData' => $orderData,
+            'orderProducts' => $orderProducts
         ];
 
-        return view('frontend.payment')->with($data);
+        return view('frontend.paymentStatus')->with($data);
     }
 
-
-// Saving OrderProducts
-//foreach ($carts as $cart) {
-//$product_id = $cart['product_id'];
-//$quantity = $cart['quantity'];
-//$unitPrice = $cart['unitPrice'];
-//$price = $cart['productAmount'];
-//OrderProduct::create([
-//'order_id' => $order_id,
-//'product_id' => $product_id,
-//'quantity' => $quantity,
-//'unitPrice' => $unitPrice,
-//'price' => $price
-//]);
-//}
 }

@@ -61,6 +61,8 @@
                                 </div>
                             @else
                                 <div class="col-sm-offset-3 col-sm-3">
+                                    <h6 class="text-right">Ship to:</h6>
+                                    <br>
                                     <h5 class="text-right"> {{ $orderInfo['firstName'] }}  {{ $orderInfo['lastName'] }}</h5>
                                     <p class="text-right small">
                                         <br>
@@ -71,7 +73,6 @@
                                 </div>
                             @endif
                         </div>
-                        <p class="small"><strong>Comments/PO:</strong>{{ $orderInfo['comment'] }}</p>
                         <table class="table cart table-bordered " style="table-layout: fixed;width: 100%">
                             <thead>
                             <tr>
@@ -136,7 +137,7 @@
                     </div>
                     <div class="text-right">
                         <a href="{{ route('pdf.preview')}}" class="btn btn-primary">View PDF</a>
-                        <a href="{{ route('frontend.payment') }}" class="btn btn-primary">Save and Proceed</a>
+                        <a href="{{ route('frontend.payment') }}" class="btn btn-primary">Proceed to payment</a>
 
                     </div>
                 </div>

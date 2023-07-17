@@ -498,12 +498,13 @@ class OrderController extends Controller
             ]);
         }
 
+
         dd('Create Profaktura Creation');
-        session()->forget('cart');
-        session()->forget('orderInfo');
+        //session()->forget('cart');
+        //session()->forget('orderInfo');
 
 
-        //BACK TO VIEW
+        //BACK TO VIEW -> Invoice View
         $company = CompanyInfo::first();
         $categoriesTree = Category::getTreeHP();
         $orderData = Order::where('order_id', $number)->first();
@@ -516,7 +517,7 @@ class OrderController extends Controller
             'orderProducts' => $orderProducts
         ];
 
-        return view('frontend.paymentStatus')->with($data);
+        return view('frontend.')->with($data);
     }
 
 }

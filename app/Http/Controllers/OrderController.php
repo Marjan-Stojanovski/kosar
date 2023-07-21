@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Helpers\PdfGeneration;
 use App\Mail\MailSender;
 use App\Models\Brand;
 use App\Models\Category;
@@ -11,6 +12,7 @@ use App\Models\Employee;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\Shipping;
+use App\Models\User;
 use Illuminate\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +22,7 @@ use Illuminate\Pagination;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
+use PDF;
 
 
 class OrderController extends Controller
@@ -380,6 +383,7 @@ class OrderController extends Controller
             dd('SetUp Stripe');
             $paymentStatus = 1;
         }
+
         $paymentStatus = 0;
         $orderInfo = session()->get('orderInfo');
         // GET ORDER INFO FROM SESSION  //
@@ -411,8 +415,8 @@ class OrderController extends Controller
 
         //Unique order_id generator///
         do {
-            $number = mt_rand(100000, 999999);
-            $temp = Order::where('order_id', $number)->get();
+            $uniqueNumber = mt_rand(100000, 999999);
+            $temp = Order::where('order_id', $uniqueNumber)->get();
         } while (!isset($temp));
 
         //END Unique order_id generator///
@@ -445,7 +449,7 @@ class OrderController extends Controller
                 'discountPrice' => $discountPrice,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges,
-                'order_id' => $number,
+                'order_id' => $uniqueNumber,
                 'payment_status' => $paymentStatus
             ]);
         } else {
@@ -475,13 +479,13 @@ class OrderController extends Controller
                 'discountPrice' => $discountPrice,
                 'total' => $total,
                 'shippingCharges' => $shippingCharges,
-                'order_id' => $number,
+                'order_id' => $uniqueNumber,
                 'payment_status' => $paymentStatus
             ]);
         }
         $carts = session()->get('cart', []);
         // Saving OrderProducts
-        $order = Order::where('order_id', $number)->first();
+        $order = Order::where('order_id', $uniqueNumber)->first();
         $order_id = $order->id;
         foreach ($carts as $cart) {
             $product_id = $cart['product_id'];
@@ -494,30 +498,28 @@ class OrderController extends Controller
                 'quantity' => $quantity,
                 'unitPrice' => $unitPrice,
                 'price' => $price,
-                'order_parent' => $number
+                'order_parent' => $uniqueNumber
             ]);
         }
-
-
-        dd('Create Profaktura Creation');
-        //session()->forget('cart');
-        //session()->forget('orderInfo');
+        // DELETE SESION INFO
+        session()->forget('cart');
+        session()->forget('orderInfo');
 
 
         //BACK TO VIEW -> Invoice View
         $company = CompanyInfo::first();
         $categoriesTree = Category::getTreeHP();
-        $orderData = Order::where('order_id', $number)->first();
-        $orderProducts = OrderProduct::where('order_parent', $number)->get();
+        $orderInfo = Order::where('order_id', $uniqueNumber)->first();
+        $orderProducts = OrderProduct::where('order_parent', $uniqueNumber)->get();
 
         $data = [
             'company' => $company,
             'categoriesTree' => $categoriesTree,
-            'orderData' => $orderData,
+            'orderInfo' => $orderInfo,
             'orderProducts' => $orderProducts
         ];
 
-        return view('frontend.')->with($data);
+        return view('frontend.orders.finished-order')->with($data);
     }
 
 }

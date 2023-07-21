@@ -262,9 +262,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @if(!empty($orders))
                                 <div class="col-md-12 text-center">
                                     {{ $orders->links() }}
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

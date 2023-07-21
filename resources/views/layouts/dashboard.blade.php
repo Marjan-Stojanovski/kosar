@@ -59,7 +59,7 @@
             <div class="h-100 flex-column d-flex justify-content-start">
                 <!--Aside-logo-->
                 <div class="aside-logo d-flex align-items-center flex-shrink-0 justify-content-start px-5 position-relative">
-                    <a href="{{route('users.index')}}" class="d-block">
+                    <a href="{{route('company_info.index')}}" class="d-block">
                         <div class="d-flex align-items-center flex-no-wrap text-truncate">
                             <span class="sidebar-icon size-40 d-flex align-items-center justify-content-center fs-4 lh-1 text-white rounded-3 bg-gradient-primary fw-bolder"> K </span>
                             <span class="sidebar-text">
@@ -96,7 +96,7 @@
                                 <i class="fs-2 text-primary d-block mb-2 bi bi-gear"></i>
                               </span>
                                     <!--Sidebar nav text-->
-                                    <span class="sidebar-text">Инфо</span>
+                                    <span class="sidebar-text">Инфо за компанијата</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -142,6 +142,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('comments.index')}}"
+                                   class="nav-link d-flex align-items-center text-truncate ">
+                              <span class="sidebar-icon">
+                                <i class="fs-2 text-primary d-block mb-2 bi bi-chat-right-text"></i>
+                              </span>
+                                    <span class="sidebar-text">Коментари за продукти</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('brands.index')}}"
                                    class="nav-link d-flex align-items-center text-truncate ">
                               <span class="sidebar-icon">
@@ -150,45 +159,9 @@
                                     <span class="sidebar-text">Брендови</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('stats.index')}}"
-                                   class="nav-link d-flex align-items-center text-truncate ">
-                              <span class="sidebar-icon">
-                                <i class="fs-2 text-primary d-block mb-2 bi bi-patch-plus"></i>
-                              </span>
-                                    <span class="sidebar-text">Статички страни</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('comments.index')}}"
-                                   class="nav-link d-flex align-items-center text-truncate ">
-                              <span class="sidebar-icon">
-                                <i class="fs-2 text-primary d-block mb-2 bi bi-chat-right-text"></i>
-                              </span>
-                                    <span class="sidebar-text">Коментари</span>
-                                </a>
-                            </li>
                             <li class="nav-item sidebar-title text-truncate opacity-50 small">
                                 <i class="bi bi-three-dots"></i>
                                 <span>Општи уредувања</span>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('services.index')}}"
-                                   class="nav-link d-flex align-items-center text-truncate ">
-                              <span class="sidebar-icon">
-                                <i class="fs-2 text-primary d-block mb-2 bi bi-postcard-heart"></i>
-                              </span>
-                                    <span class="sidebar-text">Услуги</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('referents.index')}}"
-                                   class="nav-link d-flex align-items-center text-truncate ">
-                              <span class="sidebar-icon">
-                                <i class="fs-2 text-primary d-block mb-2 bi bi-shield-fill-check"></i>
-                              </span>
-                                    <span class="sidebar-text">Референти</span>
-                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('messages.index')}}"

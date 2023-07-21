@@ -29,13 +29,18 @@ class OrderController extends Controller
 {
     public function listOrders()
     {
+        $ordersCount = Order::all()->count();
         $orders = Order::orderBy('id', 'DESC')->paginate(12);
-        $shipped = Order::where('order_status', 'shipped')->get();
-        $inProgress = Order::where('order_status', 'in-progress')->get();
-        $cancelled = Order::where('order_status', 'cancelled')->get();
+        $shipped = Order::where('order_status', 'shipped')->get()->count();
+        $inProgress = Order::where('order_status', 'in-progress')->get()->count();
+        $cancelled = Order::where('order_status', 'cancelled')->get()->count();
 
         $data = [
-            'orders' => $orders
+            'orders' => $orders,
+            'ordersCount' => $ordersCount,
+            'shipped' => $shipped,
+            'inProgress' => $inProgress,
+            'cancelled' => $cancelled,
         ];
 
         return view('dashboard.orders.index')->with($data);
@@ -76,9 +81,7 @@ class OrderController extends Controller
     {
         $order = Order::FindorFail($id);
         $order->delete();
-
         $orders = Order::orderBy('id', 'DESC')->paginate(12);
-
 
         return redirect()->back();
     }
@@ -86,6 +89,7 @@ class OrderController extends Controller
 
     public function orderDetails()
     {
+
         $products = session()->get('cart', []);
         $company = CompanyInfo::first();
         $countries = Country::all();
@@ -105,6 +109,21 @@ class OrderController extends Controller
         if (Auth::user()) {
             $user_id = Auth::user()->id;
             $shippingDetails = Shipping::where('user_id', $user_id)->first();
+
+            if (!isset($shippingDetails)) {
+
+                $data = [
+                    'company' => $company,
+                    'countries' => $countries,
+                    'categoriesTree' => $categoriesTree,
+                    'shippingDetails' => $shippingDetails,
+                    'products' => $products,
+                    'subTotal' => $subTotal,
+                    'total' => $total,
+                    'shippingCharges' => $shippingCharges
+                ];
+                return view('frontend.storeUserInfo')->with($data);
+            }
             $data = [
                 'company' => $company,
                 'countries' => $countries,
@@ -289,7 +308,6 @@ class OrderController extends Controller
         return view('frontend.payment')->with($data);
     }
 
-
     public function savePaymentInfo(Request $request)
     {
         $methodForPayment = $request->get('methodForPayment');
@@ -412,6 +430,7 @@ class OrderController extends Controller
         $discountPrice = $orderInfo['discountPrice'];
         $total = $orderInfo['total'];
         $shippingCharges = $orderInfo['shippingCharges'];
+        $payment_info = $paymentInfo['methodForPayment'];
 
         //Unique order_id generator///
         do {
@@ -450,7 +469,8 @@ class OrderController extends Controller
                 'total' => $total,
                 'shippingCharges' => $shippingCharges,
                 'order_id' => $uniqueNumber,
-                'payment_status' => $paymentStatus
+                'payment_status' => $paymentStatus,
+                'payment_info' => $payment_info,
             ]);
         } else {
             Order::create([
@@ -480,9 +500,11 @@ class OrderController extends Controller
                 'total' => $total,
                 'shippingCharges' => $shippingCharges,
                 'order_id' => $uniqueNumber,
-                'payment_status' => $paymentStatus
+                'payment_status' => $paymentStatus,
+                'payment_info' => $payment_info,
             ]);
         }
+
         $carts = session()->get('cart', []);
         // Saving OrderProducts
         $order = Order::where('order_id', $uniqueNumber)->first();

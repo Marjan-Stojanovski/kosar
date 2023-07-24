@@ -70,18 +70,41 @@ class OrderController extends Controller
 
         Mail::to($order->email)->send(new MailSender($msg, $subject, $company));
 
-        $data = [
-            'order' => $order
-        ];
 
         return redirect()->back();
     }
+
+    public function viewUserOrder($id)
+    {
+        $order = Order::FindorFail($id);
+        $order_id = $order->id;
+        $orderProducts = OrderProduct::where('order_id', $order_id)->get();
+        $company = CompanyInfo::first();
+        $categoriesTree = Category::getTreeHP();
+
+        $data = [
+            'company' => $company,
+            'categoriesTree' => $categoriesTree,
+            'order' => $order,
+            'orderProducts' => $orderProducts
+        ];
+
+        return view('frontend.userOrder')->with($data);
+    }
+
+    public function deleteOrder($id)
+    {
+        $order = Order::FindorFail($id);
+        $order->delete();
+        return redirect()->route('frontend.details');
+    }
+
 
     public function delete($id)
     {
         $order = Order::FindorFail($id);
         $order->delete();
-        $orders = Order::orderBy('id', 'DESC')->paginate(12);
+
 
         return redirect()->back();
     }
@@ -365,30 +388,7 @@ class OrderController extends Controller
         return view('frontend.orderReview')->with($data);
     }
 
-    public function viewUserOrder($id)
-    {
-        $order = Order::FindorFail($id);
-        $order_id = $order->id;
-        $orderProducts = OrderProduct::where('order_id', $order_id)->get();
-        $company = CompanyInfo::first();
-        $categoriesTree = Category::getTreeHP();
 
-        $data = [
-            'company' => $company,
-            'categoriesTree' => $categoriesTree,
-            'order' => $order,
-            'orderProducts' => $orderProducts
-        ];
-
-        return view('frontend.userOrder')->with($data);
-    }
-
-    public function deleteOrder($id)
-    {
-        $order = Order::FindorFail($id);
-        $order->delete();
-        return redirect()->route('frontend.details');
-    }
 
     public function processOrder(Request $request)
     {

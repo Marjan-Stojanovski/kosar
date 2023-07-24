@@ -389,7 +389,6 @@ class OrderController extends Controller
     }
 
 
-
     public function processOrder(Request $request)
     {
         //PROCESS PAYMENT
@@ -397,7 +396,7 @@ class OrderController extends Controller
         // payment_status "1" -> paid
         $paymentInfo = session()->get('paymentInfo');
 
-        if($paymentInfo['methodForPayment'] === 'Credit Card') {
+        if ($paymentInfo['methodForPayment'] === 'Credit Card') {
             dd('SetUp Stripe');
             $paymentStatus = 1;
         }

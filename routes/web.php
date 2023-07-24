@@ -157,7 +157,6 @@ Route::post('/Checkout/OrderPayment', [\App\Http\Controllers\OrderController::cl
 Route::post('/Checkout/Order/Review', [App\Http\Controllers\OrderController::class, 'savePaymentInfo'])->name('frontend.savePaymentInfo');
 Route::get('/Checkout/OrderPayment', [App\Http\Controllers\OrderController::class, 'paymentInfo'])->name('frontend.payment');
 Route::get('/Checkout/Order/Status', [App\Http\Controllers\OrderController::class, 'processOrder'])->name('frontend.processOrder');
-
 Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
 Route::delete('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('order.delete');
 Route::get('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'viewUserOrder'])->name('user.viewOrder');

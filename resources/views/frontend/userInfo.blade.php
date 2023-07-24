@@ -10,7 +10,6 @@
         </div>
     </div>
     <section class="main-container">
-
         <div class="container">
             <div class="row">
                 <div class="main col-md-12">
@@ -24,7 +23,8 @@
                                 Details</a></li>
                         <li><a href="#tab3" role="tab" data-toggle="tab"><i
                                     class="fa fa-comments pr-10"></i>Messages</a></li>
-                        <li><a href="#tab4" role="tab" data-toggle="tab"><i class="fa fa-database pr-10"></i>Orders</a></li>
+                        <li><a href="#tab4" role="tab" data-toggle="tab"><i class="fa fa-database pr-10"></i>Orders</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1">
@@ -141,7 +141,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                                 <div class="text-right">
                                     <a class="btn btn-warning" href="{{route('frontend.showDetails', $details->id)}}">Change
                                         your
@@ -167,40 +166,39 @@
                                         </thead>
                                         <tbody>
                                         @if(isset($messages))
-                                        @foreach($messages as $message)
-                                            <tr>
-                                                <td class="text-center">
-                                                    <a style="width: 40px"
-                                                       data-tippy-content="Види ја пораката"
-                                                       href="{{ route('frontend.userMessage', $message->id) }}"><i
-                                                            class="fs-2 text-primary d-block mb-2 bi bi-chevron-compact-right"></i></a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="text">{{ $message->fullName }}</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="text">{{ $message->email }}</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="text">{{ $message->phone }}</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="text">{{ $message->subject }}</span>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="text">{{ $message->message }}</span>
-                                                </td>
-                                                <td class="text-center">
+                                            @foreach($messages as $message)
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <a style="width: 40px"
+                                                           data-tippy-content="Види ја пораката"
+                                                           href="{{ route('frontend.userMessage', $message->id) }}"><i
+                                                                class="fs-2 text-primary d-block mb-2 bi bi-chevron-compact-right"></i></a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $message->fullName }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $message->email }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $message->phone }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $message->subject }}</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span class="text">{{ $message->message }}</span>
+                                                    </td>
+                                                    <td class="text-center">
                                                     <span
                                                         class="text">{{ $message->created_at->diffForHumans() }}</span>
-                                                </td>
-                                                <td class="text-center">
+                                                    </td>
+                                                    <td class="text-center">
                                                     <span
                                                         class="text">{{ $message->updated_at->diffForHumans() }}</span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @endif
                                         </tbody>
                                     </table>
@@ -240,32 +238,33 @@
                                                     </td>
                                                     <td class="text-center">
                                                         <a class="btn btn-primary btn-sm" style="margin-top: 0px"
-                                                           href="{{ route('user.viewOrder', $order->id) }}"><i class="fa fa-search-plus pr-10"></i>Види</a>
+                                                           href="{{ route('user.viewOrder', $order->id) }}"><i
+                                                                class="fa fa-search-plus pr-10"></i>Види</a>
                                                     </td>
                                                     <td class="text-center">
                                                         <div>
-                                                        <form style="margin: 0px" method="post"
-                                                              action="{{ route('order.delete', $order->id) }}">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button class="btn btn-danger btn-sm" style="margin: 0px"
-                                                                type="submit" data-tippy-content="Delete user">
-                                                                <i class="fa fa-remove pr-10"></i>Delete
-                                                            </button>
-                                                        </form>
+                                                            <form style="margin: 0px" method="post"
+                                                                  action="{{ route('order.delete', $order->id) }}">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button class="btn btn-danger btn-sm"
+                                                                        style="margin: 0px"
+                                                                        type="submit" data-tippy-content="Delete user">
+                                                                    <i class="fa fa-remove pr-10"></i>Delete
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         @endif
                                         </tbody>
                                     </table>
                                 </div>
                                 @if(!empty($orders))
-                                <div class="col-md-12 text-center">
-                                    {{ $orders->links() }}
-                                </div>
+                                    <div class="col-md-12 text-center">
+                                        {{ $orders->links() }}
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -274,5 +273,4 @@
             </div>
         </div>
     </section>
-
 @endsection

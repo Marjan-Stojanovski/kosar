@@ -4,21 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Helpers\PdfGeneration;
 use App\Mail\MailSender;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\CompanyInfo;
 use App\Models\Country;
-use App\Models\Employee;
 use App\Models\OrderProduct;
-use App\Models\Product;
 use App\Models\Shipping;
-use App\Models\User;
-use Illuminate\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon;
 use App\Models\Order;
-use Illuminate\Pagination;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
@@ -96,15 +89,13 @@ class OrderController extends Controller
     {
         $order = Order::FindorFail($id);
         $order->delete();
-        return redirect()->route('frontend.details');
+        return redirect()->back();
     }
-
 
     public function delete($id)
     {
         $order = Order::FindorFail($id);
         $order->delete();
-
 
         return redirect()->back();
     }
@@ -134,7 +125,6 @@ class OrderController extends Controller
             $shippingDetails = Shipping::where('user_id', $user_id)->first();
 
             if (!isset($shippingDetails)) {
-
                 $data = [
                     'company' => $company,
                     'countries' => $countries,

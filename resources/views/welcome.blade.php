@@ -57,12 +57,7 @@
         }
     </style>
 </head>
-<!-- body classes:  -->
-<!-- "boxed": boxed layout mode e.g. <body class="boxed"> -->
-<!-- "pattern-1 ... pattern-9": background patterns for boxed layout mode e.g. <body class="boxed pattern-1"> -->
-<!-- "transparent-header": makes the header transparent and pulls the banner to top -->
-<!-- "gradient-background-header": applies gradient background to header -->
-<!-- "page-loader-1 ... page-loader-6": add a page loader to the page (more info @components-page-loaders.html) -->
+
 <body class="no-trans front-page">
 <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
 <div class="page-wrapper">
@@ -234,9 +229,12 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
                                                         <li>
-                                                            <form role="search" class="search-box margin-clear">
+                                                            <form action="{{ route('frontend.search') }}" method="GET"
+                                                                  role="search" class="search-box margin-clear">
                                                                 <div class="form-group has-feedback">
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="text" name="search"
+                                                                           value="{{ Request::get('search') }}"
+                                                                           class="form-control"
                                                                            placeholder="Search">
                                                                     <i class="icon-search form-control-feedback"></i>
                                                                 </div>
@@ -473,7 +471,6 @@
                 break;
         }
     }
-
 </script>
 </body>
 </html>

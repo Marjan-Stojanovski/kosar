@@ -187,7 +187,7 @@ Route::get('/Categories/{Slug}', [\App\Http\Controllers\FrontendController::clas
 Route::get('/Brands', [\App\Http\Controllers\FrontendController::class, 'brands'])->name('frontend.brands');
 Route::get('/Brands/{Name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
-
+Route::get('/search', [\App\Http\Controllers\FrontendController::class, 'search'])->name('frontend.search');
 
 //// test PDF creation
 Route::get('pdf/preview', [App\Http\Controllers\PDFController::class, 'preview'])->name('pdf.preview');

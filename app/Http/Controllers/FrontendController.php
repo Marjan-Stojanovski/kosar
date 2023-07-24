@@ -9,13 +9,9 @@ use App\Models\CompanyInfo;
 use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Product;
-use App\Models\Shipping;
-use App\Models\ShoppingCart;
 use App\Models\Volume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use function PHPUnit\Framework\isEmpty;
 
 class FrontendController extends Controller
 {
@@ -45,11 +41,9 @@ class FrontendController extends Controller
         $company = CompanyInfo::first();
         $product = Product::where('slug', $slug)->first();
         $categoriesTree = Category::getTreeHP();
-        dd($slug);
         $comments = Comment::where('product_id', $product['id'])->get();
         $commentsCount = $comments->count();
         $products = Product::where('category_id', $product->category_id)->get();
-
 
         $data = [
             'company' => $company,
@@ -159,21 +153,13 @@ class FrontendController extends Controller
     public function products()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
         $products = Product::all();
-        $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
             'products' => $products,
-            'categories' => $categories,
             'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.products')->with($data);
@@ -231,23 +217,11 @@ class FrontendController extends Controller
     public function preSignUp()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $countries = Country::all();
-        $categories = Category::all();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
-            'countries' => $countries,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.register')->with($data);
@@ -256,26 +230,36 @@ class FrontendController extends Controller
     public function preReset()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $countries = Country::all();
-        $categories = Category::all();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
-            'countries' => $countries,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.reset')->with($data);
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->search) {
+
+            $searchProducts = Product::where('title', 'LIKE', '%'.$request->search.'%')->latest()->paginate(12);
+            $company = CompanyInfo::first();
+            $categoriesTree = Category::getTreeHP();
+
+            $data = [
+                'company' => $company,
+                'categoriesTree' => $categoriesTree,
+                'searchProducts' => $searchProducts,
+            ];
+
+            return view('frontend.products')->with($data);
+
+        } else {
+
+            return redirect()->back()->with('message', "Products don't exist!");
+        }
     }
 
 }

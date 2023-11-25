@@ -19,6 +19,11 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    public function dashboard()
+    {
+        return view('dashboard.index');
+    }
+
     public function index()
     {
         $users = User::all();

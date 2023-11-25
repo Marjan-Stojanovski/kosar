@@ -21,10 +21,16 @@
                                         <div class="position-relative">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <a href="" class="btn btn-primary">Одговори</a>
+                                                    <a href="{{route('message.answer', $message->id)}}" class="btn btn-primary">Одговори</a>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <a href="" class="btn btn-danger">Избриши</a>
+                                                    <form method="post"
+                                                          action="{{ route('message.delete', $message->id) }}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="btn btn-danger"
+                                                            type="submit">Избриши</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,8 +94,7 @@
                             </div>
                         </div>
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Save
-                                Changes
+                            <button type="submit" class="btn btn-primary">Сними
                             </button>
                         </div>
                     </form>

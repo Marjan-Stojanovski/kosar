@@ -14,7 +14,7 @@
     <!-- breadcrumb end -->
     <!-- main-container start -->
     <!-- ================ -->
-    <div class="main-container dark-translucent-bg">
+    <div class="main-container dark-translucent-bg" style="background-image: url(/assets/img/zgane.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;background-position: 50% 30%;">
         <div class="container">
             <div class="row">
                 <!-- main start -->

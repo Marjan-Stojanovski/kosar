@@ -109,7 +109,7 @@
                     <ul class="nav nav-tabs style-4" role="tablist">
                         <li class="active"><a href="#h2tab2" role="tab" data-toggle="tab"><i
                                     class="fa fa-files-o pr-5"></i>Specifications</a></li>
-                        <li><a href="#h2tab3" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>(3)
+                        <li><a href="#h2tab3" role="tab" data-toggle="tab"><i class="fa fa-star pr-5"></i>({{ $commentsCount }})
                                 Reviews</a></li>
                     </ul>
                     <div class="tab-content padding-top-clear padding-bottom-clear">
@@ -122,13 +122,10 @@
                             <hr>
                         </div>
                         <div class="tab-pane fade" id="h2tab3">
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <div class="comments margin-clear space-top">
                                     @foreach($comments as $comment)
                                         <div class="comment clearfix">
-                                            <div class="comment-avatar">
-                                                <img class="img-circle" src="images/avatar.jpg" alt="avatar">
-                                            </div>
                                             <header>
                                                 <h3>{{$comment->subject}}!</h3>
                                                 <div class="comment-meta">
@@ -137,21 +134,19 @@
                                                     <i class="fa fa-star text-default"></i>
                                                     <i class="fa fa-star text-default"></i>
                                                     <i class="fa fa-star text-default"></i>
-                                                    | Today, 12:31
+                                                    {{$comment->created_at->diffForHumans()}}
                                                 </div>
                                             </header>
                                             <div class="comment-content">
                                                 <div class="comment-body clearfix">
                                                     <p>{{$comment->message}}</p>
-                                                    <a href="blog-post.html" class="btn-sm-link link-dark pull-right"><i
-                                                            class="fa fa-reply"></i> Reply</a>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <div class="comments-form">
                                     <h2 class="title">Add your Review</h2>
                                     <form method="post" role="form" id="comment-form"
@@ -219,42 +214,162 @@
             </div>
         </div>
     </section>
-    <section class="section clearfix">
+    <section class="section light-gray-bg clearfix">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="separator"></div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="owl-carousel carousel-autoplay pl-10 pr-10">
-                    @foreach($categoryProducts as $categoryProduct)
-                        <div class="tab-content clear-style">
-                            <div class="tab-pane active" id="pill-1">
-                                <div class="row masonry-grid-fitrows grid-space-10">
-                                    <div class="overlay-container" style="margin: 10px">
-                                        <img src="/assets/img/products/medium/{{$categoryProduct->image}}" alt="">
-                                    </div>
-                                    <div class="body" style="margin: 30px">
-                                        <h3>
-                                            <a href="{{route('frontend.productView', $categoryProduct->slug)}}">{{$categoryProduct->title}}</a>
-                                        </h3>
-                                        <p class="small"> {{strip_tags($categoryProduct->brand->name)}}</p>
-                                        <div class="elements-list clearfix">
-                                            <div class="col-md-6">
-                                            <span class="product price"> &nbsp;€{{$categoryProduct->price}}</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <a href="{{route('frontend.productView', $categoryProduct->slug)}}"
-                                               class="pull-right text-right btn btn-info">View</a>
+                <div class="owl-carousel carousel-autoplay">
+                    @foreach($products as $product)
+                            <?php
+                        if (isset($product->action)) { ?>
+                        <div class="listing-item" style="padding: 10px">
+                            <div class="overlay-container bordered rounded-1 overlay-visible">
+                                <img src="/assets/img/products/thumbnails/{{$product->image}}"
+                                     alt="" width="260">
+                                <span class="badge" style="color: red; border: 1px solid red; border-radius: 8px">{{$product->discount}}% OFF</span>
+                                <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productView', $product->slug)}}"
+                                                               class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <h3>
+                                    <a href="{{route('frontend.productView', $product->slug)}}"><strong>{{$product->title}}</strong></a>
+                                </h3>
+                                <p class="small"><i>{{strip_tags($product->brand->name)}}</i></p>
+                                <div class="row grid-space-10">
+                                    <form action="{{ route('add.to.cart')}}" method="POST" class="clearfix"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span class="product price" style="color: red"><s
+                                                            class="small text-muted">{{$product->price}}€</s> {{$product->action}}&nbsp;€</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="text-center" style="padding-left: 10px">
+                                                    <select class="form-control pull-left" name="quantity">
+                                                        <option value="1" selected>1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group pull-right">
+                                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                                    <input type="hidden" value="{{ $product->title }}" name="title">
+                                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                                                    <input type="hidden" value="{{ $product->action }}" name="price">
+                                                    <input type="hidden" value="{{ $product->image }}" name="image">
+                                                    <button type="submit"
+                                                            class="margin-clear btn btn-gray-transparent btn-animated">
+                                                        Add<i class="fa fa-shopping-cart"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                        <?php } else { ?>
+                        <div class="listing-item" style="padding: 10px">
+                            <div class="overlay-container bordered rounded-1 overlay-visible">
+                                <img src="/assets/img/products/thumbnails/{{$product->image}}"
+                                     alt="" width="260">
+                                <span class="badge" style="color: red; border: 1px solid red; border-radius: 8px">{{$product->discount}}% OFF</span>
+                                <div class="overlay-to-top links">
+														<span class="small">
+															<a href="{{route('frontend.productView', $product->slug)}}"
+                                                               class="btn-sm-link"><i
+                                                                    class="icon-link pr-5"></i>View Details</a>
+														</span>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <h3>
+                                    <a href="{{route('frontend.productView', $product->slug)}}"><strong>{{$product->title}}</strong></a>
+                                </h3>
+                                <p class="small"><i>{{strip_tags($product->brand->name)}}</i></p>
+                                <div class="row grid-space-10">
+                                    <form action="{{ route('add.to.cart')}}" method="POST" class="clearfix"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <span class="product price">{{$product->price}} €</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="text-center" style="padding-left: 10px">
+                                                    <select class="form-control pull-left" name="quantity">
+                                                        <option value="1" selected>1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group pull-right">
+                                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                                    <input type="hidden" value="{{ $product->title }}" name="title">
+                                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
+                                                    <input type="hidden" value="{{ $product->price }}" name="price">
+                                                    <input type="hidden" value="{{ $product->image }}" name="image">
+                                                    <button type="submit"
+                                                            class="margin-clear btn btn-gray-transparent btn-animated">
+                                                        Add<i class="fa fa-shopping-cart"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
                     @endforeach
                 </div>
             </div>

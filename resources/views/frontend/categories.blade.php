@@ -47,7 +47,7 @@
                                 <div class="body">
                                     <h3>{{ $category->name }}</h3>
                                     <div class="separator"></div>
-                                    <a href="{{ route('frontend.categoryView', $category->slug) }}" class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear">View Products<i class="fa fa-arrow-right pl-10"></i></a>
+                                    <a href="{{URL::to('/e-shop/?category[]='.$category->id)}}" class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear">View Products<i class="fa fa-arrow-right pl-10"></i></a>
                                 </div>
                             </div>
                         </div>

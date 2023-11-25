@@ -45,7 +45,8 @@
                     <br>
 
 
-                    <form id="companyPrivate" style="display: none" class="form-horizontal" action="{{route('frontend.storeDetails')}}"
+                    <form id="companyPrivate" style="display: none" class="form-horizontal"
+                          action="{{route('frontend.storeDetails')}}"
                           method="POST">
                         @csrf
                         <div class="form-group has-feedback">
@@ -135,6 +136,22 @@
                                 <i class="fa fa-envelope form-control-feedback"></i>
                             </div>
                         </div>
+                        <div class="form-group has-feedback">
+                            <label for="country_id" class="col-sm-3 control-label">Country <span
+                                    class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <select name="country_id" id="country_id"
+                                        class="form-control" required autofocus>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                    @if ($errors->has('phoneNumber'))
+                                        <span class="text-danger">{{ $errors->first('phoneNumber') }}</span>
+                                    @endif
+                                    <i class="fa fa-pencil form-control-feedback"></i>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-group btn-default btn-animated">Save<i
@@ -142,7 +159,8 @@
                             </div>
                         </div>
                     </form>
-                    <form id="companyCompany" style="display: none" class="form-horizontal" action="{{route('frontend.storeDetails')}}"
+                    <form id="companyCompany" style="display: none" class="form-horizontal"
+                          action="{{route('frontend.storeDetails')}}"
                           method="POST">
                         @csrf
                         <div id="companyName" class="form-group has-feedback">
@@ -151,7 +169,7 @@
                             <div class="col-sm-8">
                                 <input type="text" placeholder="Company Name" id="company" class="form-control"
                                        name="company"
-                                       autofocus >
+                                       autofocus>
                                 @if ($errors->has('company'))
                                     <span class="text-danger">{{ $errors->first('company') }}</span>
                                 @endif
@@ -165,7 +183,7 @@
                                 <input type="number" placeholder="Company Tax Number" id="taxNumber"
                                        class="form-control"
                                        name="taxNumber"
-                                       autofocus >
+                                       autofocus>
                                 @if ($errors->has('taxNumber'))
                                     <span class="text-danger">{{ $errors->first('taxNumber') }}</span>
                                 @endif
@@ -259,12 +277,28 @@
                                 <i class="fa fa-envelope form-control-feedback"></i>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-group btn-default btn-animated">Save<i
-                                        class="fa fa-check"></i></button>
+                        <div class="form-group has-feedback">
+                            <label for="country_id" class="col-sm-3 control-label">Country <span
+                                    class="text-danger small">*</span></label>
+                            <div class="col-sm-8">
+                                <select name="country_id" id="country_id"
+                                        class="form-control" required autofocus>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                    @endforeach
+                                    @if ($errors->has('phoneNumber'))
+                                        <span class="text-danger">{{ $errors->first('phoneNumber') }}</span>
+                                    @endif
+                                    <i class="fa fa-pencil form-control-feedback"></i>
+                                </select>
                             </div>
                         </div>
+                            <div class="form-group">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-group btn-default btn-animated">Save<i
+                                            class="fa fa-check"></i></button>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>

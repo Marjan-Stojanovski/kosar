@@ -9,13 +9,9 @@ use App\Models\CompanyInfo;
 use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Product;
-use App\Models\Shipping;
-use App\Models\ShoppingCart;
 use App\Models\Volume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use function PHPUnit\Framework\isEmpty;
 
 class FrontendController extends Controller
 {
@@ -23,24 +19,18 @@ class FrontendController extends Controller
     {
         $loggedUser = Auth::user();
         $company = CompanyInfo::first();
-        $employees = Employee::all();
         $brands = Brand::all();
         $categories = Category::all();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $discountProducts = Product::whereNotNull('discount')->paginate(5);
-        $totalAmount = null;
+        $products = Product::whereNotNull('discount')->paginate(5);
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
             'loggedUser' => $loggedUser,
             'brands' => $brands,
-            'products' => $products,
             'categoriesTree' => $categoriesTree,
             'categories' => $categories,
-            'totalAmount' => $totalAmount,
-            'discountProducts' => $discountProducts
+            'products' => $products
         ];
 
         return view('frontend.index')->with($data);
@@ -49,29 +39,19 @@ class FrontendController extends Controller
     public function productView($slug)
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $categories = Category::all();
         $product = Product::where('slug', $slug)->first();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $id = $product['id'];
-        $comments = Comment::where('product_id', $id)->get();
-        $category_id = $product['category_id'];
-        $categoryProducts = Product::where('category_id', $category_id)->get();
-        $totalAmount = null;
+        $comments = Comment::where('product_id', $product['id'])->get();
+        $commentsCount = $comments->count();
+        $products = Product::where('category_id', $product->category_id)->get();
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'categories' => $categories,
             'product' => $product,
             'products' => $products,
             'categoriesTree' => $categoriesTree,
             'comments' => $comments,
-            'categoryProducts' => $categoryProducts,
-            'totalAmount' => $totalAmount
+            'commentsCount' => $commentsCount
         ];
 
         return view('frontend.productView')->with($data);
@@ -80,23 +60,13 @@ class FrontendController extends Controller
     public function categories()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
         $categories = Category::all();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $discountProducts = Product::whereNotNull('discount')->paginate(5);
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount,
-            'discountProducts' => $discountProducts
+            'categories' => $categories
         ];
 
         return view('frontend.categories')->with($data);
@@ -104,24 +74,17 @@ class FrontendController extends Controller
     public function categoryView($slug)
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
         $category = Category::where('slug',$slug)->first();
-        $category_id = $category['id'];
         $categories = Category::all();
-        $products = Product::where('category_id', $category_id)->get();
+        $products = Product::where('category_id', $category->id)->get();
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
             'categories' => $categories,
             'category' => $category,
             'products' => $products,
-            'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
+            'categoriesTree' => $categoriesTree
         ];
 
         return view('frontend.categoryView')->with($data);
@@ -130,19 +93,13 @@ class FrontendController extends Controller
     public function brands()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
         $brands = Brand::all();
-        $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
             'brands' => $brands,
-            'categories' => $categories,
-            'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
+            'categoriesTree' => $categoriesTree
         ];
 
         return view('frontend.brands')->with($data);
@@ -150,47 +107,28 @@ class FrontendController extends Controller
     public function brandView($name)
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
         $brand = Brand::where('name', $name)->first();
-        $brand_id = $brand['id'];
-        $brands = Brand::all();
-        $categories = Category::all();
-        $products = Product::where('brand_id', $brand_id)->get();
+        $products = Product::where('brand_id', $brand->id)->paginate(8);
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
             'brand' => $brand,
-            'brands' => $brands,
-            'categories' => $categories,
             'products' => $products,
-            'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
+            'categoriesTree' => $categoriesTree
         ];
 
         return view('frontend.brandView')->with($data);
     }
 
-    public function feedback()
+    public function contact_us()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $products = Product::all();
-        $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
-            'categories' => $categories,
-            'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
+            'categoriesTree' => $categoriesTree
         ];
 
         return view('frontend.feedback')->with($data);
@@ -200,21 +138,13 @@ class FrontendController extends Controller
     {
         $company = CompanyInfo::first();
         $employees = Employee::all();
-        $brands = Brand::all();
-        $products = Product::all();
-        $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
 
         $data = [
             'company' => $company,
             'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
-            'categories' => $categories,
-            'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
+            'categoriesTree' => $categoriesTree
         ];
 
         return view('frontend.about')->with($data);
@@ -223,21 +153,13 @@ class FrontendController extends Controller
     public function products()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
         $products = Product::all();
-        $categories = Category::all();
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
             'products' => $products,
-            'categories' => $categories,
             'categoriesTree' => $categoriesTree,
-            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.products')->with($data);
@@ -273,7 +195,6 @@ class FrontendController extends Controller
             $products = Product::all()->paginate(12);
         }
         $company = CompanyInfo::first();
-        $employees = Employee::all();
         $brands = Brand::all();
         $volumes = Volume::all();
         $categories = Category::all();
@@ -282,7 +203,6 @@ class FrontendController extends Controller
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
             'products' => $products,
             'categoriesTree' => $categoriesTree,
             'brands' => $brands,
@@ -294,53 +214,14 @@ class FrontendController extends Controller
         return view('frontend.shop')->with($data);
     }
 
-    public function cartCheckout()
-    {
-        $loggedUser = Auth::user();
-        $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $categories = Category::all();
-        $countries = Country::all();
-        $products = Product::paginate(12);
-        $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
-
-        $data = [
-            'company' => $company,
-            'employees' => $employees,
-            'products' => $products,
-            'loggedUser' => $loggedUser,
-            'brands' => $brands,
-            'countries' => $countries,
-            'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount
-        ];
-
-        return view('frontend.cartCheckout')->with($data);
-    }
-
     public function preSignUp()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $countries = Country::all();
-        $categories = Category::all();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
-            'countries' => $countries,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.register')->with($data);
@@ -349,26 +230,36 @@ class FrontendController extends Controller
     public function preReset()
     {
         $company = CompanyInfo::first();
-        $employees = Employee::all();
-        $brands = Brand::all();
-        $countries = Country::all();
-        $categories = Category::all();
-        $products = Product::paginate(5);
         $categoriesTree = Category::getTreeHP();
-        $totalAmount = null;
 
         $data = [
             'company' => $company,
-            'employees' => $employees,
-            'brands' => $brands,
-            'products' => $products,
-            'countries' => $countries,
             'categoriesTree' => $categoriesTree,
-            'categories' => $categories,
-            'totalAmount' => $totalAmount
         ];
 
         return view('frontend.reset')->with($data);
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->search) {
+
+            $searchProducts = Product::where('title', 'LIKE', '%'.$request->search.'%')->latest()->paginate(12);
+            $company = CompanyInfo::first();
+            $categoriesTree = Category::getTreeHP();
+
+            $data = [
+                'company' => $company,
+                'categoriesTree' => $categoriesTree,
+                'searchProducts' => $searchProducts,
+            ];
+
+            return view('frontend.products')->with($data);
+
+        } else {
+
+            return redirect()->back()->with('message', "Products don't exist!");
+        }
     }
 
 }

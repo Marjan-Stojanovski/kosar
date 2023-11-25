@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,9 @@ Route::get('/profile', function () {
 })->middleware(['auth', 'verified']);
 
 //Admin-panel
-Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(function() {
+Route::middleware(['web', 'auth', 'check.role'])->prefix('dashboard')->group(function() {
 
     //Users-web-route
-
     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
     Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
@@ -75,36 +75,6 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::post('/company_info', [\App\Http\Controllers\CompanyInfoController::class, 'store'])->name('company_info.store');
     Route::get('/company_info/{company_info}/edit', [\App\Http\Controllers\CompanyInfoController::class, 'edit'])->name('company_info.edit');
     Route::put('/company_info/{company_info}', [\App\Http\Controllers\CompanyInfoController::class, 'update'])->name('company_info.update');
-
-    //Referents-web-route
-
-    Route::get('/referents', [App\Http\Controllers\ReferentsController::class, 'index'])->name('referents.index');
-    Route::get('/referents/create', [App\Http\Controllers\ReferentsController::class, 'create'])->name('referents.create');
-    Route::post('/referents', [App\Http\Controllers\ReferentsController::class, 'store'])->name('referents.store');
-    Route::get('/referents/{referent}', [\App\Http\Controllers\ReferentsController::class, 'show'])->name('referents.show');
-    Route::get('/referents/{referents}/edit', [\App\Http\Controllers\ReferentsController::class, 'edit'])->name('referents.edit');
-    Route::put('/referents/{referents}', [\App\Http\Controllers\ReferentsController::class, 'update'])->name('referents.update');
-    Route::delete('/referents/{referent}', [\App\Http\Controllers\ReferentsController::class, 'destroy'])->name('referents.destroy');
-
-    //Uslugi-web-route
-
-    Route::get('/services', [App\Http\Controllers\ServicesController::class, 'index'])->name('services.index');
-    Route::get('/services/create', [App\Http\Controllers\ServicesController::class, 'create'])->name('services.create');
-    Route::post('/services', [App\Http\Controllers\ServicesController::class, 'store'])->name('services.store');
-    Route::get('/services/{service}', [\App\Http\Controllers\ServicesController::class, 'show'])->name('services.show');
-    Route::get('/services/{services}/edit', [\App\Http\Controllers\ServicesController::class, 'edit'])->name('services.edit');
-    Route::put('/services/{services}', [\App\Http\Controllers\ServicesController::class, 'update'])->name('services.update');
-    Route::delete('/services/{service}', [\App\Http\Controllers\ServicesController::class, 'destroy'])->name('services.destroy');
-
-    //StaticPages-web-route
-
-    Route::get('/stats', [App\Http\Controllers\StaticPagesController::class, 'index'])->name('stats.index');
-    Route::get('/stats/create', [App\Http\Controllers\StaticPagesController::class, 'create'])->name('stats.create');
-    Route::post('/stats', [App\Http\Controllers\StaticPagesController::class, 'store'])->name('stats.store');
-    Route::get('/stats/{stat}', [\App\Http\Controllers\StaticPagesController::class, 'show'])->name('stats.show');
-    Route::get('/stats/{stats}/edit', [\App\Http\Controllers\StaticPagesController::class, 'edit'])->name('stats.edit');
-    Route::put('/stats/{stats}', [\App\Http\Controllers\StaticPagesController::class, 'update'])->name('stats.update');
-    Route::delete('/stats/{stat}', [\App\Http\Controllers\StaticPagesController::class, 'destroy'])->name('stats.destroy');
 
     //Employee routes
 
@@ -153,39 +123,71 @@ Route::middleware(['web','auth', 'check.role'])->prefix('dashboard')->group(func
     Route::post('/messages', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
     Route::get('/messages/{message}/edit', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
     Route::put('/message/{message}', [\App\Http\Controllers\MessageController::class, 'update'])->name('message.update');
+    Route::delete('messages/{message}', [\App\Http\Controllers\MessageController::class, 'delete'])->name('message.delete');
+
+    //Routes orders
+    //Routes messages
+
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'listOrders'])->name('orders.list');
+    Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'getOrder'])->name('orders.get');
+    Route::delete('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'delete'])->name('orders.delete');
+    Route::put('/orders/{order}', [App\Http\Controllers\OrderController::class, 'changeStatus'])->name('orders.update');
+    //Route::post('/messages', [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
+    //Route::get('/messages/{message}/edit', [\App\Http\Controllers\MessageController::class, 'show'])->name('message.show');
+    //Route::put('/message/{message}', [\App\Http\Controllers\MessageController::class, 'update'])->name('message.update');
+    //Route::delete('messages/{message}', [\App\Http\Controllers\MessageController::class, 'delete'])->name('message.delete');
+
+    //Route feedback
+    Route::get('/feedbacks/{feedback}', [\App\Http\Controllers\MessageController::class, 'answer'])->name('message.answer');
+    Route::post('/feedbacks/{feedback}/sent', [\App\Http\Controllers\MessageController::class, 'sendResponse'])->name('message.response');
+
+    //Route checkout
+
 });
-Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
-
-//session Cart routes
-
-Route::get('/shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('shopping.cart');
+// shopping Cart SESSION routes/////
 Route::post('/book', [App\Http\Controllers\ShoppingCartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('/update-shopping-cart', [App\Http\Controllers\ShoppingCartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete/{product}', [App\Http\Controllers\ShoppingCartController::class, 'deleteProduct'])->name('delete.cart');
+Route::get('/ShoppingCart', [App\Http\Controllers\ShoppingCartController::class, 'viewCart'])->name('frontend.shoppingCart');
+//session Cart routes
+//ORDERS ROUTES///
+Route::get('/Checkout/ShippingDetails', [App\Http\Controllers\OrderController::class, 'orderDetails'])->name('frontend.orderDetails');
+Route::post('/Checkout/OrderPayment', [\App\Http\Controllers\OrderController::class, 'saveOrderInfo'])->name('frontend.saveOrderInfo');
+Route::post('/Checkout/Order/Review', [App\Http\Controllers\OrderController::class, 'savePaymentInfo'])->name('frontend.savePaymentInfo');
+Route::get('/Checkout/OrderPayment', [App\Http\Controllers\OrderController::class, 'paymentInfo'])->name('frontend.payment');
+Route::get('/Checkout/Order/Status', [App\Http\Controllers\OrderController::class, 'processOrder'])->name('frontend.processOrder');
+Route::get('/ViewOrder', [App\Http\Controllers\OrderController::class, 'viewOrder'])->name('frontend.viewOrder');
+Route::delete('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'deleteOrder'])->name('order.delete');
+Route::get('/Orders/{order}', [App\Http\Controllers\OrderController::class, 'viewUserOrder'])->name('user.viewOrder');
 
 //Mysql Cart routes
-//Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');
+//Route::get('/cart', [App\Http\Controllers\FrontendController::class, 'cartList'])->name('frontend.shopCart');frontend.saveOrder
 //Route::post('/saveToCart', [App\Http\Controllers\FrontendController::class, 'addToCart'])->name('cart.store');
-Route::get('/cartCheckout', [App\Http\Controllers\FrontendController::class, 'cartCheckout'])->name('frontend.cartCheckout');
+
 //Route::delete('/cart/{product}', [App\Http\Controllers\FrontendController::class, 'destroy'])->name('cart.destroy');
 
 //Frontend-routes
-Route::get('/details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
-Route::post('/details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
-Route::get('/details/{details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
-Route::put('/details/{details}', [App\Http\Controllers\ShippingController::class, 'updateDetails'])->name('frontend.updateDetails');
-Route::get('/reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
-Route::get('/signUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
-Route::post('/saveComment', [App\Http\Controllers\CommentControler::class, 'save'])->name('comment.save');
+Route::get('/Details', [App\Http\Controllers\ShippingController::class, 'userDetails'])->name('frontend.details');
+Route::post('/Details', [App\Http\Controllers\ShippingController::class, 'storeDetails'])->name('frontend.storeDetails');
+Route::get('/Details/{Details}', [App\Http\Controllers\ShippingController::class, 'showDetails'])->name('frontend.showDetails');
+Route::put('/Details/{Details}', [App\Http\Controllers\ShippingController::class, 'updateDetails'])->name('frontend.updateDetails');
+Route::get('/Details/Messages/{Message}', [App\Http\Controllers\ShippingController::class, 'viewMessage'])->name('frontend.userMessage');
+Route::get('/Reset', [App\Http\Controllers\FrontendController::class, 'preReset'])->name('frontend.reset');
+Route::get('/SignUp', [App\Http\Controllers\FrontendController::class, 'preSignUp'])->name('frontend.register');
+Route::post('/SaveComment', [App\Http\Controllers\CommentControler::class, 'frontendSave'])->name('comment.save');
 Route::get('/e-shop', [App\Http\Controllers\FrontendController::class, 'shop'])->name('frontend.shop');
-Route::get('/contactUs', [App\Http\Controllers\FrontendController::class, 'feedback'])->name('frontend.feedback');
-Route::get('/aboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
-Route::get('/products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
-Route::get('/products/{slug}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
-Route::get('/categories', [\App\Http\Controllers\FrontendController::class, 'categories'])->name('frontend.categories');
-Route::get('/categories/{slug}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
-Route::get('/brands', [\App\Http\Controllers\FrontendController::class, 'brands'])->name('frontend.brands');
-Route::get('/brands/{name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
+Route::get('/ContactUs', [App\Http\Controllers\FrontendController::class, 'contact_us'])->name('frontend.feedback');
+Route::get('/AboutUs', [\App\Http\Controllers\FrontendController::class, 'about_us'])->name('frontend.about');
+Route::get('/Products', [\App\Http\Controllers\FrontendController::class, 'products'])->name('frontend.products');
+Route::get('/Products/{Slug}', [\App\Http\Controllers\FrontendController::class, 'productView'])->name('frontend.productView');
+Route::get('/Categories', [\App\Http\Controllers\FrontendController::class, 'categories'])->name('frontend.categories');
+Route::get('/Categories/{Slug}', [\App\Http\Controllers\FrontendController::class, 'categoryView'])->name('frontend.categoryView');
+Route::get('/Brands', [\App\Http\Controllers\FrontendController::class, 'brands'])->name('frontend.brands');
+Route::get('/Brands/{Name}', [\App\Http\Controllers\FrontendController::class, 'brandView'])->name('frontend.brandView');
 Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/search', [\App\Http\Controllers\FrontendController::class, 'search'])->name('frontend.search');
 
+//// test PDF creation
+Route::get('pdf/preview', [App\Http\Controllers\PDFController::class, 'preview'])->name('pdf.preview');
+Route::get('pdf/generate', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('pdf.generate');

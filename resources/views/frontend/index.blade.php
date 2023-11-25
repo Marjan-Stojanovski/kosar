@@ -303,7 +303,7 @@
 														<span class="small">
 															<a href="{{$brand->weblink}}" class="btn-sm-link"><i
                                                                     class="fa fa-external-link pr-10"></i>{{$brand->name}}</a>
-															<a href="{{route('frontend.brandView', $brand->name)}}"
+															<a href="{{URL::to('/e-shop/?brand[]='.$brand->id)}}"
                                                                class="btn-sm-link"><i
                                                                     class="icon-link pr-5"></i>View Products</a>
 														</span>
@@ -363,7 +363,7 @@
                          style="background-image: url(/assets/img/categories/medium/{{$category->image}}); background-size: cover; background-repeat: no-repeat; background-position: center">
                         <div class="overlay-bottom">
                             <div class="text">
-                                <a href="{{route('frontend.categoryView', $category->slug)}}" class="panel-title"
+                                <a href="{{URL::to('/e-shop/?category[]='.$category->id)}}" class="panel-title"
                                    style="font-size: 25px"><strong>{{$category->name}}</strong></a>
                                 <div class="separator light"></div>
                             </div>
@@ -423,5 +423,6 @@
         </div>
     </section>
     <!--  USLUGI end -->
+
 
 @endsection

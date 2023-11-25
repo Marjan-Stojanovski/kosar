@@ -1,11 +1,11 @@
 @extends('welcome')
 @section('content')
 
-
     <div class="breadcrumb-container">
         <div class="container">
             <ol class="breadcrumb">
-                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a></li>
+                <li><i class="fa fa-home pr-10"></i><a href="{{route('frontend.index')}}" style="color: black">Domov</a>
+                </li>
                 <li class="active" style="color: black">Zgane Pijace</li>
             </ol>
         </div>
@@ -21,7 +21,7 @@
                     <div class="tab-content clear-style">
                         <div class="tab-pane active" id="pill-1">
                             <div class="row masonry-grid-fitrows grid-space-10">
-                                @foreach($products as $product)
+                                @foreach($searchProducts as $product)
                                         <?php
                                     if (isset($product->action)) { ?>
                                     <div class="col-md-3 col-sm-6 masonry-grid-item">
@@ -47,20 +47,23 @@
                                                 </h3>
                                                 <p class="small"> {{strip_tags($product->brand->name)}}</p>
                                                 <div class="row grid-space-10">
-                                                    <form action="{{ route('add.to.cart')}}" method="POST" class="clearfix"
+                                                    <form action="{{ route('add.to.cart')}}" method="POST"
+                                                          class="clearfix"
                                                           enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <span class="product price" style="color: red"><s class="small text-muted">{{$product->price}}€</s> {{$product->action}}€</span>
+                                                                    <span class="product price" style="color: red"><s
+                                                                            class="small text-muted">{{$product->price}}€</s> {{$product->action}}€</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="text-center" style="padding-left: 10px">
-                                                                    <select class="form-control pull-left" name="quantity">
+                                                                    <select class="form-control pull-left"
+                                                                            name="quantity">
                                                                         <option value="1" selected>1</option>
                                                                         <option value="2">2</option>
                                                                         <option value="3">3</option>
@@ -86,11 +89,17 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="form-group pull-right">
-                                                                    <input type="hidden" value="{{ $product->id }}" name="id">
-                                                                    <input type="hidden" value="{{ $product->title }}" name="title">
-                                                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                                                    <input type="hidden" value="{{ $product->action }}" name="price">
-                                                                    <input type="hidden" value="{{ $product->image }}" name="image">
+                                                                    <input type="hidden" value="{{ $product->id }}"
+                                                                           name="id">
+                                                                    <input type="hidden" value="{{ $product->title }}"
+                                                                           name="title">
+                                                                    <input type="hidden"
+                                                                           value="{{$product->brand->name}}"
+                                                                           name="brand">
+                                                                    <input type="hidden" value="{{ $product->action }}"
+                                                                           name="price">
+                                                                    <input type="hidden" value="{{ $product->image }}"
+                                                                           name="image">
                                                                     <button type="submit"
                                                                             class="margin-clear btn btn-gray-transparent btn-animated">
                                                                         Add<i class="fa fa-shopping-cart"></i></button>
@@ -125,7 +134,8 @@
                                                 </h3>
                                                 <p class="small"> {{$product->brand->name}}</p>
                                                 <div class="row grid-space-10">
-                                                    <form action="{{ route('add.to.cart')}}" method="POST" class="clearfix"
+                                                    <form action="{{ route('add.to.cart')}}" method="POST"
+                                                          class="clearfix"
                                                           enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="row">
@@ -138,7 +148,8 @@
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="text-center" style="padding-left: 10px">
-                                                                    <select class="form-control pull-left" name="quantity">
+                                                                    <select class="form-control pull-left"
+                                                                            name="quantity">
                                                                         <option value="1" selected>1</option>
                                                                         <option value="2">2</option>
                                                                         <option value="3">3</option>
@@ -164,11 +175,17 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="form-group pull-right">
-                                                                    <input type="hidden" value="{{ $product->id }}" name="id">
-                                                                    <input type="hidden" value="{{ $product->title }}" name="title">
-                                                                    <input type="hidden" value="{{$product->brand->name}}" name="brand">
-                                                                    <input type="hidden" value="{{ $product->action }}" name="price">
-                                                                    <input type="hidden" value="{{ $product->image }}" name="image">
+                                                                    <input type="hidden" value="{{ $product->id }}"
+                                                                           name="id">
+                                                                    <input type="hidden" value="{{ $product->title }}"
+                                                                           name="title">
+                                                                    <input type="hidden"
+                                                                           value="{{$product->brand->name}}"
+                                                                           name="brand">
+                                                                    <input type="hidden" value="{{ $product->action }}"
+                                                                           name="price">
+                                                                    <input type="hidden" value="{{ $product->image }}"
+                                                                           name="image">
                                                                     <button type="submit"
                                                                             class="margin-clear btn btn-gray-transparent btn-animated">
                                                                         Add<i class="fa fa-shopping-cart"></i></button>
@@ -177,7 +194,6 @@
                                                         </div>
                                                     </form>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -190,5 +206,4 @@
             </div>
         </div>
     </section>
-
-    @endsection
+@endsection

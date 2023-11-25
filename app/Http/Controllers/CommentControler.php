@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\CompanyInfo;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -38,6 +39,8 @@ class CommentControler extends Controller
 
     public function store(Request $request)
     {
+
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'subject' => 'required',
@@ -120,8 +123,9 @@ class CommentControler extends Controller
         return view('dashboard.comments.index')->with($data);
     }
 
-    public function save(Request $request)
+    public function frontendSave(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'subject' => 'required',
@@ -151,14 +155,15 @@ class CommentControler extends Controller
         ]);
 
         $id = $product_id;
-        $products = Product::FindorFail($id);
-        $categoriesList = Category::getTreeHP();
-        $category_id = $products['category_id'];
+        $company = CompanyInfo::first();
+        $product = Product::FindorFail($id);
+        $categoriesTree = Category::getTreeHP();
+        $category_id = $product['category_id'];
         $categoryProducts = Product::where('category_id', $category_id)->get();
         $comments = Comment::where('product_id', $product_id)->get();
-        $data = ['products' => $products, 'categoriesList' => $categoriesList, 'categoryProducts' => $categoryProducts, 'comments' => $comments];
+        $data = ['product' => $product, 'categoriesTree' => $categoriesTree, 'categoryProducts' => $categoryProducts, 'comments' => $comments, 'company' => $company];
 
-        return view('frontend.productview')->with($data);
+        return view('frontend.productView')->with($data);
     }
 
 

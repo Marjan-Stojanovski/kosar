@@ -13,9 +13,46 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
+        'user_id',
+        'firstName',
+        'lastName',
+        'phoneNumber',
+        'email',
+        'address',
+        'zipcode',
+        'city',
+        'country_id',
+        'comment',
+        'companyName',
+        'taxNumber',
+        'shipFirstName',
+        'shipLastName',
+        'shipPhoneNumber',
+        'shipEmail',
+        'shipAddress',
+        'shipZipcode',
+        'shipCity',
+        'shipCountry_id',
+        'shipComment',
+        'shippingCharges',
+        'discount',
+        'order_status',
+        'payment_status',
+        'subTotal',
+        'discountPrice',
+        'total',
         'order_id',
-        'product_id',
-        'quantity',
-        'user_id'
+        'payment_info',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+
+    public function shipCountry()
+    {
+        return $this->belongsTo(Country::class, 'shipCountry_id', 'id');
+    }
 }

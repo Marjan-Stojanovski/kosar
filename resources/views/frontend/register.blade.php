@@ -15,7 +15,7 @@
 
     <!-- main-container start -->
     <!-- ================ -->
-    <div class="main-container dark-translucent-bg" style="background-image:url('images/background-img-6.jpg');">
+    <div class="main-container dark-translucent-bg" style="background-image: url(/assets/img/zgane.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;background-position: 50% 30%;">
         <div class="container">
             <div class="row">
                 <div class="main object-non-visible" data-animation-effect="fadeInUpSmall" data-effect-delay="100">

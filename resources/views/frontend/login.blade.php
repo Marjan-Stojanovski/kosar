@@ -52,9 +52,12 @@
                                             </label>
                                         </div>
                                         <button type="submit" class="btn btn-group btn-default btn-animated">Log In <i class="fa fa-user"></i></button>
+                                        <span> or </span>
+                                        <a class="btn btn-group btn-default btn-animated" href="{{ route('frontend.register') }}" style="color: white">Register <i class="fa fa-user"></i></a>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                     <!-- main end -->
